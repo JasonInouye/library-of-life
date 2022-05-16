@@ -1,0 +1,30 @@
+#images {
+    height: 500px;
+}
+
+#banner-img {
+    position: absolute;
+}
+
+#profile-img {
+    position: relative;
+    margin-top: 150px;
+    margin-left: 40px;
+    /* height: 50%;
+    width: 20%; */
+}
+
+#profile-info {
+    width: 90%;
+    margin-left: 20px;
+    display:inline-flex;
+    justify-content: right;
+}
+
+#name-and-location {
+    margin-left: 30%;
+}
+
+#manage-library {
+    margin-right: 10px;
+}

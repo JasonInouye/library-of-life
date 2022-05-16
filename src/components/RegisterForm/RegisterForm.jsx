@@ -19,8 +19,14 @@ function RegisterForm() {
     dispatch({
       type: 'REGISTER',
       payload: {
-        username: emailAddress, //change to email address!! front to back 
+        emailAddress: emailAddress, //change to email address!! front to back 
         password: password,
+        firstName: firstName,
+        lastName: lastName, 
+        city: city,
+        state: state,
+        country: country,
+        password: password
       },
     });
   }; // end registerUser

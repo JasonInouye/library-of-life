@@ -10,7 +10,8 @@ function Nav() {
   return (
     <div className="nav">
       <Link to="/home">
-        <h2 className="nav-title">Prime Solo Project</h2>
+        {/* <h2 className="nav-title">Prime Group Project</h2> */}
+        {/* <img src={'/public/images/lol.png'}/> */}
       </Link>
       <div>
         {/* If no user is logged in, show these links */}
@@ -25,7 +26,7 @@ function Nav() {
         {user.id && (
           <>
             <Link className="navLink" to="/user">
-              Home
+              Manage Library
             </Link>
 
             <Link className="navLink" to="/info">

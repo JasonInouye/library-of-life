@@ -1,4 +1,5 @@
 import React from 'react';
+import './UserPage.css';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
@@ -11,21 +12,25 @@ function UserPage() {
   return (
     <div className="container">
       <div id='images'>
-        <img src='' alt='background image' />
-        <img src='' alt='a very good looking individual' />
-      </div>
-      <div>
-        <div>
+        <img id='banner-img' src='https://marketplace.canva.com/EAENvp21inc/1/0/1600w/canva-simple-work-linkedin-banner-qt_TMRJF4m0.jpg' alt='banner image' />
+        <img id='profile-img' src='https://annemariesegal.files.wordpress.com/2017/04/adobestock_116914002-cropped-young-woman-suit.jpg?w=300&h=295' alt='a very good looking individual' />
+        <div id='name-and-location'>
           <h1>Name</h1>
           <h2>Location</h2>
         </div>
-        <div>
-          <Button>Manage Library</Button>
-          <Button>My Connections</Button>
+      </div>
+      <div id='profile-info'>
+        {/* <div id='name-and-location'>
+          <h1>Name</h1>
+          <h2>Location</h2>
+        </div> */}
+        <div id='profile-links'>
+          <Button id='manage-library' variant='outlined'>Manage Library</Button>
+          <Button variant='outlined'>My Connections</Button>
         </div>
       </div>
       <UserVideos />
-      <LogOutButton className="btn" />
+      {/* <LogOutButton className="btn" /> */}
     </div>
   );
 }

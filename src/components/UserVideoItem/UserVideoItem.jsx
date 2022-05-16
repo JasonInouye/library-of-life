@@ -1,13 +1,13 @@
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import { useState } from 'react';
 
 
 
 import React from "react";
-import { Menu, Typography } from "@mui/material";
+import { Menu, Typography, Button } from "@mui/material";
 
 import NestedMenuItem from "material-ui-nested-menu-item";
 
@@ -16,7 +16,7 @@ function UserVideoItem() {
     //The database will replace this useState
     const [permission, setPermission] = useState('');
 
-    const handleChange = (event: SelectChangeEvent) => {
+    const handleChange = (event) => {
 
         //Change to dispatch when hooked up to DB
         setPermission(event.target.value);
@@ -27,27 +27,28 @@ function UserVideoItem() {
 
     const [menuPosition, setMenuPosition] = useState(null);
 
-  const handleRightClick = (event: React.MouseEvent) => {
-    if (menuPosition) {
-      return;
-    }
-    event.preventDefault();
-    setMenuPosition({
-      top: event.pageY,
-      left: event.pageX
-    });
-  };
+    const openShareMenu = (event) => {
+        if (menuPosition) {
+            return;
+        }
+        event.preventDefault();
+        setMenuPosition({
+            top: event.pageY,
+            left: event.pageX
+        });
+    };
 
-  const handleItemClick = (event: React.MouseEvent) => {
-    setMenuPosition(null);
-  };
+    const handleItemClick = () => {
+        setMenuPosition(null);
+    };
 
 
     return (
         <>
             <img />
-            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-                <InputLabel id="permission-select-small">Permissions</InputLabel>
+
+            <FormControl sx={{ m: 1, minWidth: 180 }} size="small">
+                <InputLabel id="permission-select-small">Who can see this?</InputLabel>
                 <Select
                     labelId="permission-select-small"
                     id="permission-select-small"
@@ -62,43 +63,34 @@ function UserVideoItem() {
                 </Select>
             </FormControl>
 
-            <div onContextMenu={handleRightClick}>
-                <Typography>Right click to open menu</Typography>
+            <div id='share'>
+                <Button variant='contained' onClick={openShareMenu}>Share</Button>
                 <Menu
                     open={!!menuPosition}
                     onClose={() => setMenuPosition(null)}
                     anchorReference="anchorPosition"
                     anchorPosition={menuPosition}
                 >
-                    <MenuItem onClick={handleItemClick}>Button 1</MenuItem>
-                    <MenuItem onClick={handleItemClick}>Button 2</MenuItem>
                     <NestedMenuItem
-                        label="Button 3"
+                        label="Friends"
                         parentMenuOpen={!!menuPosition}
                         onClick={handleItemClick}
                     >
-                        <MenuItem onClick={handleItemClick}>Sub-Button 1</MenuItem>
-                        <MenuItem onClick={handleItemClick}>Sub-Button 2</MenuItem>
-                        <NestedMenuItem
-                            label="Sub-Button 3"
-                            parentMenuOpen={!!menuPosition}
-                            onClick={handleItemClick}
-                        >
-                            <MenuItem onClick={handleItemClick}>Sub-Sub-Button 1</MenuItem>
-                            <MenuItem onClick={handleItemClick}>Sub-Sub-Button 2</MenuItem>
-                        </NestedMenuItem>
+                        <MenuItem onClick={handleItemClick}>All Friends</MenuItem>
+                        <br />
+                        <MenuItem onClick={handleItemClick}>Dave</MenuItem>
                     </NestedMenuItem>
-                    <MenuItem onClick={handleItemClick}>Button 4</MenuItem>
                     <NestedMenuItem
-                        label="Button 5"
+                        label="Family"
                         parentMenuOpen={!!menuPosition}
                         onClick={handleItemClick}
                     >
-                        <MenuItem onClick={handleItemClick}>Sub-Button 1</MenuItem>
-                        <MenuItem onClick={handleItemClick}>Sub-Button 2</MenuItem>
+                        <MenuItem onClick={handleItemClick}>All Family</MenuItem>
+                        <br />
+                        <MenuItem onClick={handleItemClick}>Mom</MenuItem>
                     </NestedMenuItem>
                 </Menu>
-            </div>
+            </div >
         </>
     )
 }

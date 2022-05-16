@@ -4,8 +4,8 @@ import UserVideoItem from "../UserVideoItem/UserVideoItem";
 function UserVideos() {
     return (
         <>
-            {/* .map */}
-            <UserVideoItem />
+            {/* .map
+            <UserVideoItem /> */}
         </>
     )
 }
