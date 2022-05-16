@@ -2,8 +2,14 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 function RegisterForm() {
-  const [username, setUsername] = useState('');
+  const [emailAddress, setEmailAddress] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [country, setCountry] = useState('');
   const [password, setPassword] = useState('');
+
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -13,7 +19,7 @@ function RegisterForm() {
     dispatch({
       type: 'REGISTER',
       payload: {
-        username: username,
+        username: emailAddress, //change to email address!! front to back 
         password: password,
       },
     });
@@ -21,24 +27,92 @@ function RegisterForm() {
 
   return (
     <form className="formPanel" onSubmit={registerUser}>
-      <h2>Register User</h2>
+
+      <h2>Register</h2>
       {errors.registrationMessage && (
         <h3 className="alert" role="alert">
           {errors.registrationMessage}
         </h3>
       )}
+
       <div>
-        <label htmlFor="username">
-          Username:
+        <label htmlFor="emailAddress">
+          Email Address:
           <input
             type="text"
-            name="username"
-            value={username}
+            name="emailAddress"
+            value={emailAddress}
             required
-            onChange={(event) => setUsername(event.target.value)}
+            onChange={(event) => setEmailAddress(event.target.value)}
           />
         </label>
       </div>
+
+      <div>
+        <label htmlFor="firstName">
+          First Name:
+          <input
+            type="text"
+            name="firstName"
+            value={firstName}
+            required
+            onChange={(event) => setFirstName(event.target.value)}
+          />
+        </label>
+      </div>
+      
+      <div>
+        <label htmlFor="Last Name">
+          Last Name:
+          <input
+            type="text"
+            name="lastName"
+            value={lastName}
+            required
+            onChange={(event) => setLastName(event.target.value)}
+          />
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="password">
+          City:
+          <input
+            type="text"
+            name="city"
+            value={city}
+            required
+            onChange={(event) => setCity(event.target.value)}
+          />
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="password">
+          State:
+          <input
+            type="text"
+            name="state"
+            value={state}
+            required
+            onChange={(event) => setState(event.target.value)}
+          />
+        </label>
+      </div>
+
+      <div>
+        <label htmlFor="country">
+          Country:
+          <input
+            type="text"
+            name="country"
+            value={country}
+            required
+            onChange={(event) => setCountry(event.target.value)}
+          />
+        </label>
+      </div>
+
       <div>
         <label htmlFor="password">
           Password:
@@ -51,6 +125,7 @@ function RegisterForm() {
           />
         </label>
       </div>
+
       <div>
         <input className="btn" type="submit" name="submit" value="Register" />
       </div>
