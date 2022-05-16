@@ -41,7 +41,7 @@ CREATE TABLE "prompts" (
 CREATE TABLE "invited_by" (
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INT NOT NULL,
-	"email_address" VARCHAR(255) NOT NULL,
+	"username" VARCHAR(255) NOT NULL,
 	"video_id" INT NOT NULL
 );
 
@@ -54,12 +54,12 @@ CREATE TABLE "users" (
 	"city" VARCHAR(255) NOT NULL,
 	"state" VARCHAR(255) NOT NULL,
 	"country" VARCHAR(255) NOT NULL,
-	"email_address" VARCHAR(255) NOT NULL,
+	"username" VARCHAR(255) NOT NULL,
 	"password" VARCHAR(255) NOT NULL,
 	"about_me" TEXT,
 	"profile_image" TEXT NOT NULL,
 	"banner_image" TEXT NOT NULL
 );
 
-INSERT INTO "users" ("first_name", "last_name", "city", "state", "country", "email_address", "password", "about_me", "profile_image", "banner_image")
+INSERT INTO "users" ("first_name", "last_name", "city", "state", "country", "username", "password", "about_me", "profile_image", "banner_image")
 VALUES ('Jane', 'Kim', 'Minneapolis', 'MN', 'United States', 'janekim@lol.com', 1234, 'I am Jane Kim.', './images/janeKim.png', './images/flowers.jpg');
