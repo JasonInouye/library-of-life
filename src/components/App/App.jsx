@@ -20,6 +20,9 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import VideoWatchPage from '../VideoWatchPage/VideoWatchPage';
+import ManageLibrary from '../ManageLibrary/ManageLibrary';
+
+
 import './App.css';
 
 function App() {
@@ -117,6 +120,14 @@ function App() {
               <LandingPage />
             }
           </Route>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/manageLibrary"
+          >
+            <ManageLibrary />
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

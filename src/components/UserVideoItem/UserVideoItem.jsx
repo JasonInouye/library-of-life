@@ -1,17 +1,31 @@
+import React from "react";
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+
+/******* video player  ********/
+import ReactPlayer from 'react-player';
+
+/******* icons  ********/
+import { VscTrash } from "react-icons/vsc";
+import { SiSlideshare } from "react-icons/si";
+
+/******* nested menu dropdowns  ********/
+import { Menu, Typography, Button } from "@mui/material";
+import NestedMenuItem from "material-ui-nested-menu-item";
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { useState } from 'react';
+
+/******* general MUI structure  ********/
+import Container from '@mui/material/Container';
 
 
+function UserVideoItem({ video }) {
 
-import React from "react";
-import { Menu, Typography, Button } from "@mui/material";
+    // check if user owns videos; don't render edit/delete buttons if not
+    const user = useSelector((store) => store.user);
 
-import NestedMenuItem from "material-ui-nested-menu-item";
-
-function UserVideoItem() {
 
     //The database will replace this useState
     const [permission, setPermission] = useState('');
@@ -45,9 +59,19 @@ function UserVideoItem() {
 
     return (
         <>
-            <img />
+            <Container>
+                {/* the video */}
+                <ReactPlayer
+                    className='react-player'
+                    width='100%'
+                    height='100%'
+                    url={video.url} />
 
-            <FormControl sx={{ m: 1, minWidth: 180 }} size="small">
+                {/* if logged-in user, show permissions toggle, delete, and share options*/}
+                {/* {user.id == video.user_id ? */}
+
+                    {/* permissions menu */ }
+                    < FormControl sx={{ m: 1, minWidth: 180 }} size="small">
                 <InputLabel id="permission-select-small">Who can see this?</InputLabel>
                 <Select
                     labelId="permission-select-small"
@@ -63,8 +87,13 @@ function UserVideoItem() {
                 </Select>
             </FormControl>
 
+            {/* share button */}
             <div id='share'>
-                <Button variant='contained' onClick={openShareMenu}>Share</Button>
+                <Button
+                    variant='contained'
+                    onClick={openShareMenu}>
+                    Share <span style={{ paddingLeft: '5px' }}><SiSlideshare /> </span>
+                </Button>
                 <Menu
                     open={!!menuPosition}
                     onClose={() => setMenuPosition(null)}
@@ -90,7 +119,18 @@ function UserVideoItem() {
                         <MenuItem onClick={handleItemClick}>Mom</MenuItem>
                     </NestedMenuItem>
                 </Menu>
+                <Button
+                    variant='contained'
+                    color='error'>
+                    <span style={{ marginTop: '5px' }}>
+                        <VscTrash size={17} /></span>
+                </Button>
+
+                {/* :
+                null} */}
+
             </div >
+        </Container>
         </>
     )
 }
