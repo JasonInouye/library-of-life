@@ -9,9 +9,18 @@ import Grid from '@material-ui/core/Grid';
 // import classNames from 'classnames';
 
 function ManageLibrary() {
-  return (
-    <div>ManageLibrary</div>
-  )
+    return (
+        <>
+            <h1>ManageLibrary</h1>
+            <Grid container spacing={3}>
+                <Grid item xs={6}>
+
+                </Grid>
+
+
+            </Grid>
+        </>
+    )
 }
 
 export default ManageLibrary
