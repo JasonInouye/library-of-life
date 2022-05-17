@@ -65,7 +65,8 @@ function UserVideoItem({ video }) {
                     className='react-player'
                     width='100%'
                     height='100%'
-                    url={video.url} />
+                    url={video.url} 
+                    controls={true}/>
 
                 {/* if logged-in user, show permissions toggle, delete, and share options*/}
                 {/* {user.id == video.user_id ? */}
