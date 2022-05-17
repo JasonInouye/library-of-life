@@ -5,6 +5,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import './App.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,8 +20,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
-import './App.css';
+import SearchResults from '../SearchResults/SearchResults';
 
 function App() {
   const dispatch = useDispatch();
@@ -66,6 +66,14 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/search-results"
+          >
+            <SearchResults />
           </ProtectedRoute>
 
           <Route

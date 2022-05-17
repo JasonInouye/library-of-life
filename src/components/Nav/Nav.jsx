@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,11 +11,17 @@ function Nav() {
   const listOfUsers = useSelector(store => store.listOfUsers);
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
+
+  const handleSubmit = () => {
+    history.push('/search-results');
+  }
 
 
 
   useEffect(() => {
-    dispatch({type: 'GET_USERS'})
+    dispatch({ type: 'GET_USERS' })
   }, [])
 
   return (
@@ -40,14 +46,16 @@ function Nav() {
         {user.id && (
           <div id='logged-in-nav'>
             <div id='search'>
-              <Autocomplete
-                id='users'
-                options={listOfUsers}
-                getOptionLabel={(option) => option.first_name}
-                // onChange={handleExerciseInput}
-                style={{ width: 500 }}
-                renderInput={(params) => <TextField {...params} label='Search' />}
-              />
+              <form onSubmit={handleSubmit}>
+                <Autocomplete
+                  id='users'
+                  options={listOfUsers}
+                  getOptionLabel={(option) => option.first_name + ' ' + option.last_name}
+                  // onChange={handleExerciseInput}
+                  style={{ width: 500 }}
+                  renderInput={(params) => <TextField {...params} label='Search' />}
+                />
+              </form>
             </div>
             <div id='navLinks'>
               <Link className="navLink" to="/user">
