@@ -8,7 +8,9 @@ import Container from '@mui/material/Container';
 
 
 /******* icons  ********/
-import { IoTrashOutline } from "react-icons/io";
+import { VscTrash } from "react-icons/vsc";
+import { SiSlideshare } from "react-icons/si";
+
 
 
 
@@ -53,12 +55,14 @@ function UserVideoItem() {
     return (
         <>
             <Container>
+                {/* the video */}
                 <ReactPlayer
                     className='react-player'
                     width='100%'
                     height='100%'
                     url='https://www.youtube.com/watch?v=NpEaa2P7qZI' />
 
+                {/* permissions menu */}
                 <FormControl sx={{ m: 1, minWidth: 180 }} size="small">
                     <InputLabel id="permission-select-small">Who can see this?</InputLabel>
                     <Select
@@ -75,8 +79,13 @@ function UserVideoItem() {
                     </Select>
                 </FormControl>
 
+                {/* share button */}
                 <div id='share'>
-                    <Button variant='contained' onClick={openShareMenu}>Share</Button>
+                    <Button
+                        variant='contained'
+                        onClick={openShareMenu}>
+                        Share <span style={{ paddingLeft: '5px' }}><SiSlideshare /> </span>
+                    </Button>
                     <Menu
                         open={!!menuPosition}
                         onClose={() => setMenuPosition(null)}
@@ -102,6 +111,12 @@ function UserVideoItem() {
                             <MenuItem onClick={handleItemClick}>Mom</MenuItem>
                         </NestedMenuItem>
                     </Menu>
+                    <Button
+                        variant='contained'
+                        color='error'>
+                        <span style={{ marginTop: '5px' }}>
+                            <VscTrash size={17} /></span>
+                    </Button>
                 </div >
             </Container>
         </>

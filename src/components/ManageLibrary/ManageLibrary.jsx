@@ -26,23 +26,23 @@ function ManageLibrary() {
                         <h1>Manage Library</h1>
                     </Grid>
                     {/* TODO below: eventually map thru video array */}
-                    < Grid item xs={4} lg={3}>
+                    < Grid item xs={4} lg={4}>
                         <UserVideoItem />
                     </Grid>
 
-                    <Grid item xs={4} lg={3}>
+                    <Grid item xs={4} lg={4}>
                         <UserVideoItem />
                     </Grid>
 
-                    <Grid item xs={4} lg={3}>
+                    <Grid item xs={4} lg={4}>
                         <UserVideoItem />
                     </Grid>
 
-                    <Grid item xs={4} lg={3}>
+                    <Grid item xs={4} lg={4}>
                         <UserVideoItem />
                     </Grid>
 
-                    <Grid item xs={4} lg={3}>
+                    <Grid item xs={4} lg={4}>
                         <UserVideoItem />
                     </Grid>
 
