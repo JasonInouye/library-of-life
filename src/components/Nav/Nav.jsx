@@ -1,13 +1,22 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Autocomplete, TextField } from '@mui/material';
 
 function Nav() {
   const user = useSelector((store) => store.user);
+  const listOfUsers = useSelector(store => store.listOfUsers);
+
+  const dispatch = useDispatch();
+
+
+
+  useEffect(() => {
+    dispatch({type: 'GET_USERS'})
+  }, [])
 
   return (
     <div className="nav">
@@ -32,9 +41,9 @@ function Nav() {
           <div id='logged-in-nav'>
             <div id='search'>
               <Autocomplete
-                id='exercise-options'
-                // options={exercises}
-                // getOptionLabel={(option) => option.exercise_name}
+                id='users'
+                options={listOfUsers}
+                getOptionLabel={(option) => option.first_name}
                 // onChange={handleExerciseInput}
                 style={{ width: 500 }}
                 renderInput={(params) => <TextField {...params} label='Search' />}
