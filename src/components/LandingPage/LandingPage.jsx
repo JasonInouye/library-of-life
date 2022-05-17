@@ -15,12 +15,13 @@ function LandingPage() {
   };
 
   return (
+    <main className="faces">
     <div className="landing">
-      <h2>Your Story. Your Legacy.</h2>
-      <h5>--video goes here--</h5>
-      <Button variant='outlined' onClick={onRegistration} sx={{ color: 'white', backgroundColor: 'black' }}>Join The Library Of Life</Button>
-
+      <h2 className="border white">Your Story. Your Legacy.</h2>
+      <h5 className="white">--video goes here--</h5>
+      <Button variant='outlined' onClick={onRegistration} sx={{ margin: '20px', color: 'black', backgroundColor: 'white' }}>Join The Library Of Life</Button>
     </div>
+    </main>
   );
 }
 
