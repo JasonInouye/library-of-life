@@ -3,8 +3,10 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+/******* getting video item  ********/
 import UserVideoItem from '../UserVideoItem/UserVideoItem';
 
+/******* general MUI structure  ********/
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid';
 import Container from '@mui/material/Container';
@@ -27,7 +29,7 @@ function ManageLibrary() {
             <Container>
                 <Grid container
                     style={{ padding: '1em', textAlign: 'center' }}
-                    spacing={3}>
+                    spacing={1}>
 
                     <Grid item
                         xs={12} lg={6}>
@@ -35,35 +37,17 @@ function ManageLibrary() {
                     </Grid>
 
                     {/* Map thru array of user's videos*/}
-                    < Grid item xs={4} lg={4}>
+
                     {videos?.map((video) => {
                         return ( //loops thru array of videos to create each video item
-                            <UserVideoItem
-                                key={video.id}
-                                video={video}
-                            />);
+                            < Grid item xs={4} lg={3}
+                            key={video.id}>
+                                <UserVideoItem
+                                    
+                                    video={video}
+                                /> </Grid>)
                     })}
-                    </Grid>
-                    {/* < Grid item xs={4} lg={4}>
-                        <UserVideoItem />
-                    </Grid>
-
-                    <Grid item xs={4} lg={4}>
-                        <UserVideoItem />
-                    </Grid>
-
-                    <Grid item xs={4} lg={4}>
-                        <UserVideoItem />
-                    </Grid>
-
-                    <Grid item xs={4} lg={4}>
-                        <UserVideoItem />
-                    </Grid>
-
-                    <Grid item xs={4} lg={4}>
-                        <UserVideoItem />
-                    </Grid> */}
-
+                    
                 </Grid>
             </Container>
         </>
