@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -20,7 +20,7 @@ function ManageLibrary() {
 
     useEffect(() => {//triggers saga getting all user videos from DB on page load
         dispatch({ type: 'GET_USER_VIDEOS' });
-
+    }, []);
 
     return (
         <>
@@ -33,8 +33,18 @@ function ManageLibrary() {
                         xs={12} lg={6}>
                         <h1>Manage Library</h1>
                     </Grid>
-                    {/* TODO below: eventually map thru video array */}
+
+                    {/* Map thru array of user's videos*/}
                     < Grid item xs={4} lg={4}>
+                    {videos?.map((video) => {
+                        return ( //loops thru array of videos to create each video item
+                            <UserVideoItem
+                                key={video.id}
+                                video={video}
+                            />);
+                    })}
+                    </Grid>
+                    {/* < Grid item xs={4} lg={4}>
                         <UserVideoItem />
                     </Grid>
 
@@ -52,7 +62,7 @@ function ManageLibrary() {
 
                     <Grid item xs={4} lg={4}>
                         <UserVideoItem />
-                    </Grid>
+                    </Grid> */}
 
                 </Grid>
             </Container>

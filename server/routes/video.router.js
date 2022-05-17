@@ -18,13 +18,13 @@ router.get('/userVideos/:id', (req, res) => {
     WHERE "user_id" = $1; 
     `;
 
-    console.log('server GET userVideos', req.params)
-    // pool.query(query, [req.params.id]).then((result) => {
-    //     res.send(result.rows);
-    // }).catch(err => {
-    //     console.log('ERROR: Get one treat', err);
-    //     res.sendStatus(500)
-    // });
+    console.log('server GET userVideos', req.user.id)
+    pool.query(query, [req.user.id]).then((result) => {
+        res.send(result.rows);
+    }).catch(err => {
+        console.log('ERROR: Get one treat', err);
+        res.sendStatus(500)
+    });
 });
 
 /**
