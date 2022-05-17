@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import ReactPlayer from 'react-player';
 
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles'
@@ -11,10 +12,53 @@ import Grid from '@material-ui/core/Grid';
 function ManageLibrary() {
     return (
         <>
-            <h1>ManageLibrary</h1>
-            <Grid container spacing={3}>
-                <Grid item xs={6}>
+            <Grid container 
+            style={{padding:'1em', textAlign:'center'}}
+            spacing={3}>
 
+            <Grid item 
+            xs={12} lg={6}>
+            <h1>Manage Library</h1>
+            </Grid>
+
+                <Grid item xs={4} lg={3}>
+                    <ReactPlayer
+                        className='react-player'
+                        width='100%'
+                        height='100%'
+                        url='https://www.youtube.com/watch?v=NpEaa2P7qZI' />
+                </Grid>
+
+                <Grid item xs={4} lg={3}>
+                    <ReactPlayer
+                        className='react-player'
+                        width='100%'
+                        height='100%'
+                        url='https://www.youtube.com/watch?v=NpEaa2P7qZI' />
+                </Grid>
+
+                <Grid item xs={4} lg={3}>
+                    <ReactPlayer
+                        className='react-player'
+                        width='100%'
+                        height='100%'
+                        url='https://www.youtube.com/watch?v=NpEaa2P7qZI' />
+                </Grid>
+
+                <Grid item xs={4} lg={3}>
+                    <ReactPlayer
+                        className='react-player'
+                        width='100%'
+                        height='100%'
+                        url='https://www.youtube.com/watch?v=NpEaa2P7qZI' />
+                </Grid>
+
+                <Grid item xs={4} lg={3}>
+                    <ReactPlayer
+                        className='react-player'
+                        width='100%'
+                        height='100%'
+                        url='https://www.youtube.com/watch?v=NpEaa2P7qZI' />
                 </Grid>
 
 
