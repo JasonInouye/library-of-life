@@ -14,9 +14,10 @@ function Nav() {
   const history = useHistory();
 
 
-  const handleSubmit = () => {
-    history.push('/search-results');
-  }
+  //moved to stretch due to SQL queries
+  // const handleSubmit = () => {
+  //   history.push('/search-results');
+  // }
 
 
 
@@ -46,7 +47,7 @@ function Nav() {
         {user.id && (
           <div id='logged-in-nav'>
             <div id='search'>
-              <form onSubmit={handleSubmit}>
+              {/* <form onSubmit={handleSubmit}> */}
                 <Autocomplete
                   id='users'
                   options={listOfUsers}
@@ -55,7 +56,7 @@ function Nav() {
                   style={{ width: 500 }}
                   renderInput={(params) => <TextField {...params} label='Search' />}
                 />
-              </form>
+              {/* </form> */}
             </div>
             <div id='navLinks'>
               <Link className="navLink" to="/user">
