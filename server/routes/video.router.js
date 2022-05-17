@@ -10,6 +10,31 @@ router.get('/', (req, res) => {
 });
 
 /**
+ * GET route for ALL USER videos
+ */
+router.get('/userVideos/:id', (req, res) => {
+    const query = `
+    SELECT * FROM "videos"
+    WHERE "user_id" = $1; 
+    `;
+
+    console.log('server GET userVideos', req.params)
+    // pool.query(query, [req.params.id]).then((result) => {
+    //     res.send(result.rows);
+    // }).catch(err => {
+    //     console.log('ERROR: Get one treat', err);
+    //     res.sendStatus(500)
+    // });
+});
+
+/**
+ * GET route for SINGLE video
+ */
+ router.get('/', (req, res) => {
+    // GET route code here
+  });
+
+/**
  * POST route template
  */
 router.post('/', (req, res) => {

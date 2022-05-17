@@ -2,10 +2,9 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import ReactPlayer from 'react-player';
+
 import UserVideoItem from '../UserVideoItem/UserVideoItem';
 
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid';
 import Container from '@mui/material/Container';
@@ -14,6 +13,15 @@ import Container from '@mui/material/Container';
 // import classNames from 'classnames';
 
 function ManageLibrary() {
+
+    const dispatch = useDispatch();
+    const videos = useSelector((store) => store.videoReducer);
+    const history = useHistory();
+
+    useEffect(() => {//triggers saga getting all user videos from DB on page load
+        dispatch({ type: 'GET_USER_VIDEOS' });
+
+
     return (
         <>
             <Container>
