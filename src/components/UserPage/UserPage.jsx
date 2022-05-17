@@ -4,9 +4,13 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import UserVideos from '../UserVideos/UserVideos';
+import { useHistory } from 'react-router-dom';
+
 
 
 function UserPage() {
+  const history = useHistory();
+
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   return (
@@ -25,7 +29,11 @@ function UserPage() {
           <h2>Location</h2>
         </div> */}
         <div id='profile-links'>
-          <Button id='manage-library' variant='outlined'>Manage Library</Button>
+          <Button 
+          id='manage-library' 
+          variant='outlined'
+          onClick={() => { history.push('/managelibrary') }}>
+            Manage Library</Button>
           <Button variant='outlined'>My Connections</Button>
         </div>
       </div>
