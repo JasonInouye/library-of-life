@@ -18,6 +18,11 @@ img {
   background-image: url("/Users/mchuinard3/prime/tier3/library-of-life/public/images/Screen Shot 2022-05-17 at 1.09.49 PM.png");
 }
 
+.sage {
+ 
+  color: #667b68;
+}
+
 .landing {
   text-align: center;
   font-size: 30px;
@@ -25,10 +30,20 @@ img {
   
 }
 
+.sageBackground {
+  background-color: #dde6d5;
+  height: 800px;
+}
+
 .white {
   background-color: black;
   color: white;
   
+}
+
+.videoWatch {
+  text-align: center;
+  font-size: 20px;
 }
 
 

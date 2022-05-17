@@ -19,7 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-
+import VideoWatchPage from '../VideoWatchPage/VideoWatchPage';
 import './App.css';
 
 function App() {
@@ -94,6 +94,14 @@ function App() {
               // Otherwise, show the registration page
               <RegisterPage />
             }
+          </Route>
+
+          <Route
+
+            exact
+            path="/videoWatchPage"
+          >
+            <VideoWatchPage />
           </Route>
 
           <Route
