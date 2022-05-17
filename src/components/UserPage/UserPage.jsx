@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import './UserPage.css';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
@@ -9,6 +10,11 @@ import UserVideos from '../UserVideos/UserVideos';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+
+  const videos = useParams().videos;
+  const connections = useParams().connections;
+
+
   return (
     <div className="container">
       <div id='images'>
@@ -20,14 +26,8 @@ function UserPage() {
         </div>
       </div>
       <div id='profile-info'>
-        {/* <div id='name-and-location'>
-          <h1>Name</h1>
-          <h2>Location</h2>
-        </div> */}
-        <div id='profile-links'>
-          <Button id='manage-library' variant='outlined'>Manage Library</Button>
-          <Button variant='outlined'>My Connections</Button>
-        </div>
+        <Button id='manage-library' variant='outlined'>Manage Library</Button>
+        <Button variant='outlined'>My Connections</Button>
       </div>
       <UserVideos />
       {/* <LogOutButton className="btn" /> */}
