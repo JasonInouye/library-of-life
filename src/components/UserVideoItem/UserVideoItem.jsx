@@ -4,6 +4,12 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
 import ReactPlayer from 'react-player';
+import Container from '@mui/material/Container';
+
+
+/******* icons  ********/
+import { IoTrashOutline } from "react-icons/io";
+
 
 
 
@@ -46,56 +52,58 @@ function UserVideoItem() {
 
     return (
         <>
-            <ReactPlayer
-                className='react-player'
-                width='100%'
-                height='100%'
-                url='https://www.youtube.com/watch?v=NpEaa2P7qZI' />
+            <Container>
+                <ReactPlayer
+                    className='react-player'
+                    width='100%'
+                    height='100%'
+                    url='https://www.youtube.com/watch?v=NpEaa2P7qZI' />
 
-            <FormControl sx={{ m: 1, minWidth: 180 }} size="small">
-                <InputLabel id="permission-select-small">Who can see this?</InputLabel>
-                <Select
-                    labelId="permission-select-small"
-                    id="permission-select-small"
-                    value={permission}
-                    label="permission"
-                    onChange={handleChange}
-                >
-                    <MenuItem value={4}>Everyone</MenuItem>
-                    <MenuItem value={3}>Friends</MenuItem>
-                    <MenuItem value={2}>Family</MenuItem>
-                    <MenuItem value={1}>Invite-Only</MenuItem>
-                </Select>
-            </FormControl>
+                <FormControl sx={{ m: 1, minWidth: 180 }} size="small">
+                    <InputLabel id="permission-select-small">Who can see this?</InputLabel>
+                    <Select
+                        labelId="permission-select-small"
+                        id="permission-select-small"
+                        value={permission}
+                        label="permission"
+                        onChange={handleChange}
+                    >
+                        <MenuItem value={4}>Everyone</MenuItem>
+                        <MenuItem value={3}>Friends</MenuItem>
+                        <MenuItem value={2}>Family</MenuItem>
+                        <MenuItem value={1}>Invite-Only</MenuItem>
+                    </Select>
+                </FormControl>
 
-            <div id='share'>
-                <Button variant='contained' onClick={openShareMenu}>Share</Button>
-                <Menu
-                    open={!!menuPosition}
-                    onClose={() => setMenuPosition(null)}
-                    anchorReference="anchorPosition"
-                    anchorPosition={menuPosition}
-                >
-                    <NestedMenuItem
-                        label="Friends"
-                        parentMenuOpen={!!menuPosition}
-                        onClick={handleItemClick}
+                <div id='share'>
+                    <Button variant='contained' onClick={openShareMenu}>Share</Button>
+                    <Menu
+                        open={!!menuPosition}
+                        onClose={() => setMenuPosition(null)}
+                        anchorReference="anchorPosition"
+                        anchorPosition={menuPosition}
                     >
-                        <MenuItem onClick={handleItemClick}>All Friends</MenuItem>
-                        <br />
-                        <MenuItem onClick={handleItemClick}>Dave</MenuItem>
-                    </NestedMenuItem>
-                    <NestedMenuItem
-                        label="Family"
-                        parentMenuOpen={!!menuPosition}
-                        onClick={handleItemClick}
-                    >
-                        <MenuItem onClick={handleItemClick}>All Family</MenuItem>
-                        <br />
-                        <MenuItem onClick={handleItemClick}>Mom</MenuItem>
-                    </NestedMenuItem>
-                </Menu>
-            </div >
+                        <NestedMenuItem
+                            label="Friends"
+                            parentMenuOpen={!!menuPosition}
+                            onClick={handleItemClick}
+                        >
+                            <MenuItem onClick={handleItemClick}>All Friends</MenuItem>
+                            <br />
+                            <MenuItem onClick={handleItemClick}>Dave</MenuItem>
+                        </NestedMenuItem>
+                        <NestedMenuItem
+                            label="Family"
+                            parentMenuOpen={!!menuPosition}
+                            onClick={handleItemClick}
+                        >
+                            <MenuItem onClick={handleItemClick}>All Family</MenuItem>
+                            <br />
+                            <MenuItem onClick={handleItemClick}>Mom</MenuItem>
+                        </NestedMenuItem>
+                    </Menu>
+                </div >
+            </Container>
         </>
     )
 }

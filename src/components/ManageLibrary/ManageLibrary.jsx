@@ -9,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid';
 import Container from '@mui/material/Container';
-import { IoTrashOutline } from "react-icons/io";
 
 
 // import classNames from 'classnames';
@@ -26,25 +25,25 @@ function ManageLibrary() {
                         xs={12} lg={6}>
                         <h1>Manage Library</h1>
                     </Grid>
-
-                    <Grid item xs={4} lg={3}>
-                        <UserVideoItem/>
+                    {/* TODO below: eventually map thru video array */}
+                    < Grid item xs={4} lg={3}>
+                        <UserVideoItem />
                     </Grid>
 
                     <Grid item xs={4} lg={3}>
-                        <UserVideoItem/>
+                        <UserVideoItem />
                     </Grid>
 
                     <Grid item xs={4} lg={3}>
-                        <UserVideoItem/>
+                        <UserVideoItem />
                     </Grid>
 
                     <Grid item xs={4} lg={3}>
-                        <UserVideoItem/>
+                        <UserVideoItem />
                     </Grid>
 
                     <Grid item xs={4} lg={3}>
-                        <UserVideoItem/>
+                        <UserVideoItem />
                     </Grid>
 
                 </Grid>
