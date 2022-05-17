@@ -1,19 +1,23 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import { useParams, useHistory } from 'react-router-dom';
 import './UserPage.css';
-import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import UserVideos from '../UserVideos/UserVideos';
+import Connections from '../Connections/Connections';
 
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const history = useHistory();
+  const view = useParams().view;
 
-  const videos = useParams().videos;
-  const connections = useParams().connections;
+  
 
+  // useEffect(() => {
+  //   history.push('/user/videos')
+  // },[])
 
   return (
     <div className="container">
@@ -27,11 +31,22 @@ function UserPage() {
       </div>
       <div id='profile-info'>
         <Button id='manage-library' variant='outlined'>Manage Library</Button>
-        <Button variant='outlined'>My Connections</Button>
+        <Button variant='outlined' onClick={() => {history.push('/user/connections')}}>My Connections</Button>
       </div>
-      <UserVideos />
-      {/* <LogOutButton className="btn" /> */}
+{/* ////////////////////////////////////////// */}
+
+      
+      {view == "videos" &&  
+        <UserVideos/>}
+      
+      {view == "connections" && 
+        <Connections/>}
+       
+
     </div>
+
+
+
   );
 }
 
