@@ -3,6 +3,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
+import ReactPlayer from 'react-player';
 
 
 
@@ -45,7 +46,11 @@ function UserVideoItem() {
 
     return (
         <>
-            <img />
+            <ReactPlayer
+                className='react-player'
+                width='100%'
+                height='100%'
+                url='https://www.youtube.com/watch?v=NpEaa2P7qZI' />
 
             <FormControl sx={{ m: 1, minWidth: 180 }} size="small">
                 <InputLabel id="permission-select-small">Who can see this?</InputLabel>
