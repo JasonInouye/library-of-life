@@ -21,6 +21,11 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import SearchResults from '../SearchResults/SearchResults';
+import VideoWatchPage from '../VideoWatchPage/VideoWatchPage';
+import ManageLibrary from '../ManageLibrary/ManageLibrary';
+
+
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -105,6 +110,14 @@ function App() {
           </Route>
 
           <Route
+
+            exact
+            path="/videoWatchPage"
+          >
+            <VideoWatchPage />
+          </Route>
+
+          <Route
             exact
             path="/home"
           >
@@ -117,6 +130,14 @@ function App() {
               <LandingPage />
             }
           </Route>
+
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/manageLibrary"
+          >
+            <ManageLibrary />
+          </ProtectedRoute>
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>

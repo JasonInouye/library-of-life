@@ -48,21 +48,21 @@ function Nav() {
           <div id='logged-in-nav'>
             <div id='search'>
               {/* <form onSubmit={handleSubmit}> */}
-                <Autocomplete
-                  id='users'
-                  options={listOfUsers}
-                  getOptionLabel={(option) => option.first_name + ' ' + option.last_name}
-                  // onChange={handleExerciseInput}
-                  style={{ width: 500 }}
-                  renderInput={(params) => <TextField {...params} label='Search' />}
-                />
+              <Autocomplete
+                id='users'
+                options={listOfUsers}
+                getOptionLabel={(option) => option.first_name + ' ' + option.last_name}
+                // onChange={handleExerciseInput}
+                style={{ width: 500 }}
+                renderInput={(params) => <TextField {...params} label='Search' />}
+              />
               {/* </form> */}
             </div>
             <div id='navLinks'>
-              <Link className="navLink" to="/user">
+              <Link className="navLink" to="/manageLibrary">
                 Manage Library
               </Link>
-
+              
               <Link className="navLink" to="/info">
                 Info Page
               </Link>
@@ -72,9 +72,13 @@ function Nav() {
           </div>
         )}
 
-        {/* <Link className="navLink" to="/about">
-            About
-          </Link> */}
+        <Link className="navLink" to="/about">
+          About
+        </Link>
+
+        <Link className="navLink" to="/videoWatchPage">
+          Video Watch Page
+        </Link>
       </div>
     </div>
   );
