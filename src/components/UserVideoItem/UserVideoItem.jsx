@@ -31,9 +31,9 @@ function UserVideoItem({ video }) {
     const [permission, setPermission] = useState('');
 
     const handleChange = (event) => {
-
         //Change to dispatch when hooked up to DB
         setPermission(event.target.value);
+        console.log('selected permission is:',permission);
     };
 
 
