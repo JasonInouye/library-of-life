@@ -40,6 +40,23 @@ router.get('/:id', (req, res) => {
     })
 })
 
+
+/**
+ * DELETE route for SINGLE video
+ */
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  console.log('router DELETE id:', id);
+  const query = `DELETE FROM "videos" WHERE "videos".id =$1;`;
+  values = [id];
+  pool.query(query, values)
+    .then(() => { res.sendStatus(200); })
+    .catch((err) => {
+      console.log('Error completing DELETE', err);
+      res.sendStatus(500);
+    });
+});
+
 /**
  * POST route template
  */

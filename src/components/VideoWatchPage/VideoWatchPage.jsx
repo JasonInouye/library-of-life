@@ -130,7 +130,7 @@ function VideoWatchPage() {
                 </div >
 
 
-                <Button variant='outlined' sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Delete</Button>
+                <Button variant='outlined' onClick={(event) => dispatch({ type: 'DELETE_VIDEO', payload: singleVideo.id })} sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Delete</Button>
                 <Button variant='outlined' sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Share</Button>
                 <Button variant='outlined' sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Back</Button>
 
