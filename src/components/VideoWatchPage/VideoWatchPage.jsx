@@ -24,15 +24,15 @@ function VideoWatchPage() {
                 <h2 className="border sage">If you could do something to change humanity, what would it be?</h2>
                 <h5 className="sage">--video goes here--</h5>
 
-                {/* <MenuItem value={4}>Everyone</MenuItem>
-                    <MenuItem value={3}>Friends</MenuItem>
-                    <MenuItem value={2}>Family</MenuItem>
-                    <MenuItem value={1}>Invite-Only</MenuItem> */}
+                <MenuItem value={4}>Everyone</MenuItem>
+                <MenuItem value={3}>Friends</MenuItem>
+                <MenuItem value={2}>Family</MenuItem>
+                <MenuItem value={1}>Invite-Only</MenuItem>
                 <Button variant='outlined' sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Delete</Button>
                 <Button variant='outlined' sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Share</Button>
                 <Button variant='outlined' sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Back</Button>
 
-        
+
             </div>
         </main>
     );
