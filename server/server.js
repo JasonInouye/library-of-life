@@ -10,6 +10,7 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const videoRouter = require('./routes/video.router');
+const permissionRouter = require('./routes/permission.router')
 
 
 // Body parser middleware
@@ -23,11 +24,15 @@ app.use(sessionMiddleware);
 app.use(passport.initialize());
 app.use(passport.session());
 
-/* Routes */
+/* User route */
 app.use('/api/user', userRouter);
 
 /* Video route */
 app.use('/api/video', videoRouter);
+
+/* Permission route (to the "shared_videos" table in DB) */
+app.use('/api/permission', permissionRouter);
+
 
 // Serve static files
 app.use(express.static('build'));
