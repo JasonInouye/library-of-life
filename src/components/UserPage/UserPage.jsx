@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
-import { useHistory } from 'react-router-dom';
 
 
 

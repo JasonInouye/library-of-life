@@ -62,9 +62,13 @@ function Nav() {
               <Link className="navLink" to="/manageLibrary">
                 Manage Library
               </Link>
-              
-              <Link className="navLink" to="/info">
-                Info Page
+
+              <Link className="navLink" to="/videoWatchPage">
+                Video Watch Page
+              </Link>
+
+              <Link className="navLink" to="/about">
+                About
               </Link>
 
               <LogOutButton className="navLink" />
@@ -72,13 +76,6 @@ function Nav() {
           </div>
         )}
 
-        <Link className="navLink" to="/about">
-          About
-        </Link>
-
-        <Link className="navLink" to="/videoWatchPage">
-          Video Watch Page
-        </Link>
       </div>
     </div>
   );
