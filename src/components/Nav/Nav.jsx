@@ -1,10 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Autocomplete, TextField } from '@mui/material';
+
+/******* nested menu dropdowns  ********/
+import { Menu, Button } from "@mui/material";
+import NestedMenuItem from "material-ui-nested-menu-item";
+import MenuItem from '@mui/material/MenuItem';
 
 function Nav() {
   const user = useSelector((store) => store.user);
@@ -20,6 +25,24 @@ function Nav() {
   // }
 
 
+  const [menuPosition, setMenuPosition] = useState(null);
+
+  const openMenu = (event) => {
+    if (menuPosition) {
+      return;
+    }
+    event.preventDefault();
+    setMenuPosition({
+      top: event.pageY,
+      left: event.pageX
+    });
+  };
+
+  const handleItemClick = () => {
+    setMenuPosition(null);
+  };
+
+
 
   useEffect(() => {
     dispatch({ type: 'GET_USERS' })
@@ -32,53 +55,58 @@ function Nav() {
           <img id='logo' src='/images/logo.jpg' />
         </Link>
       </div>
-      <div>
 
 
-        {/* If no user is logged in, show these links */}
-        {!user.id && (
-          // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
-        )}
+      {/* If no user is logged in, show these links */}
+      {!user.id && (
+        // If there's no user, show login/registration links
+        <Link className="navLink" to="/login">
+          Login / Register
+        </Link>
+      )}
 
 
-        {/* If a user is logged in, show these links */}
-        {user.id && (
-          <div id='logged-in-nav'>
-            <div id='search'>
-              {/* <form onSubmit={handleSubmit}> */}
-              <Autocomplete
-                id='users'
-                options={listOfUsers}
-                getOptionLabel={(option) => option.first_name + ' ' + option.last_name}
-                // onChange={handleExerciseInput}
-                style={{ width: 500 }}
-                renderInput={(params) => <TextField {...params} label='Search' />}
-              />
-              {/* </form> */}
-            </div>
-            <div id='navLinks'>
-              <Link className="navLink" to="/manageLibrary">
-                Manage Library
-              </Link>
-
-              <Link className="navLink" to="/videoWatchPage">
-                Video Watch Page
-              </Link>
-
-              <Link className="navLink" to="/about">
-                About
-              </Link>
-
-              <LogOutButton className="navLink" />
-            </div>
-          </div>
-        )}
-
+      <div id='search'>
+        <Autocomplete
+          id='users'
+          options={listOfUsers}
+          getOptionLabel={(option) => option.first_name + ' ' + option.last_name}
+          // onChange={handleExerciseInput}
+          fullWidth
+          // style={{ minWidth: 200, maxWidth: 200, width: 1000 }}
+          renderInput={(params) => <TextField {...params} label='Search' />}
+        />
       </div>
-    </div>
+
+
+      {/* If a user is logged in, show these links */}
+      {user.id && (
+        <div id='navLinks'>
+          <div id='menu'>
+            <Link
+              className="navLink"
+              onClick={openMenu}>
+              Menu
+            </Link>
+            <Menu
+              open={!!menuPosition}
+              onClose={() => setMenuPosition(null)}
+              anchorReference="anchorPosition"
+              anchorPosition={menuPosition}
+            >
+              <MenuItem onClick={handleItemClick}>My Profile</MenuItem>
+              {/* <br /> */}
+              <MenuItem onClick={handleItemClick}>My Connections</MenuItem>
+              {/* <br /> */}
+              <MenuItem onClick={handleItemClick}>About Library of Life</MenuItem>
+            </Menu>
+          </div>
+          <LogOutButton className="navLink" />
+        </div>
+      )
+      }
+
+    </div >
   );
 }
 
