@@ -10,7 +10,7 @@ const passport = require('./strategies/user.strategy');
 // Route includes
 const userRouter = require('./routes/user.router');
 const videoRouter = require('./routes/video.router');
-
+const connectionsRouter = require('./routes/connections.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -28,6 +28,9 @@ app.use('/api/user', userRouter);
 
 /* Video route */
 app.use('/api/video', videoRouter);
+
+/* Connections route */
+app.use('/api/connections', connectionsRouter);
 
 // Serve static files
 app.use(express.static('build'));
