@@ -65,8 +65,8 @@ function UserVideoItem({ video }) {
                     {/* the video */}
                     <ReactPlayer
                         className='react-player'
-                        width='100%'
-                        height='100%'
+                        width='75%'
+                        height='75%'
                         url={video.url}
                         controls={true} />
 
@@ -126,7 +126,7 @@ function UserVideoItem({ video }) {
                                 </NestedMenuItem>
                             </Menu>
                             <Button
-                            id='delete-button'
+                                id='delete-button'
                                 variant='contained'
                                 color='error'>
                                 <span style={{ marginTop: '5px' }}>
@@ -134,7 +134,7 @@ function UserVideoItem({ video }) {
                             </Button>
 
                             {/* :
-                null} */}
+                             null} */}
                         </div>
                     </div >
                 </div>

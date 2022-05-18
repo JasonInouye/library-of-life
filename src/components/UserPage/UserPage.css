@@ -2,9 +2,9 @@
     position: relative;
 }
 
-/* #banner-img {
-    position: relative;
-} */
+#profile-header {
+    margin-bottom: 100px;
+}
 
 #profile-img-div {
     position: absolute;
@@ -29,9 +29,7 @@
 
 #profile-info {
     width: 90%;
-    margin-left: 20px;
-    margin-right: 20px;
-    margin-bottom: 50px;
+    margin: 50px 20px;
     display:inline-flex;
     justify-content: right;
 }

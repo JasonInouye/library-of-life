@@ -29,8 +29,8 @@ function UserPage() {
         </div>
         <div id='info-beneath-photos'>
           <div id='name-and-location'>
-            <h5>{user.first_name + ' ' + user.last_name}</h5>
-            <h6>{user.city + ', ' + user.state}</h6>
+            <h3>{user.first_name + ' ' + user.last_name}</h3>
+            <h4>{user.city + ', ' + user.state}</h4>
           </div>
           <div id='profile-info'>
             <Button
