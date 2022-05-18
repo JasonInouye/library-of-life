@@ -43,6 +43,7 @@ function Nav() {
           </Link>
         )}
 
+
         {/* If a user is logged in, show these links */}
         {user.id && (
           <div id='logged-in-nav'>
