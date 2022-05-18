@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 
@@ -14,8 +15,13 @@ import Select from '@mui/material/Select';
 function PermissionDropdown() {
 
     const dispatch = useDispatch();
+    const currentPermission = useSelector((store) => store.permission);
+    //FIXME above: what is logic (/query) to figure out current permission setting??
+    //FIXME set drop down to show current settings (currentPermission from store) 
+    //QUESTION what to show when invite-only? a list with radio buttons?
 
-    //The database will replace this useState
+
+    //The database will replace this useState 
     const [permission, setPermission] = useState(''); //default in DB is invite-only
     
 
