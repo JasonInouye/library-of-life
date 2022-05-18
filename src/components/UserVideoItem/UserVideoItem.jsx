@@ -10,12 +10,9 @@ import { VscTrash } from "react-icons/vsc";
 import { SiSlideshare } from "react-icons/si";
 
 /******* nested menu dropdowns  ********/
-import { Menu, Typography, Button } from "@mui/material";
-import NestedMenuItem from "material-ui-nested-menu-item";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import ShareButton from "../_Widgets/ShareButton";
+import PermissionDropdown from "../_Widgets/PermissionDropdown";
+import { Button } from "@mui/material";
 
 /******* general MUI structure  ********/
 import Container from '@mui/material/Container';
@@ -27,36 +24,6 @@ function UserVideoItem({ video }) {
     const user = useSelector((store) => store.user);
 
 
-    //The database will replace this useState
-    const [permission, setPermission] = useState('');
-
-    const handleChange = (event) => {
-        //Change to dispatch when hooked up to DB
-        setPermission(event.target.value);
-        console.log('selected permission is:',permission);
-    };
-
-
-
-
-    const [menuPosition, setMenuPosition] = useState(null);
-
-    const openShareMenu = (event) => {
-        if (menuPosition) {
-            return;
-        }
-        event.preventDefault();
-        setMenuPosition({
-            top: event.pageY,
-            left: event.pageX
-        });
-    };
-
-    const handleItemClick = () => {
-        setMenuPosition(null);
-    };
-
-
     return (
         <>
             <Container>
@@ -65,61 +32,19 @@ function UserVideoItem({ video }) {
                     className='react-player'
                     width='100%'
                     height='100%'
-                    url={video.url} 
-                    controls={true}/>
+                    url={video.url}
+                    controls={true} />
 
                 {/* if logged-in user, show permissions toggle, delete, and share options*/}
                 {/* {user.id == video.user_id ? */}
 
-                    {/* permissions menu */ }
-                    < FormControl sx={{ m: 1, minWidth: 180 }} size="small">
-                <InputLabel id="permission-select-small">Who can see this?</InputLabel>
-                <Select
-                    labelId="permission-select-small"
-                    id="permission-select-small"
-                    value={permission}
-                    label="permission"
-                    onChange={handleChange}
-                >
-                    <MenuItem value={4}>Everyone</MenuItem>
-                    <MenuItem value={3}>Friends</MenuItem>
-                    <MenuItem value={2}>Family</MenuItem>
-                    <MenuItem value={1}>Invite-Only</MenuItem>
-                </Select>
-            </FormControl>
+                {/* permissions menu */}
+                <PermissionDropdown />
 
-            {/* share button */}
-            <div id='share'>
-                <Button
-                    variant='contained'
-                    onClick={openShareMenu}>
-                    Share <span style={{ paddingLeft: '5px' }}><SiSlideshare /> </span>
-                </Button>
-                <Menu
-                    open={!!menuPosition}
-                    onClose={() => setMenuPosition(null)}
-                    anchorReference="anchorPosition"
-                    anchorPosition={menuPosition}
-                >
-                    <NestedMenuItem
-                        label="Friends"
-                        parentMenuOpen={!!menuPosition}
-                        onClick={handleItemClick}
-                    >
-                        <MenuItem onClick={handleItemClick}>All Friends</MenuItem>
-                        <br />
-                        <MenuItem onClick={handleItemClick}>Dave</MenuItem>
-                    </NestedMenuItem>
-                    <NestedMenuItem
-                        label="Family"
-                        parentMenuOpen={!!menuPosition}
-                        onClick={handleItemClick}
-                    >
-                        <MenuItem onClick={handleItemClick}>All Family</MenuItem>
-                        <br />
-                        <MenuItem onClick={handleItemClick}>Mom</MenuItem>
-                    </NestedMenuItem>
-                </Menu>
+
+                {/* share button */}
+                <ShareButton />
+
                 <Button
                     variant='contained'
                     color='error'>
@@ -130,8 +55,8 @@ function UserVideoItem({ video }) {
                 {/* :
                 null} */}
 
-            </div >
-        </Container>
+
+            </Container>
         </>
     )
 }
