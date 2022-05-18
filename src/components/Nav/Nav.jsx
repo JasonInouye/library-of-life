@@ -41,6 +41,10 @@ function Nav() {
           About
         </Link>
 
+        <Link className="navLink" to="/videoUploadPage">
+          Upload Video
+        </Link>
+
         <Link className="navLink" to="/videoWatchPage">
           Video Watch Page
         </Link>

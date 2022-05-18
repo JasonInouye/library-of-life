@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import VideoWatchPage from '../VideoWatchPage/VideoWatchPage';
 import ManageLibrary from '../ManageLibrary/ManageLibrary';
+import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 
 
 import './App.css';
@@ -97,6 +98,14 @@ function App() {
               // Otherwise, show the registration page
               <RegisterPage />
             }
+          </Route>
+
+          <Route
+
+            exact
+            path="/videoUploadPage"
+          >
+            <VideoUploadPage />
           </Route>
 
           <Route
