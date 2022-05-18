@@ -36,7 +36,6 @@ function UserPage() {
             <Button
               id='manage-library'
               variant='outlined'
-              size='small'
               onClick={() => { history.push('/managelibrary') }}>
               Manage Library</Button>
             <Button variant='outlined' onClick={() => { history.push('/user/connections') }}>My Connections</Button>
