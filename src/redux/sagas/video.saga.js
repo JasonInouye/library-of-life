@@ -27,6 +27,20 @@ function* getUserVideos() {
   }
 }
 
+// get one user video from the DB
+
+function* getSingleVideo(action) {
+  const id = 2;
+  // console.log('GET SINGLE VIDEO SAGA:', action.payload);
+  try {
+    const response = yield axios.get(`/api/video/${id}`);
+    yield put({ type: 'SET_SINGLE_VIDEO', payload: response.data });
+  } catch (error) {
+    console.log('Video get request failed', error);
+  }
+
+}
+
 /*
 // get one Bakesale from the DB by id
 function* fetchBakesaleDetail(action) {
@@ -80,7 +94,8 @@ function* deleteBakesale(action) {
 function* videoSaga() {
 
   yield takeLatest('GET_USER_VIDEOS', getUserVideos);
-  
+  yield takeLatest('GET_SINGLE_VIDEO', getSingleVideo);
+
 }
 
 export default videoSaga;
