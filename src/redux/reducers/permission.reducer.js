@@ -1,4 +1,4 @@
-const permissionReducer = (state = [], action) => {
+const permissionReducer = (state = '', action) => {
     switch (action.type) {
         case 'SET_PERMISSION':
             return action.payload;

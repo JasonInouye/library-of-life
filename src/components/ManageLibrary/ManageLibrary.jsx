@@ -20,7 +20,7 @@ function ManageLibrary() {
     const videos = useSelector((store) => store.videoReducer);
     const history = useHistory();
 
-    useEffect(() => {//triggers saga getting all user videos from DB on page load
+    useEffect(() => {//triggers saga getting all user videos and permissions from DB on page load
         dispatch({ type: 'GET_USER_VIDEOS' });
     }, []);
 

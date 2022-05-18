@@ -19,6 +19,7 @@ function* getUserVideos() {
 
   try {
     const videos = yield axios.get('/api/video/userVideos/:id');
+    // const permissions = yield axios.get('/api/permission');
     console.log('getting user videos:', videos.data);
     yield put({ type: 'SET_USER_VIDEOS', payload: videos.data }); //set in videoReducer
 

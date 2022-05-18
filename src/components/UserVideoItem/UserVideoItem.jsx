@@ -36,24 +36,21 @@ function UserVideoItem({ video }) {
                     controls={true} />
 
                 {/* if logged-in user, show permissions toggle, delete, and share options*/}
-                {/* {user.id == video.user_id ? */}
+                {user.id == video.user_id ?
+                    <>
+                        <PermissionDropdown />
 
-                {/* permissions menu */}
-                <PermissionDropdown />
+                        <ShareButton />
 
-
-                {/* share button */}
-                <ShareButton />
-
-                <Button
-                    variant='contained'
-                    color='error'>
-                    <span style={{ marginTop: '5px' }}>
-                        <VscTrash size={17} /></span>
-                </Button>
-
-                {/* :
-                null} */}
+                        <Button
+                            variant='contained'
+                            color='error'>
+                            <span style={{ marginTop: '5px' }}>
+                                <VscTrash size={17} /></span>
+                        </Button>
+                    </>
+                    :
+                    null}
 
 
             </Container>

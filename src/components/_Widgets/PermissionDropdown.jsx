@@ -1,5 +1,7 @@
 import React from "react";
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 
 
 /******* nested menu dropdowns  ********/
@@ -11,15 +13,20 @@ import Select from '@mui/material/Select';
 
 function PermissionDropdown() {
 
+    const dispatch = useDispatch();
 
     //The database will replace this useState
-    const [permission, setPermission] = useState(0);
+    const [permission, setPermission] = useState(''); //default in DB is invite-only
+    
 
     const handleChange = (event) => {
         //Change to dispatch when hooked up to DB
         setPermission(event.target.value);
-        console.log('selected permission is:', permission);
+        dispatch({type: 'UPDATE_PERMISSION', payload: event.target.value})
     };
+
+
+    console.log('selected permission is:', permission);
 
     return (
         <>
@@ -36,10 +43,10 @@ function PermissionDropdown() {
                     label="permission"
                     onChange={handleChange}
                 >
-                    <MenuItem value={1}>Everyone</MenuItem>
-                    <MenuItem value={2}>Friends</MenuItem>
-                    <MenuItem value={3}>Family</MenuItem>
-                    <MenuItem value={4}>Invite-Only</MenuItem>
+                    <MenuItem value={'everyone'}>Everyone</MenuItem>
+                    <MenuItem value={'friends'}>Friends</MenuItem>
+                    <MenuItem value={'family'}>Family</MenuItem>
+                    <MenuItem value={'invite-only'}>Invite-Only</MenuItem>
                 </Select>
             </FormControl>
 

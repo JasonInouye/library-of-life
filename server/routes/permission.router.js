@@ -10,12 +10,12 @@ router.get('/', (req, res) => {
 });
 
 /**
- * GET route for ALL permissions of a user's videos
+ * GET route for permissions of a user's videos
  */
 router.get('/:id', (req, res) => {
     const query = `
     SELECT * FROM "shared_videos"
-    WHERE "user_id" = $1; 
+    WHERE "user_id" = $1 && "video_id" = $2; 
     `;
 
     console.log('server GET userVideos', req.user.id)

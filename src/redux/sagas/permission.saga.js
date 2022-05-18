@@ -47,24 +47,24 @@ function* fetchBakesaleDetail(action) {
 
 
 function* updatePermission(action) {
-  const video_id = action.payload.video_id; //all info expected in payload
-  console.log('SAGA updatePermission video_id should be:', action.payload.id);
+//   const video_id = action.payload.video_id; //all info expected in payload
+  console.log('SAGA updatePermission payload should be:', action.payload);
 
-  try {
-    yield axios.put(`/api/permission/${video_id}`, action.payload.id);
-    //the "id" in action.payload.id is the actual permission level being updated
+//   try {
+//     yield axios.put(`/api/permission/${video_id}`, action.payload.id);
+//     //the "id" in action.payload.id is the actual permission level being updated
 
-    yield put({ type: 'GET_PERMISSION' }); //GET following PUT
+//     yield put({ type: 'GET_PERMISSION' }); //GET following PUT
 
-  } catch (error) {
-    console.log('Error with updatePermission saga:', error);
-  }
+//   } catch (error) {
+//     console.log('Error with updatePermission saga:', error);
+//   }
 }
 
 
 /*
 function* deleteBakesale(action) {
-  const id = action.payload; //because all threat info expected in payload
+  const id = action.payload; //because all treat info expected in payload
   console.log('SAGA delete bakesale:', id);
 
   try {
