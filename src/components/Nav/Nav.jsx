@@ -38,7 +38,11 @@ function Nav() {
     });
   };
 
-  const handleItemClick = () => {
+  const handleItemClick = (menuLink) => {
+
+    console.log(menuLink);
+    history.push(menuLink);
+
     setMenuPosition(null);
   };
 
@@ -73,7 +77,6 @@ function Nav() {
           getOptionLabel={(option) => option.first_name + ' ' + option.last_name}
           // onChange={handleExerciseInput}
           fullWidth
-          // style={{ minWidth: 200, maxWidth: 200, width: 1000 }}
           renderInput={(params) => <TextField {...params} label='Search' />}
         />
       </div>
@@ -94,11 +97,9 @@ function Nav() {
               anchorReference="anchorPosition"
               anchorPosition={menuPosition}
             >
-              <MenuItem onClick={handleItemClick}>My Profile</MenuItem>
-              {/* <br /> */}
-              <MenuItem onClick={handleItemClick}>My Connections</MenuItem>
-              {/* <br /> */}
-              <MenuItem onClick={handleItemClick}>About Library of Life</MenuItem>
+              <MenuItem onClick={(event) => handleItemClick('/user/videos')}>My Profile</MenuItem>
+              <MenuItem onClick={(event) => handleItemClick('/user/connections')}>My Connections</MenuItem>
+              <MenuItem onClick={(event) => handleItemClick('/about')}>About Library of Life</MenuItem>
             </Menu>
           </div>
           <LogOutButton className="navLink" />
