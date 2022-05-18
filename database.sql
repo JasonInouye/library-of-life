@@ -63,3 +63,24 @@ CREATE TABLE "users" (
 
 INSERT INTO "users" ("first_name", "last_name", "city", "state", "country", "username", "password", "about_me", "profile_image", "banner_image")
 VALUES ('Jane', 'Kim', 'Minneapolis', 'MN', 'United States', 'janekim@lol.com', 1234, 'I am Jane Kim.', './images/janeKim.png', './images/flowers.jpg');
+
+INSERT INTO "videos" ("user_id", "prompt_id", "url")
+VALUES 
+(1,1,'https://d2qw0j2prooaok.cloudfront.net/1118756.mp4'),
+(1,2,'https://d2qw0j2prooaok.cloudfront.net/1315907.mp4'),
+(1,3,'https://d2qw0j2prooaok.cloudfront.net/1336144.mp4'),
+(1,4,'https://d2qw0j2prooaok.cloudfront.net/1780209.mp4'),
+(1,1,'https://d2qw0j2prooaok.cloudfront.net/2655535.mp4'),
+(1,2,'https://d2qw0j2prooaok.cloudfront.net/2696979.mp4'),
+(1,3,'https://d2qw0j2prooaok.cloudfront.net/3182315.mp4'),
+(1,4,'https://d2qw0j2prooaok.cloudfront.net/3492195.mp4'),
+(1,1,'https://d2qw0j2prooaok.cloudfront.net/4054498.mp4'),
+(1,2,'https://d2qw0j2prooaok.cloudfront.net/4273448.mp4'),
+(1,3,'https://d2qw0j2prooaok.cloudfront.net/4462639.mp4'),
+(1,4,'https://d2qw0j2prooaok.cloudfront.net/610206.mp4'),
+(1,1,'https://d2qw0j2prooaok.cloudfront.net/6223778.mp4'),
+(1,2,'https://d2qw0j2prooaok.cloudfront.net/662434.mp4'),
+(1,3,'https://d2qw0j2prooaok.cloudfront.net/7042344.mp4'),
+(1,4,'https://d2qw0j2prooaok.cloudfront.net/8228153.mp4'),
+(1,1,'https://d2qw0j2prooaok.cloudfront.net/myboat_video.mp4')
+;
