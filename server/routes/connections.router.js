@@ -4,7 +4,8 @@ const router = express.Router();
 
 //get connections from DB 
 router.get('/', (req, res) => {
-    const queryText = `SELECT * FROM "connections";`;
+    const queryText = `SELECT * FROM "connections" a, "users" b
+    WHERE a."user_B_id" = b."id";`;
 
     pool.query(queryText)
     .then((result) => {

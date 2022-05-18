@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import './Connections.css';
 
 function Connections () {
 
@@ -15,17 +16,19 @@ function Connections () {
     return (
         <>
 
-        {/* {connections.relationship = "friend" && 
-        // show friends
-        }
+        {/* FRIEND: if user a id = user id  && relationship = friend, show user b */}
+        {/* FAMILY: if user a id = user id  && relationship = family, show user b */}
+        {/* ALL: if user a id = user id, show user b */}
 
-        {connections.relationship = "family" && 
-        //show family 
-        }
 
-        {connections && 
-        //show all 
-        } */}
+        {connections?.map((connect) => {
+            return (
+                // {connect.relationship = "family"  }
+                <ul>
+                    <li>{connect.first_name + " " + connect.last_name}</li>
+                </ul>
+            )
+        })}
         
         </>
     )
