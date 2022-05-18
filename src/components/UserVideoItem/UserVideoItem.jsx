@@ -9,10 +9,10 @@ import ReactPlayer from 'react-player';
 import { VscTrash } from "react-icons/vsc";
 import { SiSlideshare } from "react-icons/si";
 
-/******* nested menu dropdowns  ********/
+/******* buttons / dropdown menus  ********/
 import ShareButton from "../_Widgets/ShareButton";
 import PermissionDropdown from "../_Widgets/PermissionDropdown";
-import { Button } from "@mui/material";
+import DeleteButton from "../_Widgets/DeleteButton";
 
 /******* general MUI structure  ********/
 import Container from '@mui/material/Container';
@@ -42,12 +42,8 @@ function UserVideoItem({ video }) {
 
                         <ShareButton />
 
-                        <Button
-                            variant='contained'
-                            color='error'>
-                            <span style={{ marginTop: '5px' }}>
-                                <VscTrash size={17} /></span>
-                        </Button>
+                        <DeleteButton 
+                        video={video}/>
                     </>
                     :
                     null}
