@@ -1,0 +1,19 @@
+/* #video-item {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#permissions-and-share {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+#delete-button {
+    margin-left: 20px;
+} */

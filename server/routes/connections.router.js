@@ -2,14 +2,13 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
+//get connections from DB 
 router.get('/', (req, res) => {
-    const query = `SELECT * FROM "connections";`;
+    const queryText = `SELECT * FROM "connections";`;
 
-    pool.query(query)
+    pool.query(queryText)
     .then((result) => {
+        console.log('server GET connections', result.rows);
         res.send(result.rows);
     }).catch (err => {
         console.log('ERROR in GET connections', err);

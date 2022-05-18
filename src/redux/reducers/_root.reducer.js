@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
+import listOfUsers from './search.reducer'
+
 import videoReducer from './video.reducer';
 import connectionsReducer from './connections.reducer';
 // rootReducer is the primary reducer for our entire project
@@ -13,7 +15,10 @@ const rootReducer = combineReducers({
   errors, // contains registrationMessage and loginMessage
   user,// will have an id and username if someone is logged in
   videoReducer,
-  connectionsReducer
+  connectionsReducer,
+  user, // will have an id and username if someone is logged in
+  listOfUsers
 });
+
 
 export default rootReducer;

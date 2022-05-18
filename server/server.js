@@ -9,6 +9,7 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
+const searchRouter = require('./routes/search.router');
 const videoRouter = require('./routes/video.router');
 const connectionsRouter = require('./routes/connections.router');
 
@@ -25,6 +26,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
+app.use('/api/search', searchRouter);
 
 /* Video route */
 app.use('/api/video', videoRouter);

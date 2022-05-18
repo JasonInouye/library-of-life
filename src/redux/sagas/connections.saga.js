@@ -4,11 +4,11 @@ import axios from 'axios';
 //get all connections from DB
 function* getConnections() {
     try {
-        const connections = yield axios.get('/api/connections');
-        console.log('GET connections', connections.data);
-        yield put({type: 'SET_CONNECTIONS', payload: connections.data});
+        const response = yield axios.get('/api/connections');
+        console.log('GET connections', response.data);
+        yield put({type: 'SET_CONNECTIONS', payload: response.data});
     } catch (error){
-        console.log('Error in get connections saga');
+        console.log('Error in get connections saga', error);
     }
 }
 
