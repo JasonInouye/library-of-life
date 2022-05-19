@@ -15,24 +15,32 @@ function UserPage() {
   const history = useHistory();
   const view = useParams().view;
 
+  console.log(user);
+
 
   return (
     <div className="container">
-      <div id='images'>
-        <img id='banner-img' src='https://marketplace.canva.com/EAENvp21inc/1/0/1600w/canva-simple-work-linkedin-banner-qt_TMRJF4m0.jpg' alt='banner image' />
-        <img id='profile-img' src='https://annemariesegal.files.wordpress.com/2017/04/adobestock_116914002-cropped-young-woman-suit.jpg?w=300&h=295' alt='a very good looking individual' />
-        <div id='name-and-location'>
-          <h1>Name</h1>
-          <h2>Location</h2>
+      <div id='profile-header'>
+        <div id='images'>
+          <img id='banner-img' src='https://marketplace.canva.com/EAENvp21inc/1/0/1600w/canva-simple-work-linkedin-banner-qt_TMRJF4m0.jpg' alt='banner image' />
+          <div id='profile-img-div'>
+            <img id='profile-img' src='https://annemariesegal.files.wordpress.com/2017/04/adobestock_116914002-cropped-young-woman-suit.jpg?w=300&h=295' alt='a very good looking individual' />
+          </div>
         </div>
-      </div>
-      <div id='profile-info'>
-        <Button
-          id='manage-library'
-          variant='outlined'
-          onClick={() => { history.push('/managelibrary') }}>
-          Manage Library</Button>
-        <Button variant='outlined' onClick={() => { history.push('/user/connections') }}>My Connections</Button>
+        <div id='info-beneath-photos'>
+          <div id='name-and-location'>
+            <h3>{user.first_name + ' ' + user.last_name}</h3>
+            <h4>{user.city + ', ' + user.state}</h4>
+          </div>
+          <div id='profile-info'>
+            <Button
+              id='manage-library'
+              variant='outlined'
+              onClick={() => { history.push('/managelibrary') }}>
+              Manage Library</Button>
+            <Button variant='outlined' onClick={() => { history.push('/user/connections') }}>My Connections</Button>
+          </div>
+        </div>
       </div>
 
 

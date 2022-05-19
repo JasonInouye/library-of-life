@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
 
-  margin: 0 0 30px;
+  /* margin: 0 0 30px; */
   background-color: #FFFFFF;
   overflow: hidden;
 }
@@ -41,22 +41,29 @@
   background-color: #008183;
 }
 
-#logged-in-nav {
-  display: flex;
+#logo-link {
+  position: relative;
+  height: 75px;
+  width: 75px;
 }
 
 #logo {
-  height: 15%;
-  width: 15%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 }
 
 #logged-in-nav {
-  width: 100%;
   display: flex;
+  align-content: right;
   justify-content: space-between;
+  right: 0%;
 }
 
 #navLinks {
   display: flex;
+}
 
+#search {
+  width: 50%;
 }
