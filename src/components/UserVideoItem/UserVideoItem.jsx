@@ -35,7 +35,7 @@ function UserVideoItem({ video }) {
         <>
             <Container>
                 {/* the video */}
-                
+
                 {/* <ReactPlayer
                     className='react-player'
                     width='100%'
@@ -43,14 +43,15 @@ function UserVideoItem({ video }) {
                     url={video.url}
                     controls={true} /> */}
                 <Card >
-                <Typography gutterBottom variant="h7" component="div">
-                    {video.prompt}
-                </Typography>
+                    <Typography
+                        style={{ margin: '.5em' }}
+                        gutterBottom variant="h7"
+                        component="div">
+                        {video.prompt}
+                    </Typography>
                     <CardMedia
                         component="iframe"
-                        src="https://d2qw0j2prooaok.cloudfront.net/1315907.mp4"
-                    // image="/https://d2qw0j2prooaok.cloudfront.net/1315907.mp4"
-                    />
+                        src="https://d2qw0j2prooaok.cloudfront.net/1315907.mp4" />
 
                     {/* if logged-in user, show permissions toggle, delete, and share options*/}
                     {user.id == video.user_id ?
