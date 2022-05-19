@@ -17,6 +17,7 @@
 #profile-info {
     width: 90%;
     margin-left: 20px;
+    margin-bottom: 50px;
     display:inline-flex;
     justify-content: right;
 }

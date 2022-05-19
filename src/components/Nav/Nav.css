@@ -40,3 +40,23 @@
 .navLink:hover {
   background-color: #008183;
 }
+
+#logged-in-nav {
+  display: flex;
+}
+
+#logo {
+  height: 15%;
+  width: 15%;
+}
+
+#logged-in-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#navLinks {
+  display: flex;
+
+}
