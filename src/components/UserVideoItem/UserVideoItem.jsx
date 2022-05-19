@@ -51,7 +51,7 @@ function UserVideoItem({ video }) {
                     </Typography>
                     <CardMedia
                         component="iframe"
-                        src="https://d2qw0j2prooaok.cloudfront.net/1315907.mp4" />
+                        src={video.url} />
 
                     {/* if logged-in user, show permissions toggle, delete, and share options*/}
                     {user.id == video.user_id ?
