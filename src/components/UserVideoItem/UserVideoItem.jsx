@@ -31,21 +31,21 @@ function UserVideoItem({ video }) {
     return (
         <>
             <Container>
-                {/* the video */}
-                <Card sx={{minHeight:'18.5em'}}>
+
+                <Card sx={{ minHeight: '18.5em' }}>
                     <Typography
                         style={{ margin: '.5em' }}
                         gutterBottom variant="h7"
                         component="div">
                         {video.prompt}
                     </Typography>
-                    
-                        <ReactPlayer
-                    className='react-player'
-                    width='100%'
-                    height='100%'
-                    url={video.url}
-                    controls={true} />
+
+                    <ReactPlayer
+                        className='react-player'
+                        width='100%'
+                        height='100%'
+                        url={video.url}
+                        controls={true} />
 
                     {/* if logged-in user, show permissions toggle, delete, and share options*/}
                     {user.id == video.user_id ?
