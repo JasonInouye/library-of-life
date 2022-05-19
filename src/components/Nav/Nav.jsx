@@ -49,8 +49,9 @@ function Nav() {
 
 
   useEffect(() => {
-    dispatch({ type: 'GET_USERS' })
-  }, [])
+    console.log('user in effect', user)
+    dispatch({ type: 'GET_USERS', payload: user })
+  }, [user])
 
   return (
     <div className="nav">

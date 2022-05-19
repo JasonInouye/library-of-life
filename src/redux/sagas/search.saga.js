@@ -1,11 +1,11 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-function* getUsers() {
+function* getUsers(action) {
   try {
     const response = yield axios.get('/api/search');
 
-    yield put({type: 'SET_LIST_OF_USERS', payload: response.data});
+    yield put({type: 'SET_LIST_OF_USERS', payload: {listOfUsers: response.data, currentUser: action.payload}});
   } catch (error) {
     console.log('Error with search saga:', error);
   }

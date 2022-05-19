@@ -57,6 +57,7 @@ function ShareButton() {
                     anchorReference="anchorPosition"
                     anchorPosition={menuPosition}
                 >
+                    <MenuItem style={{width: '100%'}} onClick={handleItemClick}>Everyone</MenuItem>
                     <NestedMenuItem
                         label="Friends"
                         parentMenuOpen={!!menuPosition}
@@ -75,6 +76,7 @@ function ShareButton() {
                         <br />
                         <MenuItem onClick={handleItemClick}>Mom</MenuItem>
                     </NestedMenuItem>
+                    <MenuItem style={{width: '100%'}} onClick={handleItemClick}>Share with link</MenuItem>
                 </Menu>
         </>
     )
