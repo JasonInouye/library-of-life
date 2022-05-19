@@ -19,9 +19,6 @@ import DeleteButton from "../_Widgets/DeleteButton";
 import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 
@@ -35,13 +32,6 @@ function UserVideoItem({ video }) {
         <>
             <Container>
                 {/* the video */}
-
-                {/* <ReactPlayer
-                    className='react-player'
-                    width='100%'
-                    height='100%'
-                    url={video.url}
-                    controls={true} /> */}
                 <Card >
                     <Typography
                         style={{ margin: '.5em' }}
@@ -49,9 +39,13 @@ function UserVideoItem({ video }) {
                         component="div">
                         {video.prompt}
                     </Typography>
-                    <CardMedia
-                        component="iframe"
-                        src={video.url} />
+                    
+                        <ReactPlayer
+                    className='react-player'
+                    width='100%'
+                    height='100%'
+                    url={video.url}
+                    controls={true} />
 
                     {/* if logged-in user, show permissions toggle, delete, and share options*/}
                     {user.id == video.user_id ?
