@@ -81,6 +81,7 @@ function* deleteBakesale(action) {
 function* videoSaga() {
 
   yield takeLatest('GET_USER_VIDEOS', getUserVideos);
+  yield takeLatest('POST_VIDEO', postUserVideos);
   
 }
 

@@ -1,8 +1,10 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import "react-dropzone-uploader/dist/styles.css";
 import Dropzone from "react-dropzone-uploader";
 
 const Uploader = () => {
+  const dispatch = useDispatch();
   const axios = require("axios").default;
   const getUploadParams = ({ meta }) => {
     const url = 'https://httpbin.org/post'
@@ -25,7 +27,9 @@ const Uploader = () => {
       url: API_ENDPOINT,
     });
 
-    console.log("Response: ", response);
+    console.log("Response: ", response.data.Key);
+
+    dispatch({type: 'POST_VIDEO', payload: response.data.Key})
 
     // * PUT request: upload file to S3
     const result = await fetch(response.data.uploadURL, {
