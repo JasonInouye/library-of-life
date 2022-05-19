@@ -75,10 +75,10 @@ function UserPage() {
           aria-label="text alignment"
         >
           <ToggleButton onClick={() => { handleMyVideos() }} size="small" value="myVideos" aria-label="left aligned">
-            <h1>My Videos</h1>
+            <h3>My Videos</h3>
           </ToggleButton>
           <ToggleButton onClick={() => { handleSharedVideos() }} value="sharedVideos" aria-label="centered">
-            <h1>Shared Videos</h1>
+            <h3>Shared Videos</h3>
           </ToggleButton>
 
 
