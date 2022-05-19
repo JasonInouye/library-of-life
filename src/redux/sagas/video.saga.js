@@ -19,11 +19,37 @@ function* getUserVideos() {
 
   try {
     const videos = yield axios.get('/api/video/userVideos/:id');
+    // const permissions = yield axios.get('/api/permission'); //needs to get all existing permissions of user
     console.log('getting user videos:', videos.data);
     yield put({ type: 'SET_USER_VIDEOS', payload: videos.data }); //set in videoReducer
 
   } catch (error) {
     console.log('Error with getUserVideos saga:', error);
+  }
+}
+
+// get one user video from the DB
+function* getSingleVideo(action) {
+  const id = 10;
+  // console.log('GET SINGLE VIDEO SAGA:', action.payload);
+  try {
+    const response = yield axios.get(`/api/video/${id}`);
+    yield put({ type: 'SET_SINGLE_VIDEO', payload: response.data });
+  } catch (error) {
+    console.log('Video get request failed', error);
+  }
+
+}
+
+//delete one user video from the DB
+function* deleteVideo(action) {
+  const id = action.payload;
+  console.log('saga deleteVideo func id:', id);
+  try {
+    yield axios.delete(`/api/video/${id}`)
+    yield put({ type: 'GET_SINGLE_VIDEO' })
+  } catch (error) {
+    console.log(error);
   }
 }
 
@@ -80,7 +106,9 @@ function* deleteBakesale(action) {
 function* videoSaga() {
 
   yield takeLatest('GET_USER_VIDEOS', getUserVideos);
-  
+  yield takeLatest('GET_SINGLE_VIDEO', getSingleVideo);
+  yield takeLatest('DELETE_VIDEO', deleteVideo);
+
 }
 
 export default videoSaga;

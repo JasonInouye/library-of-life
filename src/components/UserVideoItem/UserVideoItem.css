@@ -1,4 +1,4 @@
-/* #video-item {
+#video-item {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -16,4 +16,4 @@
 
 #delete-button {
     margin-left: 20px;
-} */
+}
