@@ -49,7 +49,8 @@ function ShareButton() {
             <Button
                 size="small"
                 variant='contained'
-                onClick={openShareMenu}>
+                onClick={openShareMenu}
+                style={{backgroundColor:'#667b68'}}>
                 Share <span style={{ paddingLeft: '5px' }}><SiSlideshare /> </span>
             </Button>
             <Menu

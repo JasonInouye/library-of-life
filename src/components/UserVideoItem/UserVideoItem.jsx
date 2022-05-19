@@ -35,7 +35,7 @@ function UserVideoItem({ video }) {
         <>
             <Container>
                 {/* the video */}
-                <h5>{video.prompt}</h5>
+                
                 {/* <ReactPlayer
                     className='react-player'
                     width='100%'
@@ -43,6 +43,9 @@ function UserVideoItem({ video }) {
                     url={video.url}
                     controls={true} /> */}
                 <Card >
+                <Typography gutterBottom variant="h7" component="div">
+                    {video.prompt}
+                </Typography>
                     <CardMedia
                         component="iframe"
                         src="https://d2qw0j2prooaok.cloudfront.net/1315907.mp4"
@@ -52,13 +55,17 @@ function UserVideoItem({ video }) {
                     {/* if logged-in user, show permissions toggle, delete, and share options*/}
                     {user.id == video.user_id ?
                         <>
-                            <CardActions style={{display:'flex', flexDirection:'column'}}>
+                            <CardActions style={{ display: 'contents' }}>
                                 <PermissionDropdown />
 
-                                <ShareButton />
+                                <div style={{ marginBottom: '.3em' }}>
+                                    <DeleteButton
+                                        video={video} />
 
-                                <DeleteButton
-                                    video={video} />
+                                    <ShareButton
+                                        video={video} />
+                                </div>
+
                             </CardActions>
                         </>
                         :
