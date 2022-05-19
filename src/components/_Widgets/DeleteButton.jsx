@@ -12,7 +12,8 @@ function DeleteButton({ video }) {
     const dispatch = useDispatch();
 
     const handleDelete = (event) => {
-        console.log('clicked DELETE');
+        console.log('clicked DELETE')
+        // TODO use delete route from WatchVideo
     }
 
     return (

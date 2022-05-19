@@ -40,14 +40,14 @@ function ManageLibrary() {
 
                     {videos?.map((video) => {
                         return ( //loops thru array of videos to create each video item
-                            < Grid item xs={4} lg={3}
-                            key={video.id}>
+                            < Grid
+                                item xs={4} lg={3}
+                                key={video.id}>
                                 <UserVideoItem
-                                    
-                                    video={video}
-                                /> </Grid>)
+                                    video={video} />
+                            </Grid>)
                     })}
-                    
+
                 </Grid>
             </Container>
         </>

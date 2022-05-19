@@ -16,9 +16,9 @@ function PermissionDropdown() {
 
     const dispatch = useDispatch();
     const currentPermission = useSelector((store) => store.permission);
-    //FIXME above: what is logic (/query) to figure out current permission setting??
-    //FIXME set drop down to show current settings (currentPermission from store) 
-    //QUESTION what to show when invite-only? a list with radio buttons?
+    //TODO above: what is logic (/query) to figure out current permission setting??
+    //TODO set drop down to show current settings (currentPermission from store) 
+    //QUESTION what to show when invite-only?? a list with radio buttons of authorized people?
 
 
     //The database will replace this useState 
@@ -36,8 +36,6 @@ function PermissionDropdown() {
 
     return (
         <>
-
-            {/* permissions menu */}
             < FormControl sx={{ m: 1, minWidth: 180 }} size="small">
                 <InputLabel id="permission-select-small">
                     Who can see this?
@@ -55,7 +53,6 @@ function PermissionDropdown() {
                     <MenuItem value={'invite-only'}>Invite-Only</MenuItem>
                 </Select>
             </FormControl>
-
         </>
     )
 }
