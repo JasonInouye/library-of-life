@@ -1,9 +1,14 @@
 #images {
+    width: 100%;
     position: relative;
 }
 
 #profile-header {
     margin-bottom: 100px;
+}
+
+#banner-img {
+    width: 100%;
 }
 
 #profile-img-div {
