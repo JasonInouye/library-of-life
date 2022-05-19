@@ -2,9 +2,12 @@ import React from "react";
 import { useDispatch } from 'react-redux';
 
 
-/******* icon and button  ********/
+/******* icon********/
 import { VscTrash } from "react-icons/vsc";
 import { Button } from "@mui/material";
+import IconButton from '@mui/material/IconButton';
+
+
 
 
 function DeleteButton({ video }) {
@@ -18,15 +21,22 @@ function DeleteButton({ video }) {
 
     return (
         <>
-                        <Button
-                            variant='contained'
-                            color='error'
-                            onClick={handleDelete}>
-                            <span style={{ marginTop: '5px' }}>
-                                <VscTrash size={17} /></span>
-                        </Button>
-                    </>
-                  
+            <IconButton aria-label="delete"
+            onClick={handleDelete}
+            style={{ marginRight: '1em' }}>
+                <VscTrash />
+            </IconButton>
+
+            {/* <Button
+                size='small'
+                color='error'
+                variant="outlined"
+                onClick={handleDelete}
+            >
+                Delete {<VscTrash style={{ paddingLeft: '2px' }} />}
+            </Button> */}
+        </>
+
     )
 }
 
