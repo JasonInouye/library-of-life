@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
+import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 
 
 
@@ -49,6 +50,9 @@ function UserPage() {
 
       {view == "connections" &&
         <Connections />}
+
+      {view == "uploads" &&
+        <VideoUploadPage />}
 
 
     </div>

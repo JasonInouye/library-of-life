@@ -99,6 +99,7 @@ function Nav() {
             >
               <MenuItem onClick={(event) => handleItemClick('/user/videos')}>My Profile</MenuItem>
               <MenuItem onClick={(event) => handleItemClick('/user/connections')}>My Connections</MenuItem>
+              <MenuItem onClick={(event) => handleItemClick('/user/uploads')}>Upload Video</MenuItem>
               <MenuItem onClick={(event) => handleItemClick('/about')}>About Library of Life</MenuItem>
             </Menu>
           </div>
