@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
+import listOfUsers from './search.reducer'
+
 import videoReducer from './video.reducer';
 import permissionReducer from './permission.reducer';
 import promptReducer from './prompt.reducer';
@@ -15,7 +17,8 @@ const rootReducer = combineReducers({
   user,// will have an id and username if someone is logged in
   videoReducer, 
   permissionReducer, 
-  promptReducer
+  promptReducer,
+  listOfUsers
 });
 
 export default rootReducer;

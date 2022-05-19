@@ -11,7 +11,8 @@ const router = express.Router();
 // Handles Ajax request for user information if user is authenticated
 router.get('/', rejectUnauthenticated, (req, res) => {
   // Send back user object from the session (previously queried from the database)
-  console.log('This is the user data', req.user);
+  
+  // console.log('This is the user data', req.user);
   res.send(req.user);
 });
 
@@ -37,7 +38,6 @@ router.post('/register', (req, res, next) => {
   pool
     .query(queryText, queryValues)
     .then((result) => {
-      // console.log(result.rows[0].id)
       res.sendStatus(201)})
     .catch((err) => {
       console.log('User registration failed: ', err);
