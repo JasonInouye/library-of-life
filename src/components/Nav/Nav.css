@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
 
-  margin: 0 0 30px;
+  /* margin: 0 0 30px; */
   background-color: #FFFFFF;
   overflow: hidden;
 }
@@ -39,4 +39,31 @@
 
 .navLink:hover {
   background-color: #008183;
+}
+
+#logo-link {
+  position: relative;
+  height: 75px;
+  width: 75px;
+}
+
+#logo {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#logged-in-nav {
+  display: flex;
+  align-content: right;
+  justify-content: space-between;
+  right: 0%;
+}
+
+#navLinks {
+  display: flex;
+}
+
+#search {
+  width: 50%;
 }

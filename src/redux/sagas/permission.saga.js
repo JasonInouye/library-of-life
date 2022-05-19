@@ -14,17 +14,16 @@ function* addBakesale(action) {
 }
 */
 
-// get all user videos from the DB
-function* getUserVideos() {
+// get all user permissions from the DB
+function* getPermission() {
 
   try {
-    const videos = yield axios.get('/api/video/userVideos/:id');
-    // const permissions = yield axios.get('/api/permission'); //needs to get all existing permissions of user
-    console.log('getting user videos:', videos.data);
-    yield put({ type: 'SET_USER_VIDEOS', payload: videos.data }); //set in videoReducer
+    const permissions = yield axios.get('/api/permission/:id');
+    console.log('getting user permissions:', permissions.data);
+    yield put({ type: 'SET_PERMISSION', payload: permissions.data }); //set in videoReducer
 
   } catch (error) {
-    console.log('Error with getUserVideos saga:', error);
+    console.log('Error with getPermission saga:', error);
   }
 }
 
@@ -46,25 +45,26 @@ function* fetchBakesaleDetail(action) {
 }
 */
 
-/*
-function* editBakesale(action) {
-  const id = action.payload.id; //because all threat info expected in payload
-  // console.log('SAGA edit bakesale:', action.payload.id);
 
-  try {
-    yield axios.put(`/api/bakesale/${id}`, action.payload);
+function* updatePermission(action) {
+//   const video_id = action.payload.video_id; //all info expected in payload
+  console.log('SAGA updatePermission payload should be:', action.payload);
 
-    yield put({ type: 'FETCH_BAKESALES' }); //GET following PUT
+//   try {
+//     yield axios.put(`/api/permission/${video_id}`, action.payload.id);
+//     //the "id" in action.payload.id is the actual permission level being updated
 
-  } catch (error) {
-    console.log('Error with editBakesale saga:', error);
-  }
+//     yield put({ type: 'GET_PERMISSION' }); //GET following PUT
+
+//   } catch (error) {
+//     console.log('Error with updatePermission saga:', error);
+//   }
 }
-*/
+
 
 /*
 function* deleteBakesale(action) {
-  const id = action.payload; //because all threat info expected in payload
+  const id = action.payload; //because all treat info expected in payload
   console.log('SAGA delete bakesale:', id);
 
   try {
@@ -78,10 +78,12 @@ function* deleteBakesale(action) {
 }
 */
 
-function* videoSaga() {
+function* permissionSaga() {
 
-  yield takeLatest('GET_USER_VIDEOS', getUserVideos);
+  yield takeLatest('GET_PERMISSION', getPermission);
+  yield takeLatest('UPDATE_PERMISSION', updatePermission);
+
   
 }
 
-export default videoSaga;
+export default permissionSaga;
