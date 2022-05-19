@@ -29,7 +29,8 @@ const Uploader = () => {
 
     console.log("Response: ", response.data.Key);
 
-    dispatch({type: 'POST_VIDEO', payload: response.data.Key})
+    // key is the video id from AWS
+    dispatch({type: 'POST_VIDEO', payload: {key: response.data.Key}})
 
     // * PUT request: upload file to S3
     const result = await fetch(response.data.uploadURL, {

@@ -37,8 +37,26 @@ router.get('/userVideos/:id', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+ router.post('/', (req, res) => {
   // POST route code here
+  console.log( 'Inside of the VIDEO POST', req.body.key);
+  const domainLink = `https://d2qw0j2prooaok.cloudfront.net/${req.body.key}`
+
+  const sqlText =`
+    INSERT INTO "videos" ("user_id", "prompt_id", "url")
+    VALUES ($1, $2, $3)
+    ;`;
+  const insertValues = [req.user.id, 1, domainLink]
+
+  pool.query(sqlText, insertValues)
+    .then((result) => {
+      console.log('Added to video table', insertValues);
+      res.sendStatus(201);
+    })
+    .catch((err) => {
+      console.log( 'error in VIDEO POST', err);
+      res.sendStatus(500);
+    });
 });
 
 module.exports = router;

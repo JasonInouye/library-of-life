@@ -14,6 +14,16 @@ function* addBakesale(action) {
 }
 */
 
+// 
+function* postUserVideos(action) {
+  console.log('post action', action.payload.key);
+  try{
+      yield axios.post('/api/video/', action.payload);
+  } catch(err){
+      console.log(err);
+  }
+}
+
 // get all user videos from the DB
 function* getUserVideos() {
 
