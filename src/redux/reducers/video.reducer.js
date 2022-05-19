@@ -4,7 +4,7 @@ const videoReducer = (state = [], action) => {
             return action.payload;
         case 'SET_SINGLE_VIDEO':
             return action.payload[0];
-        case 'CLEAR_VIDEOS':
+        case 'CLEAR_VIDEO':
             return [];
         default:
             return state;

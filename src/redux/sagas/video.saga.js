@@ -30,7 +30,7 @@ function* getUserVideos() {
 
 // get one user video from the DB
 function* getSingleVideo(action) {
-  const id = 10;
+  const id = 11;
   // console.log('GET SINGLE VIDEO SAGA:', action.payload);
   try {
     const response = yield axios.get(`/api/video/${id}`);
@@ -47,7 +47,7 @@ function* deleteVideo(action) {
   console.log('saga deleteVideo func id:', id);
   try {
     yield axios.delete(`/api/video/${id}`)
-    yield put({ type: 'GET_SINGLE_VIDEO' })
+    yield put({ type: 'GET_USER_VIDEOS' })
   } catch (error) {
     console.log(error);
   }

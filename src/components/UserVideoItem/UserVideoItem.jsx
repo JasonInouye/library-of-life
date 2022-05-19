@@ -1,7 +1,10 @@
-import React from "react";
+import { React, useEffect, useState } from 'react';
 import './UserVideoItem.css';
-import { useState } from 'react';
+
 import { useSelector } from 'react-redux';
+
+
+
 
 /******* video player  ********/
 import ReactPlayer from 'react-player';
@@ -24,6 +27,10 @@ function UserVideoItem({ video }) {
     // check if user owns videos; don't render edit/delete buttons if not
     const user = useSelector((store) => store.user);
 
+    
+
+
+
 
     return (
         <>
@@ -43,8 +50,9 @@ function UserVideoItem({ video }) {
 
                         <ShareButton />
 
-                        <DeleteButton 
-                        video={video}/>
+                        <DeleteButton
+                           
+                            video={video} />
                     </>
                     :
                     null}

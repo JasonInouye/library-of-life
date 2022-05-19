@@ -60,7 +60,7 @@ function VideoWatchPage() {
 
     const handleDelete = () => {
         dispatch({ type: 'DELETE_VIDEO', payload: singleVideo.id });
-        dispatch({ type: 'CLEAR_VIDEOS' });
+        dispatch({ type: 'CLEAR_VIDEO' });
         // history.push(`/user`);
     };
 
