@@ -1,8 +1,10 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './Connections.css';
 import { ToggleButton } from '@mui/material';
 import { ToggleButtonGroup } from '@mui/material';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 
 function Connections() {
 
@@ -34,30 +36,48 @@ function Connections() {
 
     return (
         <>
-            {/* handle friends */}
-             
-            {friends && connections?.map((connect, i) => {
-                return (
-                    <div key={i}>
-                        {connect.relationship == "friend" &&
-                            <ul>
-                                <li>{connect.first_name + " " + connect.last_name}</li>
-                            </ul>}
-                    </div>
-                )
-            })}
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    '& > :not(style)': {
+                        m: 1,
+                        width: 300,
+                        height: 50,
+                    },
+                }}>
 
-            {/* handle family */}
-            {family && connections?.map((connect, i) => {
-                return (
-                    <div key={i}>
-                        {connect.relationship == "family" &&
-                            <ul>
-                                <li>{connect.first_name + " " + connect.last_name}</li>
-                            </ul>}
-                    </div>
-                )
-            })}
+               
+                    {/* handle friends */}
+                    {friends && connections?.map((connect, i) => {
+                        return (
+                            <div key={i}>
+                                {connect.relationship == "friend" &&
+                                    <ul>
+                                        <Paper elevation={3}>
+                                        <li>{connect.first_name + " " + connect.last_name}</li>
+                                        <li>remove</li>
+                                        </Paper>
+                                    </ul>}
+                            </div>
+                        )
+                    })}
+                 
+                    {/* handle family */}
+                    {family && connections?.map((connect, i) => {
+                        return (
+                            <div key={i}>
+                                {connect.relationship == "family" &&
+                                    <ul>
+                                        <Paper elevation={3}>
+                                        <li>{connect.first_name + " " + connect.last_name}</li>
+                                        <li>remove</li>
+                                        </Paper>
+                                    </ul>}
+                            </div>
+                        )
+                    })}
+            </Box>
 
             <ToggleButtonGroup
                 value={toggle}
@@ -71,6 +91,9 @@ function Connections() {
                     <h1>Family</h1>
                 </ToggleButton>
             </ToggleButtonGroup>
+
+
+
 
         </>
     )
