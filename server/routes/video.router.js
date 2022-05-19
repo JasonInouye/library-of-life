@@ -14,10 +14,12 @@ router.get('/', (req, res) => {
  */
 router.get('/userVideos/:id', (req, res) => {
     const query = `
-    SELECT "videos".url, "prompts".prompt
-FROM "videos" JOIN "prompts"
-ON "videos"."user_id" = "prompts"."user_id"
-WHERE "videos"."user_id" = $1; 
+    SELECT a."url", c."prompt" 
+    FROM "videos" a, "users" b, "prompts" c
+    WHERE a."user_id" = b."id"
+    AND b."id" = $1
+    AND c."id" = a."prompt_id"
+; 
     `;
 
     console.log('server GET userVideos and prompts', req.user.id)
