@@ -32,7 +32,7 @@ function ManageLibrary() {
                     spacing={2}>
 
                     <Grid item
-                        xs={12} lg={6}>
+                        xs={12}>
                         <h1>Manage Library</h1>
                     </Grid>
 
