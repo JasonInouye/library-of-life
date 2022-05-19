@@ -38,6 +38,31 @@ function* getUserVideos() {
   }
 }
 
+// get one user video from the DB
+function* getSingleVideo(action) {
+  const id = 10;
+  // console.log('GET SINGLE VIDEO SAGA:', action.payload);
+  try {
+    const response = yield axios.get(`/api/video/${id}`);
+    yield put({ type: 'SET_SINGLE_VIDEO', payload: response.data });
+  } catch (error) {
+    console.log('Video get request failed', error);
+  }
+
+}
+
+//delete one user video from the DB
+function* deleteVideo(action) {
+  const id = action.payload;
+  console.log('saga deleteVideo func id:', id);
+  try {
+    yield axios.delete(`/api/video/${id}`)
+    yield put({ type: 'GET_SINGLE_VIDEO' })
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 /*
 // get one Bakesale from the DB by id
 function* fetchBakesaleDetail(action) {
@@ -92,7 +117,9 @@ function* videoSaga() {
 
   yield takeLatest('GET_USER_VIDEOS', getUserVideos);
   yield takeLatest('POST_VIDEO', postUserVideos);
-  
+  yield takeLatest('GET_SINGLE_VIDEO', getSingleVideo);
+  yield takeLatest('DELETE_VIDEO', deleteVideo);
+
 }
 
 export default videoSaga;
