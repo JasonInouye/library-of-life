@@ -19,6 +19,7 @@ function* getUserVideos() {
 
   try {
     const videos = yield axios.get('/api/video/userVideos/:id');
+    // const permissions = yield axios.get('/api/permission'); //needs to get all existing permissions of user
     console.log('getting user videos:', videos.data);
     yield put({ type: 'SET_USER_VIDEOS', payload: videos.data }); //set in videoReducer
 
@@ -29,7 +30,7 @@ function* getUserVideos() {
 
 // get one user video from the DB
 function* getSingleVideo(action) {
-  const id = 9;
+  const id = 10;
   // console.log('GET SINGLE VIDEO SAGA:', action.payload);
   try {
     const response = yield axios.get(`/api/video/${id}`);

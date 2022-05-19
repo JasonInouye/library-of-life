@@ -5,6 +5,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import './App.css';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -19,6 +20,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import SearchResults from '../SearchResults/SearchResults';
 import VideoWatchPage from '../VideoWatchPage/VideoWatchPage';
 import ManageLibrary from '../ManageLibrary/ManageLibrary';
 
@@ -58,7 +60,7 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/user"
+            path="/user/:view"
           >
             <UserPage />
           </ProtectedRoute>
@@ -71,6 +73,14 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
 
+          <ProtectedRoute
+            // logged in shows UserPage else shows LoginPage
+            exact
+            path="/search-results"
+          >
+            <SearchResults />
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"
@@ -78,7 +88,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/user/videos" />
               :
               // Otherwise, show the login page
               <LoginPage />
@@ -92,7 +102,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/user/videos" />
               :
               // Otherwise, show the registration page
               <RegisterPage />
@@ -114,7 +124,7 @@ function App() {
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /user page
-              <Redirect to="/user" />
+              <Redirect to="/user/videos" />
               :
               // Otherwise, show the Landing page
               <LandingPage />
