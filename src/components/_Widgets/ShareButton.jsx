@@ -46,36 +46,37 @@ function ShareButton() {
 
     return (
         <>
-                <Button
-                    variant='contained'
-                    onClick={openShareMenu}>
-                    Share <span style={{ paddingLeft: '5px' }}><SiSlideshare /> </span>
-                </Button>
-                <Menu
-                    open={!!menuPosition}
-                    onClose={() => setMenuPosition(null)}
-                    anchorReference="anchorPosition"
-                    anchorPosition={menuPosition}
+            <Button
+                size="small"
+                variant='contained'
+                onClick={openShareMenu}>
+                Share <span style={{ paddingLeft: '5px' }}><SiSlideshare /> </span>
+            </Button>
+            <Menu
+                open={!!menuPosition}
+                onClose={() => setMenuPosition(null)}
+                anchorReference="anchorPosition"
+                anchorPosition={menuPosition}
+            >
+                <NestedMenuItem
+                    label="Friends"
+                    parentMenuOpen={!!menuPosition}
+                    onClick={handleItemClick}
                 >
-                    <NestedMenuItem
-                        label="Friends"
-                        parentMenuOpen={!!menuPosition}
-                        onClick={handleItemClick}
-                    >
-                        <MenuItem onClick={handleItemClick}>All Friends</MenuItem>
-                        <br />
-                        <MenuItem onClick={handleItemClick}>Dave</MenuItem>
-                    </NestedMenuItem>
-                    <NestedMenuItem
-                        label="Family"
-                        parentMenuOpen={!!menuPosition}
-                        onClick={handleItemClick}
-                    >
-                        <MenuItem onClick={handleItemClick}>All Family</MenuItem>
-                        <br />
-                        <MenuItem onClick={handleItemClick}>Mom</MenuItem>
-                    </NestedMenuItem>
-                </Menu>
+                    <MenuItem onClick={handleItemClick}>All Friends</MenuItem>
+                    <br />
+                    <MenuItem onClick={handleItemClick}>Dave</MenuItem>
+                </NestedMenuItem>
+                <NestedMenuItem
+                    label="Family"
+                    parentMenuOpen={!!menuPosition}
+                    onClick={handleItemClick}
+                >
+                    <MenuItem onClick={handleItemClick}>All Family</MenuItem>
+                    <br />
+                    <MenuItem onClick={handleItemClick}>Mom</MenuItem>
+                </NestedMenuItem>
+            </Menu>
         </>
     )
 }

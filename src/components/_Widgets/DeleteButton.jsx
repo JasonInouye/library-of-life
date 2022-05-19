@@ -18,15 +18,16 @@ function DeleteButton({ video }) {
 
     return (
         <>
-                        <Button
-                            variant='contained'
-                            color='error'
-                            onClick={handleDelete}>
-                            <span style={{ marginTop: '5px' }}>
-                                <VscTrash size={17} /></span>
-                        </Button>
-                    </>
-                  
+            <Button
+                style={{height:'20px'}}
+                variant='contained'
+                color='error'
+                onClick={handleDelete}>
+                <span >
+                    <VscTrash size={17} style={{display:'block'}}/></span>
+            </Button>
+        </>
+
     )
 }
 

@@ -15,8 +15,14 @@ import ShareButton from "../_Widgets/ShareButton";
 import PermissionDropdown from "../_Widgets/PermissionDropdown";
 import DeleteButton from "../_Widgets/DeleteButton";
 
-/******* general MUI structure  ********/
+/******* MUI structure and media card ********/
 import Container from '@mui/material/Container';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 
 function UserVideoItem({ video }) {
@@ -30,26 +36,35 @@ function UserVideoItem({ video }) {
             <Container>
                 {/* the video */}
                 <h5>{video.prompt}</h5>
-                <ReactPlayer
+                {/* <ReactPlayer
                     className='react-player'
                     width='100%'
                     height='100%'
                     url={video.url}
-                    controls={true} />
+                    controls={true} /> */}
+                <Card sx={{ height: 350, maxWidth: 450}}>
+                    <CardMedia
+                        component="iframe"
+                        src="https://d2qw0j2prooaok.cloudfront.net/1315907.mp4"
+                    // image="/https://d2qw0j2prooaok.cloudfront.net/1315907.mp4"
+                    />
 
-                {/* if logged-in user, show permissions toggle, delete, and share options*/}
-                {user.id == video.user_id ?
-                    <>
-                        <PermissionDropdown />
+                    {/* if logged-in user, show permissions toggle, delete, and share options*/}
+                    {user.id == video.user_id ?
+                        <>
+                            <CardActions style={{display:'flex', flexDirection:'column'}}>
+                                <PermissionDropdown />
 
-                        <ShareButton />
+                                <ShareButton />
 
-                        <DeleteButton 
-                        video={video}/>
-                    </>
-                    :
-                    null}
+                                <DeleteButton
+                                    video={video} />
+                            </CardActions>
+                        </>
+                        :
+                        null}
 
+                </Card>
             </Container>
         </>
     )
