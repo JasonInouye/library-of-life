@@ -15,12 +15,12 @@ function ShareButton() {
 
 
     //The database will replace this useState
-    const [permission, setPermission] = useState('');
+    const [share, setShare] = useState('');
 
     const handleChange = (event) => {
         //Change to dispatch when hooked up to DB
-        setPermission(event.target.value);
-        console.log('selected permission is:', permission);
+        setShare(event.target.value);
+        console.log('selected share is:', share);
     };
 
 
