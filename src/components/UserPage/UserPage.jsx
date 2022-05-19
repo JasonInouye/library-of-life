@@ -14,8 +14,7 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const history = useHistory();
   const view = useParams().view;
-
-  console.log(user);
+  const userInParams = useParams().userInParams;
 
 
   return (
@@ -31,25 +30,32 @@ function UserPage() {
           <div id='name-and-location'>
             <h3>{user.first_name + ' ' + user.last_name}</h3>
             <h4>{user.city + ', ' + user.state}</h4>
+            {userInParams != user.id &&
+              <>
+                <Button>Request</Button>
+              </>}
           </div>
-          <div id='profile-info'>
-            <Button
-              id='manage-library'
-              variant='outlined'
-              onClick={() => { history.push('/managelibrary') }}>
-              Manage Library</Button>
-            <Button variant='outlined' onClick={() => { history.push('/user/connections') }}>My Connections</Button>
-          </div>
+          {userInParams == user.id &&
+            <div id='profile-info'>
+              <Button
+                id='manage-library'
+                variant='outlined'
+                onClick={() => { history.push('/managelibrary') }}>
+                Manage Library</Button>
+              <Button variant='outlined' onClick={() => { history.push('/user/connections') }}>My Connections</Button>
+            </div>}
         </div>
       </div>
 
+      {userInParams == user.id &&
+        <>
+          {view == "videos" &&
+            <UserVideos />}
 
-      {view == "videos" &&
-        <UserVideos />}
-
-      {view == "connections" &&
-        <Connections />}
-
+          {view == "connections" &&
+            <Connections />}
+        </>
+      }
 
     </div>
 
