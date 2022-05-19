@@ -32,7 +32,7 @@ function UserVideoItem({ video }) {
         <>
             <Container>
                 {/* the video */}
-                <Card >
+                <Card sx={{minHeight:'18.5em'}}>
                     <Typography
                         style={{ margin: '.5em' }}
                         gutterBottom variant="h7"
