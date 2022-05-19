@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
-import listOfUsers from './search.reducer'
-
+import searchReducer from './search.reducer'
 import videoReducer from './video.reducer';
 import permissionReducer from './permission.reducer';
 import promptReducer from './prompt.reducer';
@@ -18,7 +17,7 @@ const rootReducer = combineReducers({
   videoReducer, 
   permissionReducer, 
   promptReducer,
-  listOfUsers
+  searchReducer
 });
 
 export default rootReducer;

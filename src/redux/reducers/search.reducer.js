@@ -1,3 +1,5 @@
+import { combineReducers } from 'redux';
+
 const listOfUsers = (state = [], action) => {
     switch (action.type) {
         case 'SET_LIST_OF_USERS':
@@ -9,4 +11,16 @@ const listOfUsers = (state = [], action) => {
     }
 }
 
-export default listOfUsers;
+const searchedUser = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_SEARCHED_USER':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export default combineReducers({
+    listOfUsers,
+    searchedUser
+  });

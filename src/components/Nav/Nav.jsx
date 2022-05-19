@@ -13,7 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 
 function Nav() {
   const user = useSelector((store) => store.user);
-  const listOfUsers = useSelector(store => store.listOfUsers);
+  const listOfUsers = useSelector(store => store.searchReducer.listOfUsers);
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -48,8 +48,15 @@ function Nav() {
 
 
 
+  const goToUserPage = (event, value) => {
+    history.push(`/user/${value.id}/videos`)
+
+    // setExerciseToAddToWorkout({ ...exerciseToAddToWorkout, exercise_id: value.id, exercise_name: value.exercise_name })
+  }
+
+
+
   useEffect(() => {
-    console.log('user in effect', user)
     dispatch({ type: 'GET_USERS', payload: user })
   }, [user])
 
@@ -76,7 +83,7 @@ function Nav() {
           id='users'
           options={listOfUsers}
           getOptionLabel={(option) => option.first_name + ' ' + option.last_name}
-          // onChange={handleExerciseInput}
+          onChange={goToUserPage}
           fullWidth
           renderInput={(params) => <TextField {...params} label='Search' />}
         />

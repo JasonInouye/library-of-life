@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import './UserPage.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
@@ -10,11 +10,25 @@ import Connections from '../Connections/Connections';
 
 function UserPage() {
 
+  const dispatch = useDispatch();
+
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
   const history = useHistory();
   const view = useParams().view;
   const userInParams = useParams().userInParams;
+
+  console.log('searchedUser', searchedUser)
+
+
+  useEffect(() => {
+    dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
+  }, [userInParams])
+
+  // useEffect(() => {
+
+  // }, [searchedUser])
 
 
   return (
@@ -28,8 +42,8 @@ function UserPage() {
         </div>
         <div id='info-beneath-photos'>
           <div id='name-and-location'>
-            <h3>{user.first_name + ' ' + user.last_name}</h3>
-            <h4>{user.city + ', ' + user.state}</h4>
+            <h3>{searchedUser?.first_name?.charAt(0).toUpperCase() + searchedUser?.first_name?.slice(1) + ' ' + searchedUser?.last_name?.charAt(0).toUpperCase() + searchedUser?.last_name?.slice(1)}</h3>
+            <h4>{searchedUser?.city?.charAt(0).toUpperCase() + searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}</h4>
             {userInParams != user.id &&
               <>
                 <Button>Request</Button>
