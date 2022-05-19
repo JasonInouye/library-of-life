@@ -29,6 +29,7 @@ function UserVideoItem({ video }) {
         <>
             <Container>
                 {/* the video */}
+                <h5>{video.prompt}</h5>
                 <ReactPlayer
                     className='react-player'
                     width='100%'

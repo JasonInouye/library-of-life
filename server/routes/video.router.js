@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
  */
 router.get('/userVideos/:id', (req, res) => {
     const query = `
-    SELECT a."url", c."prompt" 
+    SELECT a.*, c.prompt 
     FROM "videos" a, "users" b, "prompts" c
     WHERE a."user_id" = b."id"
     AND b."id" = $1
