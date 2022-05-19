@@ -15,8 +15,14 @@ import ShareButton from "../_Widgets/ShareButton";
 import PermissionDropdown from "../_Widgets/PermissionDropdown";
 import DeleteButton from "../_Widgets/DeleteButton";
 
-/******* general MUI structure  ********/
+/******* MUI structure and media card ********/
 import Container from '@mui/material/Container';
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 
 function UserVideoItem({ video }) {
@@ -29,26 +35,44 @@ function UserVideoItem({ video }) {
         <>
             <Container>
                 {/* the video */}
-                <ReactPlayer
+
+                {/* <ReactPlayer
                     className='react-player'
                     width='100%'
                     height='100%'
                     url={video.url}
-                    controls={true} />
+                    controls={true} /> */}
+                <Card >
+                    <Typography
+                        style={{ margin: '.5em' }}
+                        gutterBottom variant="h7"
+                        component="div">
+                        {video.prompt}
+                    </Typography>
+                    <CardMedia
+                        component="iframe"
+                        src="https://d2qw0j2prooaok.cloudfront.net/1315907.mp4" />
 
-                {/* if logged-in user, show permissions toggle, delete, and share options*/}
-                {user.id == video.user_id ?
-                    <>
-                        <PermissionDropdown />
+                    {/* if logged-in user, show permissions toggle, delete, and share options*/}
+                    {user.id == video.user_id ?
+                        <>
+                            <CardActions style={{ display: 'contents' }}>
+                                <PermissionDropdown />
 
-                        <ShareButton />
+                                <div style={{ marginBottom: '.3em' }}>
+                                    <DeleteButton
+                                        video={video} />
 
-                        <DeleteButton 
-                        video={video}/>
-                    </>
-                    :
-                    null}
+                                    <ShareButton
+                                        video={video} />
+                                </div>
 
+                            </CardActions>
+                        </>
+                        :
+                        null}
+
+                </Card>
             </Container>
         </>
     )
