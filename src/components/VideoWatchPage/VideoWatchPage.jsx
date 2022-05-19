@@ -22,6 +22,8 @@ function VideoWatchPage() {
 
     const singleVideo = useSelector((store) => store.videoReducer);
 
+    const history = useHistory();
+
 
     //The database will replace this useState
     const [permission, setPermission] = useState('');
@@ -56,6 +58,12 @@ function VideoWatchPage() {
         setMenuPosition(null);
     };
 
+    const handleDelete = () => {
+        dispatch({ type: 'DELETE_VIDEO', payload: singleVideo.id });
+        dispatch({ type: 'CLEAR_VIDEOS' });
+        // history.push(`/user`);
+    };
+
 
     return (
         <main className="sageBackground">
@@ -65,8 +73,8 @@ function VideoWatchPage() {
                     className='react-player'
                     width='100%'
                     height='100%'
-                    url={singleVideo.url} 
-                    controls={true}/>
+                    url={singleVideo.url}
+                    controls={true} />
 
 
                 < FormControl sx={{ m: 1, minWidth: 180 }} size="small">
@@ -130,7 +138,7 @@ function VideoWatchPage() {
                 </div >
 
 
-                <Button variant='outlined' onClick={(event) => dispatch({ type: 'DELETE_VIDEO', payload: singleVideo.id })} sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Delete</Button>
+                <Button variant='outlined' onClick={handleDelete} sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Delete</Button>
                 <Button variant='outlined' sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Share</Button>
                 <Button variant='outlined' sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Back</Button>
 
