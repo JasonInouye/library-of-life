@@ -42,7 +42,7 @@ function UserVideoItem({ video }) {
                     height='100%'
                     url={video.url}
                     controls={true} /> */}
-                <Card sx={{ height: 350, maxWidth: 450}}>
+                <Card >
                     <CardMedia
                         component="iframe"
                         src="https://d2qw0j2prooaok.cloudfront.net/1315907.mp4"
