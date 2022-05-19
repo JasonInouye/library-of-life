@@ -69,11 +69,12 @@ function UserPage() {
         </div>
         <ToggleButtonGroup
           value={toggle}
+          size="small"
           exclusive
           onChange={(event) => { handleToggle(event.target.value) }}
           aria-label="text alignment"
         >
-          <ToggleButton onClick={() => { handleMyVideos() }} value="myVideos" aria-label="left aligned">
+          <ToggleButton onClick={() => { handleMyVideos() }} size="small" value="myVideos" aria-label="left aligned">
             <h1>My Videos</h1>
           </ToggleButton>
           <ToggleButton onClick={() => { handleSharedVideos() }} value="sharedVideos" aria-label="centered">
