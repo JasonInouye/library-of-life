@@ -106,6 +106,7 @@ function UserVideoItem({ video }) {
                                 anchorReference="anchorPosition"
                                 anchorPosition={menuPosition}
                             >
+                                <MenuItem style={{ width: '100%' }} onClick={handleItemClick}>Everyone</MenuItem>
                                 <NestedMenuItem
                                     label="Friends"
                                     parentMenuOpen={!!menuPosition}
@@ -123,7 +124,9 @@ function UserVideoItem({ video }) {
                                     <MenuItem onClick={handleItemClick}>All Family</MenuItem>
                                     <br />
                                     <MenuItem onClick={handleItemClick}>Mom</MenuItem>
+                                    <br />
                                 </NestedMenuItem>
+                                <MenuItem style={{ width: '100%' }} onClick={handleItemClick}>Link</MenuItem>
                             </Menu>
                             <Button
                                 id='delete-button'
