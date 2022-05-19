@@ -30,7 +30,7 @@ function* getUserVideos() {
 
 // get one user video from the DB
 function* getSingleVideo(action) {
-  const id = 11;
+  const id = 14;
   // console.log('GET SINGLE VIDEO SAGA:', action.payload);
   try {
     const response = yield axios.get(`/api/video/${id}`);
