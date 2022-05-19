@@ -29,6 +29,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0",
+    "react-video-upload-preview": "^1.0.1",
     "redux": "^4.1.2",
     "redux-form": "^8.3.8",
     "redux-logger": "^3.0.6",
