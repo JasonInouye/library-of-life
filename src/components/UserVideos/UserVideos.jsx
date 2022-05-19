@@ -19,6 +19,7 @@ function UserVideos() {
 
     return (
         <>
+         
             {videos?.map((video, i) => {
                 return ( //loops thru array of videos to create each video item
                     <UserVideoItem
