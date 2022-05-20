@@ -126,7 +126,7 @@ function UserPage() {
 
         </>
 
-      });
+      }
     </div >
   )
 }

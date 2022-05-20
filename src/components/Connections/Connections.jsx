@@ -108,7 +108,7 @@ function Connections() {
                                 {connect.relationship == "family" &&
                                 <ul>
                                     <Paper elevation={3}>
-                                        <img className="connectionImage" src={connect.profile_image} />
+                                        <img className="connectionsImage" src={connect.profile_image} />
                                         <div className="connectionsName">
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
