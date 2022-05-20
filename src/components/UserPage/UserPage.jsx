@@ -77,7 +77,10 @@ function UserPage() {
             <h4>{searchedUser?.city?.charAt(0).toUpperCase() + searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}</h4>
             {userInParams != user.id &&
               <>
-                <Button disabled={pendingStatus} onClick={openRequestMenu}>Request</Button>
+                {pendingStatus == false &&
+                  <Button onClick={openRequestMenu}>Request</Button>}
+                {pendingStatus == true &&
+                  <Button disabled>Pending</Button>}
                 <Menu
                   open={!!menuPosition}
                   onClose={() => setMenuPosition(null)}
@@ -101,7 +104,8 @@ function UserPage() {
         </div>
       </div>
 
-      {userInParams == user.id &&
+      {
+        userInParams == user.id &&
         <>
           {view == "videos" &&
             <UserVideos />}
@@ -119,7 +123,7 @@ function UserPage() {
         </>
 
       });
-    </div>
+    </div >
   )
 }
 
