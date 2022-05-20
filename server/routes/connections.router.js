@@ -27,4 +27,20 @@ router.get('/', (req, res) => {
     })
 });
 
+//Delete connection from connections table
+router.delete('/:id', (req, res) => {
+    const id = req.params.id; 
+
+    const queryText = `DELETE FROM "connections" where id = $1;`;
+
+    queryValues = [id]
+
+    pool.query(queryText, queryValues)
+    .then(() => {res.sendStatus(200); })
+    .catch((err) => {
+        console.log('ERROR in DELETE connections', err);
+        res.sendStatus(500);
+    })
+});
+
 module.exports = router;

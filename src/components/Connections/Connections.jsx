@@ -29,6 +29,11 @@ function Connections() {
         setFamily(true);
     };
 
+    const handleRemove = () => {
+        dispatch({type: 'DELETE_CONNECTIONS'});
+        console.log('hi');
+    }
+
     useEffect(() => {
         dispatch({ type: 'GET_CONNECTIONS' })
     }, []);
@@ -36,61 +41,70 @@ function Connections() {
 
     return (
         <>
-            <Box
+         
+            
+
+                <div className="toggleRight">
+                <ToggleButtonGroup
+                    value={toggle}
+                    size="small"
+                    exclusive
+                    onChange={(event) => { handleToggle(event.target.value) }}
+                    aria-label="connections">
+                    <ToggleButton onClick={() => { handleFriends() }} value="friends" aria-label="left aligned">
+                        <h3>Friends</h3>
+                    </ToggleButton>
+                    <ToggleButton onClick={() => { handleFamily() }} value="family" aria-label="centered">
+                        <h3>Family</h3>
+                    </ToggleButton>
+                </ToggleButtonGroup>
+                </div>
+
+                <Box
                 sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
+                    // display: 'flex',
+                    // flexWrap: 'wrap',
                     '& > :not(style)': {
-                        m: 1,
+                        // m: 1,
                         width: 300,
-                        height: 50,
+                        // height: 50,
                     },
                 }}>
+                
 
-               
-                    {/* handle friends */}
-                    {friends && connections?.map((connect, i) => {
-                        return (
-                            <div key={i}>
-                                {connect.relationship == "friend" &&
-                                    <ul>
-                                        <Paper elevation={3}>
+                {/* handle friends */}
+                {friends && connections?.map((connect, i) => {
+                    return (
+                        <div key={i}>
+                            {connect.relationship == "friend" &&
+                                <ul>
+                                    <Paper elevation={3}>
                                         <li>{connect.first_name + " " + connect.last_name}</li>
-                                        <li>remove</li>
-                                        </Paper>
-                                    </ul>}
-                            </div>
-                        )
-                    })}
-                 
-                    {/* handle family */}
-                    {family && connections?.map((connect, i) => {
-                        return (
-                            <div key={i}>
-                                {connect.relationship == "family" &&
-                                    <ul>
-                                        <Paper elevation={3}>
-                                        <li>{connect.first_name + " " + connect.last_name}</li>
-                                        <li>remove</li>
-                                        </Paper>
-                                    </ul>}
-                            </div>
-                        )
-                    })}
-            </Box>
+                                        <li onClick={() => handleRemove()}>remove</li>
+                                    </Paper>
+                                </ul>}
+                        </div>
+                    )
+                })}
 
-            <ToggleButtonGroup
-                value={toggle}
-                exclusive
-                onChange={(event) => { handleToggle(event.target.value) }}
-                aria-label="connections">
-                <ToggleButton onClick={() => { handleFriends() }} value="friends" aria-label="left aligned">
-                    <h1>Friends</h1>
-                </ToggleButton>
-                <ToggleButton onClick={() => { handleFamily() }} value="family" aria-label="centered">
-                    <h1>Family</h1>
-                </ToggleButton>
-            </ToggleButtonGroup>
+                {/* handle family */}
+                {family && connections?.map((connect, i) => {
+                    return (
+                        <div key={i}>
+                            {connect.relationship == "family" &&
+                                <ul>
+                                    <Paper elevation={3}>
+                                        <li>{connect.first_name + " " + connect.last_name}</li>
+                                        <li onClick={() => handleRemove()}>remove</li>
+                                    </Paper>
+                                </ul>}
+                        </div>
+                    )
+                })}
+                 </Box>
+           
+
+
 
 
 

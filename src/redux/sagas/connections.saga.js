@@ -12,8 +12,20 @@ function* getConnections() {
     }
 }
 
+function* deleteConnections(action){
+    const id = action.payload;
+    console.log('saga delete Connection id', id);
+    try {
+        yield axios.delete(`/api/connections/${id}`)
+        yield put({ type: 'DELETE_CONNECTIONS'})
+    } catch(error) {
+        console.log(error);
+    }
+}
+
 function* connectionsSaga(){
     yield takeLatest('GET_CONNECTIONS', getConnections);
+    yield takeLatest('DELETE_CONNECTIONS', deleteConnections);
 }
 
 export default connectionsSaga;
