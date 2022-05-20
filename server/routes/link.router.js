@@ -9,10 +9,10 @@ router.post('/', (req, res) => {
     console.log('server side data:', req.body);
     
     axios
-        .post(`https://api.tinyurl.com/create?api_token=${process.env.api_key}`)
+        .post(`https://api.tinyurl.com/create?api_token=${process.env.api_key}`, req.body)
         .then((response) => { //response in the server
             console.log(response.data);
-            // res.send(response.data);//to send to client side
+            res.send(response.data);//to send to client side
         }).catch((err) => {
             console.log(err);
         })

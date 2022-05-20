@@ -8,6 +8,8 @@ import classNames from 'classnames';
 
 /******* needed to create shortened URL  ********/
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
+
 
 
 import SelectToShare from './SelectToShare';
@@ -44,7 +46,26 @@ export default function ShareDialogBox({ title, children, component, callback, v
         setOpen(true);
         // dispatch({type: 'SET_VIDEO_URL', payload: url})
         console.log('video url is:', url);
+        shortenURL();
     };
+
+    const urlObj = {
+        url: url,
+        domain: 'tiny.one'
+    }
+
+    const shortenURL = () => {
+        console.log('INSIDE shortenURL, url before shortening:', url);
+        axios.post(`/api/link`, urlObj)
+            .then(response => {
+                console.log('the shortened data response on CLIENT side is:', response.data);
+                // dispatch({ type: 'SET_URL', payload: response.data })
+                // setShortURL(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 
     const handleClose = () => {
         setOpen(false);
@@ -80,8 +101,8 @@ export default function ShareDialogBox({ title, children, component, callback, v
                     <SelectToShare
                         disableEnforceFocus />
 
-                    <LinkShortener 
-                    url={url}/>
+                    <LinkShortener
+                        url={url} />
                     {/* this passes the clicked video info so the URL can be created */}
 
                 </DialogContent>
