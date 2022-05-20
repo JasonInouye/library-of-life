@@ -25,6 +25,7 @@ function UserPage() {
   const userInParams = Number(useParams().userInParams);
 
   const [menuPosition, setMenuPosition] = useState(null);
+  const [btnDisabled, setBtnDisabled] = useState(true);
 
   const openRequestMenu = (event) => {
     if (menuPosition) {
@@ -49,6 +50,9 @@ function UserPage() {
     dispatch({ type: 'POST_REQUEST', payload: { relationship: 'Family', userB: userInParams } })
   };
 
+
+  
+
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
@@ -68,7 +72,7 @@ function UserPage() {
             <h4>{searchedUser?.city?.charAt(0).toUpperCase() + searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}</h4>
             {userInParams != user.id &&
               <>
-                <Button onClick={openRequestMenu}>Request</Button>
+                <Button disabled={btnDisabled} onClick={openRequestMenu}>Request</Button>
                 <Menu
                   open={!!menuPosition}
                   onClose={() => setMenuPosition(null)}
