@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import './UserPage.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,30 +6,52 @@ import Button from '@mui/material/Button';
 import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
 
+/******* nested menu dropdowns  ********/
+import { Menu } from "@mui/material";
+import MenuItem from '@mui/material/MenuItem';
+
 
 
 function UserPage() {
 
   const dispatch = useDispatch();
+  const history = useHistory();
+
 
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
-  const history = useHistory();
   const view = useParams().view;
-  const userInParams = useParams().userInParams;
+  const userInParams = Number(useParams().userInParams);
 
-  console.log('searchedUser', searchedUser)
+  const [menuPosition, setMenuPosition] = useState(null);
 
+  const openRequestMenu = (event) => {
+    if (menuPosition) {
+      return;
+    }
+    event.preventDefault();
+    setMenuPosition({
+      top: event.pageY,
+      left: event.pageX
+    });
+  };
+
+  const handleFriendClick = () => {
+    setMenuPosition(null);
+
+    dispatch({ type: 'POST_REQUEST', payload: { relationship: 'Friend', userB: userInParams } })
+  };
+
+  const handleFamilyClick = () => {
+    setMenuPosition(null);
+
+    dispatch({ type: 'POST_REQUEST', payload: { relationship: 'Family', userB: userInParams } })
+  };
 
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
-
-  // useEffect(() => {
-
-  // }, [searchedUser])
-
 
   return (
     <div className="container">
@@ -46,7 +68,16 @@ function UserPage() {
             <h4>{searchedUser?.city?.charAt(0).toUpperCase() + searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}</h4>
             {userInParams != user.id &&
               <>
-                <Button>Request</Button>
+                <Button onClick={openRequestMenu}>Request</Button>
+                <Menu
+                  open={!!menuPosition}
+                  onClose={() => setMenuPosition(null)}
+                  anchorReference="anchorPosition"
+                  anchorPosition={menuPosition}
+                >
+                  <MenuItem style={{ width: '100%' }} onClick={() => {handleFriendClick()}}>Friend</MenuItem>
+                  <MenuItem style={{ width: '100%' }} onClick={() => {handleFamilyClick()}}>Family</MenuItem>
+                </Menu>
               </>}
           </div>
           {userInParams == user.id &&

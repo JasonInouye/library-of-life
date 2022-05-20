@@ -11,8 +11,9 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const searchRouter = require('./routes/search.router');
 const videoRouter = require('./routes/video.router');
-const permissionRouter = require('./routes/permission.router')
-const promptRouter = require('./routes/prompt.router')
+const permissionRouter = require('./routes/permission.router');
+const promptRouter = require('./routes/prompt.router');
+const requestRouter = require('./routes/request.router');
 
 
 // Body parser middleware
@@ -28,6 +29,8 @@ app.use(passport.session());
 
 /* User route */
 app.use('/api/user', userRouter);
+
+// Search Route
 app.use('/api/search', searchRouter);
 
 /* Video route */
@@ -38,6 +41,9 @@ app.use('/api/permission', permissionRouter);
 
 /* Permission route (to the "prompts" table) */
 app.use('/api/prompt', promptRouter);
+
+// Request route
+app.use('/api/request', requestRouter);
 
 
 // Serve static files
