@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
     SELECT 
     b.first_name,
     b.last_name,
+    b.profile_image,
     a.relationship
     FROM "connections" a, "users" b
     WHERE (a."user_A_id" = $1

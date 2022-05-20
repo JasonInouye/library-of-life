@@ -67,7 +67,7 @@ function Connections() {
                     '& > :not(style)': {
                         // m: 1,
                         width: 300,
-                        // height: 50,
+                        // height: 100,
                     },
                 }}>
                 
@@ -79,6 +79,7 @@ function Connections() {
                             {connect.relationship == "friend" &&
                                 <ul>
                                     <Paper elevation={3}>
+                                        <img className="connectionImage" src={connect.profile_image}/>
                                         <li>{connect.first_name + " " + connect.last_name}</li>
                                         <li onClick={() => handleRemove()}>remove</li>
                                     </Paper>
@@ -94,8 +95,11 @@ function Connections() {
                             {connect.relationship == "family" &&
                                 <ul>
                                     <Paper elevation={3}>
+                                        <img className="connectionImage" src={connect.profile_image}/>
+                                        <div className="connectionsInfo">
                                         <li>{connect.first_name + " " + connect.last_name}</li>
                                         <li onClick={() => handleRemove()}>remove</li>
+                                        </div>
                                     </Paper>
                                 </ul>}
                         </div>
