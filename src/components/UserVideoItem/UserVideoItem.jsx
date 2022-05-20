@@ -64,8 +64,8 @@ function UserVideoItem({ video }) {
                                     flexWrap: 'nowrap',
                                     justifyContent: 'center'
                                 }}>
-                                        <DeleteButton
-                                            video={video} />
+                                    <DeleteButton
+                                        video={video} />
                                     <ShareDialogBox
                                         open={open}
                                         onClose={() => setOpen(false)}
@@ -73,7 +73,7 @@ function UserVideoItem({ video }) {
                                         title="Share"
                                         callback={handleClickEdit}
                                         disableEnforceFocus={true}
-                                    />
+                                        video={video} />
                                 </div>
 
                             </CardActions>

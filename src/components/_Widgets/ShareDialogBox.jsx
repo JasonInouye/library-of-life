@@ -6,7 +6,12 @@ import DialogContent from '@material-ui/core/DialogContent';
 import { makeStyles } from '@material-ui/core/styles'
 import classNames from 'classnames';
 
+/******* needed to create shortened URL  ********/
+import { useDispatch } from 'react-redux';
+
+
 import SelectToShare from './SelectToShare';
+import LinkShortener from './LinkShortener';
 
 /******* icon  ********/
 import { SiSlideshare } from "react-icons/si";
@@ -27,13 +32,18 @@ const useStyles = makeStyles({
     }
 })
 
-export default function ShareDialogBox({ title, children, component, callback }) {
+export default function ShareDialogBox({ title, children, component, callback, video }) {
     const [open, setOpen] = React.useState(false);
+    const dispatch = useDispatch();
+    const url = video.url
+
 
     const handleClickOpen = () => {
         //CALL THE FUNCTION GIVEN, IF EXISTS:
         { callback ? callback() : null };
         setOpen(true);
+        // dispatch({type: 'SET_VIDEO_URL', payload: url})
+        console.log('video url is:', url);
     };
 
     const handleClose = () => {
@@ -67,8 +77,12 @@ export default function ShareDialogBox({ title, children, component, callback })
                 <DialogContent>
                     {/* InnerComponent:  */}
                     {/* {open && <InnerComponent />} */}
-                    <SelectToShare 
-                    disableEnforceFocus/>
+                    <SelectToShare
+                        disableEnforceFocus />
+
+                    <LinkShortener 
+                    url={url}/>
+                    {/* this passes the clicked video info so the URL can be created */}
 
                 </DialogContent>
                 <DialogActions>
