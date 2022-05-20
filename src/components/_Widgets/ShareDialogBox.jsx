@@ -36,15 +36,15 @@ const useStyles = makeStyles({
 
 export default function ShareDialogBox({ title, children, component, callback, video }) {
     const [open, setOpen] = React.useState(false);
-    const dispatch = useDispatch();
     const url = video.url
+    const [showShortLink, setShowShortLink] = React.useState(false);
+
 
 
     const handleClickOpen = () => {
         //CALL THE FUNCTION GIVEN, IF EXISTS:
         { callback ? callback() : null };
         setOpen(true);
-        // dispatch({type: 'SET_VIDEO_URL', payload: url})
         console.log('video url is:', url);
         shortenURL();
     };
@@ -62,7 +62,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
         axios.post(`/api/link`, urlObj)
             .then(response => {
                 console.log('the shortened URL on CLIENT side should be:', response.data.data.tiny_url);
-                setShortenedURL(response.data.data.tiny_url); 
+                setShortenedURL(response.data.data.tiny_url);
             })
             .catch(error => {
                 console.log(error);
@@ -71,6 +71,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
 
     const handleClose = () => {
         setOpen(false);
+        setShowShortLink(false);
     };
 
     const classes = useStyles();
@@ -103,9 +104,20 @@ export default function ShareDialogBox({ title, children, component, callback, v
                     <SelectToShare
                         disableEnforceFocus />
 
-                    <CopyToClipboard
-                        url={shortenedURL} />
-                    {/* this passes the clicked video info so the URL can be created */}
+                    {/* passes the URL so it can be copied to clipboard */}
+                    {showShortLink ?
+
+                        <CopyToClipboard
+                            url={shortenedURL} />
+                        :
+                        <>
+                            <p>or</p>
+                            <p onClick={()=>{setShowShortLink(true)}}>
+                                Give me a link to send by text or email</p>
+                        </>
+
+                    }
+
 
                 </DialogContent>
                 <DialogActions>

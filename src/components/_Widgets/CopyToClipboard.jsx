@@ -34,7 +34,6 @@ function CopyToClipboard({url}) {
         axios.post(`/link`, longURL)
             .then(response => {
                 console.log(response.data);
-                // dispatch({ type: 'SET_URL', payload: response.data })
                 setShortURL(response.data);
             })
             .catch(error => {
