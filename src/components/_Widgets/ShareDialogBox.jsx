@@ -13,7 +13,7 @@ import axios from 'axios';
 
 
 import SelectToShare from './SelectToShare';
-import LinkShortener from './LinkShortener';
+import CopyToClipboard from './CopyToClipboard';
 
 /******* icon  ********/
 import { SiSlideshare } from "react-icons/si";
@@ -54,13 +54,15 @@ export default function ShareDialogBox({ title, children, component, callback, v
         domain: 'tiny.one'
     }
 
+    const [shortenedURL, setShortenedURL] = React.useState('');
+
+
     const shortenURL = () => {
         console.log('INSIDE shortenURL, url before shortening:', url);
         axios.post(`/api/link`, urlObj)
             .then(response => {
-                console.log('the shortened data response on CLIENT side is:', response.data);
-                // dispatch({ type: 'SET_URL', payload: response.data })
-                // setShortURL(response.data);
+                console.log('the shortened URL on CLIENT side should be:', response.data.data.tiny_url);
+                setShortenedURL(response.data.data.tiny_url); 
             })
             .catch(error => {
                 console.log(error);
@@ -101,8 +103,8 @@ export default function ShareDialogBox({ title, children, component, callback, v
                     <SelectToShare
                         disableEnforceFocus />
 
-                    <LinkShortener
-                        url={url} />
+                    <CopyToClipboard
+                        url={shortenedURL} />
                     {/* this passes the clicked video info so the URL can be created */}
 
                 </DialogContent>

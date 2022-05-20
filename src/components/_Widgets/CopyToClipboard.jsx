@@ -8,7 +8,7 @@ import useCopy from "use-copy";
 
 
 
-function LinkShortener({url}) {
+function CopyToClipboard({url}) {
 
     const [longURL, setLongURL] = useState('');
 
@@ -45,32 +45,20 @@ function LinkShortener({url}) {
 
     return (
         <>
-            {/* <div>Link Shortener</div>
-            <form onSubmit={shortenURL}>
-                <input 
-                value={longURL} 
-                style={{width:'300px'}}
-                placeholder='paste long URL here and hit enter'
-                type="shortURL" 
-                onChange={(event) => setLongURL(event.target.value)} />
-            </form> */}
 
-            {/* ******* useCopy https://www.npmjs.com/package/use-copy ******** */}
+
+            {/* ******* this is useCopy: https://www.npmjs.com/package/use-copy ******** */}
             <div>
-                <p>This will copy to the clipboard:</p>
-                <h3>{shortURL}</h3>
+                <h3>{url}</h3>
                 {copied ? (
-                    <p>Link copied! You can now paste it in an email or shortURL</p>
+                    <p>Link copied! You can now paste it in an email or text message</p>
                 ) : (
-                    <button onClick={copyShortURL}>Copy shortURL</button>
+                    <button onClick={copyShortURL}>Copy video link</button>
                 )}
                 <br />
             </div>
-            {/* ******* useCopy  ******** */}
-
-
         </>
     )
 }
 
-export default LinkShortener
+export default CopyToClipboard
