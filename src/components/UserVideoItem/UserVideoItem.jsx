@@ -64,15 +64,15 @@ function UserVideoItem({ video }) {
                                     flexWrap: 'nowrap',
                                     justifyContent: 'center'
                                 }}>
-                                    <DeleteButton
-                                        video={video} />
-
+                                        <DeleteButton
+                                            video={video} />
                                     <ShareDialogBox
                                         open={open}
                                         onClose={() => setOpen(false)}
                                         aria-labelledby="confirm-dialog"
                                         title="Share"
                                         callback={handleClickEdit}
+                                        disableEnforceFocus={true}
                                     />
                                 </div>
 
