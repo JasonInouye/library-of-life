@@ -101,7 +101,7 @@ function UserPage() {
                 Manage Library</Button>
               <Button variant='outlined' onClick={() => { history.push(`/user/${user.id}/connections`) }}>My Connections</Button>
             </div>}
-            {userInParams == user.id && view == 'connections' &&
+          {userInParams == user.id && view == 'connections' &&
             <div id='profile-info'>
               <Button variant='outlined' onClick={() => { history.push(`/user/${user.id}/videos`) }}>My Videos</Button>
             </div>}
@@ -125,8 +125,7 @@ function UserPage() {
 
 
         </>
-
-      });
+      }
     </div >
   )
 }
