@@ -5,6 +5,9 @@ import { ToggleButton } from '@mui/material';
 import { ToggleButtonGroup } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import { VscTrash } from "react-icons/vsc";
+import { Button } from "@mui/material";
+import IconButton from '@mui/material/IconButton';
 
 function Connections() {
 
@@ -14,6 +17,7 @@ function Connections() {
     const [toggle, setToggle] = React.useState('left');
     const [friends, setFriends] = useState(false);
     const [family, setFamily] = useState(false);
+    const [requests, SetRequests] = useState(false);
 
     const handleToggle = (event, newToggle) => {
         setToggle(newToggle);
@@ -22,12 +26,20 @@ function Connections() {
     const handleFriends = () => {
         setFriends(true);
         setFamily(false);
+        SetRequests(false);
     };
 
     const handleFamily = () => {
         setFriends(false);
         setFamily(true);
+        SetRequests(false);
     };
+
+    const handleRequests = () => {
+        setFriends(false);
+        setFamily(false);
+        SetRequests(true);
+    }
 
     const handleRemove = () => {
         dispatch({ type: 'DELETE_CONNECTIONS' });
@@ -54,6 +66,9 @@ function Connections() {
                     <ToggleButton onClick={() => { handleFamily() }} value="family" aria-label="centered">
                         <h3>Family</h3>
                     </ToggleButton>
+                    <ToggleButton onClick={() => { handleRequests() }} value="requests" aria-label="right aligned">
+                        <h3>Requests</h3>
+                    </ToggleButton>
                 </ToggleButtonGroup>
             </div>
 
@@ -63,45 +78,49 @@ function Connections() {
                     // flexWrap: 'wrap',
                     '& > :not(style)': {
                         // m: 1,
-                        width: 300,
+                        width: 350,
                         // height: 100,
                     },
                 }}>
 
-
-                {/* handle friends */}
+            {/* handle friends */}
                 {friends && connections?.map((connect, i) => {
                     return (
                         <div key={i}>
                             {connect.relationship == "friend" &&
                                 <ul>
                                     <Paper elevation={3}>
-                                        <img className="connectionImage" src={connect.profile_image} />
-                                        <li>{connect.first_name + " " + connect.last_name}</li>
-                                        <li onClick={() => handleRemove()}>remove</li>
+                                        <img className="connectionsImage" src={connect.profile_image} />
+                                        <div className="connectionsName" >
+                                            <li>{connect.first_name + " " + connect.last_name}</li>
+                                        </div>
+                                        <li className="connectionsRemove" onClick={() => handleRemove()}>remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
                     )
                 })}
 
-                {/* handle family */}
+            {/* handle family */}
                 {family && connections?.map((connect, i) => {
                     return (
                         <div key={i}>
-                            {connect.relationship == "family" &&
+                                {connect.relationship == "family" &&
                                 <ul>
                                     <Paper elevation={3}>
                                         <img className="connectionImage" src={connect.profile_image} />
-                                        <div className="connectionsInfo">
+                                        <div className="connectionsName">
                                             <li>{connect.first_name + " " + connect.last_name}</li>
-                                            <li onClick={() => handleRemove()}>remove</li>
                                         </div>
+                                        <li className="connectionsRemove" onClick={() => handleRemove()}>remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
                     )
                 })}
+
+                {/* {requests && } */}
+
             </Box>
         </>
     )
