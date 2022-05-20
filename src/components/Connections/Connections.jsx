@@ -30,7 +30,7 @@ function Connections() {
     };
 
     const handleRemove = () => {
-        dispatch({type: 'DELETE_CONNECTIONS'});
+        dispatch({ type: 'DELETE_CONNECTIONS' });
         console.log('hi');
     }
 
@@ -41,10 +41,7 @@ function Connections() {
 
     return (
         <>
-         
-            
-
-                <div className="toggleRight">
+            <div className="toggleRight">
                 <ToggleButtonGroup
                     value={toggle}
                     size="small"
@@ -58,9 +55,9 @@ function Connections() {
                         <h3>Family</h3>
                     </ToggleButton>
                 </ToggleButtonGroup>
-                </div>
+            </div>
 
-                <Box
+            <Box
                 sx={{
                     // display: 'flex',
                     // flexWrap: 'wrap',
@@ -70,7 +67,7 @@ function Connections() {
                         // height: 100,
                     },
                 }}>
-                
+
 
                 {/* handle friends */}
                 {friends && connections?.map((connect, i) => {
@@ -79,7 +76,7 @@ function Connections() {
                             {connect.relationship == "friend" &&
                                 <ul>
                                     <Paper elevation={3}>
-                                        <img className="connectionImage" src={connect.profile_image}/>
+                                        <img className="connectionImage" src={connect.profile_image} />
                                         <li>{connect.first_name + " " + connect.last_name}</li>
                                         <li onClick={() => handleRemove()}>remove</li>
                                     </Paper>
@@ -95,24 +92,17 @@ function Connections() {
                             {connect.relationship == "family" &&
                                 <ul>
                                     <Paper elevation={3}>
-                                        <img className="connectionImage" src={connect.profile_image}/>
+                                        <img className="connectionImage" src={connect.profile_image} />
                                         <div className="connectionsInfo">
-                                        <li>{connect.first_name + " " + connect.last_name}</li>
-                                        <li onClick={() => handleRemove()}>remove</li>
+                                            <li>{connect.first_name + " " + connect.last_name}</li>
+                                            <li onClick={() => handleRemove()}>remove</li>
                                         </div>
                                     </Paper>
                                 </ul>}
                         </div>
                     )
                 })}
-                 </Box>
-           
-
-
-
-
-
-
+            </Box>
         </>
     )
 }

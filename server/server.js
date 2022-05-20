@@ -11,10 +11,10 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const searchRouter = require('./routes/search.router');
 const videoRouter = require('./routes/video.router');
-const connectionsRouter = require('./routes/connections.router');
 const permissionRouter = require('./routes/permission.router');
 const promptRouter = require('./routes/prompt.router');
-
+const requestRouter = require('./routes/request.router');
+const connectionsRouter = require('./routes/connections.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -44,6 +44,10 @@ app.use('/api/permission', permissionRouter);
 
 /* Permission route (to the "prompts" table) */
 app.use('/api/prompt', promptRouter);
+
+// Request route
+app.use('/api/request', requestRouter);
+
 
 // Serve static files
 app.use(express.static('build'));
