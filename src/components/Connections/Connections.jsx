@@ -108,8 +108,8 @@ function Connections() {
                                 {connect.relationship == "family" &&
                                 <ul>
                                     <Paper elevation={3}>
-                                        <img className="connectionsImage" src={connect.profile_image} />
-                                        <div className="connectionsName" >
+                                        <img className="connectionImage" src={connect.profile_image} />
+                                        <div className="connectionsName">
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
                                         <li className="connectionsRemove" onClick={() => handleRemove()}>remove</li>

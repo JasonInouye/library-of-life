@@ -6,6 +6,7 @@ import searchSaga from './search.saga';
 import videoSaga from './video.saga';
 import connectionsSaga from './connections.saga';
 import permissionSaga from './permission.saga';
+import requestSaga from './request.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,7 +22,8 @@ export default function* rootSaga() {
     userSaga(),
     connectionsSaga(),
     searchSaga(),
+    videoSaga(),
+    requestSaga(),
     permissionSaga(),
-    videoSaga()
   ]);
 }
