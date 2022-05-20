@@ -4,7 +4,8 @@ li {
 
 .toggleRight {
   display: flex;
-  padding-right: 60px;
+  justify-content: center;
+  
   }
 
 .connectionsImage {
@@ -30,27 +31,4 @@ li {
     justify-content: flex-end;
     color: red;
 }
-
-/* .connectionImageTwo {
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    padding-left: 15px;
-    padding-top: 15px;
-}
-
-.connectionsNameTwo {
-    padding-left: 20px;
-    float: right;
-    padding-top: 60px;
-    padding-right: 60px;
-}
-
-.connectionsRemoveTwo {
-    padding-left: 175px;
-    padding-bottom: 10px;
-    color: red;
-} */
-
-
 
