@@ -36,7 +36,7 @@ function PermissionDropdown() {
 
     return (
         <>
-            < FormControl sx={{ m: 1, minWidth: 180 }} size="small">
+            < FormControl sx={{ m: 1, minWidth: '11em' }} size="small">
                 <InputLabel id="permission-select-small">
                     Who can see this?
                 </InputLabel>
