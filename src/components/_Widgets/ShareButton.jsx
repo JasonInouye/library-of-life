@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from 'react';
 
+/******* multi select for connections  ********/
+import SelectToShare from "./SelectToShare";
+
 /******* sweet alert  ********/
 import swal from 'sweetalert';
 
@@ -69,13 +72,16 @@ function ShareButton() {
                 anchorReference="anchorPosition"
                 anchorPosition={menuPosition}
             >
-                <MenuItem onClick={handleItemClick}>Share with everyone</MenuItem>
+                <MenuItem onClick={handleItemClick}>Share with all my connections</MenuItem>
+                <br/>
+                <MenuItem onClick={handleItemClick}><SelectToShare/></MenuItem>
                 <NestedMenuItem
-                    label="Choose from my connections"
+                    label="Select people to share with:"
                     parentMenuOpen={!!menuPosition}
                     onClick={handleItemClick}
                 >
                     <MenuItem onClick={handleItemClick}>Sub-Button 1</MenuItem>
+                    <br/>
                     <MenuItem onClick={handleItemClick}>Sub-Button 2</MenuItem>
                     <NestedMenuItem
                         label="sub category"
@@ -83,10 +89,11 @@ function ShareButton() {
                         onClick={handleItemClick}
                     >
                         <MenuItem onClick={handleItemClick}>Sub-Sub-Button 1</MenuItem>
+                        <br/>
                         <MenuItem onClick={handleItemClick}>Sub-Sub-Button 2</MenuItem>
                     </NestedMenuItem>
                 </NestedMenuItem>
-                <MenuItem onClick={handleCreateLink}>Create a link to send</MenuItem>
+                <MenuItem onClick={handleCreateLink}>Create a link to send in text/email</MenuItem>
 
             </Menu>
         </>
