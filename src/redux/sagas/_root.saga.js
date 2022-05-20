@@ -4,6 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import searchSaga from './search.saga';
 import videoSaga from './video.saga';
+import connectionsSaga from './connections.saga';
 import permissionSaga from './permission.saga';
 
 // rootSaga is the primary saga.
@@ -18,8 +19,9 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    permissionSaga(),
+    connectionsSaga(),
     searchSaga(),
+    permissionSaga(),
     videoSaga()
   ]);
 }
