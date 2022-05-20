@@ -30,6 +30,7 @@ function PermissionDropdown() {
         setPermission(event.target.value);
         dispatch({type: 'UPDATE_PERMISSION', payload: event.target.value})
     };
+    
 
 
     console.log('selected permission is:', permission);
@@ -48,8 +49,11 @@ function PermissionDropdown() {
                     onChange={handleChange}
                 >
                     <MenuItem value={'everyone'}>Everyone</MenuItem>
+                    <br/>
                     <MenuItem value={'friends'}>Friends</MenuItem>
+                    <br/>
                     <MenuItem value={'family'}>Family</MenuItem>
+                    <br/>
                     <MenuItem value={'invite-only'}>Invite-Only</MenuItem>
                 </Select>
             </FormControl>
