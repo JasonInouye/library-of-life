@@ -7,12 +7,9 @@ import Uploader from './Uploader';
 
 function VideoUploadPage() {
     return (
-        <main className="sageBackground">
+        <main>
             <div className="videoWatch">
-                <h2 className="border sage">If you could do something to change humanity, what would it be?</h2>
                 <Uploader />
-                <Button variant='outlined' sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Save</Button>
-                <Button variant='outlined' sx={{ margin: '20px', color: 'white', backgroundColor: '#667b68' }}>Back</Button>
             </div>
         </main>
     );
