@@ -1,0 +1,19 @@
+li {
+    list-style: none;
+}
+
+.toggleRight {
+  float: right;
+  display: flex;
+  padding-right: 110px;
+  }
+
+.connectionImage {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+
+/* .connectionsInfo {
+    padding-left: 50px;
+} */

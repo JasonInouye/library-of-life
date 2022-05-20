@@ -46,18 +46,25 @@ function ShareButton() {
 
     return (
         <>
-                <Button
-                    variant='contained'
-                    onClick={openShareMenu}>
-                    Share <span style={{ paddingLeft: '5px' }}><SiSlideshare /> </span>
-                </Button>
-                <Menu
-                    open={!!menuPosition}
-                    onClose={() => setMenuPosition(null)}
-                    anchorReference="anchorPosition"
-                    anchorPosition={menuPosition}
-                >
-                    <MenuItem style={{width: '100%'}} onClick={handleItemClick}>Everyone</MenuItem>
+            <Button
+                size="small"
+                variant='contained'
+                onClick={openShareMenu}
+                style={{ backgroundColor: '#667b68' }}>
+                Share <span style={{ paddingLeft: '5px' }}><SiSlideshare /> </span>
+            </Button>
+            <Menu
+                open={!!menuPosition}
+                onClose={() => setMenuPosition(null)}
+                anchorReference="anchorPosition"
+                anchorPosition={menuPosition}
+            >
+                <NestedMenuItem
+                    label="Friends"
+                    parentMenuOpen={!!menuPosition}
+                    onClick={handleItemClick}
+                />
+                    <MenuItem style={{ width: '100%' }} onClick={handleItemClick}>Everyone</MenuItem>
                     <NestedMenuItem
                         label="Friends"
                         parentMenuOpen={!!menuPosition}
@@ -76,8 +83,8 @@ function ShareButton() {
                         <br />
                         <MenuItem onClick={handleItemClick}>Mom</MenuItem>
                     </NestedMenuItem>
-                    <MenuItem style={{width: '100%'}} onClick={handleItemClick}>Share with link</MenuItem>
-                </Menu>
+                    <MenuItem style={{ width: '100%' }} onClick={handleItemClick}>Share with link</MenuItem>
+            </Menu>
         </>
     )
 }

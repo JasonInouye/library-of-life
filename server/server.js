@@ -14,7 +14,7 @@ const videoRouter = require('./routes/video.router');
 const permissionRouter = require('./routes/permission.router');
 const promptRouter = require('./routes/prompt.router');
 const requestRouter = require('./routes/request.router');
-
+const connectionsRouter = require('./routes/connections.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -30,11 +30,14 @@ app.use(passport.session());
 /* User route */
 app.use('/api/user', userRouter);
 
-// Search Route
+/* Search route*/
 app.use('/api/search', searchRouter);
 
 /* Video route */
 app.use('/api/video', videoRouter);
+
+/* Connections route */
+app.use('/api/connections', connectionsRouter);
 
 /* Permission route (to the "shared_videos" table) */
 app.use('/api/permission', permissionRouter);

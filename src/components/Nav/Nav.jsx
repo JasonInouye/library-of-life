@@ -105,8 +105,9 @@ function Nav() {
               anchorReference="anchorPosition"
               anchorPosition={menuPosition}
             >
-              <MenuItem onClick={(event) => handleItemClick('/user/videos')}>My Profile</MenuItem>
-              <MenuItem onClick={(event) => handleItemClick('/user/connections')}>My Connections</MenuItem>
+              <MenuItem onClick={(event) => handleItemClick(`/user/${user.id}/videos`)}>My Profile</MenuItem>
+              <MenuItem onClick={(event) => handleItemClick(`/user/${user.id}/connections`)}>My Connections</MenuItem>
+              <MenuItem onClick={(event) => handleItemClick(`/user/${user.id}/uploads`)}>Upload Video</MenuItem>
               <MenuItem onClick={(event) => handleItemClick('/about')}>About Library of Life</MenuItem>
             </Menu>
           </div>

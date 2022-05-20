@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from '@mui/material/Button';
 import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
+import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 
 /******* nested menu dropdowns  ********/
 import { Menu } from "@mui/material";
@@ -51,7 +52,7 @@ function UserPage() {
   };
 
 
-  
+
 
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
@@ -79,8 +80,8 @@ function UserPage() {
                   anchorReference="anchorPosition"
                   anchorPosition={menuPosition}
                 >
-                  <MenuItem style={{ width: '100%' }} onClick={() => {handleFriendClick()}}>Friend</MenuItem>
-                  <MenuItem style={{ width: '100%' }} onClick={() => {handleFamilyClick()}}>Family</MenuItem>
+                  <MenuItem style={{ width: '100%' }} onClick={() => { handleFriendClick() }}>Friend</MenuItem>
+                  <MenuItem style={{ width: '100%' }} onClick={() => { handleFamilyClick() }}>Family</MenuItem>
                 </Menu>
               </>}
           </div>
@@ -101,17 +102,23 @@ function UserPage() {
           {view == "videos" &&
             <UserVideos />}
 
+          {view == "videos" &&
+            <UserVideos />}
+
           {view == "connections" &&
             <Connections />}
+
+          {view == "uploads" &&
+            <VideoUploadPage />}
+
+
         </>
-      }
 
+      });
     </div>
-
-
-
-  );
+  )
 }
+
 
 // this allows us to use <App /> in index.js
 export default UserPage;
