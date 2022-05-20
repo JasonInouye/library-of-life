@@ -33,7 +33,7 @@ const names = [
 
 export default function SelectToShare() {
     const [personName, setPersonName] = React.useState([]);
-
+// TODO hook up to DB to grab connections
     const handleChange = (event) => {
         const {
             target: { value },
@@ -44,10 +44,12 @@ export default function SelectToShare() {
         );
     };
 
+    console.log('selected people are:', personName);
+
     return (
         <div>
             <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel id="demo-multiple-checkbox-label">Tag</InputLabel>
+                <InputLabel id="demo-multiple-checkbox-label">Choose from your connections</InputLabel>
                 <Select
                     labelId="demo-multiple-checkbox-label"
                     id="demo-multiple-checkbox"
