@@ -21,8 +21,11 @@ function DeleteButton({ video }) {
     return (
         <>
             <IconButton aria-label="delete"
+            sx={{padding: '8px !important',
+                borderRadius: '50% !important',
+                color: 'rgba(0, 0, 0, 0.54) !important'}}
             onClick={handleDelete}
-            style={{ marginRight: '1em', borderRadius:'50' }}>
+            style={{ marginRight: '1em'}}>
                 <VscTrash />
             </IconButton>
         </>

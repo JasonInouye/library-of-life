@@ -62,7 +62,8 @@ function UserVideoItem({ video }) {
                                     display: 'flex',
                                     flexDirection: 'row',
                                     flexWrap: 'nowrap',
-                                    justifyContent: 'center'
+                                    justifyContent: 'center',
+                                    alignItems: 'center'
                                 }}>
                                     <DeleteButton
                                         video={video} />
