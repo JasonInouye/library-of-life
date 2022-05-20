@@ -60,10 +60,7 @@ function ShareButton() {
                 variant='contained'
                 onClick={openShareMenu}
                 style={{ backgroundColor: '#667b68' }}>
-                Share
-                <span style={{ paddingLeft: '5px' }}>
-                    <SiSlideshare />
-                </span>
+                Share <span style={{ paddingLeft: '5px' }}><SiSlideshare /> </span>
             </Button>
 
             <Menu
@@ -76,25 +73,30 @@ function ShareButton() {
                 <br/>
                 <MenuItem onClick={handleItemClick}><SelectToShare/></MenuItem>
                 <NestedMenuItem
-                    label="Select people to share with:"
+                    label="Friends"
                     parentMenuOpen={!!menuPosition}
                     onClick={handleItemClick}
-                >
-                    <MenuItem onClick={handleItemClick}>Sub-Button 1</MenuItem>
-                    <br/>
-                    <MenuItem onClick={handleItemClick}>Sub-Button 2</MenuItem>
+                />
+                    <MenuItem style={{ width: '100%' }} onClick={handleItemClick}>Everyone</MenuItem>
                     <NestedMenuItem
-                        label="sub category"
+                        label="Friends"
                         parentMenuOpen={!!menuPosition}
                         onClick={handleItemClick}
                     >
-                        <MenuItem onClick={handleItemClick}>Sub-Sub-Button 1</MenuItem>
-                        <br/>
-                        <MenuItem onClick={handleItemClick}>Sub-Sub-Button 2</MenuItem>
+                        <MenuItem onClick={handleItemClick}>All Friends</MenuItem>
+                        <br />
+                        <MenuItem onClick={handleItemClick}>Dave</MenuItem>
                     </NestedMenuItem>
-                </NestedMenuItem>
-                <MenuItem onClick={handleCreateLink}>Create a link to send in text/email</MenuItem>
-
+                    <NestedMenuItem
+                        label="Family"
+                        parentMenuOpen={!!menuPosition}
+                        onClick={handleItemClick}
+                    >
+                        <MenuItem onClick={handleItemClick}>All Family</MenuItem>
+                        <br />
+                        <MenuItem onClick={handleItemClick}>Mom</MenuItem>
+                    </NestedMenuItem>
+                    <MenuItem style={{ width: '100%' }} onClick={handleItemClick}>Share with link</MenuItem>
             </Menu>
         </>
     )

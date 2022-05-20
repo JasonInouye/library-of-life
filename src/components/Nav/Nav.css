@@ -40,13 +40,13 @@
 }
 
 .navLink:hover {
-  background-color: #008183;
+  background-color: #667B68;
 }
 
 #logo-link {
   position: relative;
-  height: 75px;
-  width: 75px;
+  height: 100px;
+  width: 100px;
 }
 
 #logo {

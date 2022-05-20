@@ -1,11 +1,26 @@
+import { combineReducers } from 'redux';
+
 const listOfUsers = (state = [], action) => {
     switch (action.type) {
-      case 'SET_LIST_OF_USERS':
-          console.log('list of users', action.payload);
-        return action.payload;
-      default:
-        return state;
+        case 'SET_LIST_OF_USERS':
+            const listOfUsersMinusYourself = action.payload.listOfUsers;
+            const currentUser = action.payload.currentUser.id;
+            return listOfUsersMinusYourself.filter(searchedUser => searchedUser.id != currentUser);;
+        default:
+            return state;
     }
-  }
+}
 
-  export default listOfUsers;
+const searchedUser = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_SEARCHED_USER':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export default combineReducers({
+    listOfUsers,
+    searchedUser
+  });

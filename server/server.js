@@ -11,11 +11,18 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const searchRouter = require('./routes/search.router');
 const videoRouter = require('./routes/video.router');
+<<<<<<< HEAD
 const permissionRouter = require('./routes/permission.router')
 const promptRouter = require('./routes/prompt.router')
 const linkRouter = require('./routes/link.router');
 
 
+=======
+const permissionRouter = require('./routes/permission.router');
+const promptRouter = require('./routes/prompt.router');
+const requestRouter = require('./routes/request.router');
+const connectionsRouter = require('./routes/connections.router');
+>>>>>>> main
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -30,10 +37,15 @@ app.use(passport.session());
 
 /* User route */
 app.use('/api/user', userRouter);
+
+/* Search route*/
 app.use('/api/search', searchRouter);
 
 /* Video route */
 app.use('/api/video', videoRouter);
+
+/* Connections route */
+app.use('/api/connections', connectionsRouter);
 
 /* Permission route (to the "shared_videos" table) */
 app.use('/api/permission', permissionRouter);
@@ -41,9 +53,14 @@ app.use('/api/permission', permissionRouter);
 /* Permission route (to the "prompts" table) */
 app.use('/api/prompt', promptRouter);
 
+<<<<<<< HEAD
 /* route to shorten URLs */
 app.use('/api/link', linkRouter);
 
+=======
+// Request route
+app.use('/api/request', requestRouter);
+>>>>>>> main
 
 
 // Serve static files
