@@ -111,9 +111,12 @@ export default function ShareDialogBox({ title, children, component, callback, v
                             url={shortenedURL} />
                         :
                         <>
-                            <p>or</p>
-                            <p onClick={()=>{setShowShortLink(true)}}>
-                                Give me a link to send by text or email</p>
+                            <p>Or, to send a video link by text or email:</p>
+                            <Button 
+                            variant='contained'
+                            style={{ backgroundColor: '#667b68', color: 'white' }}
+                            onClick={()=>{setShowShortLink(true)}}>
+                                Give me a link</Button>
                         </>
 
                     }

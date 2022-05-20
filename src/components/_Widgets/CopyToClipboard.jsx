@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux';
 import useCopy from "use-copy";
+import Button from '@material-ui/core/Button';
 
-/* ******* useCopy: https://www.npmjs.com/package/use-copy ******** */ 
 
-
+/* ******* useCopy: https://www.npmjs.com/package/use-copy ******** */
 
 
 
@@ -24,11 +22,17 @@ function CopyToClipboard({ url }) {
     return (
         <>
             <div>
-                <h3>{url}</h3>
+                <h4>{url}</h4>
                 {copied ? (
-                    <p>Link copied! You can now paste it in an email or text message</p>
+                    <p>Link copied! <br/>
+                    You can now paste it in an email or text message.</p>
                 ) : (
-                    <button onClick={copyShortURL}>Copy video link</button>
+                    <Button
+                        variant='contained'
+                        style={{ backgroundColor: '#667b68', color: 'white' }}
+                        onClick={copyShortURL}>
+                        Click to Copy Link
+                    </Button>
                 )}
                 <br />
             </div>
