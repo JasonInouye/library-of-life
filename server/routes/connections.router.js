@@ -9,7 +9,9 @@ router.get('/', (req, res) => {
     b.first_name,
     b.last_name,
     b.profile_image,
-    a.relationship
+    a.relationship,
+    a.id,
+    a.pending
     FROM "connections" a, "users" b
     WHERE (a."user_A_id" = $1
     and a."user_B_id" = b."id") OR (a."user_B_id" = $2
@@ -49,13 +51,33 @@ router.post('/', (req, res) => {
 
 });
 
+router.put('/:id', (req, res) => {
+    const id = req.params.id; 
+
+    const queryText = `
+    UPDATE "connections" 
+    SET "pending" = false
+    WHERE id = $1;`;
+
+    queryValues = [id]
+
+    pool.query(queryText, queryValues)
+    .then(() => {res.sendStatus(200); })
+    .catch((err) => {
+        console.log('ERROR in PUT connections', err);
+        res.sendStatus(500);
+    })
+});
+
 //Delete connection from connections table
 router.delete('/:id', (req, res) => {
     const id = req.params.id; 
 
-    const queryText = `DELETE FROM "connections" where id = $1;`;
+    console.log(id);
 
-    queryValues = [id]
+    const queryText = `DELETE FROM "connections" WHERE id = $1;`;
+
+    const queryValues = [id]
 
     pool.query(queryText, queryValues)
     .then(() => {res.sendStatus(200); })
