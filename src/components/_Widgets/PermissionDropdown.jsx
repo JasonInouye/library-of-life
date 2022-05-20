@@ -48,8 +48,11 @@ function PermissionDropdown() {
                     onChange={handleChange}
                 >
                     <MenuItem value={'everyone'}>Everyone</MenuItem>
+                    <br/>
                     <MenuItem value={'friends'}>Friends</MenuItem>
+                    <br/>
                     <MenuItem value={'family'}>Family</MenuItem>
+                    <br/>
                     <MenuItem value={'invite-only'}>Invite-Only</MenuItem>
                 </Select>
             </FormControl>
