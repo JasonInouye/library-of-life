@@ -67,22 +67,24 @@ function UserPage() {
           </div>
 
         </div>
-        <ToggleButtonGroup
-          value={toggle}
-          size="small"
-          exclusive
-          onChange={(event) => { handleToggle(event.target.value) }}
-          aria-label="text alignment"
-        >
-          <ToggleButton onClick={() => { handleMyVideos() }} size="small" value="myVideos" aria-label="left aligned">
-            <h3>My Videos</h3>
-          </ToggleButton>
-          <ToggleButton onClick={() => { handleSharedVideos() }} value="sharedVideos" aria-label="centered">
-            <h3>Shared Videos</h3>
-          </ToggleButton>
+        <div className="toggleRight">
+          <ToggleButtonGroup
+            value={toggle}
+            size="small"
+            exclusive
+            onChange={(event) => { handleToggle(event.target.value) }}
+            aria-label="text alignment"
+          >
+            <ToggleButton onClick={() => { handleMyVideos() }} size="small" value="myVideos" aria-label="left aligned">
+              <h3>My Videos</h3>
+            </ToggleButton>
+            <ToggleButton onClick={() => { handleSharedVideos() }} value="sharedVideos" aria-label="centered">
+              <h3>Shared Videos</h3>
+            </ToggleButton>
 
 
-        </ToggleButtonGroup>
+          </ToggleButtonGroup>
+        </div>
       </div>
 
       {myVideos && <UserVideos />}
