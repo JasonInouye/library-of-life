@@ -92,14 +92,18 @@ function UserPage() {
                 </Menu>
               </>}
           </div>
-          {userInParams == user.id &&
+          {userInParams == user.id && view == 'videos' &&
             <div id='profile-info'>
               <Button
                 id='manage-library'
                 variant='outlined'
                 onClick={() => { history.push('/managelibrary') }}>
                 Manage Library</Button>
-              <Button variant='outlined' onClick={() => { history.push('/user/connections') }}>My Connections</Button>
+              <Button variant='outlined' onClick={() => { history.push(`/user/${user.id}/connections`) }}>My Connections</Button>
+            </div>}
+            {userInParams == user.id && view == 'connections' &&
+            <div id='profile-info'>
+              <Button variant='outlined' onClick={() => { history.push(`/user/${user.id}/videos`) }}>My Videos</Button>
             </div>}
         </div>
       </div>
