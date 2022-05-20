@@ -41,9 +41,12 @@ function Connections() {
         SetRequests(true);
     }
 
-    const handleRemove = () => {
-        dispatch({ type: 'DELETE_CONNECTIONS' });
-        console.log('hi');
+    const handleRemove = (id) => {
+        dispatch({ type: 'DELETE_CONNECTIONS', payload: id });
+    }
+
+    const handleAccept = (id) => {
+        dispatch({ type: 'ACCEPT_CONNECTIONS', payload: id });
     }
 
     useEffect(() => {
@@ -83,36 +86,36 @@ function Connections() {
                     },
                 }}>
 
-            {/* handle friends */}
+                {/* handle friends */}
                 {friends && connections?.map((connect, i) => {
                     return (
                         <div key={i}>
-                            {connect.relationship == "friend" &&
+                            {(connect.relationship == "friend" && connect.pending == false) &&
                                 <ul>
                                     <Paper elevation={3}>
                                         <img className="connectionsImage" src={connect.profile_image} />
                                         <div className="connectionsName" >
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove()}>remove</li>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
                     )
                 })}
 
-            {/* handle family */}
+                {/* handle family */}
                 {family && connections?.map((connect, i) => {
                     return (
                         <div key={i}>
-                                {connect.relationship == "family" &&
+                            {(connect.relationship == "family" && connect.pending == false) &&
                                 <ul>
                                     <Paper elevation={3}>
                                         <img className="connectionsImage" src={connect.profile_image} />
                                         <div className="connectionsName">
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove()}>remove</li>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
@@ -120,6 +123,24 @@ function Connections() {
                 })}
 
                 {/* {requests && } */}
+                {requests && connections?.map((connect, i) => {
+                    console.log(connect.pending)
+                    return (
+                        <div key={i}>
+                            {connect?.pending == true &&
+                                <ul>
+                                    <Paper elevation={3}>
+                                        <img className="connectionImage" src={connect.profile_image} />
+                                        <div className="connectionsName">
+                                            <li>{connect.first_name + " " + connect.last_name}</li>
+                                        </div>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Ignore</li>
+                                        <li className="connectionsAccept" onClick={() => handleAccept(connect.id)}>Accept</li>
+                                    </Paper>
+                                </ul>}
+                        </div>
+                    )
+                })}
 
             </Box>
         </>

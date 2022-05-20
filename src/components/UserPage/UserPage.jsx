@@ -44,20 +44,20 @@ function UserPage() {
   const handleFriendClick = () => {
     setMenuPosition(null);
 
-    dispatch({ type: 'POST_REQUEST', payload: { relationship: 'Friend', userB: userInParams } })
+    dispatch({ type: 'POST_REQUEST', payload: { relationship: 'friend', userB: userInParams } })
   };
 
   const handleFamilyClick = () => {
     setMenuPosition(null);
 
-    dispatch({ type: 'POST_REQUEST', payload: { relationship: 'Family', userB: userInParams } })
+    dispatch({ type: 'POST_REQUEST', payload: { relationship: 'family', userB: userInParams } })
   };
 
 
 
 
   useEffect(() => {
-    dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
+      dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
 
 
@@ -73,8 +73,8 @@ function UserPage() {
         </div>
         <div id='info-beneath-photos'>
           <div id='name-and-location'>
-            <h3>{searchedUser?.first_name?.charAt(0).toUpperCase() + searchedUser?.first_name?.slice(1) + ' ' + searchedUser?.last_name?.charAt(0).toUpperCase() + searchedUser?.last_name?.slice(1)}</h3>
-            <h4>{searchedUser?.city?.charAt(0).toUpperCase() + searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}</h4>
+                <h3>{searchedUser?.first_name?.charAt(0).toUpperCase() + searchedUser?.first_name?.slice(1) + ' ' + searchedUser?.last_name?.charAt(0).toUpperCase() + searchedUser?.last_name?.slice(1)}</h3>
+                <h4>{searchedUser?.city?.charAt(0).toUpperCase() + searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}</h4>
             {userInParams != user.id &&
               <>
                 {pendingStatus == false &&
@@ -101,7 +101,7 @@ function UserPage() {
                 Manage Library</Button>
               <Button variant='outlined' onClick={() => { history.push(`/user/${user.id}/connections`) }}>My Connections</Button>
             </div>}
-            {userInParams == user.id && view == 'connections' &&
+          {userInParams == user.id && view == 'connections' &&
             <div id='profile-info'>
               <Button variant='outlined' onClick={() => { history.push(`/user/${user.id}/videos`) }}>My Videos</Button>
             </div>}
