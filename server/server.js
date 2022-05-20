@@ -14,9 +14,6 @@ const videoRouter = require('./routes/video.router');
 const permissionRouter = require('./routes/permission.router')
 const promptRouter = require('./routes/prompt.router')
 const linkRouter = require('./routes/link.router');
-
-
-
 const requestRouter = require('./routes/request.router');
 const connectionsRouter = require('./routes/connections.router');
 
