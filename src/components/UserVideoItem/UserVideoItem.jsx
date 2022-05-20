@@ -20,6 +20,7 @@ import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
+import ShareDialogBox from "../_Widgets/ShareDialogBox";
 
 
 function UserVideoItem({ video }) {
@@ -27,6 +28,9 @@ function UserVideoItem({ video }) {
     // check if user owns videos; don't render edit/delete buttons if not
     const user = useSelector((store) => store.user);
 
+    const handleClickEdit = () => {
+        console.log('clicked into dialog');
+    };
 
     return (
         <>
@@ -53,12 +57,23 @@ function UserVideoItem({ video }) {
                             <CardActions style={{ display: 'contents' }}>
                                 <PermissionDropdown />
 
-                                <div style={{ marginBottom: '.3em' }}>
+                                <div style={{
+                                    marginBottom: '0.5em',
+                                    display: 'flex',
+                                    flexDirection: 'row',
+                                    flexWrap: 'nowrap',
+                                    justifyContent: 'center'
+                                }}>
                                     <DeleteButton
                                         video={video} />
 
-                                    <ShareButton
-                                        video={video} />
+                                    <ShareDialogBox
+                                        open={open}
+                                        onClose={() => setOpen(false)}
+                                        aria-labelledby="confirm-dialog"
+                                        title="Share"
+                                        callback={handleClickEdit}
+                                    />
                                 </div>
 
                             </CardActions>
