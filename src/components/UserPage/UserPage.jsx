@@ -22,11 +22,13 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
+  const pendingStatus = useSelector((store) => store.pendingStatus);
   const view = useParams().view;
   const userInParams = Number(useParams().userInParams);
 
   const [menuPosition, setMenuPosition] = useState(null);
-  const [btnDisabled, setBtnDisabled] = useState(true);
+  // const [btnDisabled, setBtnDisabled] = useState(true);
+  console.log('status', pendingStatus);
 
   const openRequestMenu = (event) => {
     if (menuPosition) {
@@ -58,6 +60,8 @@ function UserPage() {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
 
+
+
   return (
     <div className="container">
       <div id='profile-header'>
@@ -73,7 +77,7 @@ function UserPage() {
             <h4>{searchedUser?.city?.charAt(0).toUpperCase() + searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}</h4>
             {userInParams != user.id &&
               <>
-                <Button disabled={btnDisabled} onClick={openRequestMenu}>Request</Button>
+                <Button disabled={pendingStatus} onClick={openRequestMenu}>Request</Button>
                 <Menu
                   open={!!menuPosition}
                   onClose={() => setMenuPosition(null)}
