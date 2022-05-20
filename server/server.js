@@ -13,6 +13,8 @@ const searchRouter = require('./routes/search.router');
 const videoRouter = require('./routes/video.router');
 const permissionRouter = require('./routes/permission.router')
 const promptRouter = require('./routes/prompt.router')
+const linkRouter = require('./routes/link.router');
+
 
 
 // Body parser middleware
@@ -38,6 +40,10 @@ app.use('/api/permission', permissionRouter);
 
 /* Permission route (to the "prompts" table) */
 app.use('/api/prompt', promptRouter);
+
+/* route to shorten URLs */
+app.use('/api/link', linkRouter);
+
 
 
 // Serve static files

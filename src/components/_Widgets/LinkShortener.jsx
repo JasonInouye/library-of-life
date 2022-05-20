@@ -17,7 +17,7 @@ function LinkShortener({url}) {
     const [shortURL, setShortURL] = useState('(this is where the tinyURL will go)');
     const [copied, copy, setCopied] = useCopy(url);
 
-    const copyshortURL = () => {
+    const copyShortURL = () => {
         copy();
 
         setTimeout(() => {
