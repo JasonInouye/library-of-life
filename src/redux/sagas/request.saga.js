@@ -5,7 +5,7 @@ function* getPendingStatus(action) {
     try {
         const response = yield axios.get(`/api/request/${action.payload}`);
 
-        yield put({ type: 'SET_PENDING_STATUS', payload: response.data[0].pending })
+        yield put({ type: 'SET_PENDING_STATUS', payload: response?.data[0].pending })
 
     } catch (error) {
         console.log('Error with request saga:', error);

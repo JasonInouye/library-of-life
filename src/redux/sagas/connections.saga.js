@@ -22,12 +22,24 @@ function* postRequest(action) {
     }
 }
 
+function* acceptConnections(action) {
+    const id = action.payload;
+    try {
+        yield axios.put(`/api/connections/${id}`)
+
+        yield put({ type: 'GET_CONNECTIONS' })
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 function* deleteConnections(action) {
     const id = action.payload;
     console.log('saga delete Connection id', id);
     try {
         yield axios.delete(`/api/connections/${id}`)
-        yield put({ type: 'DELETE_CONNECTIONS' })
+
+        yield put({ type: 'GET_CONNECTIONS' })
     } catch (error) {
         console.log(error);
     }
@@ -36,6 +48,7 @@ function* deleteConnections(action) {
 function* connectionsSaga() {
     yield takeLatest('GET_CONNECTIONS', getConnections);
     yield takeLatest('POST_REQUEST', postRequest);
+    yield takeLatest('ACCEPT_CONNECTIONS', acceptConnections);
     yield takeLatest('DELETE_CONNECTIONS', deleteConnections);
 }
 
