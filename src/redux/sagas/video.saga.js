@@ -16,7 +16,7 @@ function* addBakesale(action) {
 
 // 
 function* postUserVideos(action) {
-  console.log('post action', action.payload.key);
+  console.log('post action', action.payload);
   try{
       yield axios.post('/api/video/', action.payload);
   } catch(err){

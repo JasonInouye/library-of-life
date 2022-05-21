@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
@@ -8,7 +8,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Box from '@mui/material/Box';  
+import Box from '@mui/material/Box';
 
 function Uploader() {
   const dispatch = useDispatch();
@@ -20,6 +20,8 @@ function Uploader() {
     // dispatch to get all items to display on the DOM
     dispatch({ type: 'GET_PROMPTS' });
   }, []);
+
+  console.log('this is the prompt id', videoPrompt);
 
   const getUploadParams = ({ meta }) => {
     const url = 'https://httpbin.org/post';
@@ -48,7 +50,8 @@ function Uploader() {
     console.log('Response: ', response.data.Key);
 
     // key is the video id from AWS
-    dispatch({ type: 'POST_VIDEO', payload: { key: response.data.Key } });
+    
+    dispatch({ type: 'POST_VIDEO', payload: { key: response.data.Key, prompt: videoPrompt } });
 
     // * PUT request: upload file to S3
     const result = await fetch(response.data.uploadURL, {
@@ -60,27 +63,24 @@ function Uploader() {
 
   return (
     <div>
-            <Box justifyContent="center" sx={{ maxWidth: 420 }}>
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Prompt</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={videoPrompt}
-          label="prompt"
-          onChange={(event) => setVideoPrompt(event.target.value)}
-        >
-          {prompts.map((prompt) => (
-              <MenuItem
-                key={prompt.id}
-                value={prompt.id}
-              >
+      <Box justifyContent='center' sx={{ maxWidth: 420 }}>
+        <FormControl fullWidth>
+          <InputLabel id='demo-simple-select-label'>Prompt</InputLabel>
+          <Select
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
+            value={videoPrompt}
+            label='prompt'
+            onChange={(event) => setVideoPrompt(event.target.value)}
+          >
+            {prompts.map((prompt) => (
+              <MenuItem key={prompt.id} value={prompt.id}>
                 {prompt.prompt}
               </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
+            ))}
+          </Select>
+        </FormControl>
+      </Box>
 
       <Dropzone
         getUploadParams={getUploadParams}
@@ -98,5 +98,5 @@ function Uploader() {
       />
     </div>
   );
-};
+}
 export default Uploader;
