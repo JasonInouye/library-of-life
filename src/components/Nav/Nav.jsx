@@ -86,6 +86,7 @@ function Nav() {
           onChange={goToUserPage}
           fullWidth
           renderInput={(params) => <TextField {...params} label='Search' />}
+          // sx={{height:'.5em'}}
         />
       </div>
 
