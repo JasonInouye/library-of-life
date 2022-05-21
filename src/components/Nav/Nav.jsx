@@ -6,6 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Autocomplete, TextField } from '@mui/material';
 
+import { IoIosArrowDown } from "react-icons/io";
+
+
+
 /******* nested menu dropdowns  ********/
 import { Menu, Button } from "@mui/material";
 import NestedMenuItem from "material-ui-nested-menu-item";
@@ -66,6 +70,7 @@ function Nav() {
         <Link to="/home">
           <img id='logo' src='/images/logo.jpg' />
         </Link>
+
       </div>
 
 
@@ -86,7 +91,7 @@ function Nav() {
           onChange={goToUserPage}
           fullWidth
           renderInput={(params) => <TextField {...params} label='Search' />}
-          // sx={{height:'.5em'}}
+        // sx={{height:'.5em'}}
         />
       </div>
 
@@ -95,11 +100,13 @@ function Nav() {
       {user.id && (
         <div id='navLinks'>
           <div id='menu'>
-            <Link
-              className="navLink"
-              onClick={openMenu}>
-              Menu
-            </Link>
+            <Button
+              variant='outlined'
+              size='small'
+              onClick={openMenu}
+              sx={{ margin: '.5em', borderColor: '#667b68', color: '#667b68' }}>
+              Menu <IoIosArrowDown />
+            </Button>
             <Menu
               open={!!menuPosition}
               onClose={() => setMenuPosition(null)}
@@ -112,7 +119,14 @@ function Nav() {
               <MenuItem onClick={(event) => handleItemClick('/about')}>About Library of Life</MenuItem>
             </Menu>
           </div>
-          <LogOutButton className="navLink" />
+          <Button
+            variant='outlined'
+            size='small'
+            sx={{ margin: '.5em', borderColor: '#667b68', color: '#667b68' }}
+            onClick={() => dispatch({ type: 'LOGOUT' })}>
+            Log Out
+          </Button>
+
         </div>
       )
       }
