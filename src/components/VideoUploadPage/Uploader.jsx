@@ -96,7 +96,6 @@ function Uploader() {
           dropzoneActive: { borderColor: 'green' },
         }}
       />
-
     </div>
   );
 };

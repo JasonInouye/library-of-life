@@ -29,7 +29,7 @@ function ManageLibrary() {
             <Container>
                 <Grid container
                     style={{ padding: '1em', textAlign: 'center' }}
-                    spacing={2}>
+                    spacing={1}>
 
                     <Grid item
                         xs={12}>

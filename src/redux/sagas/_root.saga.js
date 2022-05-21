@@ -4,8 +4,10 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import searchSaga from './search.saga';
 import videoSaga from './video.saga';
+import connectionsSaga from './connections.saga';
 import permissionSaga from './permission.saga';
 import promptSaga from './prompt.saga';
+import requestSaga from './request.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -19,9 +21,11 @@ export default function* rootSaga() {
     loginSaga(), // login saga is now registered
     registrationSaga(),
     userSaga(),
-    permissionSaga(),
+    connectionsSaga(),
     searchSaga(),
     videoSaga(),
-    promptSaga()
+    promptSaga(),
+    requestSaga(),
+    permissionSaga(),
   ]);
 }

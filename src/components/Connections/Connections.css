@@ -1,0 +1,34 @@
+li {
+    list-style: none;
+}
+
+.toggleRight {
+  display: flex;
+  justify-content: center;
+  
+  }
+
+.connectionsImage {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
+.connectionsName {
+    padding-left: 20px;
+    float: right;
+    padding-top: 60px;
+    padding-right: 60px;
+    /* display: flex; */
+}
+
+.connectionsRemove {
+    /* padding-left: 175px;
+    padding-bottom: 10px; */
+    display: flex;
+    justify-content: flex-end;
+    color: red;
+}
+
