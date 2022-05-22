@@ -90,8 +90,11 @@ function Nav() {
           getOptionLabel={(option) => option.first_name + ' ' + option.last_name}
           onChange={goToUserPage}
           fullWidth
-          renderInput={(params) => <TextField {...params} label='Search' />}
-        // sx={{height:'.5em'}}
+          renderInput={(params) =>
+            <TextField {...params} label=
+              'Search users by name'
+            />}
+        // sx={{height:'.43em !important'}}
         />
       </div>
 
@@ -100,29 +103,33 @@ function Nav() {
       {user.id && (
         <div id='navLinks'>
           <div id='menu'>
+
             <Button
               variant='outlined'
               size='small'
               onClick={openMenu}
-              sx={{ margin: '.5em', borderColor: '#667b68', color: '#667b68' }}>
+              sx={{ margin: '.5em' }}>
               Menu <IoIosArrowDown />
             </Button>
+
             <Menu
               open={!!menuPosition}
               onClose={() => setMenuPosition(null)}
               anchorReference="anchorPosition"
               anchorPosition={menuPosition}
             >
+
               <MenuItem onClick={(event) => handleItemClick(`/user/${user.id}/videos`)}>My Profile</MenuItem>
               <MenuItem onClick={(event) => handleItemClick(`/user/${user.id}/connections`)}>My Connections</MenuItem>
               <MenuItem onClick={(event) => handleItemClick(`/user/${user.id}/uploads`)}>Upload Video</MenuItem>
               <MenuItem onClick={(event) => handleItemClick('/about')}>About Library of Life</MenuItem>
             </Menu>
           </div>
+
           <Button
             variant='outlined'
             size='small'
-            sx={{ margin: '.5em', borderColor: '#667b68', color: '#667b68' }}
+            sx={{ margin: '.5em' }}
             onClick={() => dispatch({ type: 'LOGOUT' })}>
             Log Out
           </Button>

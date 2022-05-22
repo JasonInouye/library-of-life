@@ -26,21 +26,10 @@ const customTheme = createTheme({
       },
     },
     components: {
-      MuiTypography: {
+      MuiFab: {
         styleOverrides: {
-          // Name of the slot
-          root: {
-            fontFamily: 
-            "Blinker",
-          },
-        },
-      },
-      MuiButton: {
-        styleOverrides: {
-          // Name of the slot
-          root: {
-            // Some CSS
-            fontSize: '1rem',
+          primary: {
+            backgroundColor: primaryColor,
           },
         },
       },
