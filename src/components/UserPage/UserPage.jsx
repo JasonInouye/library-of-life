@@ -75,13 +75,17 @@ function UserPage() {
         <div id='info-beneath-photos'>
           <div id='name-and-location'>
             <Typography
-              variant='h5'>{searchedUser?.first_name?.charAt(0).toUpperCase() +
+              variant='h5'
+              sx={{fontFamily:"inherit"}}>
+                {searchedUser?.first_name?.charAt(0).toUpperCase() +
                 searchedUser?.first_name?.slice(1) + ' ' + searchedUser?.last_name?.charAt(0).toUpperCase()
                 + searchedUser?.last_name?.slice(1)}
             </Typography>
 
             <Typography
-              variant='h6'>{searchedUser?.city?.charAt(0).toUpperCase() +
+              variant='h6'
+              sx={{fontFamily:"inherit"}}>
+                {searchedUser?.city?.charAt(0).toUpperCase() +
                 searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}
             </Typography>
 

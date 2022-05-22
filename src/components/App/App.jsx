@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 import { ThemeProvider } from "@material-ui/core/styles";
 import customTheme from "../_customTheme/theme";
@@ -11,7 +13,6 @@ import {
 } from 'react-router-dom';
 import './App.css';
 
-import { useDispatch, useSelector } from 'react-redux';
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
