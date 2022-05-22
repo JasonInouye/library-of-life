@@ -64,8 +64,8 @@ function UserPage() {
   return (
     <div className="container">
       <div id='profile-header'>
-        <div id='images'>
-          <img id='banner-img' src='https://marketplace.canva.com/EAENvp21inc/1/0/1600w/canva-simple-work-linkedin-banner-qt_TMRJF4m0.jpg' alt='banner image' />
+        <div >
+          <img id='bannerimage' src='/images/flowers.jpg' alt='banner image' />
           <div id='profile-img-div'>
             <img id='profile-img' src='https://annemariesegal.files.wordpress.com/2017/04/adobestock_116914002-cropped-young-woman-suit.jpg?w=300&h=295' alt='a very good looking individual' />
           </div>
@@ -152,13 +152,13 @@ function UserPage() {
                 onClick={() => { history.push(`/user/${user.id}/connections`) }}>
                 My Connections
               </Button>
-              
+
             </div>}
 
-            <Fab
-                variant="extended">
-                test fab
-              </Fab>
+          <Fab
+            variant="extended">
+            test fab
+          </Fab>
 
           {userInParams == user.id && view == 'connections' &&
             <div id='profile-info'>
