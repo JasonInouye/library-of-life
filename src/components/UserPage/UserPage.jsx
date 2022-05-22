@@ -69,20 +69,32 @@ function UserPage() {
             userInParams == user.id &&
             <>
               <img id='bannerimage' src={user.banner_image} alt='Banner image' />
-              <Button 
-              style={{
+              <Button
+                style={{
                   position: 'absolute',
                   right: '0.5em',
                   top: '12em',
                   color: 'ghostwhite',
                   textShadow: '2 2 1 black',
-              }}
-              variant="outlined" 
-              startIcon={<VscEdit />}>
+                }}
+                variant="outlined"
+                startIcon={<VscEdit />}>
                 Edit Banner Image
               </Button>
               <div id='profile-img-div'>
                 <img id='profile-img' src={user.profile_image} alt={`A picture of ${user.first_name}`} />
+                <Fab
+                  style={{
+                    position: 'absolute',
+                    left: '10.5em',
+                    top: '10em',
+                    color: 'gray',
+                  }}
+                  size='small'
+                  variant="outlined"
+                  >
+                  Edit Photo <VscEdit />
+                </Fab>
               </div>
             </>
           }
