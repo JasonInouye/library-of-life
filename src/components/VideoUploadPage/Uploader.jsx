@@ -53,9 +53,9 @@ const Uploader = () => {
         maxFiles={1}
         multiple={false}
         canCancel={false}
-        inputContent='Upload A Movie'
+        inputContent='Drag and drop a video here'
         styles={{
-          dropzone: { width: 400, height: 200 },
+          dropzone: { width: 400, height: 200, border:'1px solid gray' },
           dropzoneActive: { borderColor: 'green' },
         }}
       />
