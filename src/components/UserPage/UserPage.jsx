@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
+import { Typography } from '@mui/material';
 
 /******* nested menu dropdowns  ********/
 import { Menu } from "@mui/material";
@@ -57,7 +58,7 @@ function UserPage() {
 
 
   useEffect(() => {
-      dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
+    dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
 
 
@@ -73,22 +74,48 @@ function UserPage() {
         </div>
         <div id='info-beneath-photos'>
           <div id='name-and-location'>
-                <h3>{searchedUser?.first_name?.charAt(0).toUpperCase() + searchedUser?.first_name?.slice(1) + ' ' + searchedUser?.last_name?.charAt(0).toUpperCase() + searchedUser?.last_name?.slice(1)}</h3>
-                <h4>{searchedUser?.city?.charAt(0).toUpperCase() + searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}</h4>
+            <Typography
+              variant='h5'>{searchedUser?.first_name?.charAt(0).toUpperCase() +
+                searchedUser?.first_name?.slice(1) + ' ' + searchedUser?.last_name?.charAt(0).toUpperCase()
+                + searchedUser?.last_name?.slice(1)}
+            </Typography>
+
+            <Typography
+              variant='h6'>{searchedUser?.city?.charAt(0).toUpperCase() +
+                searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}
+            </Typography>
+
             {userInParams != user.id &&
               <>
                 {pendingStatus == false &&
-                  <Button onClick={openRequestMenu}>Request</Button>}
+                  <Button
+                    onClick={openRequestMenu}>
+                    Request
+                  </Button>}
+
                 {pendingStatus == true &&
-                  <Button disabled>Pending</Button>}
+                  <Button
+                    disabled>
+                    Pending
+                  </Button>}
+
                 <Menu
                   open={!!menuPosition}
                   onClose={() => setMenuPosition(null)}
                   anchorReference="anchorPosition"
                   anchorPosition={menuPosition}
                 >
-                  <MenuItem style={{ width: '100%' }} onClick={() => { handleFriendClick() }}>Friend</MenuItem>
-                  <MenuItem style={{ width: '100%' }} onClick={() => { handleFamilyClick() }}>Family</MenuItem>
+                  <MenuItem
+                    style={{ width: '100%' }}
+                    onClick={() => { handleFriendClick() }}>
+                    Friend
+                  </MenuItem>
+
+                  <MenuItem
+                    style={{ width: '100%' }}
+                    onClick={() => { handleFamilyClick() }}>
+                    Family
+                  </MenuItem>
                 </Menu>
               </>}
           </div>
