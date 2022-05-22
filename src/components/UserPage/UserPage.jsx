@@ -64,10 +64,23 @@ function UserPage() {
     <div className="container">
       <div id='profile-header'>
         <div >
-          <img id='bannerimage' src={user.banner_image} alt='banner image' />
-          <div id='profile-img-div'>
-            <img id='profile-img' src={user.profile_image} alt='a very good looking individual' />
-          </div>
+          {
+            userInParams == user.id &&
+            <>
+              <img id='bannerimage' src={user.banner_image} alt='Banner image' />
+              <div id='profile-img-div'>
+                <img id='profile-img' src={user.profile_image} alt={`A picture of ${user.first_name}`} />
+              </div>
+            </>
+          }
+          {userInParams != user.id &&
+            <>
+              <img id='bannerimage' src={searchedUser.banner_image} alt='Banner image' />
+              <div id='profile-img-div'>
+                <img id='profile-img' src={searchedUser.profile_image} alt={`A picture of ${searchedUser.first_name}`} />
+              </div>
+            </>
+          }
         </div>
 
         <div id='info-beneath-photos'>
