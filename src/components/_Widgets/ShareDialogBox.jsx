@@ -61,8 +61,8 @@ export default function ShareDialogBox({ title, children, component, callback, v
         console.log('INSIDE shortenURL, url before shortening:', url);
         axios.post(`/api/link`, urlObj)
             .then(response => {
-                console.log('the shortened URL on CLIENT side should be:', response.data.data.tiny_url);
-                setShortenedURL(response.data.data.tiny_url);
+                console.log('the shortened URL on CLIENT side should be:', response);
+                setShortenedURL(response.data);
             })
             .catch(error => {
                 console.log(error);
