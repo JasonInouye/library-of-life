@@ -58,6 +58,7 @@ const Uploader = () => {
           dropzone: { width: 400, height: 200, border:'1px solid gray' },
           dropzoneActive: { borderColor: 'green' },
         }}
+        // TODO change font color/style in dzu-input-label?
       />
     </div>
   );

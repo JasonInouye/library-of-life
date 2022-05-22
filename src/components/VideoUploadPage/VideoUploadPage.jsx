@@ -7,9 +7,14 @@ import Uploader from './Uploader';
 
 function VideoUploadPage() {
     return (
-        <main className="sageBackground">
+        <main 
+        // className="sageBackground"
+        >
             <div className="videoWatch">
-                <h2 className="border sage">If you could do something to change humanity, what would it be?</h2>
+                <h2 
+                // className="border sage"
+                // ****TODO add dropdown for prompts****
+                >If you could do something to change humanity, what would it be?</h2>
                 <Uploader />
                 <Button variant='outlined' sx={{ margin: '20px' }}>Back</Button>
                 <Button variant='contained' sx={{ margin: '20px' }}>Save</Button>
