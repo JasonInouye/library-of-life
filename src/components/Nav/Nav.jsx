@@ -68,7 +68,7 @@ function Nav() {
     <div className="nav">
       <div id='logo-link'>
         <Link to="/home">
-          <img id='logo' src='/images/logo.jpg' />
+          <img id='logo' src='/images/assets/logo.jpg' />
         </Link>
 
       </div>

@@ -65,7 +65,7 @@ function UserPage() {
     <div className="container">
       <div id='profile-header'>
         <div >
-          <img id='bannerimage' src='/images/flowers.jpg' alt='banner image' />
+          <img id='bannerimage' src='/images/banners/flowers.jpg' alt='banner image' />
           <div id='profile-img-div'>
             <img id='profile-img' src='https://annemariesegal.files.wordpress.com/2017/04/adobestock_116914002-cropped-young-woman-suit.jpg?w=300&h=295' alt='a very good looking individual' />
           </div>
