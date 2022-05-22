@@ -6,6 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import { makeStyles } from '@material-ui/core/styles'
 import classNames from 'classnames';
 
+
 /******* needed to create shortened URL  ********/
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -35,9 +36,11 @@ const useStyles = makeStyles({
 })
 
 export default function ShareDialogBox({ title, children, component, callback, video }) {
+
     const [open, setOpen] = React.useState(false);
     const url = video.url
     const [showShortLink, setShowShortLink] = React.useState(false);
+    const dispatch = useDispatch();
 
 
 
@@ -47,6 +50,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
         setOpen(true);
         console.log('video url is:', url);
         shortenURL();
+        getConnections();
     };
 
     const urlObj = {
@@ -56,6 +60,10 @@ export default function ShareDialogBox({ title, children, component, callback, v
 
     const [shortenedURL, setShortenedURL] = React.useState('');
 
+    const getConnections = () => {
+        // console.log('clicked getConnections');
+        dispatch({type: 'GET_CONNECTIONS'})
+    }
 
     const shortenURL = () => {
         console.log('INSIDE shortenURL, url before shortening:', url);
