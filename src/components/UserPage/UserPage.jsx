@@ -6,7 +6,7 @@ import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 
-/******* nested menu dropdowns  ********/
+/******* styling  ********/
 import { Menu, Typography, Button, Fab } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 
