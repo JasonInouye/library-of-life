@@ -80,6 +80,6 @@ export default function SelectToShare() {
                     ))}
                 </Select>
             </FormControl>
-        </div>›
+        </div>
     );
 }
