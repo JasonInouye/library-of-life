@@ -29,12 +29,8 @@ export default function SelectToShare() {
     const dispatch = useDispatch();
     const connections = useSelector((store) => store.connectionsReducer);
     const [personName, setPersonName] = React.useState([]);
+    const [selectedIDs, setSelectedIDs] = React.useState([]);
 
-    const names = [
-        connections
-    ];
-
-    // TODO hook up to DB to grab connections
     const handleChange = (event) => {
         const {
             target: { value },
@@ -43,9 +39,12 @@ export default function SelectToShare() {
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
+        setSelectedIDs(
+            // FIXME how to grab "user_b" ID of connection? 
+        );
     };
 
-    console.log('selected people are:', personName);
+    console.log('selected people are:', personName, selectedIDs);
 
     return (
         <div>
@@ -54,7 +53,7 @@ export default function SelectToShare() {
                     id="demo-multiple-checkbox-label">
                     Choose from your connections
                 </InputLabel>
-                
+
                 <Select
                     labelId="demo-multiple-checkbox-label"
                     id="demo-multiple-checkbox"
@@ -65,10 +64,18 @@ export default function SelectToShare() {
                     renderValue={(selected) => selected.join(', ')}
                     MenuProps={MenuProps}
                 >
+                    {/* FIXME make checkboxes stay checked... 
+                    and what should go in params of personName.indexOf()??? can't figure out its effect */}
                     {connections.map((connection) => (
-                        <MenuItem key={connection.id} value={connection.first_name + " " + connection.last_name}>
-                            <Checkbox checked={personName.indexOf(connections) > -1} />
-                            <ListItemText primary={connection.first_name + " " + connection.last_name} secondary={connection.relationship} />
+                        <MenuItem
+                            key={connection.id}
+                            value={connection.first_name + " " + connection.last_name}>
+
+                            <Checkbox checked={personName.indexOf(personName) > -1} />
+
+                            <ListItemText
+                                primary={connection.first_name + " " + connection.last_name}
+                                secondary={connection.relationship} />
                         </MenuItem>
                     ))}
                 </Select>
