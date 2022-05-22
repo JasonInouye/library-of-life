@@ -100,7 +100,8 @@ function Nav() {
           sx={{
             height: '0.3em',
             position: 'relative',
-            top: '-1.1em'
+            top: '-1.1em', 
+            left:'2em'
           }}
         />
       </div>
