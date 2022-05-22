@@ -90,11 +90,18 @@ function Nav() {
           getOptionLabel={(option) => option.first_name + ' ' + option.last_name}
           onChange={goToUserPage}
           fullWidth
+          size='small'
           renderInput={(params) =>
-            <TextField {...params} label=
+            <TextField
+              sx={{ marginTop: '3px' }}
+              {...params} label=
               'Search users by name'
             />}
-        // sx={{height:'.43em !important'}}
+          sx={{
+            height: '0.3em',
+            position: 'relative',
+            top: '-1.1em'
+          }}
         />
       </div>
 
