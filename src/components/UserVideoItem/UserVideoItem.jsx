@@ -11,7 +11,6 @@ import { VscTrash } from "react-icons/vsc";
 import { SiSlideshare } from "react-icons/si";
 
 /******* buttons / dropdown menus  ********/
-import ShareButton from "../_Widgets/ShareButton";
 import PermissionDropdown from "../_Widgets/PermissionDropdown";
 import DeleteButton from "../_Widgets/DeleteButton";
 

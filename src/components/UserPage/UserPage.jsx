@@ -190,8 +190,9 @@ function UserPage() {
           {view == "videos" &&
             <UserVideos />}
 
+          {/* TODO this should be "shared with me" videos? 
           {view == "videos" &&
-            <UserVideos />}
+            <UserVideos />} */}
 
           {view == "connections" &&
             <Connections />}

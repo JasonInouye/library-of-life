@@ -88,7 +88,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
             <Button
                 size="small"
                 variant='contained'
-                style={{ backgroundColor: '#667b68', color: 'white' }}
+                color='primary'
                 onClick={handleClickOpen}>
                 Share
                 <span style={{ paddingLeft: '5px' }}>
