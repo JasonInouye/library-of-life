@@ -71,7 +71,7 @@ export default function SelectToShare() {
                             key={connection.id}
                             value={connection.first_name + " " + connection.last_name}>
 
-                            <Checkbox checked={personName.indexOf(personName) > -1} />
+                            <Checkbox checked={personName.indexOf(connection) > -1} />
 
                             <ListItemText
                                 primary={connection.first_name + " " + connection.last_name}
@@ -80,6 +80,6 @@ export default function SelectToShare() {
                     ))}
                 </Select>
             </FormControl>
-        </div>
+        </div>›
     );
 }
