@@ -83,7 +83,8 @@ function UserPage() {
               </Button>
               <div id='profile-img-div'>
                 <img id='profile-img' src={user.profile_image} alt={`A picture of ${user.first_name}`} />
-                <Fab
+                
+                <Fab //FIXME make Fab round! what is overriding?
                   style={{
                     position: 'absolute',
                     left: '10.5em',
@@ -95,6 +96,7 @@ function UserPage() {
                   >
                   Edit Photo <VscEdit />
                 </Fab>
+                
               </div>
             </>
           }
