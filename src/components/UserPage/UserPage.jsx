@@ -18,7 +18,6 @@ function UserPage() {
   const history = useHistory();
 
 
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
   const pendingStatus = useSelector((store) => store.pendingStatus);
@@ -65,9 +64,9 @@ function UserPage() {
     <div className="container">
       <div id='profile-header'>
         <div >
-          <img id='bannerimage' src='/images/banners/flowers.jpg' alt='banner image' />
+          <img id='bannerimage' src={user.banner_image} alt='banner image' />
           <div id='profile-img-div'>
-            <img id='profile-img' src='https://annemariesegal.files.wordpress.com/2017/04/adobestock_116914002-cropped-young-woman-suit.jpg?w=300&h=295' alt='a very good looking individual' />
+            <img id='profile-img' src={user.profile_image} alt='a very good looking individual' />
           </div>
         </div>
 
