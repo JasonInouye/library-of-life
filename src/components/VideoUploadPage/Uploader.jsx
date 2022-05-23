@@ -7,11 +7,12 @@ import {
   IconButton,
   Modal,
   Typography,
+  TextField,
   Box,
   FormControl,
   MenuItem,
   InputLabel,
-  Select,
+  Select
 } from '@mui/material';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -52,6 +53,17 @@ function Uploader() {
 
     console.log('Response: ', response.data.Key);
 
+    // key is the video id from AWS
+    dispatch({
+      type: 'SET_MODAL_VIDEO',
+      payload: response.data.Key,
+    });
+
+    dispatch({
+      type: 'POST_VIDEO',
+      payload: { key: response.data.Key, prompt: videoPrompt },
+    });
+
     // * PUT request: upload file to S3
     const result = await fetch(response.data.uploadURL, {
       method: 'PUT',
@@ -60,17 +72,6 @@ function Uploader() {
     console.log('Result: ', result);
   };
 
-  // key is the video id from AWS
-  dispatch({
-    type: 'SET_MODAL_VIDEO',
-    payload: response.data.Key,
-  });
-
-  dispatch({
-    type: 'POST_VIDEO',
-    payload: { key: response.data.Key, prompt: videoPrompt },
-  });
-
   const handleChangeVideo = () => {
     dispatch({
       type: 'CLEAR_VIDEO',
@@ -78,12 +79,12 @@ function Uploader() {
   };
   const handleOpenVideoModal = () => {
     dispatch({ type: 'GET_PROMPTS' });
-    setOpenVideoModal(true);
+    setOpenVideoModal(true)
   };
 
   const handleCloseVideoModal = () => {
-    dispatch({ type: 'GET_PROMPTS' });
-    setOpenVideoModal(false);
+    dispatch({type: 'GET_PROMPTS'});
+    setOpenVideoModal(false)
   };
 
   const dialogTitle = () => (
@@ -146,22 +147,22 @@ function Uploader() {
             p: 4,
           }}
         >
-          <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Prompt</InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={videoPrompt}
-              label='prompt'
-              onChange={(event) => setVideoPrompt(event.target.value)}
-            >
-              {prompts.map((prompt) => (
-                <MenuItem key={prompt.id} value={prompt.id}>
-                  {prompt.prompt}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+                  <FormControl fullWidth>
+          <InputLabel id='demo-simple-select-label'>Prompt</InputLabel>
+          <Select
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
+            value={videoPrompt}
+            label='prompt'
+            onChange={(event) => setVideoPrompt(event.target.value)}
+          >
+            {prompts.map((prompt) => (
+              <MenuItem key={prompt.id} value={prompt.id}>
+                {prompt.prompt}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
           <Typography id='modal-modal-title' variant='h6' component='h2'>
             Add Video Here!
           </Typography>
