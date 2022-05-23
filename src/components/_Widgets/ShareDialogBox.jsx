@@ -53,6 +53,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
         getConnections();
     };
 
+    // move into shortenURL function
     const urlObj = {
         url: url,
         domain: 'tiny.one'
@@ -117,7 +118,8 @@ export default function ShareDialogBox({ title, children, component, callback, v
                     {/* InnerComponent:  */}
                     {/* {open && <InnerComponent />} */}
                     <SelectToShare
-                        disableEnforceFocus />
+                        disableEnforceFocus 
+                        video={video}/>
 
                     {/* passes the URL so it can be copied to clipboard */}
                     {showShortLink ?

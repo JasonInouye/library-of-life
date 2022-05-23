@@ -41,7 +41,10 @@ router.get('/', (req, res) => {
         const query = `SELECT * FROM "videos" WHERE "id" = $1;`
 
         pool.query(query, [req.params.id])
-            .then((results) => res.send(results.rows))
+            // Add conditionals for situations
+            .then((results) => {
+    
+                res.send(results.rows)})
             .catch((err) => {
                 console.log('Error in video GET', err);
             })
@@ -71,14 +74,14 @@ router.get('/', (req, res) => {
  */
  router.post('/', (req, res) => {
   // POST route code here
-  console.log( 'Inside of the VIDEO POST', req.body.key);
+  console.log( 'Inside of the VIDEO POST', req.body);
   const domainLink = `https://d2qw0j2prooaok.cloudfront.net/${req.body.key}`
 
   const sqlText =`
     INSERT INTO "videos" ("user_id", "prompt_id", "url")
     VALUES ($1, $2, $3)
     ;`;
-  const insertValues = [req.user.id, 1, domainLink]
+  const insertValues = [req.user.id, req.body.prompt, domainLink]
 
   pool.query(sqlText, insertValues)
     .then((result) => {
