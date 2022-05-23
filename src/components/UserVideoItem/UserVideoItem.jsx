@@ -1,17 +1,9 @@
 import React from "react";
 import './UserVideoItem.css';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
-/******* video player  ********/
-import ReactPlayer from 'react-player';
-
-/******* icons  ********/
-import { VscTrash } from "react-icons/vsc";
-import { SiSlideshare } from "react-icons/si";
+import ReactPlayerComponent from "../_Widgets/ReactPlayerComponent";
 
 /******* buttons / dropdown menus  ********/
-import ShareButton from "../_Widgets/ShareButton";
 import PermissionDropdown from "../_Widgets/PermissionDropdown";
 import DeleteButton from "../_Widgets/DeleteButton";
 
@@ -45,12 +37,9 @@ function UserVideoItem({ video }) {
                         {video.prompt}
                     </Typography>
 
-                    <ReactPlayer
-                        className='react-player'
-                        width='100%'
-                        height='100%'
-                        url={video.url}
-                        controls={true} />
+                    <ReactPlayerComponent
+                        videoURL={video.url}
+                    />
 
                     {/* if logged-in user, show permissions toggle, delete, and share options*/}
                     {user.id == video.user_id ?

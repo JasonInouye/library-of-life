@@ -6,6 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import { makeStyles } from '@material-ui/core/styles'
 import classNames from 'classnames';
 
+
 /******* needed to create shortened URL  ********/
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
@@ -35,9 +36,11 @@ const useStyles = makeStyles({
 })
 
 export default function ShareDialogBox({ title, children, component, callback, video }) {
+
     const [open, setOpen] = React.useState(false);
     const url = video.url
     const [showShortLink, setShowShortLink] = React.useState(false);
+    const dispatch = useDispatch();
 
 
 
@@ -47,6 +50,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
         setOpen(true);
         console.log('video url is:', url);
         shortenURL();
+        getConnections();
     };
 
     const urlObj = {
@@ -56,18 +60,28 @@ export default function ShareDialogBox({ title, children, component, callback, v
 
     const [shortenedURL, setShortenedURL] = React.useState('');
 
+    const getConnections = () => {
+        // console.log('clicked getConnections');
+        dispatch({ type: 'GET_CONNECTIONS' })
+    }
 
     const shortenURL = () => {
         console.log('INSIDE shortenURL, url before shortening:', url);
         axios.post(`/api/link`, urlObj)
             .then(response => {
-                console.log('the shortened URL on CLIENT side should be:', response.data.data.tiny_url);
-                setShortenedURL(response.data.data.tiny_url);
+                console.log('the shortened URL on CLIENT side should be:', response);
+                setShortenedURL(response.data);
             })
             .catch(error => {
                 console.log(error);
             });
     }
+
+    const handleSubmit = () => {
+        console.log('clicked Submit for Share Dialog');
+        // add sweetalert in promise
+        setOpen(false);
+    };
 
     const handleClose = () => {
         setOpen(false);
@@ -88,7 +102,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
             <Button
                 size="small"
                 variant='contained'
-                style={{ backgroundColor: '#667b68', color: 'white' }}
+                color='primary'
                 onClick={handleClickOpen}>
                 Share
                 <span style={{ paddingLeft: '5px' }}>
@@ -98,6 +112,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
 
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+
                 <DialogContent>
                     {/* InnerComponent:  */}
                     {/* {open && <InnerComponent />} */}
@@ -112,27 +127,33 @@ export default function ShareDialogBox({ title, children, component, callback, v
                         :
                         <>
                             <p>Or, to send a video link by text or email:</p>
-                            <Button 
-                            variant='contained'
-                            style={{ backgroundColor: '#667b68', color: 'white' }}
-                            onClick={()=>{setShowShortLink(true)}}>
+                            <Button
+                                variant='outlined'
+                                style={{color:'#667b68'}}
+                                onClick={() => { setShowShortLink(true) }}>
                                 Give me a link</Button>
                         </>
-
                     }
 
-
                 </DialogContent>
+
                 <DialogActions>
+
                     <Button
                         // className={classes.btn} //more subtle non-button appearance
                         className={classes.cancel}
                         onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                    {/* TODO make button work with callback passed prop? <Button onClick={handleClose} color="primary">
-                        Add treat
-                    </Button> */}
+
+                    {/* TODO disable button if no one selected? disable if showing tiny link??*/}
+                    <Button
+                        variant='contained'
+                        onClick={handleSubmit} color="primary">
+                        Send video
+                    </Button>
+
+
                 </DialogActions>
             </Dialog>
         </div>
