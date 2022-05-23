@@ -178,7 +178,7 @@ function UserPage() {
               <Button
                 variant='outlined'
                 onClick={() => { history.push(`/user/${user.id}/videos`) }}>
-                My Videos
+                My Profile
               </Button>
             </div>}
 

@@ -12,16 +12,25 @@ li {
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    padding-left: 15px;
-    padding-top: 15px;
+    margin-left: 20px;
+    margin-top: 15px;
+    /* padding-left: 15px;
+    padding-top: 15px; */
 }
 
 .connectionsName {
-    padding-left: 20px;
+    /* padding-left: 20px; */
     float: right;
-    padding-top: 60px;
-    padding-right: 60px;
+    margin-right: 60px;
+    margin-top: 60px;
+    /* padding-top: 50px;
+    padding-right: 60px; */
     /* display: flex; */
+}
+
+.connectionsAccept {
+    display: inline;
+    justify-content: flex-end;
 }
 
 .connectionsRemove {
@@ -31,4 +40,7 @@ li {
     justify-content: flex-end;
     color: red;
 }
+
+
+
 

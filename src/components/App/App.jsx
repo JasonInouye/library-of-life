@@ -46,7 +46,7 @@ function App() {
 
   return (
 
-    <ThemeProvider theme={customTheme}>
+    <ThemeProvider theme={customTheme}> 
       <Router>
 
         <div>
