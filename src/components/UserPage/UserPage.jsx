@@ -11,8 +11,6 @@ import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 import { Menu } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 
-
-
 function UserPage() {
 
   const dispatch = useDispatch();
