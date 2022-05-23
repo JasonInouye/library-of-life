@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import LogOutButton from '../LogOutButton/LogOutButton';
+import LogOutButton from '../_Widgets/LogOutButton';
+import AutocompleteSearch from '../_Widgets/AutocompleteSearch';
+
 import './Nav.css';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Autocomplete, TextField } from '@mui/material';
 
-/******* nested menu dropdowns  ********/
+import { IoIosArrowDown } from "react-icons/io";
+
+
+
+/******* menu dropdowns  ********/
 import { Menu, Button } from "@mui/material";
-import NestedMenuItem from "material-ui-nested-menu-item";
 import MenuItem from '@mui/material/MenuItem';
 
 function Nav() {
+
   const user = useSelector((store) => store.user);
   const listOfUsers = useSelector(store => store.searchReducer.listOfUsers);
 
@@ -48,14 +53,6 @@ function Nav() {
 
 
 
-  const goToUserPage = (event, value) => {
-    history.push(`/user/${value.id}/videos`)
-
-    // setExerciseToAddToWorkout({ ...exerciseToAddToWorkout, exercise_id: value.id, exercise_name: value.exercise_name })
-  }
-
-
-
   useEffect(() => {
     dispatch({ type: 'GET_USERS', payload: user })
   }, [user])
@@ -64,8 +61,9 @@ function Nav() {
     <div className="nav">
       <div id='logo-link'>
         <Link to="/home">
-          <img id='logo' src='/images/logo.jpg' />
+          <img id='logo' src='/images/assets/logo.jpg' />
         </Link>
+
       </div>
 
 
@@ -79,13 +77,8 @@ function Nav() {
 
 
       <div id='search'>
-        <Autocomplete
-          id='users'
-          options={listOfUsers}
-          getOptionLabel={(option) => option.first_name + ' ' + option.last_name}
-          onChange={goToUserPage}
-          fullWidth
-          renderInput={(params) => <TextField {...params} label='Search' />}
+        <AutocompleteSearch
+          listOfUsers={listOfUsers}
         />
       </div>
 
@@ -94,24 +87,45 @@ function Nav() {
       {user.id && (
         <div id='navLinks'>
           <div id='menu'>
-            <Link
-              className="navLink"
-              onClick={openMenu}>
-              Menu
-            </Link>
+
+            <Button
+              variant='contained'
+              size='small'
+              onClick={openMenu}
+              sx={{ margin: '.5em' }}>
+              Menu <IoIosArrowDown />
+            </Button>
+
             <Menu
               open={!!menuPosition}
               onClose={() => setMenuPosition(null)}
               anchorReference="anchorPosition"
-              anchorPosition={menuPosition}
-            >
-              <MenuItem onClick={(event) => handleItemClick(`/user/${user.id}/videos`)}>My Profile</MenuItem>
-              <MenuItem onClick={(event) => handleItemClick(`/user/${user.id}/connections`)}>My Connections</MenuItem>
-              <MenuItem onClick={(event) => handleItemClick(`/user/${user.id}/uploads`)}>Upload Video</MenuItem>
-              <MenuItem onClick={(event) => handleItemClick('/about')}>About Library of Life</MenuItem>
+              anchorPosition={menuPosition}>
+
+              <MenuItem
+                onClick={(event) => handleItemClick(`/user/${user.id}/videos`)}>
+                My Profile
+              </MenuItem>
+              <br />
+              <MenuItem
+                onClick={(event) => handleItemClick(`/user/${user.id}/connections`)}>
+                My Connections
+              </MenuItem>
+              <br />
+              <MenuItem
+                onClick={(event) => handleItemClick(`/user/${user.id}/uploads`)}>
+                Upload Video
+              </MenuItem>
+              <br />
+              <MenuItem
+                onClick={(event) => handleItemClick('/about')}>
+                About Library of Life
+              </MenuItem>
             </Menu>
           </div>
-          <LogOutButton className="navLink" />
+
+          <LogOutButton/>
+
         </div>
       )
       }

@@ -11,8 +11,9 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const searchRouter = require('./routes/search.router');
 const videoRouter = require('./routes/video.router');
-const permissionRouter = require('./routes/permission.router');
-const promptRouter = require('./routes/prompt.router');
+const permissionRouter = require('./routes/permission.router')
+const promptRouter = require('./routes/prompt.router')
+const linkRouter = require('./routes/link.router');
 const requestRouter = require('./routes/request.router');
 const connectionsRouter = require('./routes/connections.router');
 
@@ -44,6 +45,9 @@ app.use('/api/permission', permissionRouter);
 
 /* Permission route (to the "prompts" table) */
 app.use('/api/prompt', promptRouter);
+
+/* route to shorten URLs */
+app.use('/api/link', linkRouter);
 
 // Request route
 app.use('/api/request', requestRouter);

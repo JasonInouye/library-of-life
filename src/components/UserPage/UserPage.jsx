@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import './UserPage.css';
 import { useDispatch, useSelector } from 'react-redux';
-import Button from '@mui/material/Button';
 import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
+import ProfilePicButton from '../_Widgets/ProfilePicButton';
+import BannerDialog from '../_Widgets/BannerDialog';
 
-/******* nested menu dropdowns  ********/
-import { Menu } from "@mui/material";
+/******* styling  ********/
+import { Menu, Typography, Button, Fab } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 
 function UserPage() {
@@ -17,7 +18,6 @@ function UserPage() {
   const history = useHistory();
 
 
-  // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
   const pendingStatus = useSelector((store) => store.pendingStatus);
@@ -55,54 +55,133 @@ function UserPage() {
 
 
   useEffect(() => {
-      dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
+    dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
-
 
 
   return (
     <div className="container">
       <div id='profile-header'>
-        <div id='images'>
-          <img id='banner-img' src='https://marketplace.canva.com/EAENvp21inc/1/0/1600w/canva-simple-work-linkedin-banner-qt_TMRJF4m0.jpg' alt='banner image' />
-          <div id='profile-img-div'>
-            <img id='profile-img' src='https://annemariesegal.files.wordpress.com/2017/04/adobestock_116914002-cropped-young-woman-suit.jpg?w=300&h=295' alt='a very good looking individual' />
-          </div>
+        <div >
+          {
+            userInParams == user.id &&
+            <>
+              <img id='bannerimage' src={user.banner_image} alt='Banner image' />
+
+              <BannerDialog />
+
+              <div id='profile-img-div'>
+                <img id='profile-img' src={user.profile_image} alt={`A picture of ${user.first_name}`} />
+
+                <ProfilePicButton />
+
+              </div>
+            </>
+          }
+          {userInParams != user.id &&
+            <>
+              <img id='bannerimage' src={searchedUser.banner_image} alt='Banner image' />
+              <div id='profile-img-div'>
+                <img id='profile-img' src={searchedUser.profile_image} alt={`A picture of ${searchedUser.first_name}`} />
+              </div>
+            </>
+          }
         </div>
+
         <div id='info-beneath-photos'>
+
           <div id='name-and-location'>
-                <h3>{searchedUser?.first_name?.charAt(0).toUpperCase() + searchedUser?.first_name?.slice(1) + ' ' + searchedUser?.last_name?.charAt(0).toUpperCase() + searchedUser?.last_name?.slice(1)}</h3>
-                <h4>{searchedUser?.city?.charAt(0).toUpperCase() + searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}</h4>
+            <Typography
+              variant='h5'
+              sx={{ fontFamily: "inherit" }}>
+              {searchedUser?.first_name?.charAt(0).toUpperCase() +
+                searchedUser?.first_name?.slice(1) + ' ' + searchedUser?.last_name?.charAt(0).toUpperCase()
+                + searchedUser?.last_name?.slice(1)}
+            </Typography>
+
+            <Typography
+              variant='h6'
+              sx={{ fontFamily: "inherit" }}>
+              {searchedUser?.city?.charAt(0).toUpperCase() +
+                searchedUser?.city?.slice(1) + ', ' + searchedUser?.state?.toUpperCase()}
+            </Typography>
+
             {userInParams != user.id &&
               <>
                 {pendingStatus == false &&
-                  <Button onClick={openRequestMenu}>Request</Button>}
+                  <>
+                    <Fab
+                      variant="extended"
+                      color="primary"
+                      onClick={openRequestMenu}>
+                      Connect with
+                      {" " + searchedUser?.first_name?.charAt(0).toUpperCase()
+                        + searchedUser?.first_name?.slice(1)}
+                    </Fab>
+
+                    <Fab
+                      variant="extended"
+                      onClick={openRequestMenu}>
+                      Btn Option 2
+                    </Fab>
+                  </>
+                }
+
+
+
                 {pendingStatus == true &&
-                  <Button disabled>Pending</Button>}
+                  <Fab
+                    variant="extended"
+                    disabled>
+                    Pending
+                  </Fab>}
+
                 <Menu
                   open={!!menuPosition}
                   onClose={() => setMenuPosition(null)}
                   anchorReference="anchorPosition"
                   anchorPosition={menuPosition}
                 >
-                  <MenuItem style={{ width: '100%' }} onClick={() => { handleFriendClick() }}>Friend</MenuItem>
-                  <MenuItem style={{ width: '100%' }} onClick={() => { handleFamilyClick() }}>Family</MenuItem>
+                  <MenuItem
+                    style={{ width: '100%' }}
+                    onClick={() => { handleFriendClick() }}>
+                    Connect as Friends
+                  </MenuItem>
+
+                  <MenuItem
+                    style={{ width: '100%' }}
+                    onClick={() => { handleFamilyClick() }}>
+                    Connect as Family
+                  </MenuItem>
                 </Menu>
               </>}
           </div>
           {userInParams == user.id && view == 'videos' &&
+
             <div id='profile-info'>
               <Button
                 id='manage-library'
                 variant='outlined'
                 onClick={() => { history.push('/managelibrary') }}>
                 Manage Library</Button>
-              <Button variant='outlined' onClick={() => { history.push(`/user/${user.id}/connections`) }}>My Connections</Button>
+              <Button
+                id='my-connections'
+                variant='outlined'
+                onClick={() => { history.push(`/user/${user.id}/connections`) }}>
+                My Connections
+              </Button>
+
             </div>}
+
           {userInParams == user.id && view == 'connections' &&
             <div id='profile-info'>
-              <Button variant='outlined' onClick={() => { history.push(`/user/${user.id}/videos`) }}>My Videos</Button>
+              <Button
+                variant='outlined'
+                onClick={() => { history.push(`/user/${user.id}/videos`) }}>
+                My Videos
+              </Button>
             </div>}
+
         </div>
       </div>
 
@@ -112,8 +191,9 @@ function UserPage() {
           {view == "videos" &&
             <UserVideos />}
 
+          {/* TODO this should be "shared with me" videos? 
           {view == "videos" &&
-            <UserVideos />}
+            <UserVideos />} */}
 
           {view == "connections" &&
             <Connections />}
