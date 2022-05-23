@@ -10,9 +10,8 @@ import { IoIosArrowDown } from "react-icons/io";
 
 
 
-/******* nested menu dropdowns  ********/
+/******* menu dropdowns  ********/
 import { Menu, Button } from "@mui/material";
-import NestedMenuItem from "material-ui-nested-menu-item";
 import MenuItem from '@mui/material/MenuItem';
 
 function Nav() {
@@ -148,13 +147,7 @@ function Nav() {
             </Menu>
           </div>
 
-          <Button
-            variant='outlined'
-            size='small'
-            sx={{ margin: '.5em' }}
-            onClick={() => dispatch({ type: 'LOGOUT' })}>
-            Log Out
-          </Button>
+          <LogOutButton/>
 
         </div>
       )
