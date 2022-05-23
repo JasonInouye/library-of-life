@@ -9,7 +9,7 @@ function BannerPicButton() {
 
     const handleBannerPic = () => {
         console.log('clicked handleBannerPic');
-        // TODO connect with dropzone? or other means of upload
+        // TODO need single select modal, with cards of available banners
     }
 
     return (

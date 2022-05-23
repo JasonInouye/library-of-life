@@ -7,6 +7,7 @@ import Connections from '../Connections/Connections';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 import ProfilePicButton from '../_Widgets/ProfilePicButton';
 import BannerPicButton from '../_Widgets/BannerPicButton';
+import BannerDialog from '../_Widgets/BannerDialog';
 
 /******* styling  ********/
 import { Menu, Typography, Button, Fab } from "@mui/material";
@@ -71,7 +72,7 @@ function UserPage() {
             <>
               <img id='bannerimage' src={user.banner_image} alt='Banner image' />
 
-              <BannerPicButton />
+              <BannerDialog />
 
               <div id='profile-img-div'>
                 <img id='profile-img' src={user.profile_image} alt={`A picture of ${user.first_name}`} />
