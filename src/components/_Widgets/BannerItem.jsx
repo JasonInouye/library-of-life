@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
+import { Radio, RadioGroup } from "@mui/material";
 
 
 
@@ -26,30 +27,42 @@ function BannerItem({ banner }) {
             <Container>
 
                 <Card>
-                    <Typography
-                        style={{ margin: '.5em' }}
-                        gutterBottom variant="h7"
-                        component="div">
-                        {banner.name}
-                    </Typography>
+                    <img
+                        src={banner.url}
+                        alt={`A picture of ${banner.name}`} />
+                    <div
+                        style={{
+                            marginBottom: '0.5em',
+                            display: 'flex',
+                            flexDirection: 'row',
+                            flexWrap: 'nowrap',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}>
+                        <Typography
+                            style={{ margin: '.5em' }}
+                            gutterBottom variant="h7"
+                            component="div">
+                            {banner.name}
+                        </Typography>
+                        {/* QUESTION how to use RadioGroup across components? */}
+                        <RadioGroup>
+                            <Radio value={banner.url} />
+                        </RadioGroup>
+                    </div>
 
-                    <img 
-                    src={banner.url} alt={`A picture of ${banner.name}`} />
-                    <>
-                        <CardActions style={{ display: 'contents' }}>
-                           
-                            <div style={{
-                                marginBottom: '0.5em',
-                                display: 'flex',
-                                flexDirection: 'row',
-                                flexWrap: 'nowrap',
-                                justifyContent: 'center',
-                                alignItems: 'center'
-                            }}>
-                            </div>
+                    {/* <div style={{
+                        marginBottom: '0.5em',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        flexWrap: 'nowrap',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}> 
 
-                        </CardActions>
-                    </>
+                    </div>
+                    */}
+
                 </Card>
             </Container>
         </>

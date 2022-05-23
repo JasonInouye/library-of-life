@@ -4,10 +4,11 @@ import BannerItem from './BannerItem';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
+import swal from 'sweetalert';
 
 import Button from '@material-ui/core/Button';
 import { VscEdit } from 'react-icons/vsc';
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, RadioGroup } from '@mui/material';
 
 
 /******* for sending selected banner  ********/
@@ -15,19 +16,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
 const banners = [
-    {name: 'Flowers', url: '/images/banners/flowers.png'},
-    {name: 'Clouds', url: '/images/banners/clouds.png'},
-    {name: 'Balloons', url: '/images/banners/hotairballoons.png'},
-    {name: 'Ripple', url: '/images/banners/ripple.png'},
-    {name: 'Lemons', url: '/images/banners/lemons.png'},
-    {name: 'River', url: '/images/banners/mountainriver.png'},
-    {name: 'Canoe', url: '/images/banners/canoe.png'},
-    {name: 'Canyon', url: '/images/banners/canyon.png'},
-    {name: 'Mountains', url: '/images/banners/mountainsunset.png'},
-    {name: 'Rainbow', url: '/images/banners/rainbowsmoke.png'},
-    {name: 'Yarn', url: '/images/banners/yarn.png'},
-    {name: 'Pier', url: '/images/banners/pier.png'}
-    ]
+    { name: 'Flowers', url: '/images/banners/yellowwall.png' },
+    { name: 'Clouds', url: '/images/banners/clouds.png' },
+    { name: 'Balloons', url: '/images/banners/hotairballoons.png' },
+    { name: 'Ripple', url: '/images/banners/ripple.png' },
+    { name: 'Lemons', url: '/images/banners/lemons.png' },
+    { name: 'River', url: '/images/banners/mountainriver.png' },
+    { name: 'Canoe', url: '/images/banners/canoe.png' },
+    { name: 'Canyon', url: '/images/banners/canyon.png' },
+    { name: 'Mountains', url: '/images/banners/mountainsunset.png' },
+    { name: 'Rainbow', url: '/images/banners/rainbowsmoke.png' },
+    { name: 'Yarn', url: '/images/banners/yarn.png' },
+    { name: 'Pier', url: '/images/banners/pier.png' }
+]
 
 function BannerDialog({ title, children, component, callback, banner }) {
 
@@ -48,9 +49,11 @@ function BannerDialog({ title, children, component, callback, banner }) {
         setOpen(false);
     };
 
-    const handleBannerPic = () => {
-        console.log('clicked handleBannerPic');
-        // TODO need single select modal, with cards of available banners
+    const handleSubmit = () => {
+        // console.log('clicked "save changes" for banner');
+        // TODO dispatch
+        // TODO put in the promise: swal("Good job!", "You clicked the button!", "success");
+        setOpen(false);
     }
 
 
@@ -94,10 +97,13 @@ function BannerDialog({ title, children, component, callback, banner }) {
                                     < Grid
                                         item xs={12} md={4}
                                         key={banner.id}>
+                                        <RadioGroup>
 
-                                        <BannerItem
-                                            key={i}
-                                            banner={banner} />
+                                            <BannerItem
+                                                key={i}
+                                                banner={banner} />
+
+                                        </RadioGroup>
                                     </Grid>)
                             })}
                         </Grid>
@@ -110,6 +116,14 @@ function BannerDialog({ title, children, component, callback, banner }) {
                         onClick={handleClose} color="primary">
                         Cancel
                     </Button>
+
+                    <Button
+                        onClick={handleSubmit} color="primary"
+                        variant='contained'>
+                        Save Changes
+                    </Button>
+
+
 
                 </DialogActions>
 
