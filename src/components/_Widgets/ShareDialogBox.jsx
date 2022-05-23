@@ -62,7 +62,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
 
     const getConnections = () => {
         // console.log('clicked getConnections');
-        dispatch({type: 'GET_CONNECTIONS'})
+        dispatch({ type: 'GET_CONNECTIONS' })
     }
 
     const shortenURL = () => {
@@ -76,6 +76,12 @@ export default function ShareDialogBox({ title, children, component, callback, v
                 console.log(error);
             });
     }
+
+    const handleSubmit = () => {
+        console.log('clicked Submit for Share Dialog');
+        // add sweetalert in promise
+        setOpen(false);
+    };
 
     const handleClose = () => {
         setOpen(false);
@@ -121,10 +127,9 @@ export default function ShareDialogBox({ title, children, component, callback, v
                         :
                         <>
                             <p>Or, to send a video link by text or email:</p>
-                            <Button 
-                            variant='contained'
-                            style={{ backgroundColor: '#667b68', color: 'white' }}
-                            onClick={()=>{setShowShortLink(true)}}>
+                            <Button
+                                variant='outlined'
+                                onClick={() => { setShowShortLink(true) }}>
                                 Give me a link</Button>
                         </>
                     }
@@ -139,7 +144,15 @@ export default function ShareDialogBox({ title, children, component, callback, v
                         onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                
+
+                    {/* TODO disable button if no one selected? disable if showing tiny link??*/}
+                    <Button
+                        variant='contained'
+                        onClick={handleSubmit} color="primary">
+                        Send video
+                    </Button>
+
+
                 </DialogActions>
             </Dialog>
         </div>
