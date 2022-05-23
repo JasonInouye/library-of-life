@@ -55,4 +55,14 @@
 
 #manage-library {
     margin-right: 10px;
+    position: absolute;
+    top: 16em;
+    right: 11em;
+}
+
+#my-connections {
+    margin-right: 10px;
+    position: absolute;
+    top: 16em;
+    right: 0;
 }
