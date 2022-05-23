@@ -1,9 +1,10 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
 //get connections from DB 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     const queryText = `
     SELECT 
     b.first_name,
@@ -30,7 +31,7 @@ router.get('/', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
 
     console.log(req.body.relationship, req.user.id, req.body.userB)
 
@@ -51,15 +52,15 @@ router.post('/', (req, res) => {
 
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id; 
 
     const queryText = `
     UPDATE "connections" 
     SET "pending" = false
-    WHERE id = $1;`;
+    WHERE ("id" = $1 AND "user_A_id" = $1) OR ("id" = $1 AND "user_B_id" = $1);`;
 
-    queryValues = [id]
+    queryValues = [req.user.id]
 
     pool.query(queryText, queryValues)
     .then(() => {res.sendStatus(200); })
@@ -70,14 +71,14 @@ router.put('/:id', (req, res) => {
 });
 
 //Delete connection from connections table
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id; 
 
     console.log(id);
 
-    const queryText = `DELETE FROM "connections" WHERE id = $1;`;
+    const queryText = `DELETE FROM "connections" WHERE ("id" = $1 AND "user_A_id" = $1) OR ("id" = $1 AND "user_B_id" = $1);`;
 
-    const queryValues = [id]
+    const queryValues = [req.user.id]
 
     pool.query(queryText, queryValues)
     .then(() => {res.sendStatus(200); })

@@ -1,11 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+const {
+    rejectUnauthenticated,
+  } = require('../modules/authentication-middleware');
 require('dotenv').config();
 
 
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     console.log('server side data:', req.body);
     
     axios

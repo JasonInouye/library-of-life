@@ -1,9 +1,12 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+  } = require('../modules/authentication-middleware');
 
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     const queryText = `
     SELECT "pending" FROM "connections"
     WHERE "user_A_id" = ${req.user.id}
@@ -21,7 +24,7 @@ router.get('/', (req, res) => {
 /**
  * GET route template
  */
-router.get('/:idOfRequestedUser', (req, res) => {
+router.get('/:idOfRequestedUser', rejectUnauthenticated, (req, res) => {
     const queryText = `
     SELECT "pending" FROM "connections"
     WHERE "user_A_id" = $1 AND

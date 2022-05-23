@@ -1,6 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route template
@@ -12,7 +15,7 @@ router.get('/', (req, res) => {
 /**
  * GET route for ALL USER videos and their prompts
  */
-router.get('/userVideos/:id', (req, res) => {
+router.get('/userVideos/:id', rejectUnauthenticated, (req, res) => {
     const query = `
     SELECT a.*, c.prompt 
     FROM "videos" a, "users" b, "prompts" c
@@ -50,11 +53,11 @@ router.get('/', (req, res) => {
     /**
      * DELETE route for SINGLE video
      */
-     router.delete('/:id', (req, res) => {
+     router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id;
     console.log('router DELETE id:', id);
-    const query = `DELETE FROM "videos" WHERE "videos".id =$1;`;
-    values = [id];
+    const query = `DELETE FROM "videos" WHERE "videos".id =$1 AND "videos".user_id = $1;`;
+    values = [req.user.id];
     pool.query(query, values)
         .then(() => { res.sendStatus(200); })
         .catch((err) => {
@@ -67,7 +70,7 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
- router.post('/', (req, res) => {
+ router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   console.log( 'Inside of the VIDEO POST', req.body);
   const domainLink = `https://d2qw0j2prooaok.cloudfront.net/${req.body.key}`

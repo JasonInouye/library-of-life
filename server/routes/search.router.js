@@ -1,8 +1,11 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `
   SELECT "id", "first_name", "last_name" FROM "users";
   `
@@ -15,7 +18,7 @@ router.get('/', (req, res) => {
   })
 });
 
-router.get('/:searchedUser', (req, res) => {
+router.get('/:searchedUser', rejectUnauthenticated, (req, res) => {
     const queryText = `
     SELECT * FROM "users"
     WHERE "id" = $1;
