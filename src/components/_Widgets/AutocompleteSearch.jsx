@@ -32,7 +32,8 @@ function AutocompleteSearch({ listOfUsers }) {
                 height: '0.3em',
                 position: 'relative',
                 top: '-1.1em',
-                left: '2em'
+                left: '2em',
+                fontFamily: 'inherit'
             }}
         />
     )

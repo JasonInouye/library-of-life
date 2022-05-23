@@ -29,7 +29,8 @@ function BannerItem({ banner }) {
                 <Card>
                     <img
                         src={banner.url}
-                        alt={`A picture of ${banner.name}`} />
+                        alt={`A picture of ${banner.name}`} 
+                        style={{height:'2em', width:'100%'}}/>
                     <div
                         style={{
                             marginBottom: '0.5em',

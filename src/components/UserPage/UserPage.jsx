@@ -126,7 +126,7 @@ function UserPage() {
                     <Fab
                       variant="extended"
                       onClick={openRequestMenu}>
-                      Connect
+                      Btn Option 2
                     </Fab>
                   </>
                 }

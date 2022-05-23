@@ -7,27 +7,25 @@ import { VscEdit } from 'react-icons/vsc';
 
 function ProfilePicButton() {
 
-const handleProfilePic = () => {
-    console.log('clicked handleProfilePic');
-    // TODO connect with dropzone? or other means of upload
-}
+    const handleProfilePic = () => {
+        console.log('clicked handleProfilePic');
+        // TODO connect with dropzone? or other means of upload select
+    }
 
     return (
-        <Fab 
-        //FIXME make Fab round! what is overriding?! 
-        //it's round (but wrong color) on "My Connections"
-        onClick={handleProfilePic}   
-        style={{
+        <Fab
+            onClick={handleProfilePic}
+            style={{
                 position: 'absolute',
                 left: '10.5em',
                 top: '10em',
                 color: 'gray',
-                borderRadius:'50% !important'
-            }}
+            }}//this position MUST use 'style;' Does not work w 'sx'
+            sx={{ borderRadius: '50% !important' }}
+            //this borderRadius MUST use 'sx,' does not work w/ 'style'; otherwise square for some reason
             size='small'
-            variant="outlined"
         >
-        <VscEdit />
+            <VscEdit />
         </Fab>
     )
 }
