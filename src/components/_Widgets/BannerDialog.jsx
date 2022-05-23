@@ -4,19 +4,30 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
+
 import { VscEdit } from 'react-icons/vsc';
+import { Container, Grid } from '@mui/material';
 
 
 /******* for sending selected banner  ********/
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
+const banners = [
+    {name: 'Flowers', url: '/images/banners/flowers.jpg'},
+    {name: 'Clouds', url: '/images/banners/clouds.png'},
+    {name: 'Hot air balloons', url: '/images/banners/hotairballoons.jpg'},
+    {name: 'Ripple', url: '/images/banners/ripple.jpg'},
+    {name: 'Lemons', url: '/images/banners/lemons.jpg'},
+    {name: 'Mountain river', url: '/images/banners/mountainriver.jpg'},
+    {name: 'Tree', url: '/images/banners/treeoflife.jpg'}
+    ]
 
-function BannerDialog({ title, children, component, callback, video }) {
+function BannerDialog({ title, children, component, callback, banner }) {
 
+    // const banners = useSelector((store) => store.bannerReducer);
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
-
 
 
     const handleClickOpen = () => {
@@ -43,7 +54,7 @@ function BannerDialog({ title, children, component, callback, video }) {
 
     return (
 
-        
+
         <div>
 
             <Button
@@ -66,9 +77,25 @@ function BannerDialog({ title, children, component, callback, video }) {
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
 
                 <DialogContent>
-                   
-                   <h1>banner dialog</h1>
-                    
+                    <Container>
+                        <Grid
+                            container
+                            style={{ padding: '1em', textAlign: 'center' }}
+                            spacing={1}>
+
+                            {banners?.map((banner, i) => {
+                                return ( //loops thru array of banners to create each banner item
+                                    < Grid
+                                        item xs={12} md={4}
+                                        key={banner.id}>
+
+                                        <BannerItem
+                                            key={i}
+                                            banner={banner} />
+                                    </Grid>)
+                            })}
+                        </Grid>
+                    </Container>
                 </DialogContent>
 
                 <DialogActions>
@@ -79,8 +106,9 @@ function BannerDialog({ title, children, component, callback, video }) {
                     </Button>
 
                 </DialogActions>
+
             </Dialog>
-        </div>
+        </div >
     );
 }
 
