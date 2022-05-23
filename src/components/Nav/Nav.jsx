@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import LogOutButton from '../LogOutButton/LogOutButton';
+import LogOutButton from '../_Widgets/LogOutButton';
+import AutocompleteSearch from '../_Widgets/AutocompleteSearch';
+
 import './Nav.css';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { Autocomplete, TextField } from '@mui/material';
 
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -15,6 +16,7 @@ import { Menu, Button } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 
 function Nav() {
+  
   const user = useSelector((store) => store.user);
   const listOfUsers = useSelector(store => store.searchReducer.listOfUsers);
 
@@ -51,14 +53,6 @@ function Nav() {
 
 
 
-  const goToUserPage = (event, value) => {
-    history.push(`/user/${value.id}/videos`)
-
-    // setExerciseToAddToWorkout({ ...exerciseToAddToWorkout, exercise_id: value.id, exercise_name: value.exercise_name })
-  }
-
-
-
   useEffect(() => {
     dispatch({ type: 'GET_USERS', payload: user })
   }, [user])
@@ -83,25 +77,8 @@ function Nav() {
 
 
       <div id='search'>
-        <Autocomplete
-          id='users'
-          options={listOfUsers}
-          getOptionLabel={(option) => option.first_name + ' ' + option.last_name}
-          onChange={goToUserPage}
-          fullWidth
-          size='small'
-          renderInput={(params) =>
-            <TextField
-              sx={{ marginTop: '3px' }}
-              {...params} label=
-              'Search users by name'
-            />}
-          sx={{
-            height: '0.3em',
-            position: 'relative',
-            top: '-1.1em', 
-            left:'2em'
-          }}
+        <AutocompleteSearch
+          listOfUsers={listOfUsers}
         />
       </div>
 
