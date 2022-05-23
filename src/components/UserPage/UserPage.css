@@ -11,19 +11,27 @@
     width: 100%;
 }
 
+#bannerimage {
+    width: 100%;
+    object-fit: cover;
+    height: 10em;
+    background-color: #667b68;
+}
+
 #profile-img-div {
     position: absolute;
-    bottom: -30%;
+    bottom: 25%;
     left: 5%;
-    height: 80%;
-    width: 80%;
+    height: 52%;
+    /* width: 80%; */
 }
 
 #profile-img {
+    object-fit: cover;
     border-radius: 50%;
-    border: 2px solid black;
-    max-width: 100%;
-    max-height: 100%;
+    border: 4px solid white;
+    width: 12em;
+    height: 12em;
 }
 
 #info-beneath-photos {
@@ -35,7 +43,7 @@
 #profile-info {
     width: 90%;
     margin: 50px 20px;
-    display:inline-flex;
+    display: inline-flex;
     justify-content: right;
 }
 
@@ -48,4 +56,14 @@
 
 #manage-library {
     margin-right: 10px;
+    position: absolute;
+    top: 16em;
+    right: 11em;
+}
+
+#my-connections {
+    margin-right: 10px;
+    position: absolute;
+    top: 16em;
+    right: 0;
 }

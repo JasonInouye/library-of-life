@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 
 router.get('/:searchedUser', (req, res) => {
     const queryText = `
-    SELECT "id", "first_name", "last_name", "city", "state" FROM "users"
+    SELECT * FROM "users"
     WHERE "id" = $1;
     `
   
