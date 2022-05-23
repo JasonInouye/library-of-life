@@ -34,16 +34,35 @@ export default function SelectToShare({video}) {
         video_id: selectedVideoIDs
     };
 
+
     const handleConnectionObj = (id) => {
-        // console.log("in handleConnectionObj", id);
-        setSelectedIDs([...shareObj.user_id, id])
+        console.log("in handleConnectionObj", id);
+        const idArray=[];
+        idArray.push(id)
+
+        setSelectedIDs([...idArray])
         setSelectedVideoIDs(video.id)
         // dispatch({type: 'SHARE_VIDEO', payload: shareObj})
     }
 
+
+    // const handleMarketChange = (event) => {
+    //     const { options } = event.target;
+    //     const inputs = [];
+    //     for (let i = 0, l = options.length; i < l; i += 1) {
+    //         if (options[i].selected) {
+    //             inputs.push(options[i].value);
+    //         }
+    //     }
+    //     setState({
+    //         ...state,
+    //         markets: inputs
+    //     });
+    // };
+
     console.log("in shareObj", shareObj);
 
-    const handleChange = (event) => {
+    const handleSelectedName = (event) => {
         const {
             target: { value },
         } = event;
@@ -71,7 +90,7 @@ export default function SelectToShare({video}) {
                     id="demo-multiple-checkbox"
                     multiple
                     value={personName}
-                    onChange={handleChange}
+                    onChange={handleSelectedName}
                     input={<OutlinedInput label="Tag" />}
                     renderValue={(selected) => selected.join(', ')}
                     MenuProps={MenuProps}

@@ -22,7 +22,8 @@ function UserPage() {
 
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
-  const pendingStatus = useSelector((store) => store.pendingStatus);
+  const pendingStatus = useSelector((store) => store.connectionsReducer.pending);
+  // const pendingStatus = useSelector((store) => store.pendingStatus);
   const view = useParams().view;
   const userInParams = Number(useParams().userInParams);
 
@@ -54,7 +55,7 @@ function UserPage() {
   };
 
 
-
+console.log('searchedUser status should be:', pendingStatus);
 
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
@@ -65,6 +66,7 @@ function UserPage() {
     <div className="container">
       <div id='profile-header'>
         <div >
+
           {
             userInParams == user.id &&
             <>
@@ -80,6 +82,7 @@ function UserPage() {
               </div>
             </>
           }
+
           {userInParams != user.id &&
             <>
               <img id='bannerimage' src={searchedUser.banner_image} alt='Banner image' />
@@ -113,18 +116,13 @@ function UserPage() {
                 {pendingStatus == false &&
                   <>
                     <Fab
+                      size="small"
                       variant="extended"
                       color="primary"
                       onClick={openRequestMenu}>
                       Connect with
                       {" " + searchedUser?.first_name?.charAt(0).toUpperCase()
                         + searchedUser?.first_name?.slice(1)}
-                    </Fab>
-
-                    <Fab
-                      variant="extended"
-                      onClick={openRequestMenu}>
-                      Btn Option 2
                     </Fab>
                   </>
                 }
@@ -157,6 +155,7 @@ function UserPage() {
                   </MenuItem>
                 </Menu>
               </>}
+
           </div>
           {userInParams == user.id && view == 'videos' &&
 
