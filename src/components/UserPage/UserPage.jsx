@@ -6,7 +6,6 @@ import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 import ProfilePicButton from '../_Widgets/ProfilePicButton';
-import BannerPicButton from '../_Widgets/BannerPicButton';
 import BannerDialog from '../_Widgets/BannerDialog';
 
 /******* styling  ********/
