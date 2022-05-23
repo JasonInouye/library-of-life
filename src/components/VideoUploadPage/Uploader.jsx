@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
@@ -7,7 +7,6 @@ import {
   IconButton,
   Modal,
   Typography,
-  TextField,
   Box,
   FormControl,
   MenuItem,
@@ -22,7 +21,6 @@ function Uploader() {
   const video = useSelector((store) => store.videoReducer);
   const [videoPrompt, setVideoPrompt] = useState('');
   const [open, setOpen] = useState(false);
-  const [fileObjects, setFileObjects] = useState([]);
   const prompts = useSelector((store) => store.promptReducer);
   const [openVideoModal, setOpenVideoModal] = React.useState(false);
 
