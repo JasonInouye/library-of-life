@@ -1,14 +1,11 @@
 import React from "react";
 import './UserVideoItem.css';
-import { useState } from 'react';
 import { useSelector } from 'react-redux';
-
-
+import ReactPlayerComponent from "../_Widgets/ReactPlayerComponent";
 
 /******* buttons / dropdown menus  ********/
 import PermissionDropdown from "../_Widgets/PermissionDropdown";
 import DeleteButton from "../_Widgets/DeleteButton";
-import ReactPlayerComponent from "../_Widgets/ReactPlayerComponent";
 
 /******* MUI structure and media card ********/
 import Container from '@mui/material/Container';
