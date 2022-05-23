@@ -117,7 +117,8 @@ export default function ShareDialogBox({ title, children, component, callback, v
                     {/* InnerComponent:  */}
                     {/* {open && <InnerComponent />} */}
                     <SelectToShare
-                        disableEnforceFocus />
+                        disableEnforceFocus 
+                        video={video}/>
 
                     {/* passes the URL so it can be copied to clipboard */}
                     {showShortLink ?
