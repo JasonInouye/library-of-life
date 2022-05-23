@@ -30,13 +30,14 @@ function PermissionDropdown() {
         setPermission(event.target.value);
         dispatch({type: 'UPDATE_PERMISSION', payload: event.target.value})
     };
+    
 
 
     console.log('selected permission is:', permission);
 
     return (
         <>
-            < FormControl sx={{ m: 1, minWidth: 180 }} size="small">
+            < FormControl sx={{ m: 1, minWidth: '11em' }} size="small">
                 <InputLabel id="permission-select-small">
                     Who can see this?
                 </InputLabel>
@@ -48,8 +49,11 @@ function PermissionDropdown() {
                     onChange={handleChange}
                 >
                     <MenuItem value={'everyone'}>Everyone</MenuItem>
+                    <br/>
                     <MenuItem value={'friends'}>Friends</MenuItem>
+                    <br/>
                     <MenuItem value={'family'}>Family</MenuItem>
+                    <br/>
                     <MenuItem value={'invite-only'}>Invite-Only</MenuItem>
                 </Select>
             </FormControl>

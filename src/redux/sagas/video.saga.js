@@ -14,6 +14,16 @@ function* addBakesale(action) {
 }
 */
 
+// 
+function* postUserVideos(action) {
+  console.log('post action', action.payload.key);
+  try{
+      yield axios.post('/api/video/', action.payload);
+  } catch(err){
+      console.log(err);
+  }
+}
+
 // get all user videos from the DB
 function* getUserVideos() {
 
@@ -106,6 +116,7 @@ function* deleteBakesale(action) {
 function* videoSaga() {
 
   yield takeLatest('GET_USER_VIDEOS', getUserVideos);
+  yield takeLatest('POST_VIDEO', postUserVideos);
   yield takeLatest('GET_SINGLE_VIDEO', getSingleVideo);
   yield takeLatest('DELETE_VIDEO', deleteVideo);
 

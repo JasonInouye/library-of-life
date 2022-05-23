@@ -1,6 +1,11 @@
 import React from "react";
 import { useState } from 'react';
 
+/******* multi select for connections  ********/
+import SelectToShare from "./SelectToShare";
+
+/******* sweet alert  ********/
+import swal from 'sweetalert';
 
 /******* icon  ********/
 import { SiSlideshare } from "react-icons/si";
@@ -13,15 +18,18 @@ import MenuItem from '@mui/material/MenuItem';
 
 function ShareButton() {
 
+    //TODO make dispatch instead of useState
+    const [share, setShare] = useState('');
 
-    //The database will replace this useState
-    const [permission, setPermission] = useState('');
-
-    const handleChange = (event) => {
+    const handleItemClick = (event) => {
         //Change to dispatch when hooked up to DB
-        setPermission(event.target.value);
-        console.log('selected permission is:', permission);
+        setShare(event.target.value);
+        // if (share == 'friends' || 'family') {
+        //     swal(`You have shared this with ${share}`);
+        // }
+        setMenuPosition(null);
     };
+    console.log('selected share is:', share);
 
 
 
@@ -39,24 +47,37 @@ function ShareButton() {
         });
     };
 
-    const handleItemClick = () => {
+    const handleCreateLink = (event) => {
+        console.log('clicked create link');
         setMenuPosition(null);
     };
 
 
     return (
         <>
-                <Button
-                    variant='contained'
-                    onClick={openShareMenu}>
-                    Share <span style={{ paddingLeft: '5px' }}><SiSlideshare /> </span>
-                </Button>
-                <Menu
-                    open={!!menuPosition}
-                    onClose={() => setMenuPosition(null)}
-                    anchorReference="anchorPosition"
-                    anchorPosition={menuPosition}
-                >
+            <Button
+                size="small"
+                variant='contained'
+                onClick={openShareMenu}
+                style={{ backgroundColor: '#667b68' }}>
+                Share <span style={{ paddingLeft: '5px' }}><SiSlideshare /> </span>
+            </Button>
+
+            <Menu
+                open={!!menuPosition}
+                onClose={() => setMenuPosition(null)}
+                anchorReference="anchorPosition"
+                anchorPosition={menuPosition}
+            >
+                <MenuItem onClick={handleItemClick}>Share with all my connections</MenuItem>
+                <br/>
+                <MenuItem onClick={handleItemClick}><SelectToShare/></MenuItem>
+                <NestedMenuItem
+                    label="Friends"
+                    parentMenuOpen={!!menuPosition}
+                    onClick={handleItemClick}
+                />
+                    <MenuItem style={{ width: '100%' }} onClick={handleItemClick}>Everyone</MenuItem>
                     <NestedMenuItem
                         label="Friends"
                         parentMenuOpen={!!menuPosition}
@@ -75,7 +96,8 @@ function ShareButton() {
                         <br />
                         <MenuItem onClick={handleItemClick}>Mom</MenuItem>
                     </NestedMenuItem>
-                </Menu>
+                    <MenuItem style={{ width: '100%' }} onClick={handleItemClick}>Share with link</MenuItem>
+            </Menu>
         </>
     )
 }
