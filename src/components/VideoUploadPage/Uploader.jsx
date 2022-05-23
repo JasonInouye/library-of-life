@@ -22,7 +22,6 @@ function Uploader() {
   const video = useSelector((store) => store.videoReducer);
   const [videoPrompt, setVideoPrompt] = useState('');
   const [open, setOpen] = useState(false);
-  const [fileObjects, setFileObjects] = useState([]);
   const prompts = useSelector((store) => store.promptReducer);
   const [openVideoModal, setOpenVideoModal] = React.useState(false);
 
@@ -50,8 +49,6 @@ function Uploader() {
       method: 'GET',
       url: API_ENDPOINT,
     });
-
-    console.log('Response: ', response.data.Key);
 
     // key is the video id from AWS
     dispatch({
