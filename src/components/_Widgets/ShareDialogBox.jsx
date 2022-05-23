@@ -53,6 +53,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
         getConnections();
     };
 
+    // move into shortenURL function
     const urlObj = {
         url: url,
         domain: 'tiny.one'
