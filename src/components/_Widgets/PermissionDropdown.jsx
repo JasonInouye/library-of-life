@@ -31,8 +31,6 @@ function PermissionDropdown() {
         dispatch({type: 'UPDATE_PERMISSION', payload: event.target.value})
     };
     
-
-
     console.log('selected permission is:', permission);
 
     return (

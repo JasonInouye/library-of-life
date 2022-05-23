@@ -264,6 +264,14 @@ function Uploader() {
           )}
         </Box>
       </Modal>
+        {/* canCancel={false}
+        inputContent='Drag and drop a video here'
+        styles={{
+          dropzone: { width: 400, height: 200, border:'1px solid gray' },
+          dropzoneActive: { borderColor: 'green' },
+        }}
+        // TODO change font color/style in dzu-input-label?
+      /> */}
     </div>
   );
 }

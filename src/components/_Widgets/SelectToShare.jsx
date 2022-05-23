@@ -1,4 +1,8 @@
 import * as React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+
+
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -18,22 +22,15 @@ const MenuProps = {
     },
 };
 
-const names = [
-    'Oliver Hansen',
-    'Van Henry',
-    'April Tucker',
-    'Ralph Hubbard',
-    'Omar Alexander',
-    'Carlos Abbott',
-    'Miriam Wagner',
-    'Bradley Wilkerson',
-    'Virginia Andrews',
-    'Kelly Snyder',
-];
+
 
 export default function SelectToShare() {
+
+    const dispatch = useDispatch();
+    const connections = useSelector((store) => store.connectionsReducer);
     const [personName, setPersonName] = React.useState([]);
-// TODO hook up to DB to grab connections
+    const [selectedIDs, setSelectedIDs] = React.useState([]);
+
     const handleChange = (event) => {
         const {
             target: { value },
@@ -42,14 +39,21 @@ export default function SelectToShare() {
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
+        setSelectedIDs(
+            // FIXME how to grab "user_b" ID of connection? 
+        );
     };
 
-    console.log('selected people are:', personName);
+    console.log('selected people are:', personName, selectedIDs);
 
     return (
         <div>
             <FormControl sx={{ m: 1, width: 300 }}>
-                <InputLabel id="demo-multiple-checkbox-label">Choose from your connections</InputLabel>
+                <InputLabel
+                    id="demo-multiple-checkbox-label">
+                    Choose from your connections
+                </InputLabel>
+
                 <Select
                     labelId="demo-multiple-checkbox-label"
                     id="demo-multiple-checkbox"
@@ -60,10 +64,18 @@ export default function SelectToShare() {
                     renderValue={(selected) => selected.join(', ')}
                     MenuProps={MenuProps}
                 >
-                    {names.map((name) => (
-                        <MenuItem key={name} value={name}>
-                            <Checkbox checked={personName.indexOf(name) > -1} />
-                            <ListItemText primary={name} />
+                    {/* FIXME make checkboxes stay checked... 
+                    and what should go in params of personName.indexOf()??? can't figure out its effect */}
+                    {connections.map((connection) => (
+                        <MenuItem
+                            key={connection.id}
+                            value={connection.first_name + " " + connection.last_name}>
+
+                            <Checkbox checked={personName.indexOf(connection) > -1} />
+
+                            <ListItemText
+                                primary={connection.first_name + " " + connection.last_name}
+                                secondary={connection.relationship} />
                         </MenuItem>
                     ))}
                 </Select>

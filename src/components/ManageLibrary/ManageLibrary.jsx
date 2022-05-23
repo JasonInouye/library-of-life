@@ -6,10 +6,8 @@ import { useDispatch } from 'react-redux';
 /******* getting video item  ********/
 import UserVideoItem from '../UserVideoItem/UserVideoItem';
 
-/******* general MUI structure  ********/
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid';
-import Container from '@mui/material/Container';
+/******* styling  ********/
+import {Container, Grid} from '@mui/material';
 
 
 // import classNames from 'classnames';
