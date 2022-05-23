@@ -1,10 +1,11 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
+import BannerItem from './BannerItem';
+
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
-
+import Button from '@material-ui/core/Button';
 import { VscEdit } from 'react-icons/vsc';
 import { Container, Grid } from '@mui/material';
 
@@ -14,13 +15,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
 const banners = [
-    {name: 'Flowers', url: '/images/banners/flowers.jpg'},
+    {name: 'Flowers', url: '/images/banners/flowers.png'},
     {name: 'Clouds', url: '/images/banners/clouds.png'},
-    {name: 'Hot air balloons', url: '/images/banners/hotairballoons.jpg'},
-    {name: 'Ripple', url: '/images/banners/ripple.jpg'},
-    {name: 'Lemons', url: '/images/banners/lemons.jpg'},
-    {name: 'Mountain river', url: '/images/banners/mountainriver.jpg'},
-    {name: 'Tree', url: '/images/banners/treeoflife.jpg'}
+    {name: 'Balloons', url: '/images/banners/hotairballoons.png'},
+    {name: 'Ripple', url: '/images/banners/ripple.png'},
+    {name: 'Lemons', url: '/images/banners/lemons.png'},
+    {name: 'River', url: '/images/banners/mountainriver.png'},
+    {name: 'Canoe', url: '/images/banners/canoe.png'},
+    {name: 'Canyon', url: '/images/banners/canyon.png'},
+    {name: 'Mountains', url: '/images/banners/mountainsunset.png'},
+    {name: 'Rainbow', url: '/images/banners/rainbowsmoke.png'},
+    {name: 'Yarn', url: '/images/banners/yarn.png'},
+    {name: 'Pier', url: '/images/banners/pier.png'}
     ]
 
 function BannerDialog({ title, children, component, callback, banner }) {
