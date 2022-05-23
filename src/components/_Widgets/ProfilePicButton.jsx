@@ -5,7 +5,7 @@ import { Fab } from '@mui/material';
 import { VscEdit } from 'react-icons/vsc';
 
 
-function ProfilePicButton() {
+function ProfilePicButton({hover}) {
 
     const handleProfilePic = () => {
         console.log('clicked handleProfilePic');
@@ -25,7 +25,7 @@ function ProfilePicButton() {
             //this borderRadius MUST use 'sx,' does not work w/ 'style'; otherwise square for some reason
             size='small'
         >
-            <VscEdit />
+            {hover ? 'Edit photo' : <VscEdit />}
         </Fab>
     )
 }

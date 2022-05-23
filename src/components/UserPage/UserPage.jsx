@@ -61,6 +61,16 @@ function UserPage() {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
 
+  const handleMouseIn = () => {
+    setHover(true);
+  };
+
+  const handleMouseOut = () => {
+    setHover(false);
+  };
+
+  // For rendering 'edit photo' over button
+  const [hover, setHover] = useState(false);
 
 
   return (
@@ -77,7 +87,13 @@ function UserPage() {
               <div id='profile-img-div'>
                 <img id='profile-img' src={user.profile_image} alt={`A picture of ${user.first_name}`} />
 
-                <ProfilePicButton />
+                <ProfilePicButton 
+                onMouseOver={handleMouseIn} 
+                onMouseOut={handleMouseOut}
+                hover={hover}
+                />
+                
+
 
               </div>
             </>
