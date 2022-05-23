@@ -6,6 +6,7 @@ import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 import ProfilePicButton from '../_Widgets/ProfilePicButton';
+import BannerPicButton from '../_Widgets/BannerPicButton';
 
 /******* styling  ********/
 import { Menu, Typography, Button, Fab } from "@mui/material";
@@ -70,18 +71,9 @@ function UserPage() {
             userInParams == user.id &&
             <>
               <img id='bannerimage' src={user.banner_image} alt='Banner image' />
-              <Button
-                style={{
-                  position: 'absolute',
-                  right: '0.5em',
-                  top: '12em',
-                  color: 'ghostwhite',
-                  textShadow: '2 2 1 black',
-                }}
-                variant="outlined"
-                startIcon={<VscEdit />}>
-                Edit Banner Image
-              </Button>
+
+              <BannerPicButton />
+
               <div id='profile-img-div'>
                 <img id='profile-img' src={user.profile_image} alt={`A picture of ${user.first_name}`} />
 
