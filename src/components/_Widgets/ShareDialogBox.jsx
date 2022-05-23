@@ -106,6 +106,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
 
 
             <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+
                 <DialogContent>
                     {/* InnerComponent:  */}
                     {/* {open && <InnerComponent />} */}
@@ -126,21 +127,19 @@ export default function ShareDialogBox({ title, children, component, callback, v
                             onClick={()=>{setShowShortLink(true)}}>
                                 Give me a link</Button>
                         </>
-
                     }
 
-
                 </DialogContent>
+
                 <DialogActions>
+
                     <Button
                         // className={classes.btn} //more subtle non-button appearance
                         className={classes.cancel}
                         onClick={handleClose} color="primary">
                         Cancel
                     </Button>
-                    {/* TODO make button work with callback passed prop? <Button onClick={handleClose} color="primary">
-                        Add treat
-                    </Button> */}
+                
                 </DialogActions>
             </Dialog>
         </div>

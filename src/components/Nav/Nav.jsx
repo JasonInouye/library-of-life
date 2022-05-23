@@ -16,7 +16,7 @@ import { Menu, Button } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 
 function Nav() {
-  
+
   const user = useSelector((store) => store.user);
   const listOfUsers = useSelector(store => store.searchReducer.listOfUsers);
 
@@ -89,7 +89,7 @@ function Nav() {
           <div id='menu'>
 
             <Button
-              variant='outlined'
+              variant='contained'
               size='small'
               onClick={openMenu}
               sx={{ margin: '.5em' }}>

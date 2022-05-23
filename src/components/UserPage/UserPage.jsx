@@ -176,11 +176,6 @@ function UserPage() {
 
             </div>}
 
-          <Fab
-            variant="extended">
-            test fab
-          </Fab>
-
           {userInParams == user.id && view == 'connections' &&
             <div id='profile-info'>
               <Button
