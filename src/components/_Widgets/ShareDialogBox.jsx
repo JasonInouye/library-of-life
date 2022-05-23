@@ -129,6 +129,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
                             <p>Or, to send a video link by text or email:</p>
                             <Button
                                 variant='outlined'
+                                style={{color:'#667b68'}}
                                 onClick={() => { setShowShortLink(true) }}>
                                 Give me a link</Button>
                         </>
