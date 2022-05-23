@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
+import ProfilePicButton from '../_Widgets/ProfilePicButton';
 
 /******* styling  ********/
 import { Menu, Typography, Button, Fab } from "@mui/material";
@@ -83,20 +84,9 @@ function UserPage() {
               </Button>
               <div id='profile-img-div'>
                 <img id='profile-img' src={user.profile_image} alt={`A picture of ${user.first_name}`} />
-                
-                <Fab //FIXME make Fab round! what is overriding?
-                  style={{
-                    position: 'absolute',
-                    left: '10.5em',
-                    top: '10em',
-                    color: 'gray',
-                  }}
-                  size='small'
-                  variant="outlined"
-                  >
-                  Edit Photo <VscEdit />
-                </Fab>
-                
+
+                <ProfilePicButton />
+
               </div>
             </>
           }
