@@ -26,11 +26,6 @@ function Uploader() {
   const prompts = useSelector((store) => store.promptReducer);
   const [openVideoModal, setOpenVideoModal] = React.useState(false);
 
-  // useEffect(() => {
-  //   // dispatch to get all items to display on the DOM
-  //   dispatch({ type: 'GET_PROMPTS' });
-  // }, []);
-
   console.log('this is the prompt id', videoPrompt);
 
   const getUploadParams = ({ meta }) => {
@@ -42,7 +37,6 @@ function Uploader() {
   };
 
   const API_ENDPOINT =
-    //"https://y2b420b6eh.execute-api.us-east-2.amazonaws.com/default/getPresignedImageUrl";
     'https://hfoxt7tc91.execute-api.us-east-1.amazonaws.com/default/getPresignedVideoURL2';
   const handleChangeStatus = ({ meta, remove }, status) => {
     console.log('this is the status', status, meta);
@@ -107,70 +101,6 @@ function Uploader() {
 
   return (
     <div className='upload'>
-      {/* <Box justifyContent='center' sx={{ maxWidth: 420 }}>
-        <FormControl fullWidth>
-          <InputLabel id='demo-simple-select-label'>Prompt</InputLabel>
-          <Select
-            labelId='demo-simple-select-label'
-            id='demo-simple-select'
-            value={videoPrompt}
-            label='prompt'
-            onChange={(event) => setVideoPrompt(event.target.value)}
-          >
-            {prompts.map((prompt) => (
-              <MenuItem key={prompt.id} value={prompt.id}>
-                {prompt.prompt}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </Box> */}
-
-      {/* <Button variant='contained' color='primary' onClick={() => setOpen(true)}>
-        Add Video
-      </Button>
-
-      <DropzoneDialogBase
-        dialogTitle={dialogTitle()}
-        acceptedFiles={['video/*']}
-        fileObjects={fileObjects}
-        cancelButtonText={'cancel'}
-        submitButtonText={'submit'}
-        filesLimit={1}
-        maxFileSize={10000000}
-        open={open}
-        onAdd={(newFileObjs) => {
-          console.log('onAdd', newFileObjs);
-          setFileObjects(newFileObjs);
-        }}
-        onDelete={(deleteFileObj) => {
-          console.log('onDelete', deleteFileObj);
-          setFileObjects([]);
-        }}
-        onClose={() => setOpen(false)}
-        onSave={handleSubmit(fileObjects)}
-        showPreviews={true}
-        showFileNamesInPreview={true}
-      /> */}
-      {/* <DropzoneArea
-        maxFileSize={10000000}
-        filesLimit={1}
-        onChange={(files) => console.log('Files:', files)}
-      /> */}
-
-      {/* <Dropzone
-        getUploadParams={getUploadParams}
-        onChangeStatus={handleChangeStatus}
-        onSubmit={handleSubmit}
-        maxFiles={1}
-        multiple={false}
-        canCancel={true}
-        inputContent='Upload A Movie'
-        accept='video/*'
-        styles={{
-          dropzone: { width: '100%', minHeight: 250, maxHeight: 250, textAlign: 'center', padding: '20px', }
-        }} 
-      />*/}
       {video.file ? (
         <Box>
           <p>{video.file.name}</p>
@@ -244,6 +174,7 @@ function Uploader() {
               onChangeStatus={handleChangeStatus}
               onSubmit={handleSubmit}
               maxFiles={1}
+              canCancel={false}
               inputContent={(files, extra) =>
                 extra.reject ? 'Video files only' : 'Click or Drag 1 Video Here'
               }
@@ -264,14 +195,6 @@ function Uploader() {
           )}
         </Box>
       </Modal>
-        {/* canCancel={false}
-        inputContent='Drag and drop a video here'
-        styles={{
-          dropzone: { width: 400, height: 200, border:'1px solid gray' },
-          dropzoneActive: { borderColor: 'green' },
-        }}
-        // TODO change font color/style in dzu-input-label?
-      /> */}
     </div>
   );
 }
