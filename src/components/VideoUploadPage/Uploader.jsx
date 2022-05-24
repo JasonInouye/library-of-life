@@ -12,7 +12,6 @@ import {
   InputLabel,
   Select,
 } from '@mui/material';
-import CloseIcon from '@material-ui/icons/Close';
 
 function Uploader() {
   const dispatch = useDispatch();
@@ -39,18 +38,19 @@ function Uploader() {
     const f = files[0];
     dispatch({
       type: 'GET_UPLOAD_URL',
+      prompt: videoPrompt
     });
 
     // key is the video id from AWS
-    dispatch({
-      type: 'SET_MODAL_VIDEO',
-      payload: requestURL.Key,
-    });
+    // dispatch({
+    //   type: 'SET_MODAL_VIDEO',
+    //   payload: requestURL.Key,
+    // });
 
-    dispatch({
-      type: 'POST_VIDEO',
-      payload: { key: requestURL.Key, prompt: videoPrompt },
-    });
+    // dispatch({
+    //   type: 'POST_VIDEO',
+    //   payload: { key: requestURL.Key, prompt: videoPrompt },
+    // });
 
     // * PUT request: upload file to S3
     const result = await fetch(requestURL.uploadURL, {
