@@ -28,6 +28,6 @@ export default function* rootSaga() {
     promptSaga(),
     //requestSaga(),
     permissionSaga(),
-    shareSaga
+    shareSaga()
   ]);
 }
