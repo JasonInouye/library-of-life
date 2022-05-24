@@ -53,11 +53,8 @@ function* deleteVideo(action) {
 function* getUploadUrl(){
   try {
       const response = yield axios.get(`/api/upload/`)
-      console.log( 'this is the results of API', response.data);
       yield put({ type: 'SET_UPLOAD_VID_URL', payload: response.data })
-      // yield put ({
-      //     type: 'SET_MANY_SEARCH', payload: response.data
-      // })
+      // yield put({ type: 'SET_MODAL_VIDEO', payload: response.data.Key })
   } catch(err) {
       console.log(err);
   }

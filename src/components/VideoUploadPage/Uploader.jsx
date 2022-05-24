@@ -4,28 +4,24 @@ import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
 import {
   Button,
-  IconButton,
   Modal,
   Typography,
-  TextField,
   Box,
   FormControl,
   MenuItem,
   InputLabel,
-  Select
+  Select,
 } from '@mui/material';
 import CloseIcon from '@material-ui/icons/Close';
 
 function Uploader() {
   const dispatch = useDispatch();
-  const axios = require('axios').default;
+  const requestURL = useSelector((store) => store.urlReducer);
   const video = useSelector((store) => store.videoReducer);
   const [videoPrompt, setVideoPrompt] = useState('');
   const [open, setOpen] = useState(false);
   const prompts = useSelector((store) => store.promptReducer);
   const [openVideoModal, setOpenVideoModal] = React.useState(false);
-
-  console.log('this is the prompt id', videoPrompt);
 
   const getUploadParams = ({ meta }) => {
     const url = 'https://httpbin.org/post';
@@ -40,30 +36,24 @@ function Uploader() {
   };
 
   const handleSubmit = async (files) => {
-    //const f = files[0];
-    // console.log(f['file']);
-    // // * GET request: presigned URL
-    // const response = await axios({
-    //   method: 'GET',
-    //   url: API_ENDPOINT,
-    // });
+    const f = files[0];
     dispatch({
-      type: 'GET_UPLOAD_URL'
+      type: 'GET_UPLOAD_URL',
     });
 
     // key is the video id from AWS
     dispatch({
       type: 'SET_MODAL_VIDEO',
-      payload: response.data.Key,
+      payload: requestURL.Key,
     });
 
     dispatch({
       type: 'POST_VIDEO',
-      payload: { key: response.data.Key, prompt: videoPrompt },
+      payload: { key: requestURL.Key, prompt: videoPrompt },
     });
 
     // * PUT request: upload file to S3
-    const result = await fetch(response.data.uploadURL, {
+    const result = await fetch(requestURL.uploadURL, {
       method: 'PUT',
       body: f['file'],
     });
@@ -77,25 +67,13 @@ function Uploader() {
   };
   const handleOpenVideoModal = () => {
     dispatch({ type: 'GET_PROMPTS' });
-    setOpenVideoModal(true)
+    setOpenVideoModal(true);
   };
 
   const handleCloseVideoModal = () => {
-    dispatch({type: 'GET_PROMPTS'});
-    setOpenVideoModal(false)
+    dispatch({ type: 'GET_PROMPTS' });
+    setOpenVideoModal(false);
   };
-
-  const dialogTitle = () => (
-    <>
-      <span>Upload Video</span>
-      <IconButton
-        style={{ right: '12px', top: '8px', position: 'absolute' }}
-        onClick={() => setOpen(false)}
-      >
-        <CloseIcon />
-      </IconButton>
-    </>
-  );
 
   return (
     <div className='upload'>
@@ -145,22 +123,22 @@ function Uploader() {
             p: 4,
           }}
         >
-                  <FormControl fullWidth>
-          <InputLabel id='demo-simple-select-label'>Prompt</InputLabel>
-          <Select
-            labelId='demo-simple-select-label'
-            id='demo-simple-select'
-            value={videoPrompt}
-            label='prompt'
-            onChange={(event) => setVideoPrompt(event.target.value)}
-          >
-            {prompts.map((prompt) => (
-              <MenuItem key={prompt.id} value={prompt.id}>
-                {prompt.prompt}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
+          <FormControl fullWidth>
+            <InputLabel id='demo-simple-select-label'>Prompt</InputLabel>
+            <Select
+              labelId='demo-simple-select-label'
+              id='demo-simple-select'
+              value={videoPrompt}
+              label='prompt'
+              onChange={(event) => setVideoPrompt(event.target.value)}
+            >
+              {prompts.map((prompt) => (
+                <MenuItem key={prompt.id} value={prompt.id}>
+                  {prompt.prompt}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <Typography id='modal-modal-title' variant='h6' component='h2'>
             Add Video Here!
           </Typography>
