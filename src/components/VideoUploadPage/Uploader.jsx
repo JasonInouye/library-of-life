@@ -35,19 +35,20 @@ function Uploader() {
     };
   };
 
-  const API_ENDPOINT =
-    'https://hfoxt7tc91.execute-api.us-east-1.amazonaws.com/default/getPresignedVideoURL2';
   const handleChangeStatus = ({ meta, remove }, status) => {
     console.log('this is the status', status, meta);
   };
 
   const handleSubmit = async (files) => {
-    const f = files[0];
-    console.log(f['file']);
-    // * GET request: presigned URL
-    const response = await axios({
-      method: 'GET',
-      url: API_ENDPOINT,
+    //const f = files[0];
+    // console.log(f['file']);
+    // // * GET request: presigned URL
+    // const response = await axios({
+    //   method: 'GET',
+    //   url: API_ENDPOINT,
+    // });
+    dispatch({
+      type: 'GET_UPLOAD_URL'
     });
 
     // key is the video id from AWS
