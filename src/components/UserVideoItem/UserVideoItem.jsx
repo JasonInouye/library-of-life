@@ -27,7 +27,7 @@ function UserVideoItem({ video, relationship }) {
         console.log('clicked into dialog');
     };
 
-
+    console.log(relationship)
     return (
         <>
             {relationship == video.permission || relationship == 'self' &&

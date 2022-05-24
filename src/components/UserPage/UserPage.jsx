@@ -22,7 +22,7 @@ function UserPage() {
 
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer?.searchedUser);
-  // const pendingStatus = useSelector((store) => store.connectionsReducer.pending);
+  const connections = useSelector((store) => store.connectionsReducer);
   const pendingStatus = useSelector((store) => store.pendingStatus);
   const view = useParams().view;
   const userInParams = Number(useParams().userInParams);
@@ -58,6 +58,14 @@ function UserPage() {
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
+
+  useEffect(() => {
+    for (const connection of connections) {
+      if(connection.user_A_id == user.id && connection.user_B_id == userInParams && connection.pending == false) {
+        
+      }
+    }
+  }, [connections])
 
 
   return (
