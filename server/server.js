@@ -16,6 +16,7 @@ const promptRouter = require('./routes/prompt.router')
 const linkRouter = require('./routes/link.router');
 const requestRouter = require('./routes/request.router');
 const connectionsRouter = require('./routes/connections.router');
+const uploadRouter = require('./routes/s3lol.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -51,6 +52,9 @@ app.use('/api/link', linkRouter);
 
 // Request route
 app.use('/api/request', requestRouter);
+
+// Upload route
+app.use('/api/upload', uploadRouter);
 
 
 // Serve static files

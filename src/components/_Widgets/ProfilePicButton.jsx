@@ -5,7 +5,7 @@ import { Fab } from '@mui/material';
 import { VscEdit } from 'react-icons/vsc';
 
 
-function ProfilePicButton() {
+function ProfileEditButton() {
 
     const handleProfilePic = () => {
         console.log('clicked handleProfilePic');
@@ -45,7 +45,7 @@ function ProfilePicButton() {
     )
 }
 
-export default ProfilePicButton
+export default ProfileEditButton
 
 
 
