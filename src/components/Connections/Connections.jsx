@@ -6,14 +6,14 @@ import { ToggleButton } from '@mui/material';
 import { ToggleButtonGroup } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 function Connections() {
 
     const dispatch = useDispatch();
     const connections = useSelector((store) => store.connectionsReducer);
     // const user = useSelector((store) => store.user);
-    const history = useHistory();
+    // const history = useHistory();
 
     const [toggle, setToggle] = React.useState('left');
     const [all, setAll] = useState(false);
@@ -91,23 +91,21 @@ function Connections() {
                     exclusive
                     onChange={(event) => { handleToggle(event.target.value) }}
                     aria-label="connections">
-                    
-                   <div className="work"> <ToggleButton onClick={() => { handleAll() }} value="friends" aria-label="friends">
+                    <ToggleButton onClick={() => { handleAll() }} value="friends" aria-label="friends">
                         <h3>All</h3>
-                    </ToggleButton> </div>
+                    </ToggleButton>
                     
-                    <div className="work">  <ToggleButton onClick={() => { handleFriends() }} value="friends" aria-label="friends">
+                    <ToggleButton onClick={() => { handleFriends() }} value="friends" aria-label="friends">
                         <h3>Friends</h3>
-                    </ToggleButton>  </div>
+                    </ToggleButton>
                     
-                    <div className="work"> <ToggleButton onClick={() => { handleFamily() }} value="family" aria-label="family">
+                    <ToggleButton onClick={() => { handleFamily() }} value="family" aria-label="family">
                         <h3>Family</h3>
-                    </ToggleButton> </div>
+                    </ToggleButton>
                     
-                    <div className="work">  <ToggleButton onClick={() => { handleRequests() }} value="requests" aria-label="requests">
+                    <ToggleButton onClick={() => { handleRequests() }} value="requests" aria-label="requests">
                         <h3>Requests</h3>
-                    </ToggleButton> </div>
-                
+                    </ToggleButton> 
                 </ToggleButtonGroup>
             </div>
             </Box>
