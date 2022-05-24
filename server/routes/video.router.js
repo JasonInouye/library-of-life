@@ -2,12 +2,22 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
-router.get('/', (req, res) => {
-    // GET route code here
-});
+
+    /**
+     * DELETE route for SINGLE video
+     */
+     router.delete('/:id', (req, res) => {
+        const id = req.params.id;
+        console.log('router DELETE id:', id);
+        const query = `DELETE FROM "videos" WHERE "videos".id =$1;`;
+        values = [id];
+        pool.query(query, values)
+            .then(() => { res.sendStatus(200); })
+            .catch((err) => {
+                console.log('Error completing DELETE', err);
+                res.sendStatus(500);
+            });
+    });
 
 /**
  * GET route for ALL USER videos and their prompts
@@ -52,21 +62,7 @@ router.get('/', (req, res) => {
 });
 
 
-    /**
-     * DELETE route for SINGLE video
-     */
-     router.delete('/:id', (req, res) => {
-    const id = req.params.id;
-    console.log('router DELETE id:', id);
-    const query = `DELETE FROM "videos" WHERE "videos".id =$1;`;
-    values = [id];
-    pool.query(query, values)
-        .then(() => { res.sendStatus(200); })
-        .catch((err) => {
-            console.log('Error completing DELETE', err);
-            res.sendStatus(500);
-        });
-});
+
 
 
 /**
