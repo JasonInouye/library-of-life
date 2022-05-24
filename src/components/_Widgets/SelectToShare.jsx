@@ -46,7 +46,7 @@ export default function SelectToShare({ video }) {
             setSelectedIDs([...selectedIDs, id])
         }
         setSelectedVideoIDs(video.id)
-        // dispatch({type: 'SHARE_VIDEO', payload: shareObj})
+        dispatch({type: 'SHARE_VIDEO', payload: shareObj})
     }
 
 
@@ -60,9 +60,6 @@ export default function SelectToShare({ video }) {
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
-        // setSelectedIDs(
-        //     // FIXME how to grab "user_b" ID of connection? 
-        // );
     };
 
     // console.log('selected people are:', personName);
@@ -85,8 +82,7 @@ export default function SelectToShare({ video }) {
                     renderValue={(selected) => selected.join(', ')}
                     MenuProps={MenuProps}
                 >
-                    {/* FIXME make checkboxes stay checked... 
-                    and what should go in params of personName.indexOf()??? can't figure out its effect */}
+                
                     {connections.map((connection) => (
                         <MenuItem
                             key={connection.id}
