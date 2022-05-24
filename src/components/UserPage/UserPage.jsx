@@ -12,8 +12,6 @@ import BannerDialog from '../_Widgets/BannerDialog';
 import { Menu, Typography, Button, Fab } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 
-
-
 function UserPage() {
 
   const dispatch = useDispatch();
@@ -179,7 +177,7 @@ function UserPage() {
               <Button
                 variant='outlined'
                 onClick={() => { history.push(`/user/${user.id}/videos`) }}>
-                My Videos
+                My Profile
               </Button>
             </div>}
 

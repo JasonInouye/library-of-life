@@ -107,16 +107,25 @@ function Nav() {
                 My Profile
               </MenuItem>
               <br />
+
               <MenuItem
                 onClick={(event) => handleItemClick(`/user/${user.id}/connections`)}>
                 My Connections
               </MenuItem>
               <br />
+
+              <MenuItem 
+              onClick={(event) => handleItemClick(`/manageLibrary`)}>
+                Manage Library
+              </MenuItem>
+              <br/>
+
               <MenuItem
                 onClick={(event) => handleItemClick(`/user/${user.id}/uploads`)}>
                 Upload Video
               </MenuItem>
               <br />
+
               <MenuItem
                 onClick={(event) => handleItemClick('/about')}>
                 About Library of Life

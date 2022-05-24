@@ -9,10 +9,10 @@ body {
   margin: 0px;
 }
 
-img {
+/* img {
   display: inline-block;
   max-width: 100%;
-}
+} */
 
 /* .faces {
   background-image: url("/images/faces.png");
@@ -20,6 +20,10 @@ img {
 
 /* .sage {
   color: #667b68;
+}
+
+.work {
+  padding-right: 30px;
 }
 
 .landing {
