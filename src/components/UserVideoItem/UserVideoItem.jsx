@@ -81,8 +81,8 @@ function UserVideoItem({ video }) {
                                     justifyContent: 'center',
                                     alignItems: 'center'
                                 }}>
-                                    <DeleteButton
-                                        video={video} />
+                                    {/* <DeleteButton
+                                        video={video} /> */}
                                     <ShareDialogBox
                                         open={open}
                                         onClose={() => setOpen(false)}
