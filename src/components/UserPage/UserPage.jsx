@@ -80,7 +80,7 @@ function UserPage() {
                   <img className='profile-img' src={user.profile_image}
                     alt={`A picture of ${user.first_name}`} />
 
-                  <div className='editProfileBtn'>
+                  <div className='profilePicBtn'>
                     <ProfilePicButton />
                   </div>
 
