@@ -1,9 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-
-
-// 
 function* postUserVideos(action) {
   console.log('post action', action.payload);
   try{
@@ -52,13 +49,25 @@ function* deleteVideo(action) {
   }
 }
 
-function* videoSaga() {
+//get request url from s3
+function* getUploadUrl(action){
+  console.log('this is the URL action', action.prompt);
+  try {
+      const response = yield axios.get(`/api/upload/`)
+      yield put({ type: 'SET_UPLOAD_VID_URL', payload: response.data })
+      yield put({ type: 'SET_MODAL_VIDEO', payload: response.data.Key })
+      yield put({ type: 'POST_VIDEO', payload: { key: response.data.Key, prompt: action.prompt } })
+  } catch(err) {
+      console.log(err);
+  }
+}
 
+function* videoSaga() {
   yield takeLatest('GET_USER_VIDEOS', getUserVideos);
   yield takeLatest('POST_VIDEO', postUserVideos);
   yield takeLatest('GET_SINGLE_VIDEO', getSingleVideo);
   yield takeLatest('DELETE_VIDEO', deleteVideo);
-
+  yield takeLatest('GET_UPLOAD_URL', getUploadUrl);
 }
 
 export default videoSaga;

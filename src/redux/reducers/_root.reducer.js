@@ -9,6 +9,7 @@ import promptReducer from './prompt.reducer';
 import pendingStatus from './request.reducer';
 import videoModalReducer from './videoModal.reducer';
 import shareReducer from './share.reducer';
+import urlReducer from './urlRequest.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   pendingStatus,
   videoModalReducer, // did not want to bleed this data into the videoReducer
   shareReducer,
+  urlReducer,
 });
 
 
