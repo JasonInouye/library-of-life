@@ -68,7 +68,7 @@
     right: 0;
 }
 
-.editProfileBtn {
+.profilePicBtn {
     right: -0.5em;
     top: 9.1em;
     position: absolute;
@@ -89,5 +89,4 @@ otherwise square for some reason
     position: absolute;
     top: 7em;
     left: 30em;
-
 }

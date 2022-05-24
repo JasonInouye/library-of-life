@@ -22,7 +22,7 @@ const MenuProps = {
     },
 };
 
-export default function SelectToShare({video}) {
+export default function SelectToShare({ video }) {
 
     const dispatch = useDispatch();
     const connections = useSelector((store) => store.connectionsReducer);
@@ -30,18 +30,21 @@ export default function SelectToShare({video}) {
     const [selectedIDs, setSelectedIDs] = React.useState([]);
     const [selectedVideoIDs, setSelectedVideoIDs] = React.useState(0);
     const shareObj = {
-        user_id : selectedIDs,
+        user_id: selectedIDs,
         video_id: selectedVideoIDs
     };
 
 
     const handleConnectionObj = (id) => {
         console.log("in handleConnectionObj", id);
-        const updatedSelectedIDs = [];
-        //if user already in array, then remove (splice, filter etc)
-        selectedIDs.indexOf(id)
+        let updatedSelectedIDs = [];
 
-        setSelectedIDs([...selectedIDs, id])
+        if (selectedIDs.indexOf(id) != -1) {
+            updatedSelectedIDs = selectedIDs.filter(idToRemove => idToRemove != id)
+            setSelectedIDs(updatedSelectedIDs);
+        } else {
+            setSelectedIDs([...selectedIDs, id])
+        }
         setSelectedVideoIDs(video.id)
         // dispatch({type: 'SHARE_VIDEO', payload: shareObj})
     }
