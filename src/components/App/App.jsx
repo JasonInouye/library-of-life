@@ -6,10 +6,10 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import customTheme from "../_customTheme/theme";
 
 import {
-  HashRouter as Router,
   Redirect,
   Route,
   Switch,
+  useLocation,
 } from 'react-router-dom';
 import './App.css';
 
@@ -36,7 +36,10 @@ import './App.css';
 
 
 function App() {
+
   const dispatch = useDispatch();
+  const location = useLocation();
+
 
   const user = useSelector(store => store.user);
 
@@ -47,11 +50,18 @@ function App() {
   return (
 
     <ThemeProvider theme={customTheme}>
-      <Router>
 
         <div>
+          {/* page/pages on which Nav won't render */}
+          {location.pathname ===
 
-          <Nav />
+            '/videoWatchPage'
+
+            ?
+            null
+            : <Nav />
+          }
+
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -167,7 +177,6 @@ function App() {
           <Footer />
         </div>
 
-      </Router>
     </ThemeProvider>
   );
 }
