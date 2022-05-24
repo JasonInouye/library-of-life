@@ -1,4 +1,4 @@
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createTheme } from '@mui/material/styles';
 import { red } from "@mui/material/colors";
 
 const primaryColor = "#667b68";
@@ -27,6 +27,13 @@ const customTheme = createTheme({
     },
     components: {
       MuiFab: {
+        styleOverrides: {
+          primary: {
+            backgroundColor: primaryColor,
+          },
+        },
+      },
+      MuiButton: {
         styleOverrides: {
           primary: {
             backgroundColor: primaryColor,
