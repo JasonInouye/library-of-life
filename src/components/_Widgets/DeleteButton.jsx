@@ -10,14 +10,19 @@ import IconButton from '@mui/material/IconButton';
 
 
 function DeleteButton({ video }) {
-
     const dispatch = useDispatch();
+  
+    const handleDelete = (event) => {
+        console.log('clicked DELETE', video)
+        // TODO use delete route from WatchVideo
+        dispatch ({ type: 'DELETE_VIDEO', payload: video })
+    }
 
-    const handleDelete = () => {
-        console.log('clicked delete', video.id);
-        dispatch({ type: 'DELETE_VIDEO', payload: video.id });
-        // dispatch({ type: 'CLEAR_VIDEOS' });
-    };
+    // const handleDelete = () => {
+    //     console.log('clicked delete', video.id);
+    //     dispatch({ type: 'DELETE_VIDEO', payload: video.id });
+       
+    // };
 
     return (
         <>

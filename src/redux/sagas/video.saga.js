@@ -1,20 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-/*
-function* addBakesale(action) {
-  try {
-    // passes user's bakesale data from the payload to the server
-    yield axios.post('/api/bakesale/addBakesale', action.payload);
-    yield put
-
-  } catch (error) {
-    console.log('Error with add bakesale saga:', error);
-  }
-}
-*/
-
-// 
 function* postUserVideos(action) {
   console.log('post action', action.payload);
   try{
@@ -55,58 +41,20 @@ function* getSingleVideo(action) {
 
 
 
-/*
-// get one Bakesale from the DB by id
-function* fetchBakesaleDetail(action) {
-
-  const id = action.payload;
-  console.log('SAGA single bakesale id:', id);
-
+//get request url from s3
+function* getUploadUrl(action){
+  console.log('this is the URL action', action.prompt);
   try {
-    const bakesale = yield axios.get(`/api/bakesale/detail/${id}`);
-
-    yield put({ type: 'SET_SINGLE_BAKESALE', payload: bakesale.data }); //set selected bakesale in bakesaleReducer
-
-  } catch (error) {
-    console.log('Error with fetchBakesaleDetail saga:', error);
+      const response = yield axios.get(`/api/upload/`)
+      yield put({ type: 'SET_UPLOAD_VID_URL', payload: response.data })
+      yield put({ type: 'SET_MODAL_VIDEO', payload: response.data.Key })
+      yield put({ type: 'POST_VIDEO', payload: { key: response.data.Key, prompt: action.prompt } })
+  } catch(err) {
+      console.log(err);
   }
 }
-*/
-
-/*
-function* editBakesale(action) {
-  const id = action.payload.id; //because all threat info expected in payload
-  // console.log('SAGA edit bakesale:', action.payload.id);
-
-  try {
-    yield axios.put(`/api/bakesale/${id}`, action.payload);
-
-    yield put({ type: 'FETCH_BAKESALES' }); //GET following PUT
-
-  } catch (error) {
-    console.log('Error with editBakesale saga:', error);
-  }
-}
-*/
-
-/*
-function* deleteBakesale(action) {
-  const id = action.payload; //because all threat info expected in payload
-  console.log('SAGA delete bakesale:', id);
-
-  try {
-    yield axios.delete(`/api/bakesale/delete/${id}`);
-
-    yield put({ type: 'FETCH_BAKESALES' }); //GET following DELETE
-
-  } catch (error) {
-    console.log('Error with deleteBakesale saga:', error);
-  }
-}
-*/
 
 function* videoSaga() {
-
   yield takeLatest('GET_USER_VIDEOS', getUserVideos);
   yield takeLatest('POST_VIDEO', postUserVideos);
   yield takeLatest('GET_SINGLE_VIDEO', getSingleVideo);

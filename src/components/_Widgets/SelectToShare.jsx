@@ -22,32 +22,43 @@ const MenuProps = {
     },
 };
 
-export default function SelectToShare({video}) {
+export default function SelectToShare({ video }) {
 
     const dispatch = useDispatch();
     const connections = useSelector((store) => store.connectionsReducer);
     const [personName, setPersonName] = React.useState([]);
     const [selectedIDs, setSelectedIDs] = React.useState([]);
     const [selectedVideoIDs, setSelectedVideoIDs] = React.useState(0);
+
     const shareObj = {
-        user_id : selectedIDs,
+        user_id: selectedIDs,
         video_id: selectedVideoIDs
     };
 
 
     const handleConnectionObj = (id) => {
         console.log("in handleConnectionObj", id);
-        const updatedSelectedIDs = [];
-        //if user already in array, then remove (splice, filter etc)
-        selectedIDs.indexOf(id)
+        let updatedSelectedIDs = [];
 
-        setSelectedIDs([...selectedIDs, id])
-        setSelectedVideoIDs(video.id)
-        // dispatch({type: 'SHARE_VIDEO', payload: shareObj})
+        if (selectedIDs.indexOf(id) != -1) {
+            updatedSelectedIDs = selectedIDs.filter(idToRemove => idToRemove != id)
+            setSelectedIDs(updatedSelectedIDs);
+        } else {
+            setSelectedIDs([...selectedIDs, id])
+        }
+        setSelectedVideoIDs(video.id);
+        shareReducerDispatch();
     }
 
+    const shareReducerDispatch = () => {
+        console.log('in dispatch function');
+        dispatch({type: 'SET_SHARE_REDUCER', payload: shareObj })
+    };
 
-    console.log("in shareObj", shareObj);
+
+
+
+    console.log("values in shareObj", shareObj);
 
     const handleSelectedName = (event) => {
         const {
@@ -57,9 +68,6 @@ export default function SelectToShare({video}) {
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
-        // setSelectedIDs(
-        //     // FIXME how to grab "user_b" ID of connection? 
-        // );
     };
 
     // console.log('selected people are:', personName);
@@ -82,8 +90,7 @@ export default function SelectToShare({video}) {
                     renderValue={(selected) => selected.join(', ')}
                     MenuProps={MenuProps}
                 >
-                    {/* FIXME make checkboxes stay checked... 
-                    and what should go in params of personName.indexOf()??? can't figure out its effect */}
+                
                     {connections.map((connection) => (
                         <MenuItem
                             key={connection.id}
