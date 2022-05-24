@@ -45,7 +45,7 @@ function UserVideoItem({ video }) {
                     {user.id == video.user_id ?
                         <>
                             <CardActions style={{ display: 'contents' }}>
-                                <PermissionDropdown />
+                                <PermissionDropdown video={video}/>
 
                                 <div style={{
                                     marginBottom: '0.5em',

@@ -28,7 +28,7 @@ function PermissionDropdown({video}) {
     const handleChange = (event) => {
         //Change to dispatch when hooked up to DB
         setPermission(event.target.value);
-        dispatch({type: 'UPDATE_PERMISSION', payload: event.target.value})
+        dispatch({type: 'UPDATE_PERMISSION', payload: {video_id: video.id, permission: event.target.value}});
     };
     
     console.log('selected permission is:', permission);
