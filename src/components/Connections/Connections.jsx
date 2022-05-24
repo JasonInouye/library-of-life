@@ -11,8 +11,8 @@ function Connections() {
 
     const dispatch = useDispatch();
     const connections = useSelector((store) => store.connectionsReducer);
-    // const user = useSelector((store) => store.user);
     const history = useHistory();
+    const user = useSelector((store) => store.user);
 
     const [toggle, setToggle] = React.useState('left');
     const [all, setAll] = useState(false);
@@ -169,7 +169,7 @@ function Connections() {
                     console.log(connect.pending)
                     return (
                         <div key={i}>
-                            {connect?.pending == true &&
+                            {connect?.pending == true && user.id == connect?.user_B_id &&
                                 <ul>
                                     <Paper elevation={3}>
                                         <img src={connect.profile_image} className="connectionsImage"/>

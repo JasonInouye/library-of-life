@@ -13,6 +13,8 @@ function UserVideos() {
 
     const videos = useSelector((store) => store.videoReducer);
 
+    console.log(' this is the video store ', videos)
+
     useEffect(() => {//triggers saga getting all user videos from DB on page load
         dispatch({ type: 'GET_USER_VIDEOS' });
     }, []);
