@@ -24,6 +24,8 @@ function UserVideoItem({ video }) {
     // check if user owns videos; don't render edit/delete buttons if not
     const user = useSelector((store) => store.user);
 
+    console.log('VIDEO HERE', video.id);
+
     const handleClickEdit = () => {
         console.log('clicked into dialog');
     };
@@ -48,7 +50,7 @@ function UserVideoItem({ video }) {
 
                         <DeleteButton
                            
-                            video={video} />
+                            video={video.id} />
                     </>
                     :
                     null}

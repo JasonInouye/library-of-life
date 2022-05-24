@@ -54,10 +54,10 @@ router.get('/', (req, res) => {
      * DELETE route for SINGLE video
      */
      router.delete('/:id', rejectUnauthenticated, (req, res) => {
-    const id = req.params.id;
+    const id = req.user.id;
     console.log('router DELETE id:', id);
     const query = `DELETE FROM "videos" WHERE "videos".id =$1 AND "videos".user_id = $1;`;
-    values = [req.user.id];
+    values = [id];
     pool.query(query, values)
         .then(() => { res.sendStatus(200); })
         .catch((err) => {

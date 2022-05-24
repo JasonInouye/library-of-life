@@ -20,8 +20,8 @@ function DeleteButton({ video }) {
     const history = useHistory();
 
     const handleDelete = () => {
-        console.log('clicked');
-        dispatch({ type: 'DELETE_VIDEO', payload: video.id });
+        console.log('CLICKED!!', video);
+        dispatch({ type: 'DELETE_VIDEO', payload: video });
         // dispatch({ type: 'CLEAR_VIDEO' });
         // history.push(`/user`);
     };
