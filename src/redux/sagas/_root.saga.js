@@ -8,6 +8,8 @@ import connectionsSaga from './connections.saga';
 import permissionSaga from './permission.saga';
 import promptSaga from './prompt.saga';
 import requestSaga from './request.saga';
+import deleteSaga from './delete.saga';
+import shareSaga from './share.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -25,7 +27,9 @@ export default function* rootSaga() {
     searchSaga(),
     videoSaga(),
     promptSaga(),
-    //requestSaga(),
+    requestSaga(),
     permissionSaga(),
+    deleteSaga(),
+    shareSaga(),
   ]);
 }

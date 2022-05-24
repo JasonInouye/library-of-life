@@ -20,8 +20,8 @@ function UserPage() {
 
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
-  const pendingStatus = useSelector((store) => store.connectionsReducer.pending);
-  // const pendingStatus = useSelector((store) => store.pendingStatus);
+  // const pendingStatus = useSelector((store) => store.connectionsReducer.pending);
+  const pendingStatus = useSelector((store) => store.pendingStatus);
   const view = useParams().view;
   const userInParams = Number(useParams().userInParams);
 
@@ -78,7 +78,7 @@ function UserPage() {
                   <img className='profile-img' src={user.profile_image}
                     alt={`A picture of ${user.first_name}`} />
 
-                  <div className='editProfileBtn'>
+                  <div className='profilePicBtn'>
                     <ProfilePicButton />
                   </div>
 
