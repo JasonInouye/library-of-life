@@ -8,7 +8,8 @@ function* postShare(action) {
 
 //   console.log('postShare SAGA data:', action.payload);
   try{
-      yield axios.post('/api/share/', action.payload);
+      yield axios.post('/api/share/', action.payload)
+      
   } catch(err){
       console.log(err);
   }
