@@ -22,8 +22,8 @@ function UserPage() {
 
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
-  const pendingStatus = useSelector((store) => store.connectionsReducer.pending);
-  // const pendingStatus = useSelector((store) => store.pendingStatus);
+  // const pendingStatus = useSelector((store) => store.connectionsReducer.pending);
+  const pendingStatus = useSelector((store) => store.pendingStatus);
   const view = useParams().view;
   const userInParams = Number(useParams().userInParams);
 
