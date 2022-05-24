@@ -43,17 +43,19 @@ function Uploader() {
       prompt: videoPrompt
     });
 
-    console.log('modal url ', requestURL.Key);
+    //console.log('modal url ', requestURL.Key);
     //key is the video id from AWS
-    dispatch({
-      type: 'SET_MODAL_VIDEO',
-      payload: requestURL.Key,
-    });
+    // dispatch({
+    //   type: 'SET_MODAL_VIDEO',
+    //   payload: requestURL.Key,
+    // });
 
-    dispatch({
-      type: 'POST_VIDEO',
-      payload: { key: requestURL.Key, prompt: videoPrompt },
-    });
+    // dispatch({
+    //   type: 'POST_VIDEO',
+    //   payload: { key: requestURL.Key, prompt: videoPrompt },
+    // });
+
+    console.log('this is the PUT data', requestURL.uploadURL, f['file']);
 
     // * PUT request: upload file to S3
     const result = await fetch(requestURL.uploadURL, {
