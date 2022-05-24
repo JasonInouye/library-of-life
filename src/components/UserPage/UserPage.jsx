@@ -156,7 +156,8 @@ function UserPage() {
                 </Menu>
               </>}
           </div>
-          {userInParams == user.id && view == 'videos' &&
+
+          {/* {userInParams == user.id && view == 'videos' &&
 
             <div id='profile-info'>
               <Button
@@ -171,7 +172,7 @@ function UserPage() {
                 My Connections
               </Button>
 
-            </div>}
+            </div>} */}
 
           {userInParams == user.id && view == 'connections' &&
             <div id='profile-info'>
