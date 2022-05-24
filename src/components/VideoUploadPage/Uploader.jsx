@@ -43,16 +43,17 @@ function Uploader() {
       prompt: videoPrompt
     });
 
-    // key is the video id from AWS
-    // dispatch({
-    //   type: 'SET_MODAL_VIDEO',
-    //   payload: requestURL.Key,
-    // });
+    console.log('modal url ', requestURL.Key);
+    //key is the video id from AWS
+    dispatch({
+      type: 'SET_MODAL_VIDEO',
+      payload: requestURL.Key,
+    });
 
-    // dispatch({
-    //   type: 'POST_VIDEO',
-    //   payload: { key: requestURL.Key, prompt: videoPrompt },
-    // });
+    dispatch({
+      type: 'POST_VIDEO',
+      payload: { key: requestURL.Key, prompt: videoPrompt },
+    });
 
     // * PUT request: upload file to S3
     const result = await fetch(requestURL.uploadURL, {
@@ -73,7 +74,9 @@ function Uploader() {
   };
 
   const handleCloseVideoModal = () => {
+    console.log('this window CLOSED');
     dispatch({ type: 'GET_PROMPTS' });
+    dispatch({ type: 'CLEAR_UPLOAD_URL'})
     setOpenVideoModal(false);
   };
 

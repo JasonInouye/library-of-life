@@ -55,7 +55,7 @@ function* getUploadUrl(action){
   try {
       const response = yield axios.get(`/api/upload/`)
       yield put({ type: 'SET_UPLOAD_VID_URL', payload: response.data })
-      yield put({ type: 'SET_MODAL_VIDEO', payload: response.data.Key })
+      //yield put({ type: 'SET_MODAL_VIDEO', payload: response.data.Key })
       yield put({ type: 'POST_VIDEO', payload: { key: response.data.Key, prompt: action.prompt } })
   } catch(err) {
       console.log(err);
