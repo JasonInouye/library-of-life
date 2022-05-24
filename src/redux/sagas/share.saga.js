@@ -4,18 +4,18 @@ import axios from 'axios';
 
 
 // 
-function* shareVideo(action) {
-  console.log('post action', action.payload);
-  try{
-      yield axios.post('/api/video/', action.payload);
-  } catch(err){
-      console.log(err);
-  }
+function* setShareReducer(action) {
+  console.log('setShareReducer SAGA data:', action.payload);
+//   try{
+//       yield axios.post('/api/share/', action.payload);
+//   } catch(err){
+//       console.log(err);
+//   }
 }
 
 function* shareSaga() {
 
-    yield takeLatest('SHARE_VIDEO', shareVideo);
+    yield takeLatest('SET_SHARE_REDUCER', setShareReducer);
   
   }
 

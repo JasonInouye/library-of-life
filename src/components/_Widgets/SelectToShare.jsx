@@ -29,6 +29,7 @@ export default function SelectToShare({ video }) {
     const [personName, setPersonName] = React.useState([]);
     const [selectedIDs, setSelectedIDs] = React.useState([]);
     const [selectedVideoIDs, setSelectedVideoIDs] = React.useState(0);
+
     const shareObj = {
         user_id: selectedIDs,
         video_id: selectedVideoIDs
@@ -45,12 +46,19 @@ export default function SelectToShare({ video }) {
         } else {
             setSelectedIDs([...selectedIDs, id])
         }
-        setSelectedVideoIDs(video.id)
-        dispatch({type: 'SHARE_VIDEO', payload: shareObj})
+        setSelectedVideoIDs(video.id);
+        shareReducerDispatch();
     }
 
+    const shareReducerDispatch = () => {
+        console.log('in dispatch function');
+        dispatch({type: 'SET_SHARE_REDUCER', payload: shareObj })
+    };
 
-    console.log("in shareObj", shareObj);
+
+
+
+    console.log("values in shareObj", shareObj);
 
     const handleSelectedName = (event) => {
         const {
