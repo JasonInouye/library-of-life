@@ -22,16 +22,34 @@ const MenuProps = {
     },
 };
 
-
-
-export default function SelectToShare() {
+export default function SelectToShare({video}) {
 
     const dispatch = useDispatch();
     const connections = useSelector((store) => store.connectionsReducer);
     const [personName, setPersonName] = React.useState([]);
     const [selectedIDs, setSelectedIDs] = React.useState([]);
+    const [selectedVideoIDs, setSelectedVideoIDs] = React.useState(0);
+    const shareObj = {
+        user_id : selectedIDs,
+        video_id: selectedVideoIDs
+    };
 
-    const handleChange = (event) => {
+
+    const handleConnectionObj = (id) => {
+        console.log("in handleConnectionObj", id);
+        const updatedSelectedIDs = [];
+        //if user already in array, then remove (splice, filter etc)
+        selectedIDs.indexOf(id)
+
+        setSelectedIDs([...selectedIDs, id])
+        setSelectedVideoIDs(video.id)
+        // dispatch({type: 'SHARE_VIDEO', payload: shareObj})
+    }
+
+
+    console.log("in shareObj", shareObj);
+
+    const handleSelectedName = (event) => {
         const {
             target: { value },
         } = event;
@@ -39,12 +57,12 @@ export default function SelectToShare() {
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
-        setSelectedIDs(
-            // FIXME how to grab "user_b" ID of connection? 
-        );
+        // setSelectedIDs(
+        //     // FIXME how to grab "user_b" ID of connection? 
+        // );
     };
 
-    console.log('selected people are:', personName, selectedIDs);
+    // console.log('selected people are:', personName);
 
     return (
         <div>
@@ -59,7 +77,7 @@ export default function SelectToShare() {
                     id="demo-multiple-checkbox"
                     multiple
                     value={personName}
-                    onChange={handleChange}
+                    onChange={handleSelectedName}
                     input={<OutlinedInput label="Tag" />}
                     renderValue={(selected) => selected.join(', ')}
                     MenuProps={MenuProps}
@@ -71,7 +89,9 @@ export default function SelectToShare() {
                             key={connection.id}
                             value={connection.first_name + " " + connection.last_name}>
 
-                            <Checkbox checked={personName.indexOf(connection) > -1} />
+                            <Checkbox
+                                onChange={() => handleConnectionObj(connection.id)}
+                                checked={selectedIDs.indexOf(connection.id) > -1} />
 
                             <ListItemText
                                 primary={connection.first_name + " " + connection.last_name}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import useCopy from "use-copy";
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 
 
 /* ******* useCopy: https://www.npmjs.com/package/use-copy ******** */

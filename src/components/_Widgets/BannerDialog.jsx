@@ -1,12 +1,12 @@
 import React from 'react';
 import BannerItem from './BannerItem';
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
 import swal from 'sweetalert';
 
-import Button from '@material-ui/core/Button';
+import Button from '@mui/material/Button';
 import { VscEdit } from 'react-icons/vsc';
 import { Container, Grid, RadioGroup } from '@mui/material';
 
@@ -91,21 +91,21 @@ function BannerDialog({ title, children, component, callback, banner }) {
                             container
                             style={{ padding: '1em', textAlign: 'center' }}
                             spacing={1}>
+                            <RadioGroup>
+                                {banners?.map((banner, i) => {
+                                    return ( //loops thru array of banners to create each banner item
+                                        < Grid
+                                            item xs={12} md={4}
+                                            key={banner.id}>
 
-                            {banners?.map((banner, i) => {
-                                return ( //loops thru array of banners to create each banner item
-                                    < Grid
-                                        item xs={12} md={4}
-                                        key={banner.id}>
-                                        <RadioGroup>
 
                                             <BannerItem
                                                 key={i}
                                                 banner={banner} />
 
-                                        </RadioGroup>
-                                    </Grid>)
-                            })}
+                                        </Grid>)
+                                })}
+                            </RadioGroup>
                         </Grid>
                     </Container>
                 </DialogContent>
