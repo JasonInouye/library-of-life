@@ -16,7 +16,7 @@ import ShareDialogBox from "../_Widgets/ShareDialogBox";
 
 
 
-function UserVideoItem({ video }) {
+function UserVideoItem({ video, relationship }) {
 
     const dispatch = useDispatch();
 
@@ -30,53 +30,55 @@ function UserVideoItem({ video }) {
 
     return (
         <>
-            <Container>
+            {relationship == video.permission || relationship == 'self' &&
+                <Container >
 
-                <Card sx={{ minHeight: '18.5em' }}>
-                    <Typography
-                        style={{ margin: '.5em' }}
-                        gutterBottom variant="h7"
-                        component="div">
-                        {video.prompt}
-                    </Typography>
+                    <Card sx={{ minHeight: '18.5em' }}>
+                        <Typography
+                            style={{ margin: '.5em' }}
+                            gutterBottom variant="h7"
+                            component="div">
+                            {video.prompt}
+                        </Typography>
 
-                    <ReactPlayerComponent
-                        videoURL={video.url}
-                    />
+                        <ReactPlayerComponent
+                            videoURL={video.url}
+                        />
 
-                    {/* if logged-in user, show permissions toggle, delete, and share options*/}
-                    {user.id == video.user_id ?
-                        <>
-                            <CardActions style={{ display: 'contents' }}>
-                                <PermissionDropdown video={video} />
+                        {/* if logged-in user, show permissions toggle, delete, and share options*/}
+                        {user.id == video.user_id ?
+                            <>
+                                <CardActions style={{ display: 'contents' }}>
+                                    <PermissionDropdown video={video} />
 
-                                <div style={{
-                                    marginBottom: '0.5em',
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    flexWrap: 'nowrap',
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}>
-                                    <DeleteButton
-                                        video={video.id} />
-                                    <ShareDialogBox
-                                        open={open}
-                                        onClose={() => setOpen(false)}
-                                        aria-labelledby="confirm-dialog"
-                                        title="Share"
-                                        callback={handleClickEdit}
-                                        disableEnforceFocus={true}
-                                        video={video} />
-                                </div>
+                                    <div style={{
+                                        marginBottom: '0.5em',
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        flexWrap: 'nowrap',
+                                        justifyContent: 'center',
+                                        alignItems: 'center'
+                                    }}>
+                                        <DeleteButton
+                                            video={video.id} />
+                                        <ShareDialogBox
+                                            open={open}
+                                            onClose={() => setOpen(false)}
+                                            aria-labelledby="confirm-dialog"
+                                            title="Share"
+                                            callback={handleClickEdit}
+                                            disableEnforceFocus={true}
+                                            video={video} />
+                                    </div>
 
-                            </CardActions>
-                        </>
-                        :
-                        null}
+                                </CardActions>
+                            </>
+                            :
+                            null}
 
-                </Card>
-            </Container>
+                    </Card>
+                </Container>
+            }
         </>
     )
 }

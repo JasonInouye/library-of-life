@@ -7,7 +7,7 @@ import UserVideoItem from "../UserVideoItem/UserVideoItem";
 import { Container, Grid } from '@mui/material';
 
 
-function UserVideos() {
+function UserVideos({relationship}) {
 
     const dispatch = useDispatch();
 
@@ -35,7 +35,8 @@ function UserVideos() {
                                     
                                 <UserVideoItem
                                     key={i}
-                                    video={video} />
+                                    video={video}
+                                    relationship={relationship} />
                             </Grid>)
                     })}
                 </Grid>

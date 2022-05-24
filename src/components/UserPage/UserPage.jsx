@@ -188,7 +188,7 @@ function UserPage() {
         userInParams == user.id &&
         <>
           {view == "videos" &&
-            <UserVideos />}
+            <UserVideos relationship='self'/>}
 
           {/* TODO this should be "shared with me" videos? 
           {view == "videos" &&
@@ -204,7 +204,7 @@ function UserPage() {
 
       {userInParams != user.id &&
         <>
-          
+          <UserVideos relationship={searchedUser.relationship}/>
         </>}
     </div >
   )
