@@ -5,7 +5,6 @@ li {
 .toggleRight {
   display: flex;
   justify-content: center;
-  
   }
 
 .connectionsImage {
@@ -14,31 +13,35 @@ li {
     border-radius: 50%;
     margin-left: 20px;
     margin-top: 15px;
-    /* padding-left: 15px;
-    padding-top: 15px; */
 }
 
 .connectionsName {
-    /* padding-left: 20px; */
     float: right;
     margin-right: 60px;
     margin-top: 60px;
-    /* padding-top: 50px;
-    padding-right: 60px; */
-    /* display: flex; */
 }
 
 .connectionsAccept {
     display: inline;
     justify-content: flex-end;
+    float: right;
+    padding-right: 10px;
+}
+
+.connectionsIgnore {
+    color: red;
+    padding-left: 190px;
 }
 
 .connectionsRemove {
-    /* padding-left: 175px;
-    padding-bottom: 10px; */
     display: flex;
     justify-content: flex-end;
     color: red;
+    padding-right: 10px;
+}
+
+.requestBtn li {
+    display: inline;
 }
 
 

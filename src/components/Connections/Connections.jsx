@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './Connections.css';
 import { ToggleButton } from '@mui/material';
 import { ToggleButtonGroup } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
-import { VscTrash } from "react-icons/vsc";
-import { Button } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
 
 function Connections() {
 
     const dispatch = useDispatch();
     const connections = useSelector((store) => store.connectionsReducer);
+    // const user = useSelector((store) => store.user);
+    const history = useHistory();
 
     const [toggle, setToggle] = React.useState('left');
     const [all, setAll] = useState(false);
@@ -67,9 +67,16 @@ function Connections() {
 
     return (
         <>
+        <Box
+         sx={{
+            borderRadius: 2,
+            m: 10
+          }}
+        >
             <div className="toggleRight">
                 <ToggleButtonGroup
                     value={toggle}
+                    color="primary"
                     size="small"
                     exclusive
                     onChange={(event) => { handleToggle(event.target.value) }}
@@ -88,15 +95,14 @@ function Connections() {
                     </ToggleButton>
                 </ToggleButtonGroup>
             </div>
+            </Box>
 
             <Box
                 sx={{
                     // display: 'flex',
-                    // flexWrap: 'wrap',
+                    // justifyContent: "center",
                     '& > :not(style)': {
-                        // m: 1,
                         width: 350,
-                        // height: 100,
                     },
                 }}>
                 
@@ -106,12 +112,12 @@ function Connections() {
                         <div key={i}>
                             {((connect.relationship == "friend" || "family") && connect.pending == false) &&
                                 <ul>
-                                    <Paper elevation={3}>
+                                    <Paper onClick={() => { history.push(`/user/${connect.id}/videos`) }} elevation={3}>
                                         <img className="connectionsImage" src={connect.profile_image} />
                                         <div className="connectionsName" >
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>remove</li>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
@@ -130,7 +136,7 @@ function Connections() {
                                         <div className="connectionsName" >
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>remove</li>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
@@ -148,7 +154,7 @@ function Connections() {
                                         <div className="connectionsName">
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>remove</li>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
@@ -167,10 +173,10 @@ function Connections() {
                                         <div className="connectionsName">
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                       
-                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Ignore</li>
+                                        <div className="requestBtn">
+                                        <li className="connectionsIgnore" onClick={() => handleRemove(connect.id)}>Ignore</li>
                                         <li className="connectionsAccept" onClick={() => handleAccept(connect.id)}>Accept</li>
-                                      
+                                        </div>
                                     </Paper>
                                 </ul>}
                         </div>
