@@ -30,32 +30,30 @@ export default function SelectToShare({ video }) {
     const [selectedIDs, setSelectedIDs] = React.useState([]);
     const [selectedVideoIDs, setSelectedVideoIDs] = React.useState(0);
 
-    const shareObj = {
+    let shareObj = {
         user_id: selectedIDs,
         video_id: selectedVideoIDs
     };
 
-
-    const handleConnectionObj = (id) => {
+    const handleConnectionObj = async (id) => {
         console.log("in handleConnectionObj", id);
         let updatedSelectedIDs = [];
+
+        setSelectedVideoIDs(video.id);
 
         if (selectedIDs.indexOf(id) != -1) {
             updatedSelectedIDs = selectedIDs.filter(idToRemove => idToRemove != id)
             setSelectedIDs(updatedSelectedIDs);
+            shareObj.user_id = updatedSelectedIDs;
+            dispatch({ type: 'SET_SHARE_REDUCER', payload: shareObj })
+
         } else {
-            setSelectedIDs([...selectedIDs, id])
+            setSelectedIDs([...selectedIDs, id]);
+            shareObj.user_id = [...selectedIDs, id];
+            dispatch({ type: 'SET_SHARE_REDUCER', payload: shareObj })
+
         }
-        setSelectedVideoIDs(video.id);
-        shareReducerDispatch();
     }
-
-    const shareReducerDispatch = () => {
-        console.log('in dispatch function');
-        dispatch({type: 'SET_SHARE_REDUCER', payload: shareObj })
-    };
-
-
 
 
     console.log("values in shareObj", shareObj);
@@ -70,7 +68,6 @@ export default function SelectToShare({ video }) {
         );
     };
 
-    // console.log('selected people are:', personName);
 
     return (
         <div>
@@ -90,7 +87,7 @@ export default function SelectToShare({ video }) {
                     renderValue={(selected) => selected.join(', ')}
                     MenuProps={MenuProps}
                 >
-                
+
                     {connections.map((connection) => (
                         <MenuItem
                             key={connection.id}
