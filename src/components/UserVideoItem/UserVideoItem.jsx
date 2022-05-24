@@ -56,7 +56,7 @@ function UserVideoItem({ video }) {
                                     alignItems: 'center'
                                 }}>
                                     <DeleteButton
-                                        video={video} />
+                                        video={video.id} />
                                     <ShareDialogBox
                                         open={open}
                                         onClose={() => setOpen(false)}
