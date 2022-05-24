@@ -157,22 +157,6 @@ console.log('searchedUser status should be:', pendingStatus);
               </>}
 
           </div>
-          {userInParams == user.id && view == 'videos' &&
-
-            <div id='profile-info'>
-              <Button
-                id='manage-library'
-                variant='outlined'
-                onClick={() => { history.push('/managelibrary') }}>
-                Manage Library</Button>
-              <Button
-                id='my-connections'
-                variant='outlined'
-                onClick={() => { history.push(`/user/${user.id}/connections`) }}>
-                My Connections
-              </Button>
-
-            </div>}
 
           {userInParams == user.id && view == 'connections' &&
             <div id='profile-info'>
