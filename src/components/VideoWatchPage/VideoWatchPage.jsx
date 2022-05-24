@@ -29,6 +29,12 @@ function VideoWatchPage() {
         dispatch({ type: 'GET_SINGLE_VIDEO' });
     }, []);
 
+    const handleDelete = () => {
+        dispatch({ type: 'DELETE_VIDEO', payload: singleVideo.id });
+        dispatch({ type: 'CLEAR_VIDEO' });
+        // history.push(`/user`);
+    };
+
     // console.log('single video url should be:', singleVideo.url);
 
     return (
@@ -41,11 +47,7 @@ function VideoWatchPage() {
                 If you could do something to change humanity, what would it be?
             </h2>
 
-    const handleDelete = () => {
-        dispatch({ type: 'DELETE_VIDEO', payload: singleVideo.id });
-        dispatch({ type: 'CLEAR_VIDEO' });
-        // history.push(`/user`);
-    };
+
             {/* TODO replace with actual video corresponding to tinyURL? 
             Or just hardcode for demo?? */}
             <div id="video">
