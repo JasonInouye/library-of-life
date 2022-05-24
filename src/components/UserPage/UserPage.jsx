@@ -55,7 +55,7 @@ function UserPage() {
   };
 
 
-console.log('searchedUser status should be:', pendingStatus);
+  console.log('searchedUser status should be:', pendingStatus);
 
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
@@ -70,14 +70,28 @@ console.log('searchedUser status should be:', pendingStatus);
           {
             userInParams == user.id &&
             <>
-              <img id='bannerimage' src={user.banner_image} alt='Banner image' />
+              <img id='bannerimage' src={user.banner_image}
+                alt='Banner image' />
 
               <BannerDialog />
 
               <div id='profile-img-div'>
-                <img id='profile-img' src={user.profile_image} alt={`A picture of ${user.first_name}`} />
 
-                <ProfilePicButton />
+                <img id='profile-img' src={user.profile_image}
+                  alt={`A picture of ${user.first_name}`} />
+
+                <div id='editProfileBtn'>
+                  <ProfilePicButton />
+                </div>
+
+                <div id='aboutMe'>
+                  <Typography
+                    variant='subtitle2'>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore 
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+                    aliquip ex ea commodo consequat. 
+                  </Typography>
+                </div>
 
               </div>
             </>
@@ -85,9 +99,12 @@ console.log('searchedUser status should be:', pendingStatus);
 
           {userInParams != user.id &&
             <>
-              <img id='bannerimage' src={searchedUser.banner_image} alt='Banner image' />
+              <img id='bannerimage' src={searchedUser.banner_image}
+                alt='Banner image' />
+
               <div id='profile-img-div'>
-                <img id='profile-img' src={searchedUser.profile_image} alt={`A picture of ${searchedUser.first_name}`} />
+                <img id='profile-img' src={searchedUser.profile_image}
+                  alt={`A picture of ${searchedUser.first_name}`} />
               </div>
             </>
           }
