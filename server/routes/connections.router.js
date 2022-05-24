@@ -18,7 +18,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     and a."user_B_id" = b."id") OR (a."user_B_id" = $2
     and a."user_A_id" = b."id") 
     ;`;
-
+    // can refactor to one req.user.id
     const queryValues = [req.user.id, req.user.id];
 
     pool.query(queryText, queryValues)

@@ -42,7 +42,10 @@ router.get('/', (req, res) => {
         const query = `SELECT * FROM "videos" WHERE "id" = $1;`
 
         pool.query(query, [req.params.id])
-            .then((results) => res.send(results.rows))
+            // Add conditionals for situations
+            .then((results) => {
+    
+                res.send(results.rows)})
             .catch((err) => {
                 console.log('Error in video GET', err);
             })

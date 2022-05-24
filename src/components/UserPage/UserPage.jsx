@@ -25,7 +25,8 @@ function UserPage() {
 
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
-  const pendingStatus = useSelector((store) => store.pendingStatus);
+  const pendingStatus = useSelector((store) => store.connectionsReducer.pending);
+  // const pendingStatus = useSelector((store) => store.pendingStatus);
   const view = useParams().view;
   const [toggle, setToggle] = React.useState('left');
   const [myVideos, setMyVideos] = useState(false);
@@ -74,46 +75,64 @@ function UserPage() {
     dispatch({ type: 'POST_REQUEST', payload: { relationship: 'family', userB: userInParams } })
   };
 
+
+  console.log('searchedUser status should be:', pendingStatus);
+
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
 
 
   return (
-
-
-    <div className="container">
-
-      <div id='profile-header'>
+    <div >
+      <div className='profile-header'>
         <div >
+
           {
-            userInParams == user.id &&
-            <>
-              <img id='bannerimage' src={user.banner_image} alt='Banner image' />
+            userInParams == user.id ?
+              <>
+                <img className='bannerimage' src={user.banner_image}
+                  alt='Banner image' />
 
-              <BannerDialog />
+                <BannerDialog />
 
-              <div id='profile-img-div'>
-                <img id='profile-img' src={user.profile_image} alt={`A picture of ${user.first_name}`} />
+                <div className='profile-img-div'>
 
-                <ProfilePicButton />
+                  <img className='profile-img' src={user.profile_image}
+                    alt={`A picture of ${user.first_name}`} />
 
-              </div>
-            </>
-          }
-          {userInParams != user.id &&
-            <>
-              <img id='bannerimage' src={searchedUser.banner_image} alt='Banner image' />
-              <div id='profile-img-div'>
-                <img id='profile-img' src={searchedUser.profile_image} alt={`A picture of ${searchedUser.first_name}`} />
-              </div>
-            </>
+                  <div className='editProfileBtn'>
+                    <ProfilePicButton />
+                  </div>
+
+                  {/* TODO attach to DB data */}
+                  <div className='aboutMe'>
+                    <Typography
+                      variant='subtitle2'>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                      aliquip ex ea commodo consequat.
+                    </Typography>
+                  </div>
+
+                </div>
+              </>
+              :
+              <>
+                <img className='bannerimage' src={searchedUser.banner_image}
+                  alt='Banner image' />
+
+                <div className='profile-img-div'>
+                  <img className='profile-img' src={searchedUser.profile_image}
+                    alt={`A picture of ${searchedUser.first_name}`} />
+                </div>
+              </>
           }
         </div>
 
-        <div id='info-beneath-photos'>
+        <div className='info-beneath-photos'>
 
-          <div id='name-and-location'>
+          <div className='name-and-location'>
             <Typography
               variant='h5'
               sx={{ fontFamily: "inherit" }}>
@@ -134,18 +153,13 @@ function UserPage() {
                 {pendingStatus == false &&
                   <>
                     <Fab
+                      size="small"
                       variant="extended"
                       color="primary"
                       onClick={openRequestMenu}>
                       Connect with
                       {" " + searchedUser?.first_name?.charAt(0).toUpperCase()
                         + searchedUser?.first_name?.slice(1)}
-                    </Fab>
-
-                    <Fab
-                      variant="extended"
-                      onClick={openRequestMenu}>
-                      Btn Option 2
                     </Fab>
                   </>
                 }
@@ -178,26 +192,11 @@ function UserPage() {
                   </MenuItem>
                 </Menu>
               </>}
+
           </div>
-          {userInParams == user.id && view == 'videos' &&
-
-            <div id='profile-info'>
-              <Button
-                id='manage-library'
-                variant='outlined'
-                onClick={() => { history.push('/managelibrary') }}>
-                Manage Library</Button>
-              <Button
-                id='my-connections'
-                variant='outlined'
-                onClick={() => { history.push(`/user/${user.id}/connections`) }}>
-                My Connections
-              </Button>
-
-            </div>}
 
           {userInParams == user.id && view == 'connections' &&
-            <div id='profile-info'>
+            <div className='profile-info'>
               <Button
                 variant='outlined'
                 onClick={() => { history.push(`/user/${user.id}/videos`) }}>
