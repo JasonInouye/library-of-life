@@ -82,13 +82,10 @@ function UserPage() {
                     <ProfilePicButton />
                   </div>
 
-                  {/* TODO attach to DB data */}
                   <div className='aboutMe'>
                     <Typography
                       variant='subtitle2'>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat.
+                      {user.about_me}
                     </Typography>
                   </div>
 
@@ -102,6 +99,13 @@ function UserPage() {
                 <div className='profile-img-div'>
                   <img className='profile-img' src={searchedUser.profile_image}
                     alt={`A picture of ${searchedUser.first_name}`} />
+                </div>
+
+                <div className='searchAboutMe'>
+                  <Typography
+                    variant='subtitle2'>
+                    {searchedUser.about_me}
+                  </Typography>
                 </div>
               </>
           }
@@ -140,9 +144,7 @@ function UserPage() {
                     </Fab>
                   </>
                 }
-
-
-
+                
                 {pendingStatus == true &&
                   <Fab
                     variant="extended"

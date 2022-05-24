@@ -90,3 +90,13 @@ otherwise square for some reason
     top: 7em;
     left: 30em;
 }
+
+.searchAboutMe {
+    margin: 8em;
+    width: 26em;
+    overflow-y: scroll;
+    /* overflow: -moz-scrollbars-vertical;  */
+    position: absolute;
+    top: 7em;
+    left: 30em;
+}

@@ -5,7 +5,7 @@ li {
 .toggleRight {
   display: flex;
   justify-content: center;
-  }
+}
 
 .connectionsImage {
     height: 100px;
@@ -43,6 +43,8 @@ li {
 .requestBtn li {
     display: inline;
 }
+
+
 
 
 
