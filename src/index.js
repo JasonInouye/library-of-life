@@ -8,10 +8,11 @@ import store from './redux/store';
 import App from './components/App/App';
 
 ReactDOM.render(
-  <Router>
   <Provider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>
-  </Router>,
+  ,
   document.getElementById('react-root'),
 );

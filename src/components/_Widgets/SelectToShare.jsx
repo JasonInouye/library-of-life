@@ -37,28 +37,15 @@ export default function SelectToShare({video}) {
 
     const handleConnectionObj = (id) => {
         console.log("in handleConnectionObj", id);
-        const idArray=[];
-        idArray.push(id)
+        const updatedSelectedIDs = [];
+        //if user already in array, then remove (splice, filter etc)
+        selectedIDs.indexOf(id)
 
-        setSelectedIDs([...idArray])
+        setSelectedIDs([...selectedIDs, id])
         setSelectedVideoIDs(video.id)
         // dispatch({type: 'SHARE_VIDEO', payload: shareObj})
     }
 
-
-    // const handleMarketChange = (event) => {
-    //     const { options } = event.target;
-    //     const inputs = [];
-    //     for (let i = 0, l = options.length; i < l; i += 1) {
-    //         if (options[i].selected) {
-    //             inputs.push(options[i].value);
-    //         }
-    //     }
-    //     setState({
-    //         ...state,
-    //         markets: inputs
-    //     });
-    // };
 
     console.log("in shareObj", shareObj);
 
@@ -104,7 +91,7 @@ export default function SelectToShare({video}) {
 
                             <Checkbox
                                 onChange={() => handleConnectionObj(connection.id)}
-                                checked={personName.indexOf(connection) > -1} />
+                                checked={selectedIDs.indexOf(connection.id) > -1} />
 
                             <ListItemText
                                 primary={connection.first_name + " " + connection.last_name}

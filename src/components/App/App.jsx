@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import customTheme from "../_customTheme/theme";
 
 import {
@@ -51,7 +51,7 @@ function App() {
 
     <ThemeProvider theme={customTheme}>
 
-      <>
+      
         {/* List of page/pages on which Nav will NOT render */}
         {location.pathname ===
 
@@ -176,7 +176,6 @@ function App() {
           </Route>
         </Switch>
         <Footer />
-      </>
 
     </ThemeProvider>
   );

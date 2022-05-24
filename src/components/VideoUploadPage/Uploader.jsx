@@ -14,7 +14,7 @@ import {
   InputLabel,
   Select
 } from '@mui/material';
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from '@mui/icons-material/Close';
 
 function Uploader() {
   const dispatch = useDispatch();

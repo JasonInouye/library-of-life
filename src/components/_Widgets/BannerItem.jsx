@@ -24,14 +24,13 @@ function BannerItem({ banner }) {
 
     return (
         <>
-            <Container>
 
                 <Card>
                     <img
                         src={banner.url}
-                        alt={`A picture of ${banner.name}`} 
-                        style={{height:'2em', width:'100%'}}/>
-                    <div
+                        alt={`A picture of ${banner.name}`}
+                        style={{ height: '2em', width: '100%' }} />
+                    {/* <div
                         style={{
                             marginBottom: '0.5em',
                             display: 'flex',
@@ -39,7 +38,7 @@ function BannerItem({ banner }) {
                             flexWrap: 'nowrap',
                             justifyContent: 'center',
                             alignItems: 'center'
-                        }}>
+                        }}> */}
                         <Typography
                             style={{ margin: '.5em' }}
                             gutterBottom variant="h7"
@@ -47,10 +46,10 @@ function BannerItem({ banner }) {
                             {banner.name}
                         </Typography>
                         {/* QUESTION how to use RadioGroup across components? */}
-                        <RadioGroup>
-                            <Radio value={banner.url} />
-                        </RadioGroup>
-                    </div>
+
+                        <Radio value={banner.url} />
+
+                    {/* </div> */}
 
                     {/* <div style={{
                         marginBottom: '0.5em',
@@ -65,7 +64,6 @@ function BannerItem({ banner }) {
                     */}
 
                 </Card>
-            </Container>
         </>
     )
 }
