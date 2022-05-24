@@ -2,6 +2,8 @@ import React from 'react';
 
 import { useHistory } from 'react-router-dom';
 import RegisterForm from '../RegisterForm/RegisterForm';
+import { Button } from "@mui/material";
+import './RegisterPage.css';
 
 function RegisterPage() {
   const history = useHistory();
@@ -10,8 +12,9 @@ function RegisterPage() {
     <div>
       <RegisterForm />
 
-      <center>
-        <button
+      <div className="centerLogin">
+        <Button
+          variant="outlined"
           type="button"
           className="btn btn_asLink"
           onClick={() => {
@@ -19,8 +22,8 @@ function RegisterPage() {
           }}
         >
           Login
-        </button>
-      </center>
+        </Button>
+      </div>
     </div>
   );
 }

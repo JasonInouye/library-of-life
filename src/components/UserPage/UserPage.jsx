@@ -12,8 +12,6 @@ import BannerDialog from '../_Widgets/BannerDialog';
 import { Menu, Typography, Button, Fab } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
 
-
-
 function UserPage() {
 
   const dispatch = useDispatch();
@@ -22,8 +20,8 @@ function UserPage() {
 
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
-  const pendingStatus = useSelector((store) => store.connectionsReducer.pending);
-  // const pendingStatus = useSelector((store) => store.pendingStatus);
+  // const pendingStatus = useSelector((store) => store.connectionsReducer.pending);
+  const pendingStatus = useSelector((store) => store.pendingStatus);
   const view = useParams().view;
   const userInParams = Number(useParams().userInParams);
 
@@ -84,13 +82,10 @@ function UserPage() {
                     <ProfilePicButton />
                   </div>
 
-                  {/* TODO attach to DB data */}
                   <div className='aboutMe'>
                     <Typography
                       variant='subtitle2'>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                      et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                      aliquip ex ea commodo consequat.
+                      {user.about_me}
                     </Typography>
                   </div>
 
@@ -104,6 +99,13 @@ function UserPage() {
                 <div className='profile-img-div'>
                   <img className='profile-img' src={searchedUser.profile_image}
                     alt={`A picture of ${searchedUser.first_name}`} />
+                </div>
+
+                <div className='searchAboutMe'>
+                  <Typography
+                    variant='subtitle2'>
+                    {searchedUser.about_me}
+                  </Typography>
                 </div>
               </>
           }
@@ -142,9 +144,7 @@ function UserPage() {
                     </Fab>
                   </>
                 }
-
-
-
+                
                 {pendingStatus == true &&
                   <Fab
                     variant="extended"
@@ -179,7 +179,7 @@ function UserPage() {
               <Button
                 variant='outlined'
                 onClick={() => { history.push(`/user/${user.id}/videos`) }}>
-                My Videos
+                My Profile
               </Button>
             </div>}
 

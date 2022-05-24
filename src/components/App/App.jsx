@@ -49,7 +49,8 @@ function App() {
 
   return (
 
-    <ThemeProvider theme={customTheme}>
+    <ThemeProvider theme={customTheme}> 
+      {/* <Router> */}
 
       
         {/* List of page/pages on which Nav will NOT render */}
@@ -176,7 +177,7 @@ function App() {
           </Route>
         </Switch>
         <Footer />
-
+            {/* </Router> */}
     </ThemeProvider>
   );
 }
