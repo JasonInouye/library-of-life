@@ -2,12 +2,7 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-/**
- * GET route template
- */
-router.get('/', (req, res) => {
-    // GET route code here
-});
+
 
 /**
  * GET route for ALL USER videos and their prompts

@@ -15,7 +15,7 @@ function DeleteButton({ video }) {
 
     const handleDelete = () => {
         console.log('clicked delete', video.id);
-        // dispatch({ type: 'DELETE_VIDEO', payload: video.id });
+        dispatch({ type: 'DELETE_VIDEO', payload: video.id });
         // dispatch({ type: 'CLEAR_VIDEOS' });
     };
 
