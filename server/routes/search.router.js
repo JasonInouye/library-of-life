@@ -18,7 +18,8 @@ router.get('/', (req, res) => {
 router.get('/:searchedUser', (req, res) => {
     const queryText = `
     SELECT * FROM "users"
-    WHERE "id" = $1;
+    JOIN "connections" ON ("users".id = "connections"."user_A_id") OR ("users".id = "connections"."user_B_id")
+    WHERE "users".id = $1;
     `
   
     pool.query(queryText, [req.params.searchedUser]).then(result => {

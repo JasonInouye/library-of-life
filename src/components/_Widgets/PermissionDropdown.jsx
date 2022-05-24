@@ -22,16 +22,16 @@ function PermissionDropdown({video}) {
 
 
     //The database will replace this useState 
-    const [permission, setPermission] = useState(''); //default in DB is invite-only
+    // const [permission, setPermission] = useState(''); //default in DB is invite-only
     
 
     const handleChange = (event) => {
         //Change to dispatch when hooked up to DB
-        setPermission(event.target.value);
+        // setPermission(event.target.value);
         dispatch({type: 'UPDATE_PERMISSION', payload: {video_id: video.id, permission: event.target.value}});
     };
     
-    console.log('selected permission is:', permission);
+    // console.log('selected permission is:', permission);
 
     return (
         <>
@@ -42,7 +42,7 @@ function PermissionDropdown({video}) {
                 <Select
                     labelId="permission-select-small"
                     id="permission-select-small"
-                    value={permission}
+                    value={video.permission}
                     label="permission"
                     onChange={handleChange}
                 >

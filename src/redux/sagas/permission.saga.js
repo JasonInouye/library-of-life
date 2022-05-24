@@ -57,6 +57,8 @@ function* updatePermission(action) {
 
     yield put({ type: 'GET_PERMISSION', payload: video_id }); //GET following PUT
 
+    yield put({ type: 'GET_USER_VIDEOS'})
+
   } catch (error) {
     console.log('Error with updatePermission saga:', error);
   }

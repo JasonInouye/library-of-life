@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './UserVideoItem.css';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ReactPlayerComponent from "../_Widgets/ReactPlayerComponent";
 
 /******* buttons / dropdown menus  ********/
@@ -18,12 +18,15 @@ import ShareDialogBox from "../_Widgets/ShareDialogBox";
 
 function UserVideoItem({ video }) {
 
+    const dispatch = useDispatch();
+
     // check if user owns videos; don't render edit/delete buttons if not
     const user = useSelector((store) => store.user);
 
     const handleClickEdit = () => {
         console.log('clicked into dialog');
     };
+
 
     return (
         <>
@@ -45,7 +48,7 @@ function UserVideoItem({ video }) {
                     {user.id == video.user_id ?
                         <>
                             <CardActions style={{ display: 'contents' }}>
-                                <PermissionDropdown video={video}/>
+                                <PermissionDropdown video={video} />
 
                                 <div style={{
                                     marginBottom: '0.5em',

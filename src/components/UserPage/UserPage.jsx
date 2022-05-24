@@ -28,8 +28,6 @@ function UserPage() {
   const userInParams = Number(useParams().userInParams);
 
   const [menuPosition, setMenuPosition] = useState(null);
-  // const [btnDisabled, setBtnDisabled] = useState(true);
-  console.log('status', pendingStatus);
 
   const openRequestMenu = (event) => {
     if (menuPosition) {
@@ -201,11 +199,13 @@ function UserPage() {
 
           {view == "uploads" &&
             <VideoUploadPage />}
-
-
         </>
-
       }
+
+      {userInParams != user.id &&
+        <>
+          
+        </>}
     </div >
   )
 }
