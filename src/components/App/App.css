@@ -22,6 +22,10 @@ body {
   color: #667b68;
 }
 
+.work {
+  padding-right: 30px;
+}
+
 .landing {
   text-align: center;
   font-size: 30px;

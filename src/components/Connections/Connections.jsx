@@ -81,26 +81,29 @@ function Connections() {
                     exclusive
                     onChange={(event) => { handleToggle(event.target.value) }}
                     aria-label="connections">
-                    <ToggleButton onClick={() => { handleAll() }} value="friends" aria-label="friends">
+                    
+                   <div className="work"> <ToggleButton onClick={() => { handleAll() }} value="friends" aria-label="friends">
                         <h3>All</h3>
-                    </ToggleButton>
-                    <ToggleButton onClick={() => { handleFriends() }} value="friends" aria-label="friends">
+                    </ToggleButton> </div>
+                    
+                    <div className="work">  <ToggleButton onClick={() => { handleFriends() }} value="friends" aria-label="friends">
                         <h3>Friends</h3>
-                    </ToggleButton>
-                    <ToggleButton onClick={() => { handleFamily() }} value="family" aria-label="family">
+                    </ToggleButton>  </div>
+                    
+                    <div className="work"> <ToggleButton onClick={() => { handleFamily() }} value="family" aria-label="family">
                         <h3>Family</h3>
-                    </ToggleButton>
-                    <ToggleButton onClick={() => { handleRequests() }} value="requests" aria-label="requests">
+                    </ToggleButton> </div>
+                    
+                    <div className="work">  <ToggleButton onClick={() => { handleRequests() }} value="requests" aria-label="requests">
                         <h3>Requests</h3>
-                    </ToggleButton>
+                    </ToggleButton> </div>
+                
                 </ToggleButtonGroup>
             </div>
             </Box>
 
             <Box
                 sx={{
-                    // display: 'flex',
-                    // justifyContent: "center",
                     '& > :not(style)': {
                         width: 350,
                     },
