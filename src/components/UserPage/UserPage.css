@@ -89,5 +89,14 @@ otherwise square for some reason
     position: absolute;
     top: 7em;
     left: 30em;
+}
 
+.searchAboutMe {
+    width: 26em;
+    overflow-y: scroll;
+    /* overflow: -moz-scrollbars-vertical;  */
+    position: absolute;
+    top: 7em;
+    left: 30em;
+    margin: 10%;
 }

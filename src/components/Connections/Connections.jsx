@@ -6,6 +6,7 @@ import { ToggleButton } from '@mui/material';
 import { ToggleButtonGroup } from '@mui/material';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
+import Swal from 'sweetalert2'
 
 function Connections() {
 
@@ -53,7 +54,16 @@ function Connections() {
     }
 
     const handleRemove = (id) => {
-        dispatch({ type: 'DELETE_CONNECTIONS', payload: id });
+        Swal.fire({
+            icon: 'warning',
+            title: 'Are you sure you want to remove this connection?',
+            text: 'The removal of this friend will be permanent.',
+            showCancelButton: true,
+          }).then((result => {
+              if (result.isConfirmed) {
+                dispatch({ type: 'DELETE_CONNECTIONS', payload: id });
+              }
+          }))
     }
 
     const handleAccept = (id) => {
@@ -115,7 +125,7 @@ function Connections() {
                         <div key={i}>
                             {((connect.relationship == "friend" || "family") && connect.pending == false) &&
                                 <ul>
-                                    <Paper onClick={() => { history.push(`/user/${connect.id}/videos`) }} elevation={3}>
+                                    <Paper elevation={3}>
                                         <img className="connectionsImage" src={connect.profile_image} />
                                         <div className="connectionsName" >
                                             <li>{connect.first_name + " " + connect.last_name}</li>
@@ -126,6 +136,8 @@ function Connections() {
                         </div>
                     )
                 })}
+
+             {/* onClick={() => { history.push(`/user/${connect.id}/videos`) }}  */}
 
 
                 {/* handle friends */}
