@@ -14,7 +14,7 @@ function* getUsers(action) {
 function* getSearchedUser(action) {
     try {
         const response = yield axios.get(`/api/search/${action.payload}`);
-
+        yield console.log('response', response.data)
         yield put({ type: 'SET_SEARCHED_USER', payload: response.data[0] });
         yield put({ type: 'GET_CONNECTIONS' })
         yield put({ type: 'GET_PENDING_STATUS', payload: action.payload });

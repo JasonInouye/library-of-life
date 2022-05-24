@@ -125,20 +125,25 @@ function Connections() {
 
                 {/* {requests && } */}
                 {requests && connections?.map((connect, i) => {
-                    console.log(connect.pending)
+                    console.log('user b', connect.user_B_id)
                     return (
                         <div key={i}>
-                            {connect?.pending == true && user.id == connect?.user_B_id &&
-                                <ul>
-                                    <Paper elevation={3}>
-                                        <img className="connectionImage" src={connect.profile_image} />
-                                        <div className="connectionsName">
-                                            <li>{connect.first_name + " " + connect.last_name}</li>
-                                        </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Ignore</li>
-                                        <li className="connectionsAccept" onClick={() => handleAccept(connect.id)}>Accept</li>
-                                    </Paper>
-                                </ul>}
+                            {connect.pending == true &&
+                                <>
+                                    {user.id == connect.user_B_id &&
+                                        // <ul>
+                                        <Paper elevation={3}>
+                                            <img className="connectionImage" src={connect.profile_image} />
+                                            <div className="connectionsName">
+                                                <li>{connect.first_name + " " + connect.last_name}</li>
+                                            </div>
+                                            <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Ignore</li>
+                                            <li className="connectionsAccept" onClick={() => handleAccept(connect.id)}>Accept</li>
+                                        </Paper>
+                                        // </ul>
+                                    }
+                                </>
+                            }
                         </div>
                     )
                 })}
