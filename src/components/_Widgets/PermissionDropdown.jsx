@@ -12,7 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 
-function PermissionDropdown() {
+function PermissionDropdown({video}) {
 
     const dispatch = useDispatch();
     const currentPermission = useSelector((store) => store.permission);
