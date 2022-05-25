@@ -51,17 +51,14 @@ function UserPage() {
     dispatch({ type: 'POST_REQUEST', payload: { relationship: 'family', userB: userInParams } })
   };
 
-
-  console.log('searchedUser status should be:', pendingStatus);
-
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
 
   useEffect(() => {
     for (const connection of connections) {
-      if((connection.user_A_id == user.id && connection.user_B_id == userInParams && connection.pending == false) ||
-      (connection.user_B_id == user.id && connection.user_A_id == userInParams && connection.pending == false)) {
+      if ((connection.user_A_id == user.id && connection.user_B_id == userInParams && connection.pending == false) ||
+        (connection.user_B_id == user.id && connection.user_A_id == userInParams && connection.pending == false)) {
         setRelationshipWithConnection(connection.relationship)
       }
     }
@@ -139,21 +136,28 @@ function UserPage() {
 
             {userInParams != user.id &&
               <>
-                {pendingStatus == false &&
+                {pendingStatus?.pending == undefined &&
+                  <Fab
+                    size="small"
+                    variant="extended"
+                    color="primary"
+                    onClick={openRequestMenu}>
+                    Connect with
+                    {" " + searchedUser?.first_name?.charAt(0).toUpperCase()
+                      + searchedUser?.first_name?.slice(1)}
+                  </Fab>
+                }
+                {pendingStatus?.pending == false &&
                   <>
-                    <Fab
-                      size="small"
-                      variant="extended"
-                      color="primary"
-                      onClick={openRequestMenu}>
-                      Connect with
-                      {" " + searchedUser?.first_name?.charAt(0).toUpperCase()
-                        + searchedUser?.first_name?.slice(1)}
-                    </Fab>
+                    {pendingStatus?.relationship &&
+                      <h3>
+                        {pendingStatus?.relationship?.charAt(0).toUpperCase()
+                          + pendingStatus?.relationship?.slice(1)}
+                      </h3>
+                    }
                   </>
                 }
-                
-                {pendingStatus == true &&
+                {pendingStatus?.pending == true &&
                   <Fab
                     variant="extended"
                     disabled>
@@ -198,7 +202,7 @@ function UserPage() {
         userInParams == user.id &&
         <>
           {view == "videos" &&
-            <UserVideos relationship='self'/>}
+            <UserVideos relationship='self' />}
 
           {/* TODO this should be "shared with me" videos? 
           {view == "videos" &&
@@ -212,10 +216,12 @@ function UserPage() {
         </>
       }
 
-      {userInParams != user.id &&
+      {
+        userInParams != user.id &&
         <>
-          <UserVideos relationship={relationshipWithConnection}/>
-        </>}
+          <UserVideos relationship={relationshipWithConnection} />
+        </>
+      }
     </div >
   )
 }
