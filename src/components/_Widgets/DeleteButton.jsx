@@ -12,30 +12,29 @@ import IconButton from '@mui/material/IconButton';
 function DeleteButton({ video }) {
     const dispatch = useDispatch();
 
-
-    // dispatch needs to connect to sweet alert 
-    // const handleDelete = () => {
-    //     console.log('clicked delete', video.id);
-    //     // dispatch({ type: 'DELETE_VIDEO', payload: video.id });
-    //     // dispatch({ type: 'CLEAR_VIDEOS' });
-    //     Swal.fire({
-    //         icon: 'warning',
-    //         title: 'Are you sure you want to delete this video?',
-    //         text: 'The deletion of this video will be permanent.',
-    //         showCancelButton: true,
-    //       })
-    // };
-  
     const handleDelete = (event) => {
-        console.log('clicked DELETE', video)
-        // TODO use delete route from WatchVideo
-        dispatch ({ type: 'DELETE_VIDEO', payload: video })
-    }
+        console.log('clicked delete', video);
+        Swal.fire({
+            icon: 'warning',
+            title: 'Are you sure you want to delete this video?',
+            text: 'The deletion of this video will be permanent.',
+            showCancelButton: true,
+          }).then((result) => {
+              if (result.isConfirmed) {
+                dispatch ({ type: 'DELETE_VIDEO', payload: video })
+              }
+          })
+    };
+  
+    // const handleDelete = (event) => {
+    //     console.log('clicked DELETE', video)
+    //     // TODO use delete route from WatchVideo
+    //     dispatch ({ type: 'DELETE_VIDEO', payload: video })
+    // }
 
     // const handleDelete = () => {
     //     console.log('clicked delete', video.id);
     //     dispatch({ type: 'DELETE_VIDEO', payload: video.id });
-       
     // };
 
     return (
