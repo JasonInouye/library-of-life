@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put, takeLatest, delay } from 'redux-saga/effects';
 import axios from 'axios';
 
 function* postUserVideos(action) {
@@ -47,8 +47,9 @@ function* getUploadUrl(action){
   try {
       const response = yield axios.get(`/api/upload`)
       console.log('this is the URL data from GET', response.data);
-      //yield put({ type: 'SET_UPLOAD_VID_URL', payload: response.data })
-      //yield put({ type: 'SET_MODAL_VIDEO', payload: response.data.Key })
+      yield delay(5000);
+      yield put({ type: 'SET_UPLOAD_VID_URL', payload: response.data })
+      yield put({ type: 'SET_MODAL_VIDEO', payload: response.data.Key })
       //yield put({ type: 'POST_VIDEO', payload: { key: response.data.Key, prompt: action.prompt } })
   } catch(err) {
       console.log(err);

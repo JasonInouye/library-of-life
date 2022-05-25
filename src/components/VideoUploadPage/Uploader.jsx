@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { delay } from 'redux-saga/effects';
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
 import {
@@ -59,7 +60,7 @@ function Uploader() {
       url: API_ENDPOINT,
     });
 
-    console.log('Response: ', response.data.Key);
+    //console.log('Response: ', response.data.Key);
     // dispatch({
     //   type: 'GET_UPLOAD_URL',
     //   prompt: videoPrompt
@@ -83,6 +84,7 @@ function Uploader() {
 
     // * PUT request: upload file to S3
     const result = await fetch(response.data.uploadURL, {
+    //const result = await fetch(requestURL.uploadURL, {
       method: 'PUT',
       body: f['file'],
     });
