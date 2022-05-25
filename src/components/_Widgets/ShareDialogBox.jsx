@@ -3,7 +3,7 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-// import { makeStyles } from '@mui/styles'
+import Swal from 'sweetalert2';
 
 
 /******* needed to create shortened URL  ********/
@@ -76,7 +76,6 @@ export default function ShareDialogBox({ title, children, component, callback, v
     const handleClose = () => {
         setOpen(false);
         setShowShortLink(false);
-        // dispatch({ type: 'CLEAR_SHARE_REDUCER' });
     };
 
 
