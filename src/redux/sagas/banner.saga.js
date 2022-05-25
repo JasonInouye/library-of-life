@@ -1,0 +1,21 @@
+import { put, takeLatest } from 'redux-saga/effects';
+import axios from 'axios';
+
+
+function* postBanner(action) {
+
+      console.log('postBanner SAGA data:', action.payload);
+    // try {
+    //     yield axios.post('/api/banner/', action.payload)
+    // } catch (err) {
+    //     console.log(err);
+    // }
+}
+
+function* bannerSaga() {
+
+    yield takeLatest('POST_BANNER', postBanner);
+
+}
+
+export default bannerSaga;

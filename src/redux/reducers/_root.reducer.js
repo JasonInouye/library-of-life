@@ -30,7 +30,7 @@ const rootReducer = combineReducers({
   videoModalReducer, // did not want to bleed this data into the videoReducer
   shareReducer,
   urlReducer,
-  bannerReducer
+  bannerReducer,
 });
 
 

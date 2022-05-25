@@ -30,7 +30,7 @@ const banners = [
 
 function BannerDialog({ title, children, component, callback, banner }) {
 
-    // const banners = useSelector((store) => store.bannerReducer);
+    const selectedBanner = useSelector((store) => store.bannerReducer);
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
 
@@ -46,15 +46,11 @@ function BannerDialog({ title, children, component, callback, banner }) {
     const handleClose = () => {
         setOpen(false);
     };
-
-    const handleChange = () => {
-        console.log('the banner picked is', event.target.value);
-        // dispatch({ type: 'SELECT_BANNER', payload: event.target.value})
-    }
+    
 
     const handleSubmit = () => {
-        // console.log('clicked "save changes" for banner');
-        // TODO dispatch
+        console.log("banner should be", selectedBanner);
+        dispatch({ type: 'POST_BANNER', payload: selectedBanner })
         // TODO put in the promise: swal("Good job!", "You clicked the button!", "success");
         setOpen(false);
     }
@@ -106,7 +102,7 @@ function BannerDialog({ title, children, component, callback, banner }) {
                                                     <BannerItem
                                                         key={i}
                                                         banner={banner}
-                                                        />
+                                                    />
 
                                                 </Grid>
                                             </div>)
