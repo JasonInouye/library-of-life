@@ -2,7 +2,8 @@ import React from 'react';
 import BannerItem from './BannerItem';
 import '../../UserPage/UserPage.css'
 
-import {Dialog, DialogActions, DialogContent } from '@mui/material';
+import { Dialog, DialogActions, DialogContent } from '@mui/material';
+import { FormControl } from '@mui/material';
 
 import { VscEdit } from 'react-icons/vsc';
 import { Button, Container, Grid, RadioGroup } from '@mui/material';
@@ -38,13 +39,18 @@ function BannerDialog({ title, children, component, callback, banner }) {
         // //CALL THE FUNCTION GIVEN, IF EXISTS:
         // { callback ? callback() : null };
         setOpen(true);
-        console.log();
+        console.log('clicked open BannerDialog');
     };
 
 
     const handleClose = () => {
         setOpen(false);
     };
+
+    const handleChange = () => {
+        console.log('the banner picked is', event.target.value);
+        // dispatch({ type: 'SELECT_BANNER', payload: event.target.value})
+    }
 
     const handleSubmit = () => {
         // console.log('clicked "save changes" for banner');
@@ -86,23 +92,27 @@ function BannerDialog({ title, children, component, callback, banner }) {
                         <Grid
                             container
                             spacing={1}
-                            >
-                            <RadioGroup>
-                                {banners?.map((banner, i) => {
-                                    return ( //loops thru array of banners to create each banner item
-                                        <div className="entireBannerCard">
-                                        < Grid
-                                            item xs={6} md={12}
-                                            key={banner.id}>
+                        >
+                            <FormControl>
+                                <RadioGroup>
 
-                                            <BannerItem
-                                                key={i}
-                                                banner={banner} />
+                                    {banners?.map((banner, i) => {
+                                        return ( //loops thru array of banners to create each banner item
+                                            <div className="entireBannerCard">
+                                                < Grid
+                                                    item xs={6} md={12}
+                                                    key={banner.id}>
 
-                                        </Grid>
-                                        </div>)
-                                })}
-                            </RadioGroup>
+                                                    <BannerItem
+                                                        key={i}
+                                                        banner={banner}
+                                                        />
+
+                                                </Grid>
+                                            </div>)
+                                    })}
+                                </RadioGroup>
+                            </FormControl>
                         </Grid>
                     </Container>
                 </DialogContent>

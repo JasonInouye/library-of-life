@@ -1,45 +1,50 @@
 import React from "react";
-import { useSelector } from 'react-redux';
-import '../../UserPage/UserPage.css'
+import { useDispatch } from "react-redux";
 
 
 /******* MUI card ********/
-import { Radio, Typography, Card  } from "@mui/material";
+import { Radio, Typography, Card, FormControlLabel } from "@mui/material";
 
 
 
 function BannerItem({ banner }) {
 
-    // check if user owns banners; don't render edit/delete buttons if not
-    const user = useSelector((store) => store.user);
+    const dispatch = useDispatch();
 
-    const handleClickEdit = () => {
-        console.log('clicked into dialog');
-    };
+    const handleChange = () => {
+        console.log('the banner picked is', event.target.value);
+        // dispatch({ type: 'SELECT_BANNER', payload: event.target.value})
+    }
 
     return (
-            <Card >
-                <img
-                    src={banner.url}
-                    alt={`A picture of ${banner.name}`}
-                    className='bannerItemImg' 
-                    />
+        <Card >
+            <img
+                src={banner.url}
+                alt={`A picture of ${banner.name}`}
+                className='bannerItemImg'
+            />
 
-              <div className="bannerCard">
+            <div className="bannerCard">
                 <Typography
                     style={{ margin: '.5em' }}
                     gutterBottom variant="h7"
                     component="div">
                     {banner.name}
                 </Typography>
-                {/* QUESTION how to use RadioGroup across components? */}
 
-                <Radio value={banner.url} />
-                </div>
+                <FormControlLabel
+                    control={<Radio />}
+                    value={banner.url}
+                    label={banner.name}
+                    onChange={handleChange}
+                />
+                {/* <Radio
+                    value={banner.url}
+                    onChange={handleChange}
+                /> */}
+            </div>
 
-                   
-
-            </Card>
+        </Card>
     )
 }
 
