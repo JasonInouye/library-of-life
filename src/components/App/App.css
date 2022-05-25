@@ -9,6 +9,10 @@ body {
   margin: 0px;
 }
 
+.centerAbout {
+  text-align: center;
+}
+
 /* img {
   display: inline-block;
   max-width: 100%;
