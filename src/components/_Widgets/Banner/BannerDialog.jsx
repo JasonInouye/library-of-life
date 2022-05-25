@@ -78,28 +78,29 @@ function BannerDialog({ title, children, component, callback, banner }) {
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="form-dialog-title"
-                fullWidth
-                maxWidth="sm"
+                maxWidth="lg"
             >
 
                 <DialogContent>
                     <Container>
                         <Grid
                             container
-                            spacing={5}
-                            className="bannerTileGrid">
+                            spacing={1}
+                            >
                             <RadioGroup>
                                 {banners?.map((banner, i) => {
                                     return ( //loops thru array of banners to create each banner item
+                                        <div className="entireBannerCard">
                                         < Grid
-                                            item xs={12} md={8}
+                                            item xs={6} md={12}
                                             key={banner.id}>
 
                                             <BannerItem
                                                 key={i}
                                                 banner={banner} />
 
-                                        </Grid>)
+                                        </Grid>
+                                        </div>)
                                 })}
                             </RadioGroup>
                         </Grid>

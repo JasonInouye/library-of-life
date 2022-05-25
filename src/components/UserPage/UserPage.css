@@ -7,8 +7,12 @@
     margin-bottom: 100px;
 } */
 
+.entireBannerCard{
+    margin: 1em;
+    display: block;
+}
 
-/* everything below card image */
+/* everything below card image, on card */
 .bannerCard {
     margin-bottom: 0.5em;
     display: flex;
