@@ -18,6 +18,7 @@ const requestRouter = require('./routes/request.router');
 const connectionsRouter = require('./routes/connections.router');
 const uploadRouter = require('./routes/s3lol.router');
 const shareRouter = require('./routes/share.router');
+const bannerRouter = require('./routes/banner.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -50,6 +51,9 @@ app.use('/api/prompt', promptRouter);
 
 /* Share route (to the "shared_videos" table) */
 app.use('/api/share', shareRouter);
+
+/* Banner route (to the "user" table) */
+app.use('/api/banner', bannerRouter);
 
 /* route to shorten URLs */
 app.use('/api/link', linkRouter);
