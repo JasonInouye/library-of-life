@@ -11,11 +11,16 @@ import BannerDialog from '../_Widgets/Banner/BannerDialog';
 /******* styling  ********/
 import { Menu, Typography, Button, Fab } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
+import { ToggleButton } from '@mui/material';
+import { ToggleButtonGroup } from '@mui/material';
+import Box from '@mui/material/Box';
 
 function UserPage() {
 
   const dispatch = useDispatch();
   const history = useHistory();
+  const [toggle, setToggle] = React.useState('left');
+
 
 
   const user = useSelector((store) => store.user);
@@ -58,6 +63,19 @@ function UserPage() {
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
+
+
+  const handleToggle = (event, newToggle) => {
+    setToggle(newToggle);
+  };
+
+  const handleMyVideos = () => {
+
+  }
+
+  const handleSharedVideos = () => {
+
+  }
 
 
   return (
@@ -144,7 +162,7 @@ function UserPage() {
                     </Fab>
                   </>
                 }
-                
+
                 {pendingStatus == true &&
                   <Fab
                     variant="extended"
@@ -174,6 +192,22 @@ function UserPage() {
 
           </div>
 
+          <ToggleButtonGroup
+            value={toggle}
+            color="primary"
+            size="small"
+            exclusive
+            onChange={(event) => { handleToggle(event.target.value) }}
+            aria-label="connections">
+            <ToggleButton onClick={() => { handleMyVideos() }} value="myVideos" aria-label="myVideos">
+              <h3>My Videos</h3>
+            </ToggleButton>
+
+            <ToggleButton onClick={() => { handleSharedVideos() }} value="sharedVideos" aria-label="sharedVideos">
+              <h3>Shared Videos</h3>
+            </ToggleButton>
+          </ToggleButtonGroup>
+
           {userInParams == user.id && view == 'connections' &&
             <div className='profile-info'>
               <Button
@@ -201,10 +235,7 @@ function UserPage() {
 
           {view == "uploads" &&
             <VideoUploadPage />}
-
-
         </>
-
       }
     </div >
   )
