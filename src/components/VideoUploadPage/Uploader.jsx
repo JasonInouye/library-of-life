@@ -14,8 +14,20 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-
 function Uploader() {
+  useEffect(() => {
+    dispatch({
+      type: 'GET_PROMPTS',
+    });
+    dispatch({
+      type: 'CLEAR_VIDEO',
+    });
+    dispatch({
+      type: 'CLEAR_UPLOAD_URL',
+    });
+  }, []);
+
+  const axios = require('axios').default;
   const dispatch = useDispatch();
   const requestURL = useSelector((store) => store.urlReducer);
   const video = useSelector((store) => store.videoReducer);
@@ -32,33 +44,45 @@ function Uploader() {
     };
   };
 
+  const API_ENDPOINT =
+    'https://hfoxt7tc91.execute-api.us-east-1.amazonaws.com/default/getPresignedVideoURL2';
   const handleChangeStatus = ({ meta, remove }, status) => {
     console.log('this is the status', status, meta);
   };
 
   const handleSubmit = async (files) => {
     const f = files[0];
-    dispatch({
-      type: 'GET_UPLOAD_URL',
-      prompt: videoPrompt
+    console.log(f['file']);
+    // * GET request: presigned URL
+    const response = await axios({
+      method: 'GET',
+      url: API_ENDPOINT,
     });
+
+    console.log('Response: ', response.data.Key);
+    // dispatch({
+    //   type: 'GET_UPLOAD_URL',
+    //   prompt: videoPrompt
+    // });
+
+    // const {url} = await axios.get("/api/upload").then(response)
+    // console.log('this is the variable URL Fetch', url)
 
     //console.log('modal url ', requestURL.Key);
     //key is the video id from AWS
-    // dispatch({
-    //   type: 'SET_MODAL_VIDEO',
-    //   payload: requestURL.Key,
-    // });
 
-    // dispatch({
-    //   type: 'POST_VIDEO',
-    //   payload: { key: requestURL.Key, prompt: videoPrompt },
-    // });
+    dispatch({
+      type: 'SET_MODAL_VIDEO',
+      payload: response.data.Key,
+    });
 
-    console.log('this is the PUT data', requestURL.uploadURL, f['file']);
+    dispatch({
+      type: 'POST_VIDEO',
+      payload: { key: response.data.Key, prompt: videoPrompt },
+    });
 
     // * PUT request: upload file to S3
-    const result = await fetch(requestURL.uploadURL, {
+    const result = await fetch(response.data.uploadURL, {
       method: 'PUT',
       body: f['file'],
     });
@@ -76,9 +100,8 @@ function Uploader() {
   };
 
   const handleCloseVideoModal = () => {
-    console.log('this window CLOSED');
-    dispatch({ type: 'GET_PROMPTS' });
-    dispatch({ type: 'CLEAR_UPLOAD_URL'})
+    dispatch({ type: 'CLEAR_UPLOAD_URL' });
+    setVideoPrompt('');
     setOpenVideoModal(false);
   };
 

@@ -1,5 +1,4 @@
 const videoModalReducer = (state = [], action) => {
-    console.log('this is the modal payload', action.payload);
     switch (action.type) {
         case 'SET_MODAL_VIDEO':
             return action.payload;
