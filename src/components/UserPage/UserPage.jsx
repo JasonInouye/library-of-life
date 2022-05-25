@@ -6,7 +6,7 @@ import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 import ProfilePicButton from '../_Widgets/ProfilePicButton';
-import BannerDialog from '../_Widgets/BannerDialog';
+import BannerDialog from '../_Widgets/Banner/BannerDialog';
 
 /******* styling  ********/
 import { Menu, Typography, Button, Fab } from "@mui/material";
