@@ -1,16 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios');
+const pool = require('../modules/pool');
 
-router.post('/', (req, res) => {
-    console.log('banner router data:', req.body);
-    
+
+router.put('/', (req, res) => {
+    // console.log('banner router data:', req.body.banner);
+
     const queryText = `
-    SELECT "pending" FROM "connections"
-    WHERE "user_A_id" = ${req.user.id}
+        UPDATE "users" 
+        SET "banner_image" = $1
+        WHERE "id" = ${req.user.id}
     ;`;
 
-    pool.query(queryText)
+    pool.query(queryText, [req.body.banner])
         .then((result) => {
             console.log('server GET connections', result.rows);
             res.send(result.rows);
@@ -19,6 +21,6 @@ router.post('/', (req, res) => {
             res.sendStatus(500)
         })
 });
-    
+
 
 module.exports = router;

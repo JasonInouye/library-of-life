@@ -46,11 +46,16 @@ function BannerDialog({ title, children, component, callback, banner }) {
     const handleClose = () => {
         setOpen(false);
     };
-    
+
 
     const handleSubmit = () => {
         console.log("banner should be", selectedBanner);
-        dispatch({ type: 'POST_BANNER', payload: selectedBanner })
+        dispatch({
+            type: 'POST_BANNER',
+            payload: {
+                banner: selectedBanner
+            }
+        })
         // TODO put in the promise: swal("Good job!", "You clicked the button!", "success");
         setOpen(false);
     }

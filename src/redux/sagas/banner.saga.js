@@ -6,7 +6,7 @@ function* postBanner(action) {
 
       console.log('postBanner SAGA data:', action.payload);
     try {
-        yield axios.post('/api/banner/', action.payload)
+        yield axios.put('/api/banner/', action.payload)
     } catch (err) {
         console.log(err);
     }
