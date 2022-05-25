@@ -56,7 +56,7 @@ export default function SelectToShare({ video }) {
         }
     }
 
-    // console.log("values in shareObj", shareObj);
+    console.log("values in shareObj", shareObj);
 
     const handleSelectedName = (event) => {
         const {

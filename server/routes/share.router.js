@@ -12,8 +12,7 @@ router.post('/', async (req, res) => {
 
     try {
         await connection.query('BEGIN');
-        // TODO loop here --- await connection.query(sqlText, []);
-
+        // TODO loop here 
 
         // const sqlText = `INSERT INTO "shared_videos" ("user_id", "video_id")
         // VALUES ($1, $2)`;
@@ -28,7 +27,6 @@ router.post('/', async (req, res) => {
 
         await connection.query('COMMIT');
         res.sendStatus(200);
-        console.log(status);
         
     } catch (error) {
         await connection.query('ROLLBACK');
