@@ -45,7 +45,7 @@ function UserVideos() {
             <Container>
                 <ToggleButtonGroup
                     value={toggle}
-                    color="primary"
+                    className="videoToggle"
                     size="small"
                     exclusive
                     onChange={(event) => { handleToggle(event.target.value) }}
@@ -58,6 +58,7 @@ function UserVideos() {
                         <h3>Shared Videos</h3>
                     </ToggleButton>
                 </ToggleButtonGroup>
+
                 <Grid container
                     style={{ padding: '1em', textAlign: 'center' }}
                     spacing={1}>

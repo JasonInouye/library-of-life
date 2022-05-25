@@ -25,17 +25,6 @@ function DeleteButton({ video }) {
               }
           })
     };
-  
-    // const handleDelete = (event) => {
-    //     console.log('clicked DELETE', video)
-    //     // TODO use delete route from WatchVideo
-    //     dispatch ({ type: 'DELETE_VIDEO', payload: video })
-    // }
-
-    // const handleDelete = () => {
-    //     console.log('clicked delete', video.id);
-    //     dispatch({ type: 'DELETE_VIDEO', payload: video.id });
-    // };
 
     return (
         <>

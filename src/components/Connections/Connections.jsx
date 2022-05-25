@@ -19,7 +19,7 @@ function Connections() {
     const [all, setAll] = useState(false);
     const [friends, setFriends] = useState(false);
     const [family, setFamily] = useState(false);
-    const [requests, SetRequests] = useState(false);
+    const [requests, setRequests] = useState(false);
 
     const handleToggle = (event, newToggle) => {
         setToggle(newToggle);
@@ -29,28 +29,28 @@ function Connections() {
         setAll(true);
         setFriends(false);
         setFamily(false);
-        SetRequests(false);
+        setRequests(false);
     }
 
     const handleFriends = () => {
         setAll(false);
         setFriends(true);
         setFamily(false);
-        SetRequests(false);
+        setRequests(false);
     };
 
     const handleFamily = () => {
         setAll(false);
         setFriends(false);
         setFamily(true);
-        SetRequests(false);
+        setRequests(false);
     };
 
     const handleRequests = () => {
         setAll(false);
         setFriends(false);
         setFamily(false);
-        SetRequests(true);
+        setRequests(true);
     }
 
     const handleRemove = (id) => {
@@ -135,9 +135,6 @@ function Connections() {
                     )
                 })}
 
-             {/* onClick={() => { history.push(`/user/${connect.id}/videos`) }}  */}
-
-
                 {/* handle friends */}
                 {friends && connections?.map((connect, i) => {
                     return (
@@ -176,10 +173,10 @@ function Connections() {
 
                 {/* {requests && } */}
                 {requests && connections?.map((connect, i) => {
-                    console.log(connect.pending)
+                    console.log("status", connect.pending)
                     return (
                         <div key={i}>
-                            {connect?.pending == true && user.id == connect?.user_B_id &&
+                            {((connect?.pending == true) && (user.id == connect?.user_B_id)) &&
                                 <ul>
                                     <Paper elevation={3}>
                                         <img src={connect.profile_image} className="connectionsImage"/>
