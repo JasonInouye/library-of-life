@@ -15,6 +15,7 @@ import axios from 'axios';
 
 const banners = [
     { name: 'Flowers', url: '/images/banners/yellowwall.png' },
+    { name: 'Tree', url: '/images/banners/treeoflife.png' },
     { name: 'Clouds', url: '/images/banners/clouds.png' },
     { name: 'Balloons', url: '/images/banners/hotairballoons.png' },
     { name: 'Ripple', url: '/images/banners/ripple.png' },
@@ -25,7 +26,21 @@ const banners = [
     { name: 'Mountains', url: '/images/banners/mountainsunset.png' },
     { name: 'Rainbow', url: '/images/banners/rainbowsmoke.png' },
     { name: 'Yarn', url: '/images/banners/yarn.png' },
-    { name: 'Pier', url: '/images/banners/pier.png' }
+    { name: 'Pier', url: '/images/banners/pier.png' }, 
+    { name: 'Paint', url: '/images/banners/abstractpaint.png' }, 
+    { name: 'Blossoms', url: '/images/banners/cherryblossoms.png' }, 
+    { name: 'Citrus', url: '/images/banners/citrus.png' }, 
+    { name: 'Droplet', url: '/images/banners/droplet.png' }, 
+    { name: 'Grass', url: '/images/banners/frostedgrass.png' }, 
+    { name: 'Lavender', url: '/images/banners/lavender.png' }, 
+    { name: 'Sunflower', url: '/images/banners/sunflower.png' }, 
+
+
+
+
+
+
+
 ]
 
 function BannerDialog({ title, children, component, callback, banner }) {
