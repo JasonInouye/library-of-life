@@ -2,6 +2,8 @@ const shareReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_SHARE_REDUCER':
             return action.payload;
+        case 'CLEAR_SHARE_REDUCER':
+            return state;
         default:
             return state;
     }
