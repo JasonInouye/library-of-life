@@ -13,6 +13,7 @@ import { Button, Container, Grid, RadioGroup } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
+/******* Banner array: can add/remove file paths here  ********/
 const banners = [
     { name: 'Flowers', url: '/images/banners/yellowwall.png' },
     { name: 'Tree', url: '/images/banners/treeoflife.png' },
