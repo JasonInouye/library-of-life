@@ -51,7 +51,7 @@ function Uploader() {
     console.log('this is the status', status, meta);
   };
 
-  const handleSubmit = async (files) => {
+  const handleSubmit = async (files, allFiles) => {
     const f = files[0];
     console.log(f['file']);
     // * GET request: presigned URL
@@ -84,11 +84,15 @@ function Uploader() {
 
     // * PUT request: upload file to S3
     const result = await fetch(response.data.uploadURL, {
-    //const result = await fetch(requestURL.uploadURL, {
+      //const result = await fetch(requestURL.uploadURL, {
       method: 'PUT',
       body: f['file'],
     });
     console.log('Result: ', result);
+
+    // Empties Dropzone
+    console.log(files.map((f) => f.meta));
+    allFiles.forEach((f) => f.remove());
   };
 
   const handleChangeVideo = () => {
