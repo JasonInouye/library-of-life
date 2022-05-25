@@ -12,7 +12,7 @@ function AboutPage() {
     
       <Box>
         
-          <h1>About Us</h1>
+          <h1 className="centerAbout">About Us</h1>
           <p>It is the wealth of emotions, the moments of love and affections cherished over a lifetime
             and the sharing of knowledge that becomes an invaluable asset of one’s life that is passed over from generation to generation.
             What if you can preserve these moments forever?  With a desire to answer the above question, we worked toward this unique concept
