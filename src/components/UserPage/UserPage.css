@@ -7,16 +7,39 @@
     margin-bottom: 100px;
 } */
 
-.banner-img {
+
+/* everything below card image */
+.bannerCard {
+    margin-bottom: 0.5em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.bannerItemImg {
+    height: 3em;
     width: 100%;
 }
 
+#bannerButton {
+    position: absolute;
+    right: 0.5em;
+    top: 13em;
+}
+
+/* for large banner on profile */
 .bannerimage {
     width: 100%;
     object-fit: cover;
     height: 10em;
     background-color: #667b68;
 }
+
+/* .banner-img {
+    width: 100%;
+} */
 
 .profile-img-div {
     position: absolute;

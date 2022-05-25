@@ -1,13 +1,11 @@
 import React from 'react';
 import BannerItem from './BannerItem';
+import '../../UserPage/UserPage.css'
 
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
+import {Dialog, DialogActions, DialogContent } from '@mui/material';
 
-import Button from '@mui/material/Button';
 import { VscEdit } from 'react-icons/vsc';
-import { Container, Grid, RadioGroup } from '@mui/material';
+import { Button, Container, Grid, RadioGroup } from '@mui/material';
 
 
 /******* for sending selected banner  ********/
@@ -67,13 +65,7 @@ function BannerDialog({ title, children, component, callback, banner }) {
 
             <Button
                 onClick={handleClickOpen}
-                style={{
-                    position: 'absolute',
-                    right: '0.5em',
-                    top: '13em',
-                    // color: 'ghostwhite',
-                    // textShadow: '2 2 1 black',
-                }}
+                id="bannerButton"
                 color="primary"
                 size="small"
                 variant="contained"
@@ -82,21 +74,26 @@ function BannerDialog({ title, children, component, callback, banner }) {
             </Button>
 
 
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="form-dialog-title"
+                fullWidth
+                maxWidth="sm"
+            >
 
                 <DialogContent>
                     <Container>
                         <Grid
                             container
-                            style={{ padding: '1em', textAlign: 'center' }}
-                            spacing={1}>
+                            spacing={5}
+                            className="bannerTileGrid">
                             <RadioGroup>
                                 {banners?.map((banner, i) => {
                                     return ( //loops thru array of banners to create each banner item
                                         < Grid
-                                            item xs={12} md={4}
+                                            item xs={12} md={8}
                                             key={banner.id}>
-
 
                                             <BannerItem
                                                 key={i}
