@@ -27,7 +27,7 @@ export default function* rootSaga() {
     searchSaga(),
     videoSaga(),
     promptSaga(),
-    //requestSaga(),
+    requestSaga(),
     permissionSaga(),
     deleteSaga(),
     shareSaga(),

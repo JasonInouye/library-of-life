@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
+import { Box, Button, Input} from "@mui/material";
+import './LoginForm.css';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -32,8 +34,20 @@ function LoginForm() {
   }; // end login
 
   return (
+    <Box
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+      sx={{
+        width: 300,
+        height: 250,
+        boxShadow: 3,
+        marginLeft: 53,
+        marginTop: 10,
+        bgcolor: 'white' 
+      }}>
     <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
+      <h2 className="center">Login</h2>
       {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -41,8 +55,8 @@ function LoginForm() {
       )}
       <div>
         <label htmlFor="username">
-          Username:
-          <input
+          <Input
+            placeholder="Email Address"
             type="text"
             name="username"
             required
@@ -53,8 +67,8 @@ function LoginForm() {
       </div>
       <div>
         <label htmlFor="password">
-          Password:
-          <input
+          <Input
+            placeholder="Password"
             type="password"
             name="password"
             required
@@ -63,10 +77,15 @@ function LoginForm() {
           />
         </label>
       </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+
+      <div className="centerLogin">
+      <Button type="submit" name="submit" value="Log In" variant="outlined">
+        Log In 
+      </Button>
       </div>
+
     </form>
+    </Box>
   );
 }
 
