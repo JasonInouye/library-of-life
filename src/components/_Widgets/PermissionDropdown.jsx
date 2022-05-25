@@ -48,7 +48,7 @@ function PermissionDropdown({video}) {
                 >
                     <MenuItem value={'everyone'}>Everyone</MenuItem>
                     <br/>
-                    <MenuItem value={'friends'}>Friends</MenuItem>
+                    <MenuItem value={'friend'}>Friends</MenuItem>
                     <br/>
                     <MenuItem value={'family'}>Family</MenuItem>
                     <br/>

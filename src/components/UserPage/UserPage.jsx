@@ -26,6 +26,7 @@ function UserPage() {
   const userInParams = Number(useParams().userInParams);
 
   const [menuPosition, setMenuPosition] = useState(null);
+  const [relationshipWithConnection, setRelationshipWithConnection] = useState('');
 
   const openRequestMenu = (event) => {
     if (menuPosition) {
@@ -59,8 +60,9 @@ function UserPage() {
 
   useEffect(() => {
     for (const connection of connections) {
-      if(connection.user_A_id == user.id && connection.user_B_id == userInParams && connection.pending == false) {
-        
+      if((connection.user_A_id == user.id && connection.user_B_id == userInParams && connection.pending == false) ||
+      (connection.user_B_id == user.id && connection.user_A_id == userInParams && connection.pending == false)) {
+        setRelationshipWithConnection(connection.relationship)
       }
     }
   }, [connections])
@@ -212,7 +214,7 @@ function UserPage() {
 
       {userInParams != user.id &&
         <>
-          <UserVideos relationship={searchedUser.relationship}/>
+          <UserVideos relationship={relationshipWithConnection}/>
         </>}
     </div >
   )

@@ -27,10 +27,12 @@ function UserVideoItem({ video, relationship }) {
         console.log('clicked into dialog');
     };
 
-    console.log(relationship)
+    console.log('relationship', relationship, video.permission)
+
+
     return (
         <>
-            {relationship == video.permission || relationship == 'self' &&
+            {((relationship == video.permission) || (relationship == 'self')) &&
                 <Container >
 
                     <Card sx={{ minHeight: '18.5em' }}>
