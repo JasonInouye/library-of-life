@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-require('dotenv').config();
-
-
 
 router.post('/', (req, res) => {
     console.log('server side data:', req.body);

@@ -10,7 +10,7 @@ import promptSaga from './prompt.saga';
 import requestSaga from './request.saga';
 import deleteSaga from './delete.saga';
 import shareSaga from './share.saga';
-
+import bannerSaga from './banner.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -31,5 +31,6 @@ export default function* rootSaga() {
     permissionSaga(),
     deleteSaga(),
     shareSaga(),
+    bannerSaga(),
   ]);
 }
