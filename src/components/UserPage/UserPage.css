@@ -7,16 +7,43 @@
     margin-bottom: 100px;
 } */
 
-.banner-img {
+.entireBannerCard{
+    margin: 1em;
+    display: block;
+}
+
+/* everything below card image, on card */
+.bannerCard {
+    margin-bottom: 0.5em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.bannerItemImg {
+    height: 3em;
     width: 100%;
 }
 
+#bannerButton {
+    position: absolute;
+    right: 0.5em;
+    top: 13em;
+}
+
+/* for large banner on profile */
 .bannerimage {
     width: 100%;
     object-fit: cover;
     height: 10em;
     background-color: #667b68;
 }
+
+/* .banner-img {
+    width: 100%;
+} */
 
 .profile-img-div {
     position: absolute;
@@ -84,6 +111,16 @@ otherwise square for some reason
     margin: 1em;
     width: 26em;
     height: 4em;
+    overflow-y: scroll;
+    /* overflow: -moz-scrollbars-vertical;  */
+    position: absolute;
+    top: 7em;
+    left: 30em;
+}
+
+.searchAboutMe {
+    margin: 8em;
+    width: 26em;
     overflow-y: scroll;
     /* overflow: -moz-scrollbars-vertical;  */
     position: absolute;

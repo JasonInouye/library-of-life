@@ -1,22 +1,22 @@
 import React from 'react';
 import BannerItem from './BannerItem';
+import '../../UserPage/UserPage.css'
 
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import swal from 'sweetalert';
+import { Dialog, DialogActions, DialogContent } from '@mui/material';
+import { FormControl } from '@mui/material';
 
-import Button from '@mui/material/Button';
 import { VscEdit } from 'react-icons/vsc';
-import { Container, Grid, RadioGroup } from '@mui/material';
+import { Button, Container, Grid, RadioGroup } from '@mui/material';
 
 
 /******* for sending selected banner  ********/
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
+/******* Banner array: can add/remove file paths here  ********/
 const banners = [
     { name: 'Flowers', url: '/images/banners/yellowwall.png' },
+    { name: 'Tree', url: '/images/banners/treeoflife.png' },
     { name: 'Clouds', url: '/images/banners/clouds.png' },
     { name: 'Balloons', url: '/images/banners/hotairballoons.png' },
     { name: 'Ripple', url: '/images/banners/ripple.png' },
@@ -27,12 +27,26 @@ const banners = [
     { name: 'Mountains', url: '/images/banners/mountainsunset.png' },
     { name: 'Rainbow', url: '/images/banners/rainbowsmoke.png' },
     { name: 'Yarn', url: '/images/banners/yarn.png' },
-    { name: 'Pier', url: '/images/banners/pier.png' }
+    { name: 'Pier', url: '/images/banners/pier.png' }, 
+    { name: 'Paint', url: '/images/banners/abstractpaint.png' }, 
+    { name: 'Blossoms', url: '/images/banners/cherryblossoms.png' }, 
+    { name: 'Citrus', url: '/images/banners/citrus.png' }, 
+    { name: 'Droplet', url: '/images/banners/droplet.png' }, 
+    { name: 'Grass', url: '/images/banners/frostedgrass.png' }, 
+    { name: 'Lavender', url: '/images/banners/lavender.png' }, 
+    { name: 'Sunflower', url: '/images/banners/sunflower.png' }, 
+
+
+
+
+
+
+
 ]
 
 function BannerDialog({ title, children, component, callback, banner }) {
 
-    // const banners = useSelector((store) => store.bannerReducer);
+    const selectedBanner = useSelector((store) => store.bannerReducer);
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
 
@@ -41,7 +55,7 @@ function BannerDialog({ title, children, component, callback, banner }) {
         // //CALL THE FUNCTION GIVEN, IF EXISTS:
         // { callback ? callback() : null };
         setOpen(true);
-        console.log();
+        console.log('clicked open BannerDialog');
     };
 
 
@@ -49,9 +63,15 @@ function BannerDialog({ title, children, component, callback, banner }) {
         setOpen(false);
     };
 
+
     const handleSubmit = () => {
-        // console.log('clicked "save changes" for banner');
-        // TODO dispatch
+        console.log("banner should be", selectedBanner);
+        dispatch({
+            type: 'POST_BANNER',
+            payload: {
+                banner: selectedBanner
+            }
+        })
         // TODO put in the promise: swal("Good job!", "You clicked the button!", "success");
         setOpen(false);
     }
@@ -68,13 +88,7 @@ function BannerDialog({ title, children, component, callback, banner }) {
 
             <Button
                 onClick={handleClickOpen}
-                style={{
-                    position: 'absolute',
-                    right: '0.5em',
-                    top: '13em',
-                    // color: 'ghostwhite',
-                    // textShadow: '2 2 1 black',
-                }}
+                id="bannerButton"
                 color="primary"
                 size="small"
                 variant="contained"
@@ -83,29 +97,39 @@ function BannerDialog({ title, children, component, callback, banner }) {
             </Button>
 
 
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="form-dialog-title"
+                maxWidth="lg"
+            >
 
                 <DialogContent>
                     <Container>
                         <Grid
                             container
-                            style={{ padding: '1em', textAlign: 'center' }}
-                            spacing={1}>
-                            <RadioGroup>
-                                {banners?.map((banner, i) => {
-                                    return ( //loops thru array of banners to create each banner item
-                                        < Grid
-                                            item xs={12} md={4}
-                                            key={banner.id}>
+                            spacing={1}
+                        >
+                            <FormControl>
+                                <RadioGroup>
 
+                                    {banners?.map((banner, i) => {
+                                        return ( //loops thru array of banners to create each banner item
+                                            <div className="entireBannerCard">
+                                                < Grid
+                                                    item xs={6} md={12}
+                                                    key={banner.id}>
 
-                                            <BannerItem
-                                                key={i}
-                                                banner={banner} />
+                                                    <BannerItem
+                                                        key={i}
+                                                        banner={banner}
+                                                    />
 
-                                        </Grid>)
-                                })}
-                            </RadioGroup>
+                                                </Grid>
+                                            </div>)
+                                    })}
+                                </RadioGroup>
+                            </FormControl>
                         </Grid>
                     </Container>
                 </DialogContent>
