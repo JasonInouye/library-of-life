@@ -64,16 +64,16 @@ function Uploader() {
       const f = files[0];
       console.log(f['file']);
       // * GET request: presigned URL
-      const response = await axios({
-        method: 'GET',
-        url: API_ENDPOINT,
-      });
+      // const response = await axios({
+      //   method: 'GET',
+      //   url: API_ENDPOINT,
+      // });
 
       //console.log('Response: ', response.data.Key);
-      // dispatch({
-      //   type: 'GET_UPLOAD_URL',
-      //   prompt: videoPrompt
-      // });
+      dispatch({
+        type: 'GET_UPLOAD_URL',
+        prompt: videoPrompt
+      });
 
       // const {url} = await axios.get("/api/upload").then(response)
       // console.log('this is the variable URL Fetch', url)
@@ -81,18 +81,19 @@ function Uploader() {
       //console.log('modal url ', requestURL.Key);
       //key is the video id from AWS
 
-      dispatch({
-        type: 'SET_MODAL_VIDEO',
-        payload: response.data.Key,
-      });
+      // dispatch({
+      //   type: 'SET_MODAL_VIDEO',
+      //   payload: response.data.Key,
+      // });
 
-      dispatch({
-        type: 'POST_VIDEO',
-        payload: { key: response.data.Key, prompt: videoPrompt },
-      });
+      // dispatch({
+      //   type: 'POST_VIDEO',
+      //   payload: { key: response.data.Key, prompt: videoPrompt },
+      // });
 
       // * PUT request: upload file to S3
-      const result = await fetch(response.data.uploadURL, {
+      const result = await fetch(requestURL.uploadURL, {
+      //const result = await fetch(response.data.uploadURL, {
         //const result = await fetch(requestURL.uploadURL, {
         method: 'PUT',
         body: f['file'],
