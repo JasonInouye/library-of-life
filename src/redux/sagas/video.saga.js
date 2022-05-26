@@ -45,7 +45,7 @@ function* getUploadUrl(action) {
     });
     console.log(result);
 
-    yield put({ type: 'SET_MODAL_VIDEO', payload: response.data.Key });
+    //yield put({ type: 'SET_MODAL_VIDEO', payload: response.data.Key });
     yield put({ type: 'POST_VIDEO',payload: { key: response.data.Key, prompt: action.prompt },});
   } catch (err) {
     console.log(err);

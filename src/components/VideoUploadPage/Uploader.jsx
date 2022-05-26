@@ -22,9 +22,6 @@ function Uploader() {
     dispatch({
       type: 'CLEAR_VIDEO',
     });
-    dispatch({
-      type: 'CLEAR_UPLOAD_URL',
-    });
   }, []);
 
 
@@ -59,6 +56,7 @@ function Uploader() {
       const f = files[0];
       console.log(f['file']);
 
+      // Triggers the presigned URL process from lambda function on aws
       dispatch({
         type: 'GET_UPLOAD_URL',
         prompt: videoPrompt,
@@ -76,14 +74,13 @@ function Uploader() {
       type: 'CLEAR_VIDEO',
     });
   };
-  
+
   const handleOpenVideoModal = () => {
     dispatch({ type: 'GET_PROMPTS' });
     setOpenVideoModal(true);
   };
 
   const handleCloseVideoModal = () => {
-    dispatch({ type: 'CLEAR_UPLOAD_URL' });
     setVideoPrompt('');
     setOpenVideoModal(false);
   };
