@@ -120,11 +120,12 @@ function Nav() {
               </MenuItem>
               <br/>
 
-              <MenuItem
+              {/* <MenuItem
                 onClick={(event) => handleItemClick(`/user/${user.id}/managelibrary`)}>
                 Manage Library
               </MenuItem>
-              <br />
+              <br /> */}
+
               <MenuItem
                 onClick={(event) => handleItemClick(`/user/${user.id}/uploads`)}>
                 Upload Video
