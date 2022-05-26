@@ -20,7 +20,8 @@ function UserVideos({ relationship }) {
     const [toggle, setToggle] = React.useState('left');
     const [myVideos, setMyVideos] = useState(true);
     const [mySharedVideos, setSharedVideos] = useState(false);
-
+    
+    console.log("SHARE", sharedVideos);
     // const searchedUserVideos = useSelector((store) => store.searchedUserVideos)
 
     const userInParams = Number(useParams().userInParams);
