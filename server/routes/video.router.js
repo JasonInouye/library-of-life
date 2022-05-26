@@ -1,4 +1,5 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -6,7 +7,7 @@ const router = express.Router();
     /**
      * DELETE route for SINGLE video
      */
-     router.delete('/:id', (req, res) => {
+     router.delete('/:id', rejectUnauthenticated, (req, res) => {
         const id = req.params.id;
         console.log('router DELETE id:', id);
         const query = `DELETE FROM "videos" WHERE "videos".id =$1;`;

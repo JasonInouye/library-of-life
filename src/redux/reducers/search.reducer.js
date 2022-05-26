@@ -20,7 +20,17 @@ const searchedUser = (state = [], action) => {
     }
 }
 
+// const searchedUserVideos = (state = [], action) => {
+//     switch (action.type) {
+//         case 'SET_SEARCHED_USER_VIDEOS':
+//             return action.payload;
+//         default:
+//             return state;
+//     }
+// }
+
 export default combineReducers({
     listOfUsers,
-    searchedUser
+    searchedUser,
+    // searchedUserVideos
   });
