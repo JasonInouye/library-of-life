@@ -10,9 +10,11 @@ router.get('/', (req, res) => {
     b.first_name,
     b.last_name,
     b.profile_image,
-    a.relationship,
     a.id,
-    a.pending
+    a.relationship,
+    a.pending,
+    a."user_A_id",
+    a."user_B_id"
     FROM "connections" a, "users" b
     WHERE (a."user_A_id" = $1
     and a."user_B_id" = b."id") OR (a."user_B_id" = $2

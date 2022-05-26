@@ -176,7 +176,7 @@ function Connections() {
 
                 {/* {requests && } */}
                 {requests && connections?.map((connect, i) => {
-                    console.log(connect.pending)
+                    console.log('user b', connect.user_B_id)
                     return (
                         <div key={i}>
                             {connect?.pending == true && user.id == connect?.user_B_id &&

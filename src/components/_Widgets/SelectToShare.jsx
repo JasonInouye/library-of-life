@@ -28,20 +28,19 @@ export default function SelectToShare({ video }) {
     const connections = useSelector((store) => store.connectionsReducer);
     const [personName, setPersonName] = React.useState([]);
     const [selectedIDs, setSelectedIDs] = React.useState([]);
-    const [selectedVideoIDs, setSelectedVideoIDs] = React.useState(0);
 
-    let shareObj = {
-        user_id: selectedIDs,
-        video_id: selectedVideoIDs
-    };
-
+    
     const handleConnectionObj = async (id) => {
+
+        let shareObj = {
+            user_id: selectedIDs,
+            video_id: video.id
+        };
         
-        // console.log("in handleConnectionObj", id);
         let updatedSelectedIDs = [];
 
-        setSelectedVideoIDs(video.id);
-
+        // Conditional checks to see if checked person is already selected; if so, remove them, if not, add them
+        // This in turn is also what makes the checkboxes themselves check/uncheck
         if (selectedIDs.indexOf(id) != -1) {
             updatedSelectedIDs = selectedIDs.filter(idToRemove => idToRemove != id)
             setSelectedIDs(updatedSelectedIDs);
@@ -56,7 +55,7 @@ export default function SelectToShare({ video }) {
         }
     }
 
-    console.log("values in shareObj", shareObj);
+    // console.log("values in shareObj", shareObj);
 
     const handleSelectedName = (event) => {
         const {
