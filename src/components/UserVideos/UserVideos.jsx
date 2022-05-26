@@ -52,7 +52,7 @@ function UserVideos({ relationship }) {
     return (
         <>
             <Container>
-                <ToggleButtonGroup
+              <div className="moveRight">  <ToggleButtonGroup
                     value={toggle}
                     className="videoToggle"
                     size="small"
@@ -66,7 +66,7 @@ function UserVideos({ relationship }) {
                     <ToggleButton onClick={() => { handleSharedVideos() }} value="sharedVideos" aria-label="sharedVideos">
                         <h3>Shared Videos</h3>
                     </ToggleButton>
-                </ToggleButtonGroup>
+                </ToggleButtonGroup> </div>
 
                 <Grid container
                     style={{ padding: '1em', textAlign: 'center' }}
