@@ -7,8 +7,8 @@ import { VscEdit } from 'react-icons/vsc';
 
 function ProfileEditButton() {
 
-    const handleProfilePic = () => {
-        console.log('clicked handleProfilePic');
+    const handleEditProfile = () => {
+        console.log('clicked handleEditProfile');
         // TODO connect with dropzone? or other means of upload select
     }
 
@@ -35,7 +35,7 @@ function ProfileEditButton() {
         <Fab
             onMouseOver={handleMouseIn}
             onMouseOut={handleMouseOut}
-            onClick={handleProfilePic}
+            onClick={handleEditProfile}
             size='small'
             sx={{ borderRadius: '50% !important' }}
         >
