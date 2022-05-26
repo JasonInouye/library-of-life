@@ -7,6 +7,8 @@ import Connections from '../Connections/Connections';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 import ProfilePicButton from '../_Widgets/ProfilePicButton';
 import BannerDialog from '../_Widgets/Banner/BannerDialog';
+import EditProfile from '../EditProfile/EditProfile';
+
 
 /******* styling  ********/
 import { Menu, Typography, Button, Fab } from "@mui/material";
@@ -213,6 +215,9 @@ function UserPage() {
 
           {view == "uploads" &&
             <VideoUploadPage />}
+
+          {view == "edit" &&
+            <EditProfile />}
         </>
       }
 
