@@ -66,6 +66,18 @@ function Uploader() {
       // Empties Dropzone
       console.log(files.map((f) => f.meta));
       allFiles.forEach((f) => f.remove());
+
+      //Close Dropzone and Clear Prompt State
+      setOpenVideoModal(false);
+      setVideoPrompt('');
+      setTimeout(swalWait, 2000);
+      function swalWait() {
+      Swal.fire({
+        icon: 'success',
+        title: 'Successful Upload',
+        footer: 'Video has been uploaded successfully',
+      });
+    }
     }
   };
 
