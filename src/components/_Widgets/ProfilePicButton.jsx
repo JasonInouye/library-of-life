@@ -11,7 +11,7 @@ function ProfileEditButton() {
 
     const handleEditProfile = () => {
         console.log('clicked handleEditProfile', user);
-        history.push(`/edit/${user.id}`);
+        history.push(`/user/${user.id}/edit`);
         // TODO connect with dropzone? or other means of upload select
     }
 
