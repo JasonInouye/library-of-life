@@ -26,11 +26,10 @@ function Uploader() {
 
 
   const dispatch = useDispatch();
-  const video = useSelector((store) => store.videoReducer);
-  const [videoPrompt, setVideoPrompt] = useState('');
-  const [open, setOpen] = useState(false);
   const prompts = useSelector((store) => store.promptReducer);
-  const [openVideoModal, setOpenVideoModal] = React.useState(false);
+  const video = useSelector((store) => store.videoReducer);
+  const [videoPrompt, setVideoPrompt] = useState('');  
+  const [openVideoModal, setOpenVideoModal] = useState(false);
 
   const getUploadParams = ({ meta }) => {
     const url = 'https://httpbin.org/post';
