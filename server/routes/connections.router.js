@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     b.first_name,
     b.last_name,
     b.profile_image,
-    a.id,
+    b.id,
     a.relationship,
     a.pending,
     a."user_A_id",
