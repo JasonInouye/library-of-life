@@ -20,6 +20,7 @@ function UserPage() {
   const history = useHistory();
 
 
+
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer?.searchedUser);
   const connections = useSelector((store) => store.connectionsReducer);
@@ -65,6 +66,9 @@ function UserPage() {
       }
     }
   }, [connections])
+
+
+  
 
 
   return (
@@ -187,6 +191,8 @@ function UserPage() {
               </>}
 
           </div>
+
+        
 
           {userInParams == user.id && view == 'connections' &&
             <div className='profile-info'>
