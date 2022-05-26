@@ -16,15 +16,17 @@ function UserVideos({ relationship }) {
 
     const user = useSelector((store) => store.user);
     const videos = useSelector((store) => store.videoReducer);
+    const sharedVideos = useSelector((store) => store.shareReducer);
     const [toggle, setToggle] = React.useState('left');
-    const [myVideos, setMyVideos] = useState(false);
+    const [myVideos, setMyVideos] = useState(true);
     const [mySharedVideos, setSharedVideos] = useState(false);
-
+    
+    console.log("SHARE", sharedVideos);
     // const searchedUserVideos = useSelector((store) => store.searchedUserVideos)
 
     const userInParams = Number(useParams().userInParams);
 
-    //console.log(' this is the video store ', videos)
+    //console.log(' this is the video store ', videos);
 
     useEffect(() => {//triggers saga getting all user videos from DB on page load
         if (user.id == userInParams) {
@@ -67,14 +69,15 @@ function UserVideos({ relationship }) {
                         <h3>Shared Videos</h3>
                     </ToggleButton>
                 </ToggleButtonGroup>
-
+            
+                {myVideos == true &&
                 <Grid container
                     style={{ padding: '1em', textAlign: 'center' }}
                     spacing={1}>
 
                     {videos?.map((video, i) => {
                         return ( //loops thru array of videos to create each video item
-                            < Grid
+                            <Grid
                                 item xs={12} md={4}
                                 key={video.id}>
 
@@ -84,7 +87,11 @@ function UserVideos({ relationship }) {
                                     relationship={relationship} />
                             </Grid>)
                     })}
-                </Grid>
+                </Grid>}
+
+                {mySharedVideos == true && 
+                <h1>SUP DUDE</h1>}
+
             </Container>
         </>
     )

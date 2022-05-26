@@ -146,9 +146,6 @@ function BannerDialog({ title, children, component, callback, banner }) {
                         variant='contained'>
                         Save Changes
                     </Button>
-
-
-
                 </DialogActions>
 
             </Dialog>
