@@ -1,4 +1,5 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -72,7 +73,7 @@ router.put('/:id', (req, res) => {
 });
 
 //Delete connection from connections table
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id; 
 
     console.log(id);
