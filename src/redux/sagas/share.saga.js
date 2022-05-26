@@ -13,9 +13,10 @@ function* getSharedVideos() {
 
 function* postShare(action) {
 
-    //   console.log('postShare SAGA data:', action.payload);
+    console.log('postShare SAGA data:', action.payload);
     try {
-        yield axios.post('/api/share/', action.payload)
+        yield axios.post('/api/share/', action.payload);
+        yield put ({ type: 'CLEAR_SHARE_REDUCER' })
     } catch (err) {
         console.log(err);
     }

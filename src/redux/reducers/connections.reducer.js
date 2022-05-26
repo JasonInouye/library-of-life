@@ -3,6 +3,8 @@ const connectionsReducer = (state = [], action) => {
         case 'SET_CONNECTIONS':
             console.log('list of connections', action.payload);
             return action.payload;
+        case 'CLEAR_CONNECTIONS':
+            return [];
         default:
             return state;
     }

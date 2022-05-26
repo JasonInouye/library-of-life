@@ -9,6 +9,7 @@ function* postBanner(action) {
         yield axios.put('/api/banner/', action.payload)
         // yield put({type: 'GET_SEARCHED_USER'})
         // FIXME figure out how to re-render DOM upon success
+        yield put ({type: 'SET_BANNER', })
     } catch (err) {
         console.log(err);
     }
