@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { delay } from 'redux-saga/effects';
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
 import Swal from 'sweetalert2';
@@ -14,7 +13,6 @@ import {
   InputLabel,
   Select,
 } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 
 function Uploader() {
   useEffect(() => {
@@ -29,9 +27,8 @@ function Uploader() {
     });
   }, []);
 
-  const axios = require('axios').default;
+
   const dispatch = useDispatch();
-  const requestURL = useSelector((store) => store.urlReducer);
   const video = useSelector((store) => store.videoReducer);
   const [videoPrompt, setVideoPrompt] = useState('');
   const [open, setOpen] = useState(false);
@@ -46,8 +43,6 @@ function Uploader() {
     };
   };
 
-  const API_ENDPOINT =
-    'https://hfoxt7tc91.execute-api.us-east-1.amazonaws.com/default/getPresignedVideoURL2';
   const handleChangeStatus = ({ meta, remove }, status) => {
     console.log('this is the status', status, meta);
   };
@@ -63,42 +58,12 @@ function Uploader() {
     } else {
       const f = files[0];
       console.log(f['file']);
-      // * GET request: presigned URL
-      // const response = await axios({
-      //   method: 'GET',
-      //   url: API_ENDPOINT,
-      // });
 
-      //console.log('Response: ', response.data.Key);
       dispatch({
         type: 'GET_UPLOAD_URL',
-        prompt: videoPrompt
+        prompt: videoPrompt,
+        payload: f['file']
       });
-
-      // const {url} = await axios.get("/api/upload").then(response)
-      // console.log('this is the variable URL Fetch', url)
-
-      //console.log('modal url ', requestURL.Key);
-      //key is the video id from AWS
-
-      // dispatch({
-      //   type: 'SET_MODAL_VIDEO',
-      //   payload: response.data.Key,
-      // });
-
-      // dispatch({
-      //   type: 'POST_VIDEO',
-      //   payload: { key: response.data.Key, prompt: videoPrompt },
-      // });
-
-      // * PUT request: upload file to S3
-      const result = await fetch(requestURL.uploadURL, {
-      //const result = await fetch(response.data.uploadURL, {
-        //const result = await fetch(requestURL.uploadURL, {
-        method: 'PUT',
-        body: f['file'],
-      });
-      console.log('Result: ', result);
 
       // Empties Dropzone
       console.log(files.map((f) => f.meta));
@@ -111,6 +76,7 @@ function Uploader() {
       type: 'CLEAR_VIDEO',
     });
   };
+  
   const handleOpenVideoModal = () => {
     dispatch({ type: 'GET_PROMPTS' });
     setOpenVideoModal(true);
