@@ -42,7 +42,7 @@ function LoginForm() {
         width: 300,
         height: 250,
         boxShadow: 3,
-        marginLeft: 53,
+        marginLeft: 72,
         marginTop: 10,
         bgcolor: 'white' 
       }}>
