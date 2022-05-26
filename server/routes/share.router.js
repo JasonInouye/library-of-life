@@ -1,8 +1,26 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-router.post('/', async (req, res) => {
+
+
+router.get('/', rejectUnauthenticated, (req, res) => {
+    const queryText = `
+    SELECT * FROM "shared_videos"
+    JOIN "videos" ON "videos".id = "shared_videos".video_id
+    WHERE "shared_videos".user_id = ${req.user.id};
+    `
+
+    pool.query(queryText).then(result => {
+        res.send(result.rows);
+    }).catch(error => {
+        console.log(error);
+        res.sendStatus(500);
+    })
+})
+
+router.post('/', rejectUnauthenticated, async (req, res) => {
     //loop over the data and make SQL statements
     const userIdArray = req.body.user_id;
     const videoId = req.body.video_id;
