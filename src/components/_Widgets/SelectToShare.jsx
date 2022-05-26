@@ -29,6 +29,7 @@ export default function SelectToShare({ video }) {
     const [personName, setPersonName] = React.useState([]);
     const [selectedIDs, setSelectedIDs] = React.useState([]);
 
+    console.log(connections);
     
     const handleConnectionObj = async (id) => {
 
