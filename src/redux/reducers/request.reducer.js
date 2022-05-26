@@ -1,7 +1,11 @@
-const pendingStatus = (state = false, action) => {
+const pendingStatus = (state = {}, action) => {
     switch (action.type) {
         case 'SET_PENDING_STATUS':
-            return action.payload;
+            if (action.payload == undefined) {
+                return null;
+            } else {
+                return action.payload;
+            }
         default:
             return state;
     }
