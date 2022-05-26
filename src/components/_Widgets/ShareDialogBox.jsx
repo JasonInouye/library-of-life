@@ -23,7 +23,7 @@ import { SiSlideshare } from "react-icons/si";
 export default function ShareDialogBox({ title, children, component, callback, video }) {
 
     const url = video.url
-    const shareData = useSelector((store) => store.shareReducer);
+    const shareData = useSelector((store) => store.shareReducer.shareReducer);
 
     const [open, setOpen] = React.useState(false);
 
