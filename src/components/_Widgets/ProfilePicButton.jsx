@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Fab } from '@mui/material';
 import { VscEdit } from 'react-icons/vsc';
 
 
 function ProfileEditButton() {
+    const user = useSelector((store) => store.user);
+    const history = useHistory();
 
     const handleEditProfile = () => {
-        console.log('clicked handleEditProfile');
+        console.log('clicked handleEditProfile', user);
+        history.push(`/edit/${user.id}`);
         // TODO connect with dropzone? or other means of upload select
     }
 
