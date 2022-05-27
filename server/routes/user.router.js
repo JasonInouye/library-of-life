@@ -31,10 +31,10 @@ router.post('/register', (req, res, next) => {
 
 
   
-  const queryText = `INSERT INTO "users" (username, first_name, last_name, city, state, country, password, profile_image)
+  const queryText = `INSERT INTO "users" (username, first_name, last_name, city, state, country, password, profile_image, banner_image)
     VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;`;
 
-  const queryValues = [username, firstName, lastName, city, state, country, password, './images/people/blankProfile.png']
+  const queryValues = [username, firstName, lastName, city, state, country, password, './images/people/blankProfile.png', './images/banners/paper.png']
 
   console.log( 'POST LOG', queryText, queryValues)
   
