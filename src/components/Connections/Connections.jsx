@@ -128,7 +128,7 @@ function Connections() {
                                         <div className="connectionsName" >
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Remove</li>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.connection_id)}>Remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
@@ -146,7 +146,7 @@ function Connections() {
                                         <div className="connectionsName" >
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Remove</li>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.connection_id)}>Remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
@@ -164,7 +164,7 @@ function Connections() {
                                         <div className="connectionsName">
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Remove</li>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.connection_id)}>Remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
@@ -185,8 +185,8 @@ function Connections() {
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
                                         <div className="requestBtn">
-                                        <li className="connectionsIgnore" onClick={() => handleRemove(connect.id)}>Ignore</li>
-                                        <li className="connectionsAccept" onClick={() => handleAccept(connect.id)}>Accept</li>
+                                        <li className="connectionsIgnore" onClick={() => handleRemove(connect.connection_id)}>Ignore</li>
+                                        <li className="connectionsAccept" onClick={() => handleAccept(connect.connection_id)}>Accept</li>
                                         </div>
                                     </Paper>
                                 </ul>}
