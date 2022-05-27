@@ -90,12 +90,12 @@ export default function SelectToShare({ video }) {
 
                     {connections.map((connection) => (
                         <MenuItem
-                            key={connection.id}
+                            key={connection.user_id}
                             value={connection.first_name + " " + connection.last_name}>
 
                             <Checkbox
-                                onChange={() => handleConnectionObj(connection.id)}
-                                checked={selectedIDs.indexOf(connection.id) > -1} />
+                                onChange={() => handleConnectionObj(connection.user_id)}
+                                checked={selectedIDs.indexOf(connection.user_id) > -1} />
 
                             <ListItemText
                                 primary={connection.first_name + " " + connection.last_name}
