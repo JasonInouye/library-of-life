@@ -9,6 +9,7 @@ import promptReducer from './prompt.reducer';
 import pendingStatus from './request.reducer';
 import shareReducer from './share.reducer';
 import bannerReducer from './banner.reducer';
+import photoReducer from './photo.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   pendingStatus,
   shareReducer,
   bannerReducer,
+  photoReducer,
 });
 
 

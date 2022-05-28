@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Button, Input, Box, TextField} from "@mui/material";
+import { Button, Input, Box, TextField } from '@mui/material';
 import './EditProfile.css';
+import PhotoUploader from './PhotoUploader';
 //import { user } from 'pg/lib/defaults';
 
 function EditProfile() {
@@ -30,45 +31,43 @@ function EditProfile() {
         city: city,
         state: state,
         country: country,
-        id: user.id
+        id: user.id,
       },
     });
     window.location.reload();
   }; // end registerUser
 
   return (
-
     <Box
-    container
-    spacing={0}
-    direction="column"
-    alignItems="center"
-    justifyContent="center"
-    style={{ minHeight: '100vh' }}
+      container
+      spacing={0}
+      direction='column'
+      alignItems='center'
+      justifyContent='center'
+      style={{ minHeight: '100vh' }}
       // sx={{
       //   width: 300,
       //   height: 400,
       //   boxShadow: 3,
       //   marginLeft: 72,
       //   marginTop: 10,
-      //   bgcolor: 'white' 
+      //   bgcolor: 'white'
       // }}
     >
-      <form className="formPanel" onSubmit={updateUser}>
-
-        <h2 className="center">Edit Information</h2>
+      <form className='formPanel' onSubmit={updateUser}>
+        <h2 className='center'>Edit Information</h2>
         {errors.registrationMessage && (
-          <h3 className="alert" role="alert">
+          <h3 className='alert' role='alert'>
             {errors.registrationMessage}
           </h3>
         )}
 
         <div>
-          <label htmlFor="firstName">
+          <label htmlFor='firstName'>
             <Input
-              placeholder="First Name" 
-              type="text"
-              name="firstName"
+              placeholder='First Name'
+              type='text'
+              name='firstName'
               value={firstName}
               onChange={(event) => setFirstName(event.target.value)}
             />
@@ -76,11 +75,11 @@ function EditProfile() {
         </div>
 
         <div>
-          <label htmlFor="Last Name">
+          <label htmlFor='Last Name'>
             <Input
-              placeholder="Last Name" 
-              type="text"
-              name="lastName"
+              placeholder='Last Name'
+              type='text'
+              name='lastName'
               value={lastName}
               required
               onChange={(event) => setLastName(event.target.value)}
@@ -89,11 +88,11 @@ function EditProfile() {
         </div>
 
         <div>
-          <label htmlFor="password">
+          <label htmlFor='password'>
             <Input
-              placeholder="City" 
-              type="text"
-              name="city"
+              placeholder='City'
+              type='text'
+              name='city'
               value={city}
               required
               onChange={(event) => setCity(event.target.value)}
@@ -102,11 +101,11 @@ function EditProfile() {
         </div>
 
         <div>
-          <label htmlFor="password">
+          <label htmlFor='password'>
             <Input
-              placeholder="State" 
-              type="text"
-              name="state"
+              placeholder='State'
+              type='text'
+              name='state'
               value={state}
               onChange={(event) => setState(event.target.value)}
             />
@@ -114,11 +113,11 @@ function EditProfile() {
         </div>
 
         <div>
-          <label htmlFor="country">
+          <label htmlFor='country'>
             <Input
-              placeholder="Country" 
-              type="text"
-              name="country"
+              placeholder='Country'
+              type='text'
+              name='country'
               value={country}
               required
               onChange={(event) => setCountry(event.target.value)}
@@ -126,13 +125,19 @@ function EditProfile() {
           </label>
         </div>
 
-       <div className="centerRegister"> 
-        <Button className="centerBtn" type="submit" name="submit" value="Register" variant='outlined'>
-           Save
-        </Button> 
+        <div className='centerRegister'>
+          <PhotoUploader />
+          <Button
+            className='centerBtn'
+            type='submit'
+            name='submit'
+            value='Register'
+            variant='outlined'
+          >
+            Save
+          </Button>
         </div>
       </form>
-
     </Box>
   );
 }
