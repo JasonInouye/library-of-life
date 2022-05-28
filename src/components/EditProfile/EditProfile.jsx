@@ -34,7 +34,7 @@ function EditProfile() {
         id: user.id,
       },
     });
-    window.location.reload();
+    //window.location.reload();
   }; // end registerUser
 
   return (

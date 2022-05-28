@@ -24,6 +24,7 @@ function* updateProfilePhoto(action) {
     console.log('put action', action.payload);
     try {
       yield axios.put('/api/photo', action.payload);
+      yield put({type: 'GET_USER'})
     } catch (err) {
       console.log(err);
     }

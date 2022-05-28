@@ -28,6 +28,7 @@ function* editUser(action){
   try{
   console.log('Update User', action);
   yield axios.put(`/api/user/update/${action.payload.id}`, action.payload)
+  yield put({ type: 'GET_USER' });
   } catch (error){
     console.log('Error in Update', error);
   }
