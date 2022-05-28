@@ -24,8 +24,18 @@ function* registerUser(action) {
   }
 }
 
+function* editUser(action){
+  try{
+  console.log('Update User', action);
+  yield axios.put(`/api/user/update/${action.payload.id}`, action.payload)
+  } catch (error){
+    console.log('Error in Update', error);
+  }
+} 
+
 function* registrationSaga() {
   yield takeLatest('REGISTER', registerUser);
+  yield takeLatest('UPDATE_USER', editUser);
 }
 
 export default registrationSaga;

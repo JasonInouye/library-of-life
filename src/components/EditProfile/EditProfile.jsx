@@ -1,34 +1,39 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Box from '@mui/material/Box';
-import { Button, Input} from "@mui/material";
+import { useHistory } from 'react-router-dom';
+import { Button, Input, Box, TextField} from "@mui/material";
 import './EditProfile.css';
+//import { user } from 'pg/lib/defaults';
 
 function EditProfile() {
+  const errors = useSelector((store) => store.errors);
+  const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   const [username, setUsername] = useState('');
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [country, setCountry] = useState('');
+  const [firstName, setFirstName] = useState(user.first_name);
+  const [lastName, setLastName] = useState(user.last_name);
+  const [city, setCity] = useState(user.city);
+  const [state, setState] = useState(user.state);
+  const [country, setCountry] = useState(user.country);
   const [password, setPassword] = useState('');
 
-  const errors = useSelector((store) => store.errors);
-  const dispatch = useDispatch();
-
-  const registerUser = (event) => {
+  const updateUser = (event) => {
     event.preventDefault();
 
     dispatch({
-      type: 'UPDATE_REGISTER',
+      type: 'UPDATE_USER',
       payload: {
         firstName: firstName,
         lastName: lastName,
         city: city,
         state: state,
-        country: country
+        country: country,
+        id: user.id
       },
     });
+    window.location.reload();
   }; // end registerUser
 
   return (
@@ -49,7 +54,7 @@ function EditProfile() {
       //   bgcolor: 'white' 
       // }}
     >
-      <form className="formPanel" onSubmit={registerUser}>
+      <form className="formPanel" onSubmit={updateUser}>
 
         <h2 className="center">Edit Information</h2>
         {errors.registrationMessage && (
@@ -65,7 +70,6 @@ function EditProfile() {
               type="text"
               name="firstName"
               value={firstName}
-              required
               onChange={(event) => setFirstName(event.target.value)}
             />
           </label>

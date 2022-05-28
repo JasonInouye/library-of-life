@@ -63,4 +63,28 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+// clear all server session information about this user
+router.put('/update/:id', (req, res) => {
+  console.log('this is the server user update', req.body);
+  const idToUpdate = req.params.id;
+  const sqlText = `
+    UPDATE "users"
+    SET
+      first_name = $1,
+      last_name = $2,
+      city = $3,
+      state = $4,
+      country = $5
+    WHERE id = $6
+  ;`;
+  pool.query(sqlText, [req.body.firstName, req.body.lastName, req.body.city, req.body.state, req.body.country, idToUpdate])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log(`Error on User Update`, error);
+      res.sendStatus(500)
+    })
+});
+
 module.exports = router;
