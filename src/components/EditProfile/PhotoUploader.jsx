@@ -171,7 +171,7 @@ function PhotoUploader() {
                 },
                 dropzoneActive: { borderColor: 'green' },
               }}
-              accept='photo/*'
+              accept='image/*'
             />
           )}
         </Box>
