@@ -64,7 +64,7 @@ function BannerDialog({ title, children, component, callback, banner }) {
     });
     // TODO put in the promise: swal("Good job!", "You clicked the button!", "success");
     setOpen(false);
-    window.location.reload();
+    //window.location.reload();
 
   };
 
