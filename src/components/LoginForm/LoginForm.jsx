@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-import { Box, Button, Input} from "@mui/material";
+import { Box, Button, Input, Card} from "@mui/material";
 import './LoginForm.css';
 
 function LoginForm() {
@@ -38,6 +38,7 @@ function LoginForm() {
     display="flex"
     alignItems="center"
     justifyContent="center"
+    className='loginFormBox'
       sx={{
         width: 300,
         height: 250,

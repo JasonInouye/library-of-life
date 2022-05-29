@@ -3,7 +3,8 @@
     margin-top: 10px;
 }
 
-/* body {
-    background-image: url('../../images/backgrounds/faceMosaic.jpeg');
-} */
+body {
+    background-image: url('../../../public/images/backgrounds/faces-transparent.png');
+    /* opacity: 0.6; */
+}
 
