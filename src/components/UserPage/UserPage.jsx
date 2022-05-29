@@ -7,6 +7,8 @@ import Connections from '../Connections/Connections';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 import ProfilePicButton from '../_Widgets/ProfilePicButton';
 import BannerDialog from '../_Widgets/Banner/BannerDialog';
+import EditProfile from '../EditProfile/EditProfile';
+
 
 /******* styling  ********/
 import { Menu, Typography, Button, Fab } from "@mui/material";
@@ -18,16 +20,16 @@ function UserPage() {
   const history = useHistory();
 
 
+
   const user = useSelector((store) => store.user);
-  const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
-  // const pendingStatus = useSelector((store) => store.connectionsReducer.pending);
+  const searchedUser = useSelector((store) => store.searchReducer?.searchedUser);
+  const connections = useSelector((store) => store.connectionsReducer);
   const pendingStatus = useSelector((store) => store.pendingStatus);
   const view = useParams().view;
   const userInParams = Number(useParams().userInParams);
 
   const [menuPosition, setMenuPosition] = useState(null);
-  // const [btnDisabled, setBtnDisabled] = useState(true);
-  console.log('status', pendingStatus);
+  const [relationshipWithConnection, setRelationshipWithConnection] = useState('');
 
   const openRequestMenu = (event) => {
     if (menuPosition) {
@@ -52,12 +54,21 @@ function UserPage() {
     dispatch({ type: 'POST_REQUEST', payload: { relationship: 'family', userB: userInParams } })
   };
 
-
-  console.log('searchedUser status should be:', pendingStatus);
-
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
+
+  useEffect(() => {
+    for (const connection of connections) {
+      if ((connection.user_A_id == user.id && connection.user_B_id == userInParams && connection.pending == false) ||
+        (connection.user_B_id == user.id && connection.user_A_id == userInParams && connection.pending == false)) {
+        setRelationshipWithConnection(connection.relationship)
+      }
+    }
+  }, [connections])
+
+
+  
 
 
   return (
@@ -131,21 +142,28 @@ function UserPage() {
 
             {userInParams != user.id &&
               <>
-                {pendingStatus == false &&
+                {pendingStatus?.pending == undefined &&
+                  <Fab
+                    size="small"
+                    variant="extended"
+                    color="primary"
+                    onClick={openRequestMenu}>
+                    Connect with
+                    {" " + searchedUser?.first_name?.charAt(0).toUpperCase()
+                      + searchedUser?.first_name?.slice(1)}
+                  </Fab>
+                }
+                {pendingStatus?.pending == false &&
                   <>
-                    <Fab
-                      size="small"
-                      variant="extended"
-                      color="primary"
-                      onClick={openRequestMenu}>
-                      Connect with
-                      {" " + searchedUser?.first_name?.charAt(0).toUpperCase()
-                        + searchedUser?.first_name?.slice(1)}
-                    </Fab>
+                    {pendingStatus?.relationship &&
+                      <h3>
+                        {pendingStatus?.relationship?.charAt(0).toUpperCase()
+                          + pendingStatus?.relationship?.slice(1)}
+                      </h3>
+                    }
                   </>
                 }
-                
-                {pendingStatus == true &&
+                {pendingStatus?.pending == true &&
                   <Fab
                     variant="extended"
                     disabled>
@@ -174,6 +192,8 @@ function UserPage() {
 
           </div>
 
+        
+
           {userInParams == user.id && view == 'connections' &&
             <div className='profile-info'>
               <Button
@@ -190,7 +210,7 @@ function UserPage() {
         userInParams == user.id &&
         <>
           {view == "videos" &&
-            <UserVideos />}
+            <UserVideos relationship='self' />}
 
           {/* TODO this should be "shared with me" videos? 
           {view == "videos" &&
@@ -202,9 +222,16 @@ function UserPage() {
           {view == "uploads" &&
             <VideoUploadPage />}
 
-
+          {view == "edit" &&
+            <EditProfile />}
         </>
+      }
 
+      {
+        userInParams != user.id &&
+        <>
+          <UserVideos relationship={relationshipWithConnection} />
+        </>
       }
     </div >
   )

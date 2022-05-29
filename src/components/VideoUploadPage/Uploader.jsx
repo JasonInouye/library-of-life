@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { delay } from 'redux-saga/effects';
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
+import Swal from 'sweetalert2';
 import {
   Button,
   Modal,
@@ -13,7 +13,6 @@ import {
   InputLabel,
   Select,
 } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 
 function Uploader() {
   useEffect(() => {
@@ -23,19 +22,14 @@ function Uploader() {
     dispatch({
       type: 'CLEAR_VIDEO',
     });
-    dispatch({
-      type: 'CLEAR_UPLOAD_URL',
-    });
   }, []);
 
-  const axios = require('axios').default;
+
   const dispatch = useDispatch();
-  const requestURL = useSelector((store) => store.urlReducer);
-  const video = useSelector((store) => store.videoReducer);
-  const [videoPrompt, setVideoPrompt] = useState('');
-  const [open, setOpen] = useState(false);
   const prompts = useSelector((store) => store.promptReducer);
-  const [openVideoModal, setOpenVideoModal] = React.useState(false);
+  const video = useSelector((store) => store.videoReducer);
+  const [videoPrompt, setVideoPrompt] = useState('');  
+  const [openVideoModal, setOpenVideoModal] = useState(false);
 
   const getUploadParams = ({ meta }) => {
     const url = 'https://httpbin.org/post';
@@ -45,50 +39,45 @@ function Uploader() {
     };
   };
 
-  const API_ENDPOINT =
-    'https://hfoxt7tc91.execute-api.us-east-1.amazonaws.com/default/getPresignedVideoURL2';
   const handleChangeStatus = ({ meta, remove }, status) => {
     console.log('this is the status', status, meta);
   };
 
-  const handleSubmit = async (files) => {
-    const f = files[0];
-    console.log(f['file']);
-    // * GET request: presigned URL
-    const response = await axios({
-      method: 'GET',
-      url: API_ENDPOINT,
-    });
+  const handleSubmit = async (files, allFiles) => {
+    if (videoPrompt === '') {
+      setOpenVideoModal(false);
+      Swal.fire({
+        icon: 'error',
+        title: 'Prompt Required',
+        footer: 'Please choose a Prompt before uploading',
+      });
+    } else {
+      const f = files[0];
+      console.log(f['file']);
 
-    //console.log('Response: ', response.data.Key);
-    // dispatch({
-    //   type: 'GET_UPLOAD_URL',
-    //   prompt: videoPrompt
-    // });
+      // Triggers the presigned URL process from lambda function on aws
+      dispatch({
+        type: 'GET_UPLOAD_URL',
+        prompt: videoPrompt,
+        payload: f['file']
+      });
 
-    // const {url} = await axios.get("/api/upload").then(response)
-    // console.log('this is the variable URL Fetch', url)
+      // Empties Dropzone
+      console.log(files.map((f) => f.meta));
+      allFiles.forEach((f) => f.remove());
 
-    //console.log('modal url ', requestURL.Key);
-    //key is the video id from AWS
-
-    dispatch({
-      type: 'SET_MODAL_VIDEO',
-      payload: response.data.Key,
-    });
-
-    dispatch({
-      type: 'POST_VIDEO',
-      payload: { key: response.data.Key, prompt: videoPrompt },
-    });
-
-    // * PUT request: upload file to S3
-    const result = await fetch(response.data.uploadURL, {
-    //const result = await fetch(requestURL.uploadURL, {
-      method: 'PUT',
-      body: f['file'],
-    });
-    console.log('Result: ', result);
+      //Close Dropzone and Clear Prompt State
+      setOpenVideoModal(false);
+      setVideoPrompt('');
+      setTimeout(swalWait, 2000);
+      function swalWait() {
+      Swal.fire({
+        icon: 'success',
+        title: 'Successful Upload',
+        footer: 'Video has been uploaded successfully',
+      });
+    }
+    }
   };
 
   const handleChangeVideo = () => {
@@ -96,13 +85,13 @@ function Uploader() {
       type: 'CLEAR_VIDEO',
     });
   };
+
   const handleOpenVideoModal = () => {
     dispatch({ type: 'GET_PROMPTS' });
     setOpenVideoModal(true);
   };
 
   const handleCloseVideoModal = () => {
-    dispatch({ type: 'CLEAR_UPLOAD_URL' });
     setVideoPrompt('');
     setOpenVideoModal(false);
   };

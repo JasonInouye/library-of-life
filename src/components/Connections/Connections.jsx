@@ -19,7 +19,7 @@ function Connections() {
     const [all, setAll] = useState(false);
     const [friends, setFriends] = useState(false);
     const [family, setFamily] = useState(false);
-    const [requests, SetRequests] = useState(false);
+    const [requests, setRequests] = useState(false);
 
     const handleToggle = (event, newToggle) => {
         setToggle(newToggle);
@@ -29,28 +29,28 @@ function Connections() {
         setAll(true);
         setFriends(false);
         setFamily(false);
-        SetRequests(false);
+        setRequests(false);
     }
 
     const handleFriends = () => {
         setAll(false);
         setFriends(true);
         setFamily(false);
-        SetRequests(false);
+        setRequests(false);
     };
 
     const handleFamily = () => {
         setAll(false);
         setFriends(false);
         setFamily(true);
-        SetRequests(false);
+        setRequests(false);
     };
 
     const handleRequests = () => {
         setAll(false);
         setFriends(false);
         setFamily(false);
-        SetRequests(true);
+        setRequests(true);
     }
 
     const handleRemove = (id) => {
@@ -128,15 +128,12 @@ function Connections() {
                                         <div className="connectionsName" >
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Remove</li>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.connection_id)}>Remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
                     )
                 })}
-
-             {/* onClick={() => { history.push(`/user/${connect.id}/videos`) }}  */}
-
 
                 {/* handle friends */}
                 {friends && connections?.map((connect, i) => {
@@ -149,7 +146,7 @@ function Connections() {
                                         <div className="connectionsName" >
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Remove</li>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.connection_id)}>Remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
@@ -167,7 +164,7 @@ function Connections() {
                                         <div className="connectionsName">
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
-                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.id)}>Remove</li>
+                                        <li className="connectionsRemove" onClick={() => handleRemove(connect.connection_id)}>Remove</li>
                                     </Paper>
                                 </ul>}
                         </div>
@@ -176,10 +173,11 @@ function Connections() {
 
                 {/* {requests && } */}
                 {requests && connections?.map((connect, i) => {
-                    console.log(connect.pending)
+                    console.log("status", connect.pending)
+                    console.log('user b', connect.user_B_id)
                     return (
                         <div key={i}>
-                            {connect?.pending == true && user.id == connect?.user_B_id &&
+                            {((connect?.pending == true) && (user.id == connect?.user_B_id)) &&
                                 <ul>
                                     <Paper elevation={3}>
                                         <img src={connect.profile_image} className="connectionsImage"/>
@@ -187,8 +185,8 @@ function Connections() {
                                             <li>{connect.first_name + " " + connect.last_name}</li>
                                         </div>
                                         <div className="requestBtn">
-                                        <li className="connectionsIgnore" onClick={() => handleRemove(connect.id)}>Ignore</li>
-                                        <li className="connectionsAccept" onClick={() => handleAccept(connect.id)}>Accept</li>
+                                        <li className="connectionsIgnore" onClick={() => handleRemove(connect.connection_id)}>Ignore</li>
+                                        <li className="connectionsAccept" onClick={() => handleAccept(connect.connection_id)}>Accept</li>
                                         </div>
                                     </Paper>
                                 </ul>}

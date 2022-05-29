@@ -75,12 +75,13 @@ function Nav() {
         </Link>
       )}
 
-
+      {/* If a user is logged in, show search */}
+      {user.id && (
       <div id='search'>
         <AutocompleteSearch
           listOfUsers={listOfUsers}
         />
-      </div>
+      </div>)}
 
 
       {/* If a user is logged in, show these links */}
@@ -120,11 +121,6 @@ function Nav() {
               </MenuItem>
               <br/>
 
-              <MenuItem
-                onClick={(event) => handleItemClick(`/user/${user.id}/managelibrary`)}>
-                Manage Library
-              </MenuItem>
-              <br />
               <MenuItem
                 onClick={(event) => handleItemClick(`/user/${user.id}/uploads`)}>
                 Upload Video

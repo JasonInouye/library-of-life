@@ -1,18 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ThemeProvider } from '@mui/material/styles';
+import customTheme from '../_customTheme/theme';
 
-import { ThemeProvider } from "@mui/material/styles";
-import customTheme from "../_customTheme/theme";
-
-import {
-  Redirect,
-  Route,
-  Switch,
-  useLocation,
-} from 'react-router-dom';
+import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import './App.css';
-
 
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
@@ -29,155 +22,133 @@ import SearchResults from '../SearchResults/SearchResults';
 import VideoWatchPage from '../VideoWatchPage/VideoWatchPage';
 import ManageLibrary from '../ManageLibrary/ManageLibrary';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
-
+import EditProfile from '../EditProfile/EditProfile';
 
 import './App.css';
 
-
-
 function App() {
-
   const dispatch = useDispatch();
   const location = useLocation();
 
-
-  const user = useSelector(store => store.user);
+  const user = useSelector((store) => store.user);
 
   useEffect(() => {
     dispatch({ type: 'GET_USER' });
   }, [dispatch]);
 
   return (
-
-    <ThemeProvider theme={customTheme}> 
+    <ThemeProvider theme={customTheme}>
       {/* <Router> */}
 
-      
-        {/* List of page/pages on which Nav will NOT render */}
-        {location.pathname ===
+      {/* List of page/pages on which Nav will NOT render */}
+      {location.pathname === '/videoWatchPage' ? null : <Nav />}
+      {/* end conditional render info for Nav */}
 
-          '/videoWatchPage'
+      <Switch>
+        {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
+        <Redirect exact from='/' to='/home' />
 
-          ?
-          null
-          : <Nav />
-        }
-        {/* end conditional render info for Nav */}
+        {/* Visiting localhost:3000/about will show the about page. */}
+        <Route
+          // shows AboutPage at all times (logged in or not)
+          exact
+          path='/about'
+        >
+          <AboutPage />
+        </Route>
 
-        <Switch>
-          {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
-          <Redirect exact from="/" to="/home" />
-
-          {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about"
-          >
-            <AboutPage />
-          </Route>
-
-          {/* For protected routes, the view could show one of several things on the same route.
+        {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/user/:userInParams/:view"
-          >
-            <UserPage />
-          </ProtectedRoute>
+        <ProtectedRoute
+          // logged in shows UserPage else shows LoginPage
+          exact
+          path='/user/:userInParams/:view'
+        >
+          <UserPage />
+        </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/info"
-          >
-            <InfoPage />
-          </ProtectedRoute>
+        <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path='/info'
+        >
+          <InfoPage />
+        </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/search-results"
-          >
-            <SearchResults />
-          </ProtectedRoute>
+        <ProtectedRoute
+          // logged in shows UserPage else shows LoginPage
+          exact
+          path='/search-results'
+        >
+          <SearchResults />
+        </ProtectedRoute>
 
-          <Route
-            exact
-            path="/login"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect to the /user page
-              <Redirect to={`/user/${user.id}/videos`} />
-              :
-              // Otherwise, show the login page
-              <LoginPage />
-            }
-          </Route>
+        <ProtectedRoute
+          // logged in shows InfoPage else shows LoginPage
+          exact
+          path='/edit/:id'
+        >
+          <EditProfile />
+        </ProtectedRoute>
 
-          <Route
-            exact
-            path="/registration"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to={`/user/${user.id}/videos`} />
-              :
-              // Otherwise, show the registration page
-              <RegisterPage />
-            }
-          </Route>
+        <Route exact path='/login'>
+          {user.id ? (
+            // If the user is already logged in,
+            // redirect to the /user page
+            <Redirect to={`/user/${user.id}/videos`} />
+          ) : (
+            // Otherwise, show the login page
+            <LoginPage />
+          )}
+        </Route>
 
-          <Route
+        <Route exact path='/registration'>
+          {user.id ? (
+            // If the user is already logged in,
+            // redirect them to the /user page
+            <Redirect to={`/user/${user.id}/videos`} />
+          ) : (
+            // Otherwise, show the registration page
+            <RegisterPage />
+          )}
+        </Route>
 
-            exact
-            path="/videoUploadPage"
-          >
-            <VideoUploadPage />
-          </Route>
+        <Route exact path='/videoUploadPage'>
+          <VideoUploadPage />
+        </Route>
 
-          <Route
+        <Route exact path='/videoWatchPage'>
+          <VideoWatchPage />
+        </Route>
 
-            exact
-            path="/videoWatchPage"
-          >
-            <VideoWatchPage />
-          </Route>
+        <Route exact path='/home'>
+          {user.id ? (
+            // If the user is already logged in,
+            // redirect them to the /user page
+            <Redirect to={`/user/${user.id}/videos`} />
+          ) : (
+            // Otherwise, show the Landing page
+            <LandingPage />
+          )}
+        </Route>
 
-          <Route
-            exact
-            path="/home"
-          >
-            {user.id ?
-              // If the user is already logged in, 
-              // redirect them to the /user page
-              <Redirect to={`/user/${user.id}/videos`} />
-              :
-              // Otherwise, show the Landing page
-              <LandingPage />
-            }
-          </Route>
+        <ProtectedRoute
+          // logged in shows UserPage else shows LoginPage
+          exact
+          path='/manageLibrary'
+        >
+          <ManageLibrary />
+        </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/manageLibrary"
-          >
-            <ManageLibrary />
-          </ProtectedRoute>
-
-          {/* If none of the other routes matched, we will show a 404. */}
-          <Route>
-            <h1>404</h1>
-          </Route>
-        </Switch>
-        <Footer />
-            {/* </Router> */}
+        {/* If none of the other routes matched, we will show a 404. */}
+        <Route>
+          <h1>404</h1>
+        </Route>
+      </Switch>
+      <Footer />
+      {/* </Router> */}
     </ThemeProvider>
   );
 }

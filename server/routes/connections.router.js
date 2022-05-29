@@ -1,4 +1,5 @@
 const express = require('express');
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 const pool = require('../modules/pool');
 const router = express.Router();
 
@@ -9,9 +10,12 @@ router.get('/', (req, res) => {
     b.first_name,
     b.last_name,
     b.profile_image,
+    b.id AS "user_id",
+    a.id AS "connection_id",
     a.relationship,
-    a.id,
-    a.pending
+    a.pending,
+    a."user_A_id",
+    a."user_B_id"
     FROM "connections" a, "users" b
     WHERE (a."user_A_id" = $1
     and a."user_B_id" = b."id") OR (a."user_B_id" = $2
@@ -70,7 +74,7 @@ router.put('/:id', (req, res) => {
 });
 
 //Delete connection from connections table
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id; 
 
     console.log(id);
