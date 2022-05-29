@@ -6,7 +6,7 @@ function LoginPage() {
 
   return (
     <div>
-      <img src='./images/backgrounds/faces-transparent.png'
+      <img src='./images/backgrounds/faceMosaic.jpeg'
       className='backgroundImage'
       />
       <LoginForm />
