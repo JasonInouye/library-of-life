@@ -37,7 +37,7 @@ function LandingPage() {
         item xs={12} md={8}
         >
           <img src='./images/backgrounds/facetime.png'
-          className='mainImage'/>
+          className='focalImage'/>
         </Grid>
 
         <Grid item>
