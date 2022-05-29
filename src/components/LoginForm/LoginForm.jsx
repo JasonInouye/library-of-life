@@ -6,6 +6,7 @@ import { Box, Button, Input } from "@mui/material";
 import './LoginForm.css';
 
 function LoginForm() {
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
@@ -14,6 +15,21 @@ function LoginForm() {
 
   const moveToProfileVideos = () => {
     history.push('/user/videos');
+  }
+
+  const handleJane = () => {
+    setUsername('janekim@lol.com');
+    setPassword('1234');
+  }
+
+  const handleEddie = () => {
+    setUsername('eddietanaka@lol.com');
+    setPassword('1234');
+  }
+
+  const handleMay = () => {
+    setUsername('mayirwin@lol.com');
+    setPassword('1234');
   }
 
   const login = (event) => {
@@ -31,6 +47,8 @@ function LoginForm() {
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
+    setUsername('');
+    setPassword('');
   }; // end login
 
   return (
@@ -51,7 +69,11 @@ function LoginForm() {
       <form className="formPanel" onSubmit={login}>
 
         <h2 className="center">
-          Login
+          <span onClick={handleJane}>L</span>
+          o
+          <span onClick={handleEddie}>g</span>
+          i 
+          <span onClick={handleMay}>n</span>
         </h2>
 
         {errors.loginMessage && (
