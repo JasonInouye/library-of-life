@@ -111,8 +111,6 @@ function LoginForm() {
         <div className="centerLogin">
           <Button 
           type="submit" 
-          // name="submit" 
-          // value="Log In" 
           variant="contained">
             Log In
           </Button>
