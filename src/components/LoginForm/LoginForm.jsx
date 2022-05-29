@@ -17,17 +17,17 @@ function LoginForm() {
     history.push('/user/videos');
   }
 
-  const handleJane = () => {
+  const loginJane = () => {
     setUsername('janekim@lol.com');
     setPassword('1234');
   }
 
-  const handleEddie = () => {
+  const loginEddie = () => {
     setUsername('eddietanaka@lol.com');
     setPassword('1234');
   }
 
-  const handleMay = () => {
+  const loginMay = () => {
     setUsername('mayirwin@lol.com');
     setPassword('1234');
   }
@@ -69,11 +69,11 @@ function LoginForm() {
       <form className="formPanel" onSubmit={login}>
 
         <h2 className="center">
-          <span onClick={handleJane}>L</span>
+          <span onClick={loginJane}>L</span>
           o
-          <span onClick={handleEddie}>g</span>
+          <span onClick={loginEddie}>g</span>
           i 
-          <span onClick={handleMay}>n</span>
+          <span onClick={loginMay}>n</span>
         </h2>
 
         {errors.loginMessage && (
