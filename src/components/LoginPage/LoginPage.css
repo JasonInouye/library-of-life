@@ -3,8 +3,9 @@
     margin-top: 10px;
 }
 
-body {
-    background-image: url('../../../public/images/backgrounds/faces-transparent.png');
-    /* opacity: 0.6; */
+.backgroundImage {
+    opacity: 30%;
+    height: 100%;
+    width: 100%;
 }
 
