@@ -37,6 +37,7 @@ function RegisterForm() {
   return (
 
     <Box
+    className='registrationFormBox'
     display="flex"
     alignItems="center"
     justifyContent="center"
@@ -149,7 +150,9 @@ function RegisterForm() {
         </div>
 
        <div className="centerRegister"> 
-        <Button className="centerBtn" type="submit" name="submit" value="Register" variant='outlined'>
+        <Button 
+        type="submit" 
+        variant='contained'>
             Register 
         </Button> 
         </div>

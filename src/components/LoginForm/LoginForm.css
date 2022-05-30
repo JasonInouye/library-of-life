@@ -2,12 +2,13 @@
     text-align: center;
 }
 
-/* body {
-    background-color: #a3b899;
-    /* background-color: url("./images/backgrounds/faceMosaic.jgp");
-}  */
-
 .centerLogin {
     text-align: center;
     margin-top: 10px;
+}
+
+.loginFormBox {
+    position: absolute;
+    right: 33%;
+    top: 2em;
 }
