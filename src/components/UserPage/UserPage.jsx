@@ -54,8 +54,9 @@ function UserPage() {
     dispatch({ type: 'POST_REQUEST', payload: { relationship: 'family', userB: userInParams } })
   };
 
+
   useEffect(() => {
-    dispatch({ type: 'GET_SEARCHED_USER', payload: user?.id })
+    dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
 
   useEffect(() => {

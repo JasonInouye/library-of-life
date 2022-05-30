@@ -38,7 +38,7 @@ function App() {
 
   return (
     <ThemeProvider theme={customTheme}>
-      {/* <Router> now lives in index.js */}
+      {/* <Router> */}
 
       {/* List of page/pages on which Nav will NOT render */}
       {location.pathname === '/videoWatchPage' ? null : <Nav />}
@@ -147,7 +147,8 @@ function App() {
           <h1>404</h1>
         </Route>
       </Switch>
-      {/* <Footer /> commented out due to problems*/}
+      <Footer />
+      {/* </Router> */}
     </ThemeProvider>
   );
 }
