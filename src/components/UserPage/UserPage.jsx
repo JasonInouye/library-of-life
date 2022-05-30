@@ -55,7 +55,7 @@ function UserPage() {
   };
 
   useEffect(() => {
-    dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
+    dispatch({ type: 'GET_SEARCHED_USER', payload: user?.id })
   }, [userInParams])
 
   useEffect(() => {
@@ -238,5 +238,4 @@ function UserPage() {
 }
 
 
-// this allows us to use <App /> in index.js
 export default UserPage;
