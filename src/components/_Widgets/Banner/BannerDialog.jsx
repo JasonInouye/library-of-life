@@ -115,7 +115,7 @@ function BannerDialog({ title, children, component, callback, banner }) {
 
                                     {banners?.map((banner, i) => {
                                         return ( //loops thru array of banners to create each banner item
-                                            <div className="entireBannerCard">
+                                            <div className="entireBannerCard" key={i}>
                                                 < Grid
                                                     item xs={6} md={12}
                                                     key={banner.id}>
