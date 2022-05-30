@@ -3,7 +3,9 @@
     margin-top: 10px;
 }
 
-/* body {
-    background-image: url('../../images/backgrounds/faceMosaic.jpeg');
-} */
+.backgroundImage {
+    opacity: 30%;
+    height: 100%;
+    width: 100%;
+}
 
