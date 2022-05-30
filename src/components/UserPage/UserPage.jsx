@@ -192,17 +192,6 @@ function UserPage() {
 
           </div>
 
-        
-
-          {userInParams == user.id && view == 'connections' &&
-            <div className='profile-info'>
-              <Button
-                variant='outlined'
-                onClick={() => { history.push(`/user/${user.id}/videos`) }}>
-                My Profile
-              </Button>
-            </div>}
-
         </div>
       </div>
 
