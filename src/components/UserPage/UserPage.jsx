@@ -54,6 +54,7 @@ function UserPage() {
     dispatch({ type: 'POST_REQUEST', payload: { relationship: 'family', userB: userInParams } })
   };
 
+
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
@@ -192,17 +193,6 @@ function UserPage() {
 
           </div>
 
-        
-
-          {userInParams == user.id && view == 'connections' &&
-            <div className='profile-info'>
-              <Button
-                variant='outlined'
-                onClick={() => { history.push(`/user/${user.id}/videos`) }}>
-                My Profile
-              </Button>
-            </div>}
-
         </div>
       </div>
 
@@ -238,5 +228,4 @@ function UserPage() {
 }
 
 
-// this allows us to use <App /> in index.js
 export default UserPage;

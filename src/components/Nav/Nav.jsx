@@ -70,23 +70,41 @@ function Nav() {
       {/* If no user is logged in, show these links */}
       {!user.id && (
         // If there's no user, show login/registration links
-        <Link className="navLink" to="/login">
-          Login / Register
-        </Link>
+        <div className='navLinks'>
+          <Button
+            variant='outlined'
+            size='small'
+            sx={{ margin: '.5em' }}
+            onClick={() => {
+              history.push('/registration')}}
+            >
+            Register
+          </Button>
+
+          <Button
+            variant='contained'
+            size='small'
+            sx={{ margin: '.5em' }}
+            onClick={() => {
+              history.push('/login')}}
+            >
+            Login
+          </Button>
+        </div>
       )}
 
       {/* If a user is logged in, show search */}
       {user.id && (
-      <div id='search'>
-        <AutocompleteSearch
-          listOfUsers={listOfUsers}
-        />
-      </div>)}
+        <div id='search'>
+          <AutocompleteSearch
+            listOfUsers={listOfUsers}
+          />
+        </div>)}
 
 
       {/* If a user is logged in, show these links */}
       {user.id && (
-        <div id='navLinks'>
+        <div className='navLinks'>
           <div id='menu'>
 
             <Button
@@ -115,11 +133,11 @@ function Nav() {
               </MenuItem>
               <br />
 
-              <MenuItem 
-              onClick={(event) => handleItemClick(`/manageLibrary`)}>
+              <MenuItem
+                onClick={(event) => handleItemClick(`/manageLibrary`)}>
                 Manage Library
               </MenuItem>
-              <br/>
+              <br />
 
               <MenuItem
                 onClick={(event) => handleItemClick(`/user/${user.id}/uploads`)}>
@@ -134,7 +152,7 @@ function Nav() {
             </Menu>
           </div>
 
-          <LogOutButton/>
+          <LogOutButton />
 
         </div>
       )

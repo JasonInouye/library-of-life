@@ -39,68 +39,90 @@ const banners = [
 
 function BannerDialog({ title, children, component, callback, banner }) {
 
-  const selectedBanner = useSelector((store) => store.bannerReducer);
-  const [open, setOpen] = React.useState(false);
-  const dispatch = useDispatch();
+    const selectedBanner = useSelector((store) => store.bannerReducer);
+    const [open, setOpen] = React.useState(false);
+    const dispatch = useDispatch();
 
-  const handleClickOpen = () => {
-    // //CALL THE FUNCTION GIVEN, IF EXISTS:
-    // { callback ? callback() : null };
-    setOpen(true);
-    console.log('clicked open BannerDialog');
-  };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+    const handleClickOpen = () => {
+        // //CALL THE FUNCTION GIVEN, IF EXISTS:
+        // { callback ? callback() : null };
+        setOpen(true);
+        console.log('clicked open BannerDialog');
+    };
 
-  const handleSubmit = () => {
-    console.log('banner should be', selectedBanner);
-    dispatch({
-      type: 'POST_BANNER',
-      payload: {
-        banner: selectedBanner,
-      },
-    });
-    // TODO put in the promise: swal("Good job!", "You clicked the button!", "success");
-    setOpen(false);
-    //window.location.reload();
 
-  };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
-  //establishing children as passed in Form (or other) components
-  const InnerComponent = component || (() => children);
 
-  return (
-    <div>
-      <Button
-        onClick={handleClickOpen}
-        id='bannerButton'
-        color='primary'
-        size='small'
-        variant='contained'
-        startIcon={<VscEdit />}
-      >
-        Edit Banner Image
-      </Button>
+    const handleSubmit = () => {
+        console.log("banner should be", selectedBanner);
+        dispatch({
+            type: 'POST_BANNER',
+            payload: {
+                banner: selectedBanner
+            }
+        })
+        // TODO put in the promise: swal("Good job!", "You clicked the button!", "success");
+        setOpen(false);
+    }
 
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='form-dialog-title'
-        maxWidth='lg'
-      >
-        <DialogContent>
-          <Container>
-            <Grid container spacing={1}>
-              <FormControl>
-                <RadioGroup>
-                  {banners?.map((banner, i) => {
-                    return (
-                      //loops thru array of banners to create each banner item
-                      <div className='entireBannerCard'>
-                        <Grid item xs={6} md={12} key={banner.id}>
-                          <BannerItem key={i} banner={banner} />
+
+    //establishing children as passed in Form (or other) components
+    const InnerComponent = component || (() => children);
+
+
+    return (
+
+
+        <div>
+
+            <Button
+                onClick={handleClickOpen}
+                id="bannerButton"
+                color="primary"
+                size="small"
+                variant="contained"
+                startIcon={<VscEdit />}>
+                Edit Banner Image
+            </Button>
+
+
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="form-dialog-title"
+                maxWidth="lg"
+            >
+
+                <DialogContent>
+                    <Container>
+                        <Grid
+                            container
+                            spacing={1}
+                        >
+                            <FormControl>
+                                <RadioGroup>
+
+                                    {banners?.map((banner, i) => {
+                                        return ( //loops thru array of banners to create each banner item
+                                            <div className="entireBannerCard" key={i}>
+                                                < Grid
+                                                    item xs={6} md={12}
+                                                    key={banner.id}>
+
+                                                    <BannerItem
+                                                        key={i}
+                                                        banner={banner}
+                                                    />
+
+                                                </Grid>
+                                            </div>)
+                                    })}
+                                </RadioGroup>
+                            </FormControl>
                         </Grid>
                       </div>
                     );
