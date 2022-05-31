@@ -1,0 +1,14 @@
+.center {
+    text-align: center;
+}
+
+.centerLogin {
+    text-align: center;
+}
+
+.registrationFormBox {
+    position: absolute;
+    right: 33%;
+    top: 2em;
+}
+

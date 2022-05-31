@@ -12,7 +12,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 
-function PermissionDropdown() {
+function PermissionDropdown({video}) {
 
     const dispatch = useDispatch();
     const currentPermission = useSelector((store) => store.permission);
@@ -22,16 +22,16 @@ function PermissionDropdown() {
 
 
     //The database will replace this useState 
-    const [permission, setPermission] = useState(''); //default in DB is invite-only
+    // const [permission, setPermission] = useState(''); //default in DB is invite-only
     
 
     const handleChange = (event) => {
         //Change to dispatch when hooked up to DB
-        setPermission(event.target.value);
-        dispatch({type: 'UPDATE_PERMISSION', payload: event.target.value})
+        // setPermission(event.target.value);
+        dispatch({type: 'UPDATE_PERMISSION', payload: {video_id: video.id, permission: event.target.value}});
     };
     
-    console.log('selected permission is:', permission);
+    // console.log('selected permission is:', permission);
 
     return (
         <>
@@ -42,13 +42,13 @@ function PermissionDropdown() {
                 <Select
                     labelId="permission-select-small"
                     id="permission-select-small"
-                    value={permission}
+                    value={video.permission}
                     label="permission"
                     onChange={handleChange}
                 >
                     <MenuItem value={'everyone'}>Everyone</MenuItem>
                     <br/>
-                    <MenuItem value={'friends'}>Friends</MenuItem>
+                    <MenuItem value={'friend'}>Friends</MenuItem>
                     <br/>
                     <MenuItem value={'family'}>Family</MenuItem>
                     <br/>

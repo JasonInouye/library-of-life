@@ -6,13 +6,13 @@ import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 import ProfilePicButton from '../_Widgets/ProfilePicButton';
-import BannerDialog from '../_Widgets/BannerDialog';
+import BannerDialog from '../_Widgets/Banner/BannerDialog';
+import EditProfile from '../EditProfile/EditProfile';
+
 
 /******* styling  ********/
 import { Menu, Typography, Button, Fab } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
-
-
 
 function UserPage() {
 
@@ -20,15 +20,16 @@ function UserPage() {
   const history = useHistory();
 
 
+
   const user = useSelector((store) => store.user);
-  const searchedUser = useSelector((store) => store.searchReducer.searchedUser);
+  const searchedUser = useSelector((store) => store.searchReducer?.searchedUser);
+  const connections = useSelector((store) => store.connectionsReducer);
   const pendingStatus = useSelector((store) => store.pendingStatus);
   const view = useParams().view;
   const userInParams = Number(useParams().userInParams);
 
   const [menuPosition, setMenuPosition] = useState(null);
-  // const [btnDisabled, setBtnDisabled] = useState(true);
-  console.log('status', pendingStatus);
+  const [relationshipWithConnection, setRelationshipWithConnection] = useState('');
 
   const openRequestMenu = (event) => {
     if (menuPosition) {
@@ -54,45 +55,77 @@ function UserPage() {
   };
 
 
-
-
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
   }, [userInParams])
 
+  useEffect(() => {
+    for (const connection of connections) {
+      if ((connection.user_A_id == user.id && connection.user_B_id == userInParams && connection.pending == false) ||
+        (connection.user_B_id == user.id && connection.user_A_id == userInParams && connection.pending == false)) {
+        setRelationshipWithConnection(connection.relationship)
+      }
+    }
+  }, [connections])
+
+
+  
+
 
   return (
-    <div className="container">
-      <div id='profile-header'>
+    <div >
+      <div className='profile-header'>
         <div >
+
           {
-            userInParams == user.id &&
-            <>
-              <img id='bannerimage' src={user.banner_image} alt='Banner image' />
+            userInParams == user.id ?
+              <>
+                <img className='bannerimage' src={user.banner_image}
+                  alt='Banner image' />
 
-              <BannerDialog />
+                <BannerDialog />
 
-              <div id='profile-img-div'>
-                <img id='profile-img' src={user.profile_image} alt={`A picture of ${user.first_name}`} />
+                <div className='profile-img-div'>
 
-                <ProfilePicButton />
+                  <img className='profile-img' src={user.profile_image}
+                    alt={`A picture of ${user.first_name}`} />
 
-              </div>
-            </>
-          }
-          {userInParams != user.id &&
-            <>
-              <img id='bannerimage' src={searchedUser.banner_image} alt='Banner image' />
-              <div id='profile-img-div'>
-                <img id='profile-img' src={searchedUser.profile_image} alt={`A picture of ${searchedUser.first_name}`} />
-              </div>
-            </>
+                  <div className='profilePicBtn'>
+                    <ProfilePicButton />
+                  </div>
+
+                  <div className='aboutMe'>
+                    <Typography
+                      variant='subtitle2'>
+                      {user.about_me}
+                    </Typography>
+                  </div>
+
+                </div>
+              </>
+              :
+              <>
+                <img className='bannerimage' src={searchedUser.banner_image}
+                  alt='Banner image' />
+
+                <div className='profile-img-div'>
+                  <img className='profile-img' src={searchedUser.profile_image}
+                    alt={`A picture of ${searchedUser.first_name}`} />
+                </div>
+
+                <div className='searchAboutMe'>
+                  <Typography
+                    variant='subtitle2'>
+                    {searchedUser.about_me}
+                  </Typography>
+                </div>
+              </>
           }
         </div>
 
-        <div id='info-beneath-photos'>
+        <div className='info-beneath-photos'>
 
-          <div id='name-and-location'>
+          <div className='name-and-location'>
             <Typography
               variant='h5'
               sx={{ fontFamily: "inherit" }}>
@@ -110,28 +143,28 @@ function UserPage() {
 
             {userInParams != user.id &&
               <>
-                {pendingStatus == false &&
+                {pendingStatus?.pending == undefined &&
+                  <Fab
+                    size="small"
+                    variant="extended"
+                    color="primary"
+                    onClick={openRequestMenu}>
+                    Connect with
+                    {" " + searchedUser?.first_name?.charAt(0).toUpperCase()
+                      + searchedUser?.first_name?.slice(1)}
+                  </Fab>
+                }
+                {pendingStatus?.pending == false &&
                   <>
-                    <Fab
-                      variant="extended"
-                      color="primary"
-                      onClick={openRequestMenu}>
-                      Connect with
-                      {" " + searchedUser?.first_name?.charAt(0).toUpperCase()
-                        + searchedUser?.first_name?.slice(1)}
-                    </Fab>
-
-                    <Fab
-                      variant="extended"
-                      onClick={openRequestMenu}>
-                      Btn Option 2
-                    </Fab>
+                    {pendingStatus?.relationship &&
+                      <h3>
+                        {pendingStatus?.relationship?.charAt(0).toUpperCase()
+                          + pendingStatus?.relationship?.slice(1)}
+                      </h3>
+                    }
                   </>
                 }
-
-
-
-                {pendingStatus == true &&
+                {pendingStatus?.pending == true &&
                   <Fab
                     variant="extended"
                     disabled>
@@ -157,32 +190,8 @@ function UserPage() {
                   </MenuItem>
                 </Menu>
               </>}
+
           </div>
-          {userInParams == user.id && view == 'videos' &&
-
-            <div id='profile-info'>
-              <Button
-                id='manage-library'
-                variant='outlined'
-                onClick={() => { history.push('/managelibrary') }}>
-                Manage Library</Button>
-              <Button
-                id='my-connections'
-                variant='outlined'
-                onClick={() => { history.push(`/user/${user.id}/connections`) }}>
-                My Connections
-              </Button>
-
-            </div>}
-
-          {userInParams == user.id && view == 'connections' &&
-            <div id='profile-info'>
-              <Button
-                variant='outlined'
-                onClick={() => { history.push(`/user/${user.id}/videos`) }}>
-                My Videos
-              </Button>
-            </div>}
 
         </div>
       </div>
@@ -191,7 +200,7 @@ function UserPage() {
         userInParams == user.id &&
         <>
           {view == "videos" &&
-            <UserVideos />}
+            <UserVideos relationship='self' />}
 
           {/* TODO this should be "shared with me" videos? 
           {view == "videos" &&
@@ -203,14 +212,20 @@ function UserPage() {
           {view == "uploads" &&
             <VideoUploadPage />}
 
-
+          {view == "edit" &&
+            <EditProfile />}
         </>
+      }
 
+      {
+        userInParams != user.id &&
+        <>
+          <UserVideos relationship={relationshipWithConnection} />
+        </>
       }
     </div >
   )
 }
 
 
-// this allows us to use <App /> in index.js
 export default UserPage;

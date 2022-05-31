@@ -70,22 +70,41 @@ function Nav() {
       {/* If no user is logged in, show these links */}
       {!user.id && (
         // If there's no user, show login/registration links
-        <Link className="navLink" to="/login">
-          Login / Register
-        </Link>
+        <div className='navLinks'>
+          <Button
+            variant='outlined'
+            size='small'
+            sx={{ margin: '.5em' }}
+            onClick={() => {
+              history.push('/registration')}}
+            >
+            Register
+          </Button>
+
+          <Button
+            variant='contained'
+            size='small'
+            sx={{ margin: '.5em' }}
+            onClick={() => {
+              history.push('/login')}}
+            >
+            Login
+          </Button>
+        </div>
       )}
 
-
-      <div id='search'>
-        <AutocompleteSearch
-          listOfUsers={listOfUsers}
-        />
-      </div>
+      {/* If a user is logged in, show search */}
+      {user.id && (
+        <div id='search'>
+          <AutocompleteSearch
+            listOfUsers={listOfUsers}
+          />
+        </div>)}
 
 
       {/* If a user is logged in, show these links */}
       {user.id && (
-        <div id='navLinks'>
+        <div className='navLinks'>
           <div id='menu'>
 
             <Button
@@ -107,16 +126,25 @@ function Nav() {
                 My Profile
               </MenuItem>
               <br />
+
               <MenuItem
                 onClick={(event) => handleItemClick(`/user/${user.id}/connections`)}>
                 My Connections
               </MenuItem>
               <br />
+
+              <MenuItem
+                onClick={(event) => handleItemClick(`/manageLibrary`)}>
+                Manage Library
+              </MenuItem>
+              <br />
+
               <MenuItem
                 onClick={(event) => handleItemClick(`/user/${user.id}/uploads`)}>
                 Upload Video
               </MenuItem>
               <br />
+
               <MenuItem
                 onClick={(event) => handleItemClick('/about')}>
                 About Library of Life
@@ -124,7 +152,7 @@ function Nav() {
             </Menu>
           </div>
 
-          <LogOutButton/>
+          <LogOutButton />
 
         </div>
       )

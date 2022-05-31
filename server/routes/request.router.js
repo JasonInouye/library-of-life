@@ -23,12 +23,14 @@ router.get('/', (req, res) => {
  */
 router.get('/:idOfRequestedUser', (req, res) => {
     const queryText = `
-    SELECT "pending" FROM "connections"
+    SELECT "pending", "relationship" FROM "connections"
     WHERE "user_A_id" = $1 AND
     "user_B_id" = $2
     ;`;
 
     const queryValues = [req.user.id, req.params.idOfRequestedUser];
+
+    console.log('req', req.user.id, req.params.idOfRequestedUser)
 
     pool.query(queryText, queryValues)
         .then((result) => {

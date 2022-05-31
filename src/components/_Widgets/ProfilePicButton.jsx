@@ -1,14 +1,17 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Fab } from '@mui/material';
 import { VscEdit } from 'react-icons/vsc';
 
 
-function ProfilePicButton() {
+function ProfileEditButton() {
+    const user = useSelector((store) => store.user);
+    const history = useHistory();
 
-    const handleProfilePic = () => {
-        console.log('clicked handleProfilePic');
+    const handleEditProfile = () => {
+        console.log('clicked handleEditProfile', user);
+        history.push(`/user/${user.id}/edit`);
         // TODO connect with dropzone? or other means of upload select
     }
 
@@ -27,27 +30,25 @@ function ProfilePicButton() {
 
 
     return (
+        /*  
+        this border-radius MUST use 'sx,' 
+        does not work w/ 'style' on in CSS; 
+        otherwise square for some reason
+        */
         <Fab
             onMouseOver={handleMouseIn}
             onMouseOut={handleMouseOut}
-            onClick={handleProfilePic}
-            style={{
-                position: 'absolute',
-                left: '10.5em',
-                top: '10em',
-                color: 'gray',
-            }}//this position MUST use 'style;' Does not work w 'sx'
-            sx={{ borderRadius: '50% !important' }}
-            //this borderRadius MUST use 'sx,' does not work w/ 'style'; otherwise square for some reason
+            onClick={handleEditProfile}
             size='small'
+            sx={{ borderRadius: '50% !important' }}
         >
-            {hover ? 'Edit photo' : <VscEdit />} 
+            {hover ? 'Edit profile' : <VscEdit />}
             {/* 'edit photo' on hover, vs edit icon without hover*/}
         </Fab>
     )
 }
 
-export default ProfilePicButton
+export default ProfileEditButton
 
 
 

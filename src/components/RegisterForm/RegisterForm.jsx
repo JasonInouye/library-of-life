@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import Box from '@mui/material/Box';
+import { Button, Input} from "@mui/material";
+import './Register.css';
 
 function RegisterForm() {
   const [username, setUsername] = useState('');
@@ -22,7 +25,7 @@ function RegisterForm() {
         username: username,
         password: password,
         firstName: firstName,
-        lastName: lastName, 
+        lastName: lastName,
         city: city,
         state: state,
         country: country,
@@ -32,110 +35,130 @@ function RegisterForm() {
   }; // end registerUser
 
   return (
-    <form className="formPanel" onSubmit={registerUser}>
 
-      <h2>Register</h2>
-      {errors.registrationMessage && (
-        <h3 className="alert" role="alert">
-          {errors.registrationMessage}
-        </h3>
-      )}
+    <Box
+    className='registrationFormBox'
+    display="flex"
+    alignItems="center"
+    justifyContent="center"
+      sx={{
+        width: 300,
+        height: 400,
+        boxShadow: 3,
+        marginLeft: 72,
+        marginTop: 10,
+        bgcolor: 'white' 
+      }}
+    >
+      <form className="formPanel" onSubmit={registerUser}>
 
-      <div>
-        <label htmlFor="emailAddress">
-          Email Address:
-          <input
-            type="text"
-            name="emailAddress"
-            value={username}
-            required
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
+        <h2 className="center">Register</h2>
+        {errors.registrationMessage && (
+          <h3 className="alert" role="alert">
+            {errors.registrationMessage}
+          </h3>
+        )}
 
-      <div>
-        <label htmlFor="firstName">
-          First Name:
-          <input
-            type="text"
-            name="firstName"
-            value={firstName}
-            required
-            onChange={(event) => setFirstName(event.target.value)}
-          />
-        </label>
-      </div>
-      
-      <div>
-        <label htmlFor="Last Name">
-          Last Name:
-          <input
-            type="text"
-            name="lastName"
-            value={lastName}
-            required
-            onChange={(event) => setLastName(event.target.value)}
-          />
-        </label>
-      </div>
+        <div>
+          <label htmlFor="emailAddress">
+            <Input
+              placeholder="Email Address" 
+              type="text"
+              name="emailAddress"
+              value={username}
+              required
+              onChange={(event) => setUsername(event.target.value)}
+            />
+          </label>
+        </div>
 
-      <div>
-        <label htmlFor="password">
-          City:
-          <input
-            type="text"
-            name="city"
-            value={city}
-            required
-            onChange={(event) => setCity(event.target.value)}
-          />
-        </label>
-      </div>
+        <div>
+          <label htmlFor="firstName">
+            <Input
+              placeholder="First Name" 
+              type="text"
+              name="firstName"
+              value={firstName}
+              required
+              onChange={(event) => setFirstName(event.target.value)}
+            />
+          </label>
+        </div>
 
-      <div>
-        <label htmlFor="password">
-          State:
-          <input
-            type="text"
-            name="state"
-            value={state}
-            required
-            onChange={(event) => setState(event.target.value)}
-          />
-        </label>
-      </div>
+        <div>
+          <label htmlFor="Last Name">
+            <Input
+              placeholder="Last Name" 
+              type="text"
+              name="lastName"
+              value={lastName}
+              required
+              onChange={(event) => setLastName(event.target.value)}
+            />
+          </label>
+        </div>
 
-      <div>
-        <label htmlFor="country">
-          Country:
-          <input
-            type="text"
-            name="country"
-            value={country}
-            required
-            onChange={(event) => setCountry(event.target.value)}
-          />
-        </label>
-      </div>
+        <div>
+          <label htmlFor="password">
+            <Input
+              placeholder="City" 
+              type="text"
+              name="city"
+              value={city}
+              required
+              onChange={(event) => setCity(event.target.value)}
+            />
+          </label>
+        </div>
 
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={password}
-            required
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
+        <div>
+          <label htmlFor="password">
+            <Input
+              placeholder="State" 
+              type="text"
+              name="state"
+              value={state}
+              onChange={(event) => setState(event.target.value)}
+            />
+          </label>
+        </div>
 
-      <div>
-        <input className="btn" type="submit" name="submit" value="Register" />
-      </div>
-    </form>
+        <div>
+          <label htmlFor="country">
+            <Input
+              placeholder="Country" 
+              type="text"
+              name="country"
+              value={country}
+              required
+              onChange={(event) => setCountry(event.target.value)}
+            />
+          </label>
+        </div>
+
+        <div>
+          <label htmlFor="password">
+            <Input
+              placeholder="Password" 
+              type="password"
+              name="password"
+              value={password}
+              required
+              onChange={(event) => setPassword(event.target.value)}
+            />
+          </label>
+        </div>
+
+       <div className="centerRegister"> 
+        <Button 
+        type="submit" 
+        variant='contained'>
+            Register 
+        </Button> 
+        </div>
+      </form>
+
+    </Box>
   );
 }
 

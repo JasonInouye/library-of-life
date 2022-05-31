@@ -1,14 +1,13 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import { makeStyles } from '@material-ui/core/styles'
-import classNames from 'classnames';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import Swal from 'sweetalert2';
 
 
 /******* needed to create shortened URL  ********/
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
 
@@ -19,26 +18,15 @@ import CopyToClipboard from './CopyToClipboard';
 /******* icon  ********/
 import { SiSlideshare } from "react-icons/si";
 
-const useStyles = makeStyles({
-    btn: {
-        backgroundColor: "#F8D9D6",
-        color: 'black',
-        '&:hover': {
-            backgroundColor: "#e75480"
-        },
-    },
-    addTreat: {
-        top: "10px",
-    },
-    cancel: {
-        color: "grey"
-    }
-})
+
 
 export default function ShareDialogBox({ title, children, component, callback, video }) {
 
-    const [open, setOpen] = React.useState(false);
     const url = video.url
+    const shareData = useSelector((store) => store.shareReducer.shareReducer);
+
+    const [open, setOpen] = React.useState(false);
+
     const [showShortLink, setShowShortLink] = React.useState(false);
     const dispatch = useDispatch();
 
@@ -53,6 +41,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
         getConnections();
     };
 
+    // move into shortenURL function
     const urlObj = {
         url: url,
         domain: 'tiny.one'
@@ -66,10 +55,10 @@ export default function ShareDialogBox({ title, children, component, callback, v
     }
 
     const shortenURL = () => {
-        console.log('INSIDE shortenURL, url before shortening:', url);
+        // console.log('INSIDE shortenURL, url before shortening:', url);
         axios.post(`/api/link`, urlObj)
             .then(response => {
-                console.log('the shortened URL on CLIENT side should be:', response);
+                // console.log('the shortened URL on CLIENT side should be:', response);
                 setShortenedURL(response.data);
             })
             .catch(error => {
@@ -78,9 +67,10 @@ export default function ShareDialogBox({ title, children, component, callback, v
     }
 
     const handleSubmit = () => {
-        console.log('clicked Submit for Share Dialog');
+        // console.log('clicked Submit for Share Dialog:', shareData);
         // add sweetalert in promise
         setOpen(false);
+        dispatch({ type: 'POST_SHARE', payload: shareData  });
     };
 
     const handleClose = () => {
@@ -88,7 +78,6 @@ export default function ShareDialogBox({ title, children, component, callback, v
         setShowShortLink(false);
     };
 
-    const classes = useStyles();
 
     //establishing children as passed in Form (or other) components
     const InnerComponent = component || (() => children);
@@ -117,7 +106,8 @@ export default function ShareDialogBox({ title, children, component, callback, v
                     {/* InnerComponent:  */}
                     {/* {open && <InnerComponent />} */}
                     <SelectToShare
-                        disableEnforceFocus />
+                        disableEnforceFocus
+                        video={video} />
 
                     {/* passes the URL so it can be copied to clipboard */}
                     {showShortLink ?
@@ -129,7 +119,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
                             <p>Or, to send a video link by text or email:</p>
                             <Button
                                 variant='outlined'
-                                style={{color:'#667b68'}}
+                                style={{ color: '#667b68' }}
                                 onClick={() => { setShowShortLink(true) }}>
                                 Give me a link</Button>
                         </>
@@ -140,8 +130,6 @@ export default function ShareDialogBox({ title, children, component, callback, v
                 <DialogActions>
 
                     <Button
-                        // className={classes.btn} //more subtle non-button appearance
-                        className={classes.cancel}
                         onClick={handleClose} color="primary">
                         Cancel
                     </Button>

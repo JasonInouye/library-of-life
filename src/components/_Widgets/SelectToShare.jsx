@@ -22,16 +22,43 @@ const MenuProps = {
     },
 };
 
-
-
-export default function SelectToShare() {
+export default function SelectToShare({ video }) {
 
     const dispatch = useDispatch();
     const connections = useSelector((store) => store.connectionsReducer);
     const [personName, setPersonName] = React.useState([]);
     const [selectedIDs, setSelectedIDs] = React.useState([]);
 
-    const handleChange = (event) => {
+    console.log(connections);
+    
+    const handleConnectionObj = async (id) => {
+
+        let shareObj = {
+            user_id: selectedIDs,
+            video_id: video.id
+        };
+        
+        let updatedSelectedIDs = [];
+
+        // Conditional checks to see if checked person is already selected; if so, remove them, if not, add them
+        // This in turn is also what makes the checkboxes themselves check/uncheck
+        if (selectedIDs.indexOf(id) != -1) {
+            updatedSelectedIDs = selectedIDs.filter(idToRemove => idToRemove != id)
+            setSelectedIDs(updatedSelectedIDs);
+            shareObj.user_id = updatedSelectedIDs;
+            dispatch({ type: 'SET_SHARE_REDUCER', payload: shareObj })
+
+        } else {
+            setSelectedIDs([...selectedIDs, id]);
+            shareObj.user_id = [...selectedIDs, id];
+            dispatch({ type: 'SET_SHARE_REDUCER', payload: shareObj })
+
+        }
+    }
+
+    // console.log("values in shareObj", shareObj);
+
+    const handleSelectedName = (event) => {
         const {
             target: { value },
         } = event;
@@ -39,12 +66,8 @@ export default function SelectToShare() {
             // On autofill we get a stringified value.
             typeof value === 'string' ? value.split(',') : value,
         );
-        setSelectedIDs(
-            // FIXME how to grab "user_b" ID of connection? 
-        );
     };
 
-    console.log('selected people are:', personName, selectedIDs);
 
     return (
         <div>
@@ -59,19 +82,20 @@ export default function SelectToShare() {
                     id="demo-multiple-checkbox"
                     multiple
                     value={personName}
-                    onChange={handleChange}
+                    onChange={handleSelectedName}
                     input={<OutlinedInput label="Tag" />}
                     renderValue={(selected) => selected.join(', ')}
                     MenuProps={MenuProps}
                 >
-                    {/* FIXME make checkboxes stay checked... 
-                    and what should go in params of personName.indexOf()??? can't figure out its effect */}
+
                     {connections.map((connection) => (
                         <MenuItem
-                            key={connection.id}
+                            key={connection.user_id}
                             value={connection.first_name + " " + connection.last_name}>
 
-                            <Checkbox checked={personName.indexOf(connection) > -1} />
+                            <Checkbox
+                                onChange={() => handleConnectionObj(connection.user_id)}
+                                checked={selectedIDs.indexOf(connection.user_id) > -1} />
 
                             <ListItemText
                                 primary={connection.first_name + " " + connection.last_name}
