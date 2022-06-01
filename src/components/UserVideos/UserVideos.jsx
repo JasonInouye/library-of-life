@@ -1,8 +1,8 @@
+import UserVideoItem from "../UserVideoItem/UserVideoItem";
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
-import UserVideoItem from "../UserVideoItem/UserVideoItem";
 
 /******* styling  ********/
 import { Container, Grid } from '@mui/material';
@@ -28,7 +28,7 @@ function UserVideos({ relationship }) {
     // console.log(' this is the share reducer ', sharedVideos)
 
 
-    const handleToggle = (event, newToggle) => {
+    const handleToggle = (newToggle) => {
         setToggle(newToggle);
     };
 

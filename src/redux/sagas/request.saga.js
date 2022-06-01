@@ -8,7 +8,7 @@ function* getPendingStatus(action) {
         yield put({ type: 'SET_PENDING_STATUS', payload: response?.data[0] })
 
     } catch (error) {
-        console.log('Error with request saga:', error);
+        console.log('request saga GET', error);
     }
 }
 

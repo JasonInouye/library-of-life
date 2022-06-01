@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import UserVideoItem from '../UserVideoItem/UserVideoItem';
 
 /******* styling  ********/
-import {Container, Grid} from '@mui/material';
+import { Container, Grid } from '@mui/material';
 
 
 // import classNames from 'classnames';
@@ -18,7 +18,8 @@ function ManageLibrary() {
     const videos = useSelector((store) => store.videoReducer);
     const history = useHistory();
 
-    useEffect(() => {//triggers saga getting all user videos and permissions from DB on page load
+    //triggers saga getting all user videos and permissions from DB on page load
+    useEffect(() => {
         dispatch({ type: 'GET_USER_VIDEOS' });
     }, []);
 

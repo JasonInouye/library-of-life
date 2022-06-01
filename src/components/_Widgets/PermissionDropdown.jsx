@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
 
-
 /******* nested menu dropdowns  ********/
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -12,25 +11,15 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 
-function PermissionDropdown({video}) {
+function PermissionDropdown({ video }) {
 
     const dispatch = useDispatch();
     const currentPermission = useSelector((store) => store.permission);
-    //TODO above: what is logic (/query) to figure out current permission setting??
-    //TODO set drop down to show current settings (currentPermission from store) 
-    //QUESTION what to show when invite-only?? a list with radio buttons of authorized people?
-
-
-    //The database will replace this useState 
-    // const [permission, setPermission] = useState(''); //default in DB is invite-only
-    
 
     const handleChange = (event) => {
-        //Change to dispatch when hooked up to DB
-        // setPermission(event.target.value);
-        dispatch({type: 'UPDATE_PERMISSION', payload: {video_id: video.id, permission: event.target.value}});
+        dispatch({ type: 'UPDATE_PERMISSION', payload: { video_id: video.id, permission: event.target.value } });
     };
-    
+
     // console.log('selected permission is:', permission);
 
     return (
@@ -39,6 +28,7 @@ function PermissionDropdown({video}) {
                 <InputLabel id="permission-select-small">
                     Who can see this?
                 </InputLabel>
+
                 <Select
                     labelId="permission-select-small"
                     id="permission-select-small"
@@ -47,11 +37,11 @@ function PermissionDropdown({video}) {
                     onChange={handleChange}
                 >
                     <MenuItem value={'everyone'}>Everyone</MenuItem>
-                    <br/>
+                    <br />
                     <MenuItem value={'friend'}>Friends</MenuItem>
-                    <br/>
+                    <br />
                     <MenuItem value={'family'}>Family</MenuItem>
-                    <br/>
+                    <br />
                     <MenuItem value={'invite-only'}>Invite-Only</MenuItem>
                 </Select>
             </FormControl>

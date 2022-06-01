@@ -7,7 +7,6 @@ body,
 body {
   font-family: 'Blinker', sans-serif;
   margin: 0px;
-  
 }
 
 .centerAbout {
@@ -17,107 +16,6 @@ body {
 .moveRight {
   text-align: center;
 }
-
-/* img {
-  display: inline-block;
-  max-width: 100%;
-} */
-
-/* .faces {
-  background-image: url("/images/faces.png");
-} */
-
-/* .sage {
-  color: #667b68;
-}
-
-.landing {
-  text-align: center;
-  font-size: 30px;
-  height: 800px;
-  
-}
-
-.sageBackground {
-  background-color: #dde6d5;
-  height: 800px;
-}
-
-.white {
-  background-color: black;
-  color: white;
-  
-} */
-
-
-
-
-
-/* --------------------------------------------------------------------------------
-Container
--------------------------------------------------------------------------------- */
-
-/* .container {
-  padding: 20px;
-} */
-
-/* --------------------------------------------------------------------------------
-Button
--------------------------------------------------------------------------------- */
-/* 
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  border-color: #014041;
-  border-width: 1px 1px 3px;
-  border-radius: 4px;
-  background-color: #00acb0;
-  color: #f8f8f8;
-  font-size: 1.1rem;
-  outline: 0;
-  cursor: pointer;
-}
-
-.btn_sizeMin {
-  min-height: 50px;
-  min-width: 100px;
-}
-
-.btn_sizeSm {
-  padding: 10px 15px;
-  font-size: 0.8rem;
-}
-
-.btn_sizeFull {
-  display: block;
-  width: 100%;
-}
-
-.btn:hover {
-  background-color: #008183;
-  text-decoration: none;
-} */
-
-/* This line makes the "Register" and "Login" buttons look like links */
-/* .btn_asLink {
-  padding: 0;
-  border-width: 0;
-  border-bottom: 1px solid #444;
-  border-radius: 0;
-  background: none;
-  font: inherit;
-  color: #444;
-}
-
-.btn_asLink:hover {
-  background-color: transparent;
-  border-color: #008183;
-  color: #008183;
-} */
-
-/* --------------------------------------------------------------------------------
-Alert
--------------------------------------------------------------------------------- */
 
 .alert {
   box-sizing: border-box;
@@ -130,27 +28,7 @@ Alert
   font-size: 0.8rem;
 }
 
-/* --------------------------------------------------------------------------------
-Form Treatment
--------------------------------------------------------------------------------- */
  .formPanel {
-  /* box-sizing: border-box;
-  width: 400px;
-  max-width: 100%;
-  padding: 25px;
-  margin: 0 auto 20px;
-  background-color: #efefef;
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4); */
   text-align: center;
 } 
 
-/* input {
-  margin: 5px;
-  margin-bottom: 10px;
-}
-
-.upload{
-  padding: 50px;
-  margin: 0 auto 100px;
-} */ 

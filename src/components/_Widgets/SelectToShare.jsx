@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import {
+    OutlinedInput,
+    InputLabel,
+    MenuItem,
+    FormControl,
+    ListItemText,
+    Select,
+    Checkbox
+}
+    from '@mui/material';
 
-
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import ListItemText from '@mui/material/ListItemText';
-import Select from '@mui/material/Select';
-import Checkbox from '@mui/material/Checkbox';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -22,22 +24,23 @@ const MenuProps = {
     },
 };
 
-export default function SelectToShare({ video }) {
+function SelectToShare({ video }) {
 
     const dispatch = useDispatch();
     const connections = useSelector((store) => store.connectionsReducer);
+
     const [personName, setPersonName] = React.useState([]);
     const [selectedIDs, setSelectedIDs] = React.useState([]);
 
-    console.log(connections);
-    
+    // console.log(connections);
+
     const handleConnectionObj = async (id) => {
 
         let shareObj = {
             user_id: selectedIDs,
             video_id: video.id
         };
-        
+
         let updatedSelectedIDs = [];
 
         // Conditional checks to see if checked person is already selected; if so, remove them, if not, add them
@@ -107,3 +110,6 @@ export default function SelectToShare({ video }) {
         </div>
     );
 }
+
+
+export default SelectToShare;

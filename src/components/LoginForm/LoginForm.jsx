@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { Box, Button, Input } from "@mui/material";
 import './LoginForm.css';
 
@@ -11,11 +10,6 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
-  const history = useHistory();
-
-  const moveToProfileVideos = () => {
-    history.push('/user/videos');
-  }
 
   const login = (event) => {
     event.preventDefault();
@@ -26,8 +20,7 @@ function LoginForm() {
         payload: {
           username: username,
           password: password,
-        },
-        callback: moveToProfileVideos
+        }
       });
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });

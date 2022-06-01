@@ -1,9 +1,9 @@
+// Imports
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+
+// Styling
 import './LandingPage.css';
-
-import ReactPlayerComponent from '../_Widgets/ReactPlayerComponent';
-
 import { Button, Grid, Container } from '@mui/material';
 
 
@@ -23,7 +23,6 @@ function LandingPage() {
         container
         spacing={1}
         direction={'column'}
-        // justifyItems='center'
       >
 
         <Grid item>
@@ -33,11 +32,11 @@ function LandingPage() {
           </h2>
         </Grid>
 
-        <Grid 
-        item xs={12} md={8}
+        <Grid
+          item xs={12} md={8}
         >
           <img src='./images/backgrounds/facetime.png'
-          className='focalImage'/>
+            className='focalImage' />
         </Grid>
 
         <Grid item>

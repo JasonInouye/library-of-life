@@ -1,6 +1,9 @@
+// imports
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { number } from 'prop-types';
+
+// styling
 import './Connections.css';
 import { ToggleButton } from '@mui/material';
 import { ToggleButtonGroup } from '@mui/material';
@@ -9,15 +12,14 @@ import Paper from '@mui/material/Paper';
 import Swal from 'sweetalert2';
 import Badge from '@mui/material/Badge';
 import Stack from '@mui/material/Stack';
-import { number } from 'prop-types';
 
 function Connections() {
 
     const dispatch = useDispatch();
-    const connections = useSelector((store) => store.connectionsReducer);
-    const history = useHistory();
-    const user = useSelector((store) => store.user);
 
+    const connections = useSelector((store) => store.connectionsReducer);
+    const user = useSelector((store) => store.user);
+    
     const [toggle, setToggle] = React.useState('left');
     const [all, setAll] = useState(false);
     const [friends, setFriends] = useState(false);
@@ -72,18 +74,20 @@ function Connections() {
 
     const handleAccept = (id) => {
         dispatch({ type: 'ACCEPT_CONNECTIONS', payload: id });
-    }
+    } 
 
+    //on change get connections 
     useEffect(() => {
         dispatch({ type: 'GET_CONNECTIONS' })
     }, []);
 
+    //on change of connections increase requests
     useEffect(() => {
         let temporaryNumberOfRequests = 0;
 
         for (const connection of connections) {
-            if((connection.pending == true) && (user.id == connection.user_B_id)) {
-                temporaryNumberOfRequests ++;
+            if ((connection.pending == true) && (user.id == connection.user_B_id)) {
+                temporaryNumberOfRequests++;
             }
         }
         setNumberOfRequests(temporaryNumberOfRequests);
@@ -92,12 +96,14 @@ function Connections() {
 
     return (
         <>
+            {/* toggle button styling */}
             <Box
                 sx={{
                     borderRadius: 2,
                     m: 10
                 }}
             >
+                {/* toggle functionality */}
                 <div className="toggleRight">
                     <ToggleButtonGroup
                         value={toggle}
@@ -128,7 +134,8 @@ function Connections() {
                     </ToggleButtonGroup>
                 </div>
             </Box>
-
+            
+            {/* connections paper styling */}
             <Box
                 sx={{
                     '& > :not(style)': {
@@ -136,7 +143,7 @@ function Connections() {
                     },
                 }}>
 
-                {/* handle all */}
+                {/* map through both family and friend connections and display*/}
                 {all && connections?.map((connect, i) => {
                     return (
                         <div key={i}>
@@ -154,7 +161,7 @@ function Connections() {
                     )
                 })}
 
-                {/* handle friends */}
+                {/* map through friends and display */}
                 {friends && connections?.map((connect, i) => {
                     return (
                         <div key={i}>
@@ -172,7 +179,7 @@ function Connections() {
                     )
                 })}
 
-                {/* handle family */}
+                {/* map through family connections and display */}
                 {family && connections?.map((connect, i) => {
                     return (
                         <div key={i}>
@@ -190,10 +197,10 @@ function Connections() {
                     )
                 })}
 
-                {/* {requests && } */}
+                {/* map through connection requests and display */}
                 {requests && connections?.map((connect, i) => {
-                    console.log("status", connect.pending)
-                    console.log('user b', connect.user_B_id)
+                    // console.log("status", connect.pending)
+                    // console.log('user b', connect.user_B_id)
                     return (
                         <div key={i}>
                             {((connect?.pending == true) && (user.id == connect?.user_B_id)) &&

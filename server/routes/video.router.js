@@ -9,7 +9,7 @@ const router = express.Router();
      */
      router.delete('/:id', rejectUnauthenticated, (req, res) => {
         const id = req.params.id;
-        console.log('router DELETE id:', id);
+        //console.log('router DELETE id:', id);
         const query = `DELETE FROM "videos" WHERE "videos".id =$1;`;
         values = [id];
         pool.query(query, values)
@@ -33,7 +33,7 @@ router.get('/userVideos/:id', (req, res) => {
 ; 
     `;
 
-    console.log('server GET userVideos and prompts', req.user.id)
+    //console.log('server GET userVideos and prompts', req.user.id)
     pool.query(query, [req.user.id]).then((result) => {
         res.send(result.rows);
     }).catch(err => {
@@ -71,7 +71,7 @@ router.get('/', (req, res) => {
  */
  router.post('/', (req, res) => {
   // POST route code here
-  console.log( 'Inside of the VIDEO POST', req.body);
+  //console.log( 'Inside of the VIDEO POST', req.body);
   const domainLink = `https://d2qw0j2prooaok.cloudfront.net/${req.body.key}`
 
   const sqlText =`
@@ -82,7 +82,7 @@ router.get('/', (req, res) => {
 
   pool.query(sqlText, insertValues)
     .then((result) => {
-      console.log('Added to video table', insertValues);
+      //console.log('Added to video table', insertValues);
       res.sendStatus(201);
     })
     .catch((err) => {

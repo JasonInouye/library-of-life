@@ -6,14 +6,13 @@ import { useDispatch } from "react-redux";
 import { Radio, Card, FormControlLabel } from "@mui/material";
 
 
-
 function BannerItem({ banner }) {
 
     const dispatch = useDispatch();
 
     const handleChange = () => {
         // console.log('the banner picked is', event.target.value);
-        dispatch({ type: 'SET_BANNER_REDUCER', payload: event.target.value})
+        dispatch({ type: 'SET_BANNER_REDUCER', payload: event.target.value })
     }
 
     return (
@@ -25,14 +24,14 @@ function BannerItem({ banner }) {
             />
 
             <div className="bannerCard">
-                
+
                 <FormControlLabel
                     control={<Radio />}
                     value={banner.url}
                     label={banner.name}
                     onChange={handleChange}
                 />
-             
+
             </div>
 
         </Card>

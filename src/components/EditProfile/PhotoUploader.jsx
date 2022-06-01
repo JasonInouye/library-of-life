@@ -23,7 +23,7 @@ function PhotoUploader() {
 
 
   const dispatch = useDispatch();
-  const photo = useSelector((store) => store.photoReducer);  
+  const photo = useSelector((store) => store.photoReducer);
   const [openPhotoModal, setOpenPhotoModal] = useState(false);
 
   const getUploadParams = ({ meta }) => {
@@ -35,35 +35,35 @@ function PhotoUploader() {
   };
 
   const handleChangeStatus = ({ meta, remove }, status) => {
-    console.log('this is the status', status, meta);
+    // console.log('this is the status', status, meta);
   };
 
   const handleSubmit = async (files, allFiles) => {
 
-      const f = files[0];
-      console.log(f['file']);
+    const f = files[0];
+    // console.log(f['file']);
 
-      // Triggers the presigned URL process from lambda function on aws
-      dispatch({
-        type: 'GET_PHOTO_URL',
-        payload: f['file']
-      });
+    // Triggers the presigned URL process from lambda function on aws
+    dispatch({
+      type: 'GET_PHOTO_URL',
+      payload: f['file']
+    });
 
-      // Empties Dropzone
-      console.log(files.map((f) => f.meta));
-      allFiles.forEach((f) => f.remove());
+    // Empties Dropzone
+    console.log(files.map((f) => f.meta));
+    allFiles.forEach((f) => f.remove());
 
-      //Close Dropzone and Clear Prompt State
-      setOpenPhotoModal(false);
-      setTimeout(swalWait, 2000);
-      function swalWait() {
+    //Close Dropzone and Clear Prompt State
+    setOpenPhotoModal(false);
+    setTimeout(swalWait, 2000);
+    function swalWait() {
       Swal.fire({
         icon: 'success',
         title: 'Successful Upload',
         footer: 'Photo has been updated successfully',
       });
     }
-    
+
   };
 
   const handleChangePhoto = () => {
@@ -128,22 +128,7 @@ function PhotoUploader() {
             p: 4,
           }}
         >
-          {/* <FormControl fullWidth>
-            <InputLabel id='demo-simple-select-label'>Prompt</InputLabel>
-            <Select
-              labelId='demo-simple-select-label'
-              id='demo-simple-select'
-              value={photoPrompt}
-              label='prompt'
-              onChange={(event) => setPhotoPrompt(event.target.value)}
-            >
-              {prompts.map((prompt) => (
-                <MenuItem key={prompt.id} value={prompt.id}>
-                  {prompt.prompt}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl> */}
+
           <Typography id='modal-modal-title' variant='h6' component='h2'>
             Add Photo Here!
           </Typography>

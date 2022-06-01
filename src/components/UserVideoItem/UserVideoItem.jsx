@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
 import './UserVideoItem.css';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 import ReactPlayerComponent from "../_Widgets/ReactPlayerComponent";
 
 /******* buttons / dropdown menus  ********/
@@ -18,15 +18,8 @@ import ShareDialogBox from "../_Widgets/ShareDialogBox";
 
 function UserVideoItem({ video, relationship }) {
 
-    const dispatch = useDispatch();
-
     // check if user owns videos; don't render edit/delete buttons if not
     const user = useSelector((store) => store.user);
-
-    const handleClickEdit = () => {
-        console.log('clicked into dialog');
-    };
-
 
     return (
         <>
@@ -66,7 +59,6 @@ function UserVideoItem({ video, relationship }) {
                                             onClose={() => setOpen(false)}
                                             aria-labelledby="confirm-dialog"
                                             title="Share"
-                                            callback={handleClickEdit}
                                             disableEnforceFocus={true}
                                             video={video} />
                                     </div>

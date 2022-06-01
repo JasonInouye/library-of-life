@@ -1,35 +1,33 @@
+// Imports
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-
-import { ThemeProvider } from '@mui/material/styles';
-import customTheme from '../_customTheme/theme';
-
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
-import './App.css';
-
-import Nav from '../Nav/Nav';
-import Footer from '../Footer/Footer';
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
+// Styling
+import { ThemeProvider } from '@mui/material/styles';
+import customTheme from '../_customTheme/theme';
+import './App.css';
+
+// Routes
+import Nav from '../Nav/Nav';
+import Footer from '../Footer/Footer';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import SearchResults from '../SearchResults/SearchResults';
 import VideoWatchPage from '../VideoWatchPage/VideoWatchPage';
 import ManageLibrary from '../ManageLibrary/ManageLibrary';
 import VideoUploadPage from '../VideoUploadPage/VideoUploadPage';
 import EditProfile from '../EditProfile/EditProfile';
 
-import './App.css';
 
 function App() {
+
   const dispatch = useDispatch();
   const location = useLocation();
-
   const user = useSelector((store) => store.user);
 
   useEffect(() => {
@@ -75,14 +73,6 @@ function App() {
           path='/info'
         >
           <InfoPage />
-        </ProtectedRoute>
-
-        <ProtectedRoute
-          // logged in shows UserPage else shows LoginPage
-          exact
-          path='/search-results'
-        >
-          <SearchResults />
         </ProtectedRoute>
 
         <ProtectedRoute

@@ -1,19 +1,15 @@
+import './Nav.css';
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import LogOutButton from '../_Widgets/LogOutButton';
 import AutocompleteSearch from '../_Widgets/AutocompleteSearch';
-
-import './Nav.css';
-import { useDispatch, useSelector } from 'react-redux';
-
-
 import { IoIosArrowDown } from "react-icons/io";
-
-
 
 /******* menu dropdowns  ********/
 import { Menu, Button } from "@mui/material";
 import MenuItem from '@mui/material/MenuItem';
+
 
 function Nav() {
 
@@ -23,14 +19,8 @@ function Nav() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-
-  //moved to stretch due to SQL queries
-  // const handleSubmit = () => {
-  //   history.push('/search-results');
-  // }
-
-
   const [menuPosition, setMenuPosition] = useState(null);
+
 
   const openMenu = (event) => {
     if (menuPosition) {
@@ -122,31 +112,31 @@ function Nav() {
               anchorPosition={menuPosition}>
 
               <MenuItem
-                onClick={(event) => handleItemClick(`/user/${user.id}/videos`)}>
+                onClick={() => handleItemClick(`/user/${user.id}/videos`)}>
                 My Profile
               </MenuItem>
               <br />
 
               <MenuItem
-                onClick={(event) => handleItemClick(`/user/${user.id}/connections`)}>
+                onClick={() => handleItemClick(`/user/${user.id}/connections`)}>
                 My Connections
               </MenuItem>
               <br />
 
               <MenuItem
-                onClick={(event) => handleItemClick(`/manageLibrary`)}>
+                onClick={() => handleItemClick(`/manageLibrary`)}>
                 Manage Library
               </MenuItem>
               <br />
 
               <MenuItem
-                onClick={(event) => handleItemClick(`/user/${user.id}/uploads`)}>
+                onClick={() => handleItemClick(`/user/${user.id}/uploads`)}>
                 Upload Video
               </MenuItem>
               <br />
 
               <MenuItem
-                onClick={(event) => handleItemClick('/about')}>
+                onClick={() => handleItemClick('/about')}>
                 About Library of Life
               </MenuItem>
             </Menu>

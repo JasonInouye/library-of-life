@@ -11,7 +11,6 @@ import { Button, Container, Grid, RadioGroup } from '@mui/material';
 
 /******* for sending selected banner  ********/
 import { useDispatch, useSelector } from 'react-redux';
-import axios from 'axios';
 
 /******* Banner array: can add/remove file paths here  ********/
 const banners = [
@@ -27,17 +26,17 @@ const banners = [
     { name: 'Mountains', url: '/images/banners/mountainsunset.png' },
     { name: 'Rainbow', url: '/images/banners/rainbowsmoke.png' },
     { name: 'Yarn', url: '/images/banners/yarn.png' },
-    { name: 'Pier', url: '/images/banners/pier.png' }, 
-    { name: 'Paint', url: '/images/banners/abstractpaint.png' }, 
-    { name: 'Blossoms', url: '/images/banners/cherryblossoms.png' }, 
-    { name: 'Citrus', url: '/images/banners/citrus.png' }, 
-    { name: 'Droplet', url: '/images/banners/droplet.png' }, 
-    { name: 'Grass', url: '/images/banners/frostedgrass.png' }, 
-    { name: 'Lavender', url: '/images/banners/lavender.png' }, 
-    { name: 'Sunflower', url: '/images/banners/sunflower.png' }, 
+    { name: 'Pier', url: '/images/banners/pier.png' },
+    { name: 'Paint', url: '/images/banners/abstractpaint.png' },
+    { name: 'Blossoms', url: '/images/banners/cherryblossoms.png' },
+    { name: 'Citrus', url: '/images/banners/citrus.png' },
+    { name: 'Droplet', url: '/images/banners/droplet.png' },
+    { name: 'Grass', url: '/images/banners/frostedgrass.png' },
+    { name: 'Lavender', url: '/images/banners/lavender.png' },
+    { name: 'Sunflower', url: '/images/banners/sunflower.png' },
 ]
 
-function BannerDialog({ title, children, component, callback, banner }) {
+function BannerDialog() {
 
     const selectedBanner = useSelector((store) => store.bannerReducer);
     const [open, setOpen] = React.useState(false);
@@ -45,10 +44,9 @@ function BannerDialog({ title, children, component, callback, banner }) {
 
 
     const handleClickOpen = () => {
-        // //CALL THE FUNCTION GIVEN, IF EXISTS:
-        // { callback ? callback() : null };
+
         setOpen(true);
-        console.log('clicked open BannerDialog');
+        // console.log('clicked open BannerDialog');
     };
 
 
@@ -56,26 +54,19 @@ function BannerDialog({ title, children, component, callback, banner }) {
         setOpen(false);
     };
 
-
+// dispatches selected to banner reducer
     const handleSubmit = () => {
-        console.log("banner should be", selectedBanner);
+        // console.log("banner should be", selectedBanner);
         dispatch({
             type: 'POST_BANNER',
             payload: {
                 banner: selectedBanner
             }
         })
-        // TODO put in the promise: swal("Good job!", "You clicked the button!", "success");
         setOpen(false);
     }
 
-
-    //establishing children as passed in Form (or other) components
-    const InnerComponent = component || (() => children);
-
-
     return (
-
 
         <div>
 

@@ -4,7 +4,6 @@ import { useHistory } from 'react-router-dom';
 import { Button, Input, Box, TextField } from '@mui/material';
 import './EditProfile.css';
 import PhotoUploader from './PhotoUploader';
-//import { user } from 'pg/lib/defaults';
 
 function EditProfile() {
   const errors = useSelector((store) => store.errors);

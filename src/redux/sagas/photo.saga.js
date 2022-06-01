@@ -10,23 +10,21 @@ function* getPhotoUrl(action) {
       method: 'PUT',
       body: action.payload,
     });
-    console.log(result);
 
-    //yield put({ type: 'SET_MODAL_VIDEO', payload: response.data.Key });
     yield put({ type: 'UPDATE_PHOTO',payload: { key: response.data.Key }});
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log('photo saga GET', error);
   }
 }
 
 //PUT request to update users profile photo
 function* updateProfilePhoto(action) {
-    console.log('put action', action.payload);
+    //console.log('put action', action.payload);
     try {
       yield axios.put('/api/photo', action.payload);
       yield put({type: 'GET_USER'})
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log('photo saga PUT', error);
     }
   }
 
