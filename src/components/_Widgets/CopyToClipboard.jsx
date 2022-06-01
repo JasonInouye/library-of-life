@@ -1,5 +1,5 @@
-import React from 'react'
-import useCopy from "use-copy";
+import React, {useState} from 'react'
+// import useCopy from "use-copy";
 import Button from '@mui/material/Button';
 
 
@@ -10,7 +10,8 @@ function CopyToClipboard({ url }) {
 
     const textToCopy = `Here's a video I'd like to share with you: ` + url;
 
-    const [copied, copy, setCopied] = useCopy(textToCopy);
+    // const [copied, copy, setCopied] = useCopy(textToCopy);
+    const [copied, copy, setCopied] = useState('useCopy was uninstalled due to being outdated')
 
     const copyShortURL = () => {
         copy();
