@@ -16,7 +16,7 @@ function Connections() {
     const user = useSelector((store) => store.user);
 
     const [toggle, setToggle] = React.useState('left');
-    const [all, setAll] = useState(false);
+    const [all, setAll] = useState(true);
     const [friends, setFriends] = useState(false);
     const [family, setFamily] = useState(false);
     const [requests, setRequests] = useState(false);
