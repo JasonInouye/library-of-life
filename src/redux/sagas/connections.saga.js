@@ -5,7 +5,7 @@ import axios from 'axios';
 function* getConnections() {
     try {
         const response = yield axios.get('/api/connections');
-        console.log('GET connections', response.data);
+        //console.log('GET connections', response.data);
         yield put({ type: 'SET_CONNECTIONS', payload: response.data });
     } catch (error) {
         console.log('Error in get connections saga', error);
@@ -35,7 +35,7 @@ function* acceptConnections(action) {
 
 function* deleteConnections(action) {
     const id = action.payload;
-    console.log('saga delete Connection id', id);
+    //console.log('saga delete Connection id', id);
     try {
         yield axios.delete(`/api/connections/${id}`)
 

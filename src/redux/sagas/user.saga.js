@@ -3,7 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 // worker Saga: will be fired on "GET_USER" actions
 // updated getUser to getUser
-function* getUser(action) {
+function* getUser() {
 
   try {
     const config = {
@@ -21,10 +21,8 @@ function* getUser(action) {
     // with an id and username set the client-side user object to let
     // the client-side code know the user is logged in
     yield put({ type: 'SET_USER', payload: response.data });
-
-    yield action.callback;
   } catch (error) {
-    console.log('User get request failed', error);
+    console.log('user saga GET',error);
   }
 }
 

@@ -10,9 +10,8 @@ function ProfileEditButton() {
     const history = useHistory();
 
     const handleEditProfile = () => {
-        console.log('clicked handleEditProfile', user);
+        // console.log('clicked handleEditProfile', user);
         history.push(`/user/${user.id}/edit`);
-        // TODO connect with dropzone? or other means of upload select
     }
 
     /*** controls render of 'edit photo' upon button hover ***/
@@ -25,8 +24,6 @@ function ProfileEditButton() {
     };
 
     const [hover, setHover] = useState(false);
-
-    /*** end conditional render controls ***/
 
 
     return (
@@ -43,7 +40,7 @@ function ProfileEditButton() {
             sx={{ borderRadius: '50% !important' }}
         >
             {hover ? 'Edit profile' : <VscEdit />}
-            {/* 'edit photo' on hover, vs edit icon without hover*/}
+            {/* see words 'edit profile' on hover, or edit icon without hover*/}
         </Fab>
     )
 }

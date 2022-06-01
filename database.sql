@@ -3,12 +3,17 @@
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
+
+-- USER is a reserved keyword with Postgres
+-- You must use double quotes in every query that user is in:
+-- ex. SELECT * FROM "user";
+-- Otherwise you will have errors!
 CREATE TABLE "users" (
 	"id" SERIAL PRIMARY KEY,
 	"first_name" VARCHAR(255) NOT NULL,
 	"last_name" VARCHAR(255) NOT NULL,
 	"city" VARCHAR(255) NOT NULL,
-	"state" VARCHAR(255) NOT NULL,
+	"state" VARCHAR(255),
 	"country" VARCHAR(255) NOT NULL,
 	"username" VARCHAR(255) NOT NULL,
 	"password" VARCHAR(255) NOT NULL,
@@ -17,15 +22,18 @@ CREATE TABLE "users" (
 	"banner_image" TEXT
 );
 
+--DROP TABLE "connections";
 
-CREATE TABLE "contacts" (
+CREATE TABLE "connections" (
 	"id" SERIAL PRIMARY KEY,
 	"relationship" VARCHAR(50) NOT NULL,
 	"user_A_id" INT REFERENCES "users",
 	"user_B_id" INT REFERENCES "users",
-	"pending" BOOLEAN NOT NULL DEFAULT TRUE
+	"pending" BOOLEAN NOT NULL DEFAULT TRUE,
+	UNIQUE ("user_A_id", "user_B_id")
 );
 
+--DROP TABLE "prompts";
 
 CREATE TABLE "prompts" (
 	"id" SERIAL PRIMARY KEY,
@@ -33,22 +41,27 @@ CREATE TABLE "prompts" (
 	"prompt" TEXT NOT NULL
 );
 
+--DROP TABLE "videos";
+
 
 CREATE TABLE "videos" (
 	"id" SERIAL PRIMARY KEY,
-	"user_id" INT NOT NULL,
+	"user_id" INT REFERENCES "users",
 	"prompt_id" INT REFERENCES "prompts",
-	"url" TEXT NOT NULL
+	"url" TEXT NOT NULL,
+	"permissions" VARCHAR(50)
 );
 
-
+--DROP TABLE "shared_videos";
 
 CREATE TABLE "shared_videos" (
 	"id" SERIAL PRIMARY KEY,
-	"user_id" INT NOT NULL,
-	"video_id" INT REFERENCES "videos"
+	"user_id" INT REFERENCES "users",
+	"video_id" INT REFERENCES "videos",
+	UNIQUE ("user_id", "video_id")
 );
 
+--DROP TABLE "invited_by";
 
 
 CREATE TABLE "invited_by" (
@@ -59,26 +72,16 @@ CREATE TABLE "invited_by" (
 );
 
 
-INSERT INTO "users" ("first_name", "last_name", "city", "state", "country", "username", "password", "about_me", "profile_image", "banner_image")
-VALUES ('Jane', 'Kim', 'Minneapolis', 'MN', 'United States', 'janekim@lol.com', 1234, 'I am Jane Kim.', './images/janeKim.png', './images/flowers.jpg');
 
-INSERT INTO "videos" ("user_id", "prompt_id", "url")
-VALUES 
-(1,1,'https://d2qw0j2prooaok.cloudfront.net/1118756.mp4'),
-(1,2,'https://d2qw0j2prooaok.cloudfront.net/1315907.mp4'),
-(1,3,'https://d2qw0j2prooaok.cloudfront.net/1336144.mp4'),
-(1,4,'https://d2qw0j2prooaok.cloudfront.net/1780209.mp4'),
-(1,1,'https://d2qw0j2prooaok.cloudfront.net/2655535.mp4'),
-(1,2,'https://d2qw0j2prooaok.cloudfront.net/2696979.mp4'),
-(1,3,'https://d2qw0j2prooaok.cloudfront.net/3182315.mp4'),
-(1,4,'https://d2qw0j2prooaok.cloudfront.net/3492195.mp4'),
-(1,1,'https://d2qw0j2prooaok.cloudfront.net/4054498.mp4'),
-(1,2,'https://d2qw0j2prooaok.cloudfront.net/4273448.mp4'),
-(1,3,'https://d2qw0j2prooaok.cloudfront.net/4462639.mp4'),
-(1,4,'https://d2qw0j2prooaok.cloudfront.net/610206.mp4'),
-(1,1,'https://d2qw0j2prooaok.cloudfront.net/6223778.mp4'),
-(1,2,'https://d2qw0j2prooaok.cloudfront.net/662434.mp4'),
-(1,3,'https://d2qw0j2prooaok.cloudfront.net/7042344.mp4'),
-(1,4,'https://d2qw0j2prooaok.cloudfront.net/8228153.mp4'),
-(1,1,'https://d2qw0j2prooaok.cloudfront.net/myboat_video.mp4')
-;
+INSERT INTO "prompts" ("prompt")
+VALUES ('If the whole world was listening, what would you say?'),
+('What do you most want your children (or future children) to learn from you?'),
+('What is your favorite thing about yourself?'),
+('Which three words describe you best?'), 
+('What challenge have you overcome in your life?'), 
+('What is your favorite memory?'),
+('If you could have dinner with anyone – dead or alive – 
+who would it be and what would you ask them?'), 
+('If someone else described you, what do you think they would say?'), 
+('Who do you look up to?'), 
+('How do you show compassion to others? How can you extend that same compassion to yourself?');

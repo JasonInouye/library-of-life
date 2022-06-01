@@ -7,7 +7,7 @@ const bannerReducer = (state = '', action) => {
         default:
             return state;
     }
-    console.log('in bannerReducer, data is', action.payload);
+    //console.log('in bannerReducer, data is', action.payload);
 
 };
 

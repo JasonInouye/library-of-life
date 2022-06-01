@@ -1,6 +1,7 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+
 // worker Saga: will be fired on "LOGIN" actions
 function* loginUser(action) {
   try {
@@ -15,12 +16,11 @@ function* loginUser(action) {
     // send the action.payload as the body
     // the config includes credentials which
     // allow the server session to recognize the user
-    console.log('AP', action.payload)
     yield axios.post('/api/user/login', action.payload, config);
 
     // after the user has logged in
     // get the user information from the server
-    yield put({ type: 'GET_USER', callback: action.callback });
+    yield put({ type: 'GET_USER' });
   } catch (error) {
     console.log('Error with user login:', error);
     if (error.response.status === 401) {
@@ -54,11 +54,12 @@ function* logoutUser(action) {
     // remove the client-side user object to let
     // the client-side code know the user is logged out
     yield put({ type: 'UNSET_USER' });
-    yield put({ type: 'CLEAR_BANNER_REDUCER'});
-    yield put({ type: 'CLEAR_PROMPTS'});
-    yield put({ type: 'CLEAR_VIDEOS'});
-    yield put({ type: 'CLEAR_LIST_OF_USERS'});
-    yield put({ type: 'CLEAR_SEARCHED_USER'});
+    yield put({ type: 'CLEAR_BANNER_REDUCER' });
+    yield put({ type: 'CLEAR_PROMPTS' });
+    yield put({ type: 'CLEAR_VIDEOS' });
+    yield put({ type: 'CLEAR_LIST_OF_USERS' });
+    yield put({ type: 'CLEAR_SEARCHED_USER' });
+
   } catch (error) {
     console.log('Error with user logout:', error);
   }

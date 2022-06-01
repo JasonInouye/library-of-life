@@ -3,7 +3,6 @@ import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import Swal from 'sweetalert2';
 
 
 /******* needed to create shortened URL  ********/
@@ -20,7 +19,7 @@ import { SiSlideshare } from "react-icons/si";
 
 
 
-export default function ShareDialogBox({ title, children, component, callback, video }) {
+function ShareDialogBox({ title, children, component, callback, video }) {
 
     const url = video.url
     const shareData = useSelector((store) => store.shareReducer.shareReducer);
@@ -41,7 +40,7 @@ export default function ShareDialogBox({ title, children, component, callback, v
         getConnections();
     };
 
-    // move into shortenURL function
+    // for shortenURL function
     const urlObj = {
         url: url,
         domain: 'tiny.one'
@@ -68,9 +67,8 @@ export default function ShareDialogBox({ title, children, component, callback, v
 
     const handleSubmit = () => {
         // console.log('clicked Submit for Share Dialog:', shareData);
-        // add sweetalert in promise
         setOpen(false);
-        dispatch({ type: 'POST_SHARE', payload: shareData  });
+        dispatch({ type: 'POST_SHARE', payload: shareData });
     };
 
     const handleClose = () => {
@@ -100,7 +98,10 @@ export default function ShareDialogBox({ title, children, component, callback, v
             </Button>
 
 
-            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+            <Dialog
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="form-dialog-title">
 
                 <DialogContent>
                     {/* InnerComponent:  */}
@@ -134,7 +135,6 @@ export default function ShareDialogBox({ title, children, component, callback, v
                         Cancel
                     </Button>
 
-                    {/* TODO disable button if no one selected? disable if showing tiny link??*/}
                     <Button
                         variant='contained'
                         onClick={handleSubmit} color="primary">
@@ -147,3 +147,5 @@ export default function ShareDialogBox({ title, children, component, callback, v
         </div>
     );
 }
+
+export default ShareDialogBox;

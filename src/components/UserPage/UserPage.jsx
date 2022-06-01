@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
 import './UserPage.css';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import UserVideos from '../UserVideos/UserVideos';
 import Connections from '../Connections/Connections';
@@ -17,9 +17,6 @@ import MenuItem from '@mui/material/MenuItem';
 function UserPage() {
 
   const dispatch = useDispatch();
-  const history = useHistory();
-
-
 
   const user = useSelector((store) => store.user);
   const searchedUser = useSelector((store) => store.searchReducer?.searchedUser);
@@ -53,6 +50,7 @@ function UserPage() {
 
     dispatch({ type: 'POST_REQUEST', payload: { relationship: 'family', userB: userInParams } })
   };
+
 
   useEffect(() => {
     dispatch({ type: 'GET_SEARCHED_USER', payload: userInParams })
@@ -189,20 +187,7 @@ function UserPage() {
                   </MenuItem>
                 </Menu>
               </>}
-
           </div>
-
-        
-
-          {userInParams == user.id && view == 'connections' &&
-            <div className='profile-info'>
-              <Button
-                variant='outlined'
-                onClick={() => { history.push(`/user/${user.id}/videos`) }}>
-                My Profile
-              </Button>
-            </div>}
-
         </div>
       </div>
 
@@ -238,5 +223,4 @@ function UserPage() {
 }
 
 
-// this allows us to use <App /> in index.js
 export default UserPage;

@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+// Imports
+import React from 'react';
 import { useHistory } from 'react-router-dom';
-import './LandingPage.css';
-import Button from '@mui/material/Button';
 
-// CUSTOM COMPONENTS
-import RegisterForm from '../RegisterForm/RegisterForm';
+// Styling
+import './LandingPage.css';
+import { Button, Grid, Container } from '@mui/material';
+
 
 function LandingPage() {
-  const [heading, setHeading] = useState('Welcome');
+
   const history = useHistory();
 
   const onRegistration = (event) => {
@@ -15,13 +16,42 @@ function LandingPage() {
   };
 
   return (
-    <main className="faces">
-      <div className="landing">
-        <h2 className="border white">Your Story. Your Legacy.</h2>
-        <h5 className="white">--video goes here--</h5>
-        <Button variant='outlined' onClick={onRegistration} sx={{ margin: '20px', color: 'black', backgroundColor: 'white' }}>Join The Library Of Life</Button>
-      </div>
-    </main>
+
+    <Container>
+
+      <Grid
+        container
+        spacing={1}
+        direction={'column'}
+      >
+
+        <Grid item>
+          <h2
+            className="border white">
+            Your Story. Your Legacy.
+          </h2>
+        </Grid>
+
+        <Grid
+          item xs={12} md={8}
+        >
+          <img src='./images/backgrounds/facetime.png'
+            className='focalImage' />
+        </Grid>
+
+        <Grid item>
+          <Button
+            variant='outlined'
+            onClick={onRegistration}
+          >
+            Join The Library Of Life
+          </Button>
+        </Grid>
+
+      </Grid>
+    </Container>
+
+
   );
 }
 

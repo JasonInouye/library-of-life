@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
 import Swal from 'sweetalert2';
@@ -15,6 +16,8 @@ import {
 } from '@mui/material';
 
 function Uploader() {
+
+  console.log('this is the prompt id', videoPrompt);
   useEffect(() => {
     dispatch({
       type: 'GET_PROMPTS',

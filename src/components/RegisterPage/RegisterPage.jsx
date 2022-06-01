@@ -10,20 +10,12 @@ function RegisterPage() {
 
   return (
     <div>
+      <img src='./images/backgrounds/faceMosaic.jpeg'
+      className='backgroundImage'
+      />
+
       <RegisterForm />
 
-      <div className="centerLogin">
-        <Button
-          variant="outlined"
-          type="button"
-          className="btn btn_asLink"
-          onClick={() => {
-            history.push('/login');
-          }}
-        >
-          Login
-        </Button>
-      </div>
     </div>
   );
 }

@@ -5,8 +5,8 @@ function* postUserVideos(action) {
   //console.log('post action', action.payload);
   try {
     yield axios.post('/api/video/', action.payload);
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log('video saga POST', error);
   }
 }
 
@@ -14,11 +14,10 @@ function* postUserVideos(action) {
 function* getUserVideos() {
   try {
     const videos = yield axios.get('/api/video/userVideos/:id');
-    // const permissions = yield axios.get('/api/permission'); //needs to get all existing permissions of user
     //console.log('getting user videos:', videos.data);
     yield put({ type: 'SET_USER_VIDEOS', payload: videos.data }); //set in videoReducer
   } catch (error) {
-    console.log('Error with getUserVideos saga:', error);
+    console.log('video saga GET', error);
   }
 }
 
@@ -30,7 +29,7 @@ function* getSingleVideo(action) {
     const response = yield axios.get(`/api/video/${id}`);
     yield put({ type: 'SET_SINGLE_VIDEO', payload: response.data });
   } catch (error) {
-    console.log('Video get request failed', error);
+    console.log('video saga GET', error);
   }
 }
 
@@ -43,12 +42,10 @@ function* getUploadUrl(action) {
       method: 'PUT',
       body: action.payload,
     });
-    console.log(result);
-
-    //yield put({ type: 'SET_MODAL_VIDEO', payload: response.data.Key });
+    // This will post the video file name that is returned from aws along with prompt selected by user
     yield put({ type: 'POST_VIDEO',payload: { key: response.data.Key, prompt: action.prompt },});
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log('video saga GET', error);
   }
 }
 

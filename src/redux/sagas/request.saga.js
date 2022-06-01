@@ -4,11 +4,11 @@ import axios from 'axios';
 function* getPendingStatus(action) {
     try {
         const response = yield axios.get(`/api/request/${action.payload}`);
-        yield console.log('yo yo', response.data);
+        // yield console.log('In getPendingStatus in request saga. Data is:', response.data);
         yield put({ type: 'SET_PENDING_STATUS', payload: response?.data[0] })
 
     } catch (error) {
-        console.log('Error with request saga:', error);
+        console.log('request saga GET', error);
     }
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import useCopy from "use-copy";
 import Button from '@mui/material/Button';
 
@@ -6,10 +6,9 @@ import Button from '@mui/material/Button';
 /* ******* useCopy: https://www.npmjs.com/package/use-copy ******** */
 
 
-
 function CopyToClipboard({ url }) {
 
-    const textToCopy = `Here's a video I'd like to share with you: `+ url;
+    const textToCopy = `Here's a video I'd like to share with you: ` + url;
 
     const [copied, copy, setCopied] = useCopy(textToCopy);
 

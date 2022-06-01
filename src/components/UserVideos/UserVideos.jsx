@@ -1,8 +1,8 @@
+import UserVideoItem from "../UserVideoItem/UserVideoItem";
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from 'react-router-dom';
-import UserVideoItem from "../UserVideoItem/UserVideoItem";
 
 /******* styling  ********/
 import { Container, Grid } from '@mui/material';
@@ -21,15 +21,14 @@ function UserVideos({ relationship }) {
     const [myVideos, setMyVideos] = useState(true);
     const [mySharedVideos, setSharedVideos] = useState(false);
     
-    console.log("SHARE", sharedVideos);
-    // const searchedUserVideos = useSelector((store) => store.searchedUserVideos)
+    // console.log("In UserVideos", sharedVideos);
 
     const userInParams = Number(useParams().userInParams);
 
-    console.log(' this is the share reducer ', sharedVideos)
+    // console.log(' this is the share reducer ', sharedVideos)
 
 
-    const handleToggle = (event, newToggle) => {
+    const handleToggle = (newToggle) => {
         setToggle(newToggle);
     };
 

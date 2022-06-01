@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import { Autocomplete, TextField } from '@mui/material';
 
@@ -21,11 +21,13 @@ function AutocompleteSearch({ listOfUsers }) {
             fullWidth
             size='small'
             renderInput={(params) =>
+
                 <TextField
                     sx={{ marginTop: '3px' }}
                     {...params} label=
                     'Search users by name'
                 />}
+
             sx={{
                 height: '0.3em',
                 position: 'relative',
