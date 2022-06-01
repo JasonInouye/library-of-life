@@ -13,7 +13,7 @@ router.get('/:video_id', (req, res) => {
     WHERE "id" = $1; 
     `;
 
-console.log('get', req.params.video_id)
+//console.log('get', req.params.video_id)
   pool.query(query, [req.params.video_id]).then((result) => {
     res.send(result.rows);
   }).catch(err => {
@@ -31,7 +31,7 @@ router.put('/:video_id', rejectUnauthenticated, (req, res) => {
   SET "permission" = $1
   WHERE "id" = $2;
   `
-console.log('put', req.body.permission, req.params.video_id)
+//console.log('put', req.body.permission, req.params.video_id)
   const values = [req.body.permission, req.params.video_id];
 
   pool.query(queryText, values).then(result => {

@@ -11,7 +11,7 @@ function LandingPage() {
 
   const history = useHistory();
 
-  const onRegistration = (event) => {
+  const onRegistration = () => {
     history.push('/registration');
   };
 

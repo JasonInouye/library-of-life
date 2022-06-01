@@ -44,14 +44,6 @@ function EditProfile() {
       alignItems='center'
       justifyContent='center'
       style={{ minHeight: '100vh' }}
-      // sx={{
-      //   width: 300,
-      //   height: 400,
-      //   boxShadow: 3,
-      //   marginLeft: 72,
-      //   marginTop: 10,
-      //   bgcolor: 'white'
-      // }}
     >
       <form className='formPanel' onSubmit={updateUser}>
         <h2 className='center'>Edit Information</h2>

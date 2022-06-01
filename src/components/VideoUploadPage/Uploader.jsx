@@ -17,7 +17,7 @@ import {
 
 function Uploader() {
 
-  console.log('this is the prompt id', videoPrompt);
+  // console.log('this is the prompt id', videoPrompt);
   useEffect(() => {
     dispatch({
       type: 'GET_PROMPTS',
@@ -43,7 +43,7 @@ function Uploader() {
   };
 
   const handleChangeStatus = ({ meta, remove }, status) => {
-    console.log('this is the status', status, meta);
+    // console.log('this is the status', status, meta);
   };
 
   const handleSubmit = async (files, allFiles) => {
@@ -56,7 +56,7 @@ function Uploader() {
       });
     } else {
       const f = files[0];
-      console.log(f['file']);
+      // console.log(f['file']);
 
       // Triggers the presigned URL process from lambda function on aws
       dispatch({
@@ -66,7 +66,7 @@ function Uploader() {
       });
 
       // Empties Dropzone
-      console.log(files.map((f) => f.meta));
+      // console.log(files.map((f) => f.meta));
       allFiles.forEach((f) => f.remove());
 
       //Close Dropzone and Clear Prompt State

@@ -14,7 +14,7 @@ router.put('/', (req, res) => {
 
     pool.query(queryText, [req.body.banner])
         .then((result) => {
-            console.log('server GET connections', result.rows);
+            // console.log('server GET connections', result.rows);
             res.send(result.rows);
         }).catch(err => {
             console.log('ERROR in GET connections', err);

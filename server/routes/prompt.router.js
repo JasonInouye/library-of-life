@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
     pool.query(query)
     .then((result) => {
         res.send(result.rows);
-        console.log('server GET prompts', result.rows)
+        //console.log('server GET prompts', result.rows)
     }).catch(err => {
         console.log('ERROR: Get prompts', err);
         res.sendStatus(500)

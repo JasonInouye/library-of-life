@@ -5,12 +5,12 @@ const {rejectUnauthenticated} = require('../modules/authentication-middleware');
 require('dotenv').config();
 
 router.get('/', rejectUnauthenticated, async (req, res) => {
-    console.log('API S3 URL request');
+    //console.log('API S3 URL request');
     axios
         // endpoint is in env file
         .get(process.env.S3_API_URL)
         .then( (response) => {
-            console.log(response.data);
+            //console.log(response.data);
             res.send(response.data)
         })
         .catch( (err) => {
