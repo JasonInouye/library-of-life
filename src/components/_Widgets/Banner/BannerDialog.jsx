@@ -1,7 +1,6 @@
 import React from 'react';
 import BannerItem from './BannerItem';
-import { useEffect } from 'react';
-import '../../UserPage/UserPage.css';
+import '../../UserPage/UserPage.css'
 
 import { Dialog, DialogActions, DialogContent } from '@mui/material';
 import { FormControl } from '@mui/material';
@@ -9,33 +8,34 @@ import { FormControl } from '@mui/material';
 import { VscEdit } from 'react-icons/vsc';
 import { Button, Container, Grid, RadioGroup } from '@mui/material';
 
+
 /******* for sending selected banner  ********/
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
 /******* Banner array: can add/remove file paths here  ********/
 const banners = [
-  { name: 'Flowers', url: '/images/banners/yellowwall.png' },
-  { name: 'Tree', url: '/images/banners/treeoflife.png' },
-  { name: 'Clouds', url: '/images/banners/clouds.png' },
-  { name: 'Balloons', url: '/images/banners/hotairballoons.png' },
-  { name: 'Ripple', url: '/images/banners/ripple.png' },
-  { name: 'Lemons', url: '/images/banners/lemons.png' },
-  { name: 'River', url: '/images/banners/mountainriver.png' },
-  { name: 'Canoe', url: '/images/banners/canoe.png' },
-  { name: 'Canyon', url: '/images/banners/canyon.png' },
-  { name: 'Mountains', url: '/images/banners/mountainsunset.png' },
-  { name: 'Rainbow', url: '/images/banners/rainbowsmoke.png' },
-  { name: 'Yarn', url: '/images/banners/yarn.png' },
-  { name: 'Pier', url: '/images/banners/pier.png' },
-  { name: 'Paint', url: '/images/banners/abstractpaint.png' },
-  { name: 'Blossoms', url: '/images/banners/cherryblossoms.png' },
-  { name: 'Citrus', url: '/images/banners/citrus.png' },
-  { name: 'Droplet', url: '/images/banners/droplet.png' },
-  { name: 'Grass', url: '/images/banners/frostedgrass.png' },
-  { name: 'Lavender', url: '/images/banners/lavender.png' },
-  { name: 'Sunflower', url: '/images/banners/sunflower.png' },
-];
+    { name: 'Flowers', url: '/images/banners/yellowwall.png' },
+    { name: 'Tree', url: '/images/banners/treeoflife.png' },
+    { name: 'Clouds', url: '/images/banners/clouds.png' },
+    { name: 'Balloons', url: '/images/banners/hotairballoons.png' },
+    { name: 'Ripple', url: '/images/banners/ripple.png' },
+    { name: 'Lemons', url: '/images/banners/lemons.png' },
+    { name: 'River', url: '/images/banners/mountainriver.png' },
+    { name: 'Canoe', url: '/images/banners/canoe.png' },
+    { name: 'Canyon', url: '/images/banners/canyon.png' },
+    { name: 'Mountains', url: '/images/banners/mountainsunset.png' },
+    { name: 'Rainbow', url: '/images/banners/rainbowsmoke.png' },
+    { name: 'Yarn', url: '/images/banners/yarn.png' },
+    { name: 'Pier', url: '/images/banners/pier.png' }, 
+    { name: 'Paint', url: '/images/banners/abstractpaint.png' }, 
+    { name: 'Blossoms', url: '/images/banners/cherryblossoms.png' }, 
+    { name: 'Citrus', url: '/images/banners/citrus.png' }, 
+    { name: 'Droplet', url: '/images/banners/droplet.png' }, 
+    { name: 'Grass', url: '/images/banners/frostedgrass.png' }, 
+    { name: 'Lavender', url: '/images/banners/lavender.png' }, 
+    { name: 'Sunflower', url: '/images/banners/sunflower.png' }, 
+]
 
 function BannerDialog({ title, children, component, callback, banner }) {
 
@@ -124,27 +124,26 @@ function BannerDialog({ title, children, component, callback, banner }) {
                                 </RadioGroup>
                             </FormControl>
                         </Grid>
-                      </div>
-                    );
-                  })}
-                </RadioGroup>
-              </FormControl>
-            </Grid>
-          </Container>
-        </DialogContent>
+                    </Container>
+                </DialogContent>
 
-        <DialogActions>
-          <Button onClick={handleClose} color='primary'>
-            Cancel
-          </Button>
+                <DialogActions>
 
-          <Button onClick={handleSubmit} color='primary' variant='contained'>
-            Save Changes
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
-  );
+                    <Button
+                        onClick={handleClose} color="primary">
+                        Cancel
+                    </Button>
+
+                    <Button
+                        onClick={handleSubmit} color="primary"
+                        variant='contained'>
+                        Save Changes
+                    </Button>
+                </DialogActions>
+
+            </Dialog>
+        </div >
+    );
 }
 
 export default BannerDialog;
