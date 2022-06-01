@@ -1,121 +1,123 @@
+# Library of Life 
+Currently, there are many ways to find ancestry through online services, but the personal history of the people found on these services are lost to time. Library of Life is an application that enables people to create digital legacies to leave behind. Users can upload their personal story in the form of a video to be shared with friends, family, and future generations. 
 
-# Prime Solo Project Starting Repo
-This version uses React, Redux, Express, Passport, and PostgreSQL (a full list of dependencies can be found in `package.json`).
+Duration: 2 week sprint
 
-We **STRONGLY** recommend following these instructions carefully. It's a lot, and will take some time to set up, but your life will be much easier this way in the long run.
-
-## Use the Template for This Repository (Don't Clone)
-
-- Don't Fork or Clone. Instead, click the `Use this Template` button, and make a copy to your personal account. Make the project `PUBLIC`!
+## Screenshots 
 
 
-## Prerequisites
 
+## Getting Started 
+We **STRONGLY** recommend following these instructions carefully. These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+
+### Prerequisites
 Before you get started, make sure you have the following software installed on your computer:
-
 - [Node.js](https://nodejs.org/en/)
 - [PostrgeSQL](https://www.postgresql.org/)
 - [Nodemon](https://nodemon.io/)
 
-## Create database and table
 
-Create a new database called `prime_app` and create a `user` table:
+### Create database and table
+Create a new database called `lol` and create the tables located in the database.sql file.
 
-```SQL
-CREATE TABLE "user" (
-    "id" SERIAL PRIMARY KEY,
-    "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
-);
-```
+If you would like to name your database something else, you will need to change `lol` to the name of your new database name in `server/modules/pool.js`.
 
-If you would like to name your database something else, you will need to change `prime_app` to the name of your new database name in `server/modules/pool.js`
 
 ## Development Setup Instructions
-
 - Run `npm install`
 - Create a `.env` file at the root of the project and paste this line into the file:
-  ```
+ 
   SERVER_SESSION_SECRET=superDuperSecret
-  ```
-  While you're in your new `.env` file, take the time to replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
+
+
+- While you're in your new `.env` file, replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
+
+- In the .env you need to add an AWS API Key (not included in this document)
+    - 
+- In the .env you need to add a TinyURL API Key (not included in this document)
+    - The key needs to be called TINY_URL_KEY in the .env
+    - Sign up and get a free key at: https://tinyurl.com/
+
 - Start postgres if not running already by using `brew services start postgresql`
 - Run `npm run server`
 - Run `npm run client`
 - Navigate to `localhost:3000`
 
-## Debugging
 
-To debug, you will need to run the client-side separately from the server. Start the client by running the command `npm run client`. Start the debugging server by selecting the Debug button.
+## Usage 
+1. Login/Register 
 
-![VSCode Toolbar](documentation/images/vscode-toolbar.png)
+2. Customize Profile 
+  Edit Profile Information:
+  To change your profile information, click the pencil button near your profile image on the profile page. Here you will be able to update any personal information as well as your profile image (uploaded images must be .JPEG files), then click save. 
 
-Then make sure `Launch Program` is selected from the dropdown, then click the green play arrow.
+  Add Profile Banner Image (Uploaded images must be .JPEG files):
+  To add a banner image, click the "edit banner" button located on your profile, choose the desired banner, then save. 
 
-![VSCode Debug Bar](documentation/images/vscode-debug-bar.png)
 
-## Testing Routes with Postman
+3. Connections
+  Find connections:
+  To find connections, navigate to the search bar. Here, type in the first and last name of the user you want to connect with. Once you are on their profile page, click the connect button. You will be given the option to connect with the user as a friend or family. 
 
-To use Postman with this repo, you will need to set up requests in Postman to register a user and login a user at a minimum.
+  View connections: 
+  To view who you are connected with, navigate to the menu dropdown. From here, you can click the "my connections" tab. On this page, you can use the toggle to switch between all of your connections, your family connections, and your friend connections.
 
-Keep in mind that once you using the login route, Postman will manage your session cookie for you just like a browser, ensuring it is sent with each subsequent request. If you delete the `localhost` cookie in Postman, it will effectively log you out.
+  Accept a Connection: 
+  To accept a connection, navigate to the my connections page. From here, you can use the toggle to switch to "requests". Click "accept" to accept the request and "ignore" to deny the request. 
+  
+  Remove a Connection:
+  To remove a connection, navigate to the my connections page. From here, navigate to the connection you would like to remove. Click "delete" to remove the connection. 
+  
 
-1. Start the server - `npm run server`
-2. Import the sample routes JSON file [v2](./PostmanPrimeSoloRoutesv2.json) by clicking `Import` in Postman. Select the file.
-3. Click `Collections` and `Send` the following three calls in order:
-   1. `POST /api/user/register` registers a new user, see body to change username/password
-   2. `POST /api/user/login` will login a user, see body to change username/password
-   3. `GET /api/user` will get user information, by default it's not very much
+4. Upload a Video (Uploaded videos must be .MP4 files)
+  Upload Video:
+  To upload the video, navigate to the upload video page using the menu bar. From here, click "add video". First, you will chose the prompt you want to answer. You will then record the video outside of the app. After you record the video, you will be able to click or drag your video into the dropbox to upload it. 
 
-After running the login route above, you can try any other route you've created that requires a logged in user!
+  Delete Video:
+  To delete a video, click the trash icon located at the bottom of the video.
 
-## Production Build
 
-Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
+5. Share a Video 
+  Share with any of your friends/family connections within app:
+    Select connections from the dropdown menu with whom you want to share the video, and click send.
 
-- Start postgres if not running already by using `brew services start postgresql`
-- Run `npm start`
-- Navigate to `localhost:5000`
+  Share a video link outside of the app:
+    Click Share, then click Give me a Link. A shortened URL and message will be generated to copy into text or email.
 
-## Lay of the Land
 
-There are a few videos linked below that show a walkthrough the client and sever setup to help acclimatize to the boilerplate. Please take some time to watch the videos in order to get a better understanding of what the boilerplate is like.
+6. Permissions 
+  From profile page or Manage Library, use the dropdown menu on an individual video to set its viewing permissions. 
+    -Set to family/friends: Only family and friends will see your video
+    -Invite-only: You must specifically invite your connections to view your video
 
-- [Initial Set](https://vimeo.com/453297271)
-- [Server Walkthrough](https://vimeo.com/453297212)
-- [Client Walkthrough](https://vimeo.com/453297124)
 
-Directory Structure:
+## Built With 
+Node.js,
+Express.js,
+React,
+Redux,
+Redux Saga,
+PostgreSQL,
+Heroku,
+MUI,
+AWS S3
 
-- `src/` contains the React application
-- `public/` contains static assets for the client-side
-- `build/` after you build the project, contains the transpiled code from `src/` and `public/` that will be viewed on the production site
-- `server/` contains the Express App
+## Heroku 
+See a live version of the application at:
+https://fierce-dusk-71430.herokuapp.com/#/home
 
-This code is also heavily commented. We recommend reading through the comments, getting a lay of the land, and becoming comfortable with how the code works before you start making too many changes. If you're wondering where to start, consider reading through component file comments in the following order:
 
-- src/components
-  - App/App
-  - Footer/Footer
-  - Nav/Nav
-  - AboutPage/AboutPage
-  - InfoPage/InfoPage
-  - UserPage/UserPage
-  - LoginPage/LoginPage
-  - RegisterPage/RegisterPage
-  - LogOutButton/LogOutButton
-  - ProtectedRoute/ProtectedRoute
+## Authors 
+Anissa Crawford, Jason Inouye, Juliette Lelchuk, Lucas Houska, and Michael Chuinard
 
-## Deployment
 
-1. Create a new Heroku project
-1. Link the Heroku project to the project GitHub Repo
-1. Create an Heroku Postgres database
-1. Connect to the Heroku Postgres database from Postico
-1. Create the necessary tables
-1. Add an environment variable for `SERVER_SESSION_SECRET` with a nice random string for security
-1. In the deploy section, select manual deploy
+## Acknowledgments 
+Freddy Hutt,
+Tariq Azmi,
+Dane Smith,
+The Butler Cohort,
+Prime Digital Academy, 
+Our friends and family
 
-## Update Documentation
 
-Customize this ReadMe and the code comments in this project to read less like a starter repo and more like a project. Here is an example: https://gist.github.com/PurpleBooth/109311bb0361f32d87a2
