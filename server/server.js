@@ -18,7 +18,8 @@ const requestRouter = require('./routes/request.router');
 const connectionsRouter = require('./routes/connections.router');
 const uploadRouter = require('./routes/s3lol.router');
 const shareRouter = require('./routes/share.router');
-const bannerRouter = require('./routes/banner.router')
+const bannerRouter = require('./routes/banner.router');
+const photoRouter = require('./routes/photo.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -39,6 +40,9 @@ app.use('/api/search', searchRouter);
 
 /* Video route */
 app.use('/api/video', videoRouter);
+
+/* Photo route */
+app.use('/api/photo', photoRouter);
 
 /* Connections route */
 app.use('/api/connections', connectionsRouter);

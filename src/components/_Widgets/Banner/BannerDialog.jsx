@@ -35,13 +35,6 @@ const banners = [
     { name: 'Grass', url: '/images/banners/frostedgrass.png' }, 
     { name: 'Lavender', url: '/images/banners/lavender.png' }, 
     { name: 'Sunflower', url: '/images/banners/sunflower.png' }, 
-
-
-
-
-
-
-
 ]
 
 function BannerDialog({ title, children, component, callback, banner }) {

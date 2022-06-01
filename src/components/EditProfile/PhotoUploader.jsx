@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
 import 'react-dropzone-uploader/dist/styles.css';
 import Dropzone from 'react-dropzone-uploader';
 import Swal from 'sweetalert2';
@@ -15,24 +14,17 @@ import {
   Select,
 } from '@mui/material';
 
-function Uploader() {
-
-  console.log('this is the prompt id', videoPrompt);
+function PhotoUploader() {
   useEffect(() => {
     dispatch({
-      type: 'GET_PROMPTS',
-    });
-    dispatch({
-      type: 'CLEAR_VIDEO',
+      type: 'CLEAR_PHOTO',
     });
   }, []);
 
 
   const dispatch = useDispatch();
-  const prompts = useSelector((store) => store.promptReducer);
-  const video = useSelector((store) => store.videoReducer);
-  const [videoPrompt, setVideoPrompt] = useState('');  
-  const [openVideoModal, setOpenVideoModal] = useState(false);
+  const photo = useSelector((store) => store.photoReducer);  
+  const [openPhotoModal, setOpenPhotoModal] = useState(false);
 
   const getUploadParams = ({ meta }) => {
     const url = 'https://httpbin.org/post';
@@ -47,21 +39,13 @@ function Uploader() {
   };
 
   const handleSubmit = async (files, allFiles) => {
-    if (videoPrompt === '') {
-      setOpenVideoModal(false);
-      Swal.fire({
-        icon: 'error',
-        title: 'Prompt Required',
-        footer: 'Please choose a Prompt before uploading',
-      });
-    } else {
+
       const f = files[0];
       console.log(f['file']);
 
       // Triggers the presigned URL process from lambda function on aws
       dispatch({
-        type: 'GET_UPLOAD_URL',
-        prompt: videoPrompt,
+        type: 'GET_PHOTO_URL',
         payload: f['file']
       });
 
@@ -70,62 +54,59 @@ function Uploader() {
       allFiles.forEach((f) => f.remove());
 
       //Close Dropzone and Clear Prompt State
-      setOpenVideoModal(false);
-      setVideoPrompt('');
+      setOpenPhotoModal(false);
       setTimeout(swalWait, 2000);
       function swalWait() {
       Swal.fire({
         icon: 'success',
         title: 'Successful Upload',
-        footer: 'Video has been uploaded successfully',
+        footer: 'Photo has been updated successfully',
       });
     }
-    }
+    
   };
 
-  const handleChangeVideo = () => {
+  const handleChangePhoto = () => {
     dispatch({
-      type: 'CLEAR_VIDEO',
+      type: 'CLEAR_PHOTO',
     });
   };
 
-  const handleOpenVideoModal = () => {
-    dispatch({ type: 'GET_PROMPTS' });
-    setOpenVideoModal(true);
+  const handleOpenPhotoModal = () => {
+    setOpenPhotoModal(true);
   };
 
-  const handleCloseVideoModal = () => {
-    setVideoPrompt('');
-    setOpenVideoModal(false);
+  const handleClosePhotoModal = () => {
+    setOpenPhotoModal(false);
   };
 
   return (
     <div className='upload'>
-      {video.file ? (
+      {photo.file ? (
         <Box>
-          <p>{video.file.name}</p>
+          <p>{photo.file.name}</p>
           <Button
-            onClick={handleChangeVideo}
+            onClick={handleChangePhoto}
             style={{
               marginBottom: 15,
             }}
           >
-            Remove Video
+            Remove Photo
           </Button>
         </Box>
       ) : (
         <Button
-          onClick={handleOpenVideoModal}
+          onClick={handleOpenPhotoModal}
           style={{
             marginBottom: 15,
           }}
         >
-          Add Video
+          Add Profile Photo
         </Button>
       )}
       <Modal
-        open={openVideoModal}
-        onClose={handleCloseVideoModal}
+        open={openPhotoModal}
+        onClose={handleClosePhotoModal}
         aria-labelledby='modal-modal-title'
         aria-describedby='modal-modal-description'
         style={{
@@ -147,14 +128,14 @@ function Uploader() {
             p: 4,
           }}
         >
-          <FormControl fullWidth>
+          {/* <FormControl fullWidth>
             <InputLabel id='demo-simple-select-label'>Prompt</InputLabel>
             <Select
               labelId='demo-simple-select-label'
               id='demo-simple-select'
-              value={videoPrompt}
+              value={photoPrompt}
               label='prompt'
-              onChange={(event) => setVideoPrompt(event.target.value)}
+              onChange={(event) => setPhotoPrompt(event.target.value)}
             >
               {prompts.map((prompt) => (
                 <MenuItem key={prompt.id} value={prompt.id}>
@@ -162,12 +143,12 @@ function Uploader() {
                 </MenuItem>
               ))}
             </Select>
-          </FormControl>
+          </FormControl> */}
           <Typography id='modal-modal-title' variant='h6' component='h2'>
-            Add Video Here!
+            Add Photo Here!
           </Typography>
-          {video.file ? (
-            <h1>{video.file.name} Has Been Added!</h1>
+          {photo.file ? (
+            <h1>{photo.file.name} Has Been Added!</h1>
           ) : (
             <Dropzone
               getUploadParams={getUploadParams}
@@ -176,7 +157,7 @@ function Uploader() {
               maxFiles={1}
               canCancel={false}
               inputContent={(files, extra) =>
-                extra.reject ? 'Video files only' : 'Click or Drag 1 Video Here'
+                extra.reject ? 'Photo files only' : 'Click or Drag 1 Photo Here'
               }
               styles={{
                 dropzoneReject: { borderColor: 'red', backgroundColor: '#DAA' },
@@ -190,7 +171,7 @@ function Uploader() {
                 },
                 dropzoneActive: { borderColor: 'green' },
               }}
-              accept='video/*'
+              accept='image/*'
             />
           )}
         </Box>
@@ -198,4 +179,5 @@ function Uploader() {
     </div>
   );
 }
-export default Uploader;
+
+export default PhotoUploader;
