@@ -17,21 +17,6 @@ function LoginForm() {
     history.push('/user/videos');
   }
 
-  const loginJane = () => {
-    setUsername('janekim@lol.com');
-    setPassword('1234');
-  }
-
-  const loginEddie = () => {
-    setUsername('eddietanaka@lol.com');
-    setPassword('1234');
-  }
-
-  const loginMay = () => {
-    setUsername('mayirwin@lol.com');
-    setPassword('1234');
-  }
-
   const login = (event) => {
     event.preventDefault();
 
@@ -69,11 +54,7 @@ function LoginForm() {
       <form className="formPanel" onSubmit={login}>
 
         <h2 className="center">
-          <span onClick={loginJane}>L</span>
-          o
-          <span onClick={loginEddie}>g</span>
-          i 
-          <span onClick={loginMay}>n</span>
+          Login
         </h2>
 
         {errors.loginMessage && (
