@@ -4,8 +4,11 @@ Currently, there are many ways to find ancestry through online services, but the
 Duration: 2 week sprint
 
 ## Screenshots 
+<img width="1438" alt="Screen Shot 2022-06-01 at 1 16 11 PM" src="https://user-images.githubusercontent.com/92271468/171484898-d8f55ca4-bb64-4f42-9e0f-f1bef26b1e16.png">
 
+<img width="1439" alt="Screen Shot 2022-06-01 at 1 16 49 PM" src="https://user-images.githubusercontent.com/92271468/171484909-b80f2ded-966b-404b-88d8-ab8a504b137d.png">
 
+<img width="1436" alt="Screen Shot 2022-06-01 at 1 17 46 PM" src="https://user-images.githubusercontent.com/92271468/171484921-07a09815-a21f-4431-afab-4afe6304b912.png">
 
 ## Getting Started 
 We **STRONGLY** recommend following these instructions carefully. These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
