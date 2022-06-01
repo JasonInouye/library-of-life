@@ -7,12 +7,12 @@ require('dotenv').config();
 
 // GET S3 request URL from AWS
 router.get('/', rejectUnauthenticated, async (req, res) => {
-    console.log('API S3 URL request');
+    //console.log('API S3 URL request');
     axios
         // endpoint is in env file
         .get(process.env.S3_PHOTO_API_URL)
         .then( (response) => {
-            console.log('this is the photo url', response.data);
+            //console.log('this is the photo url', response.data);
             res.send(response.data)
         })
         .catch( (err) => {
@@ -23,7 +23,7 @@ router.get('/', rejectUnauthenticated, async (req, res) => {
 
 // Update users profile with new profile image
 router.put('/', (req, res) => {
-    console.log('this is the server user update', req.body);
+    //console.log('this is the server user update', req.body);
     const domainLink = `https://d3mbwcp4a1lwx.cloudfront.net/${req.body.key}`
     const sqlText = `
       UPDATE "users"

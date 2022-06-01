@@ -36,7 +36,7 @@ router.post('/register', (req, res, next) => {
 
   const queryValues = [username, firstName, lastName, city, state, country, password, './images/people/blankProfile.png', './images/banners/paper.png']
 
-  console.log( 'POST LOG', queryText, queryValues)
+  //console.log( 'POST LOG', queryText, queryValues)
   
   pool
     .query(queryText, queryValues)
@@ -65,7 +65,7 @@ router.post('/logout', (req, res) => {
 
 // clear all server session information about this user
 router.put('/update/:id', (req, res) => {
-  console.log('this is the server user update', req.body);
+  //console.log('this is the server user update', req.body);
   const idToUpdate = req.params.id;
   const sqlText = `
     UPDATE "users"

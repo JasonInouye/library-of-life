@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 
     pool.query(queryText, queryValues)
     .then((result) => {
-        console.log('server GET connections', result.rows);
+        // console.log('server GET connections', result.rows);
         res.send(result.rows);
     }).catch (err => {
         console.log('ERROR in GET connections', err);
@@ -36,7 +36,7 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
 
-    console.log(req.body.relationship, req.user.id, req.body.userB)
+    // console.log(req.body.relationship, req.user.id, req.body.userB)
 
 
     const queryText = `
@@ -77,7 +77,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     const id = req.params.id; 
 
-    console.log(id);
+    //console.log(id);
 
     const queryText = `DELETE FROM "connections" WHERE id = $1;`;
 

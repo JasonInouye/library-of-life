@@ -3,12 +3,12 @@ const router = express.Router();
 const axios = require('axios');
 
 router.post('/', (req, res) => {
-    console.log('server side data:', req.body);
+    //console.log('server side data:', req.body);
     
     axios
         .post(`https://api.tinyurl.com/create?api_token=${process.env.TINY_URL_KEY}`, req.body)
         .then((response) => { //response in the server
-            console.log(response.data);
+            //console.log(response.data);
             res.send(response.data.data.tiny_url);//to send to client side
         }).catch((err) => {
             console.log(err);

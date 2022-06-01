@@ -35,7 +35,7 @@ function Nav() {
 
   const handleItemClick = (menuLink) => {
 
-    console.log(menuLink);
+    // console.log(menuLink);
     history.push(menuLink);
 
     setMenuPosition(null);

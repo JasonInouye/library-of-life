@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 
     pool.query(queryText)
         .then((result) => {
-            console.log('server GET connections', result.rows);
+            //console.log('server GET connections', result.rows);
             res.send(result.rows);
         }).catch(err => {
             console.log('ERROR in GET connections', err);
@@ -30,11 +30,11 @@ router.get('/:idOfRequestedUser', (req, res) => {
 
     const queryValues = [req.user.id, req.params.idOfRequestedUser];
 
-    console.log('req', req.user.id, req.params.idOfRequestedUser)
+    //console.log('req', req.user.id, req.params.idOfRequestedUser)
 
     pool.query(queryText, queryValues)
         .then((result) => {
-            console.log('server GET connections', result.rows);
+            //console.log('server GET connections', result.rows);
             res.send(result.rows);
         }).catch(err => {
             console.log('ERROR in GET connections', err);

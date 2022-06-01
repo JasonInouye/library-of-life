@@ -22,7 +22,7 @@ router.get('/:searchedUser', (req, res) => {
 WHERE "id" = $1;
 `
 
-    console.log(req.params.searchedUser)
+    //console.log(req.params.searchedUser)
     pool.query(queryText, [req.params.searchedUser]).then(result => {
         console.log(result.rows)
         res.send(result.rows);
@@ -40,9 +40,9 @@ router.get('/videos/:searchedUser', (req, res) => {
 
     const values = [req.params.searchedUser]
 
-    console.log(req.params.searchedUser)
+    //console.log(req.params.searchedUser)
     pool.query(queryText, values).then(result => {
-        console.log(result.rows)
+        //console.log(result.rows)
         res.send(result.rows);
     }).catch(error => {
         console.log(error);
