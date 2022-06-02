@@ -2,6 +2,9 @@
 Currently, there are many ways to find ancestry through online services, but the personal history of the people found on these services are lost to time. Library of Life is an application that enables people to create digital legacies to leave behind. Users can upload their personal story in the form of a video to be shared with friends, family, and future generations. 
 
 Duration: 2 week sprint
+## Library of Life video walk through
+
+- [Video Instructions](https://www.youtube.com/watch?v=3-AEuNuWOA0)
 
 ## Screenshots 
 <img width="1438" alt="Screen Shot 2022-06-01 at 1 16 11 PM" src="https://user-images.githubusercontent.com/92271468/171484898-d8f55ca4-bb64-4f42-9e0f-f1bef26b1e16.png">
@@ -36,8 +39,10 @@ If you would like to name your database something else, you will need to change 
 
 - While you're in your new `.env` file, replace `superDuperSecret` with some long random string like `25POUbVtx6RKVNWszd9ERB9Bb6` to keep your application secure. Here's a site that can help you: [https://passwordsgenerator.net/](https://passwordsgenerator.net/). If you don't do this step, create a secret with less than eight characters, or leave it as `superDuperSecret`, you will get a warning.
 
-- In the .env you need to add an AWS API Key (not included in this document)
-    - 
+- In the .env you need to add two AWS API ENDPOINT (not included in this document)
+    - The first endpoint is for the video uploads S3 bucket. Files must be in mp4 format
+    - The second endpoint is for the picture uploads S3. Files must be in jpg format
+    - Each endpoint has a Lambda function on AWS where you can configure your upload parameters
 - In the .env you need to add a TinyURL API Key (not included in this document)
     - The key needs to be called TINY_URL_KEY in the .env
     - Sign up and get a free key at: https://tinyurl.com/
